@@ -5,8 +5,8 @@ export const [cPosition, createPosition] = createComponent('position', 'pos', ({
   pos: new Point(x, y),
 }))
 
-export const [cMotion, createMotion] = createComponent('motion', 'vel', ({ velX, velY }) => ({
-  vel: new Point(velX, velY),
+export const [cMotion, createMotion] = createComponent('motion', 'vel', ({ vx, vy }) => ({
+  vel: new Point(vx, vy),
 }))
 
 export const [cControl, createControl] = createComponent('control', 'dir')

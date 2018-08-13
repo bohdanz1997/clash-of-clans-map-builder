@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "pathfinding": "^0.4.18",
+    "pixi.js": "^4.8.1",
     "scent": "^0.10.0"
   },
   "devDependencies": {

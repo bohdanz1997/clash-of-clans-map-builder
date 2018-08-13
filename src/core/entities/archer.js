@@ -8,6 +8,6 @@ import {
 export const createArcher = ({ x, y, speed }) => (
   createEntity(
     createPosition({ x, y }),
-    createMotion({ velX: speed, velY: speed })
+    createMotion({ vx: speed, vy: speed })
   )
 )
