@@ -18,6 +18,5 @@ const registerSystems = engine => (
 )
 
 const registerEntities = engine => {
-  const position = { x: 10, y: 12 }
-  engine.addEntity(createArcher({ position, speed: 2 }))
+  engine.addEntity(createArcher({ x: 10, y: 10, speed: 2 }))
 }

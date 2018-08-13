@@ -8,6 +8,7 @@ import {
 export default engine => () => {
   createSystem(({ position, motion }) => {
     position.pos.add(motion.vel)
+    console.log(position)
     console.log(motion)
   })(engine, [cPosition, cMotion])
 }
