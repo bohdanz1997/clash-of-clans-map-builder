@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node game.js"
+    "start": "babel-node src/game.js"
   },
   "author": "",
   "license": "ISC",
