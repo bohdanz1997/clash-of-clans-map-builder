@@ -9,7 +9,7 @@ const onStartUpdate = () => {
 }
 
 const onUpdateNode = ({ info, position }, delta) => {
-  console.log(info.type, 'x:', position.pos.x, 'y:', position.pos.y, delta)
+  console.log(info.type, position.pos.toString(), delta)
 }
 
 export default engine => createSystem({

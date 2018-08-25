@@ -50,4 +50,8 @@ export default class Point {
       this.y / point.y,
     )
   }
+
+  toString() {
+    return `{ x: ${this.x}, y: ${this.y} }`
+  }
 }
