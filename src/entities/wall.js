@@ -11,6 +11,5 @@ export default ({ x, y, width, height, type, collisionRadius, health }) => (
     c.Health({ health }),
     c.Position({ x, y }),
     c.Collision({ width, height, radius: collisionRadius }),
-    c.Motion({ vx: 1, vy: 1 }),
   )
 )
