@@ -1,14 +1,14 @@
-import { createSystem } from "../core/factories"
+import { createSystem } from '../core/factories'
 
 import {
   cMotion,
   cPosition
 } from '../components'
 
-export default engine => () => {
-  createSystem(({ position, motion }) => {
-    position.pos.add(motion.vel)
-    console.log(position)
-    console.log(motion)
-  })(engine, [cPosition, cMotion])
+const onUpdateNode = ({ position, motion }, delta) => {
+  position.pos = position.pos.add(motion.vel.mult(delta))
 }
+
+export default engine => createSystem({
+  onUpdateNode,
+})(engine, [cPosition, cMotion])
