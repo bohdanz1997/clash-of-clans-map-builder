@@ -1,0 +1,19 @@
+{
+  "id": "wall",
+  "type": "Wall",
+  "description": "None",
+  "width": 30,
+  "height": 30,
+  "collisionRadius": 15,
+  "levels": {
+    "1": {
+      "health": 100
+    },
+    "2": {
+      "health": 200
+    },
+    "3": {
+      "health": 500
+    }
+  }
+}

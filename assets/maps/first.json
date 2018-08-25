@@ -1,0 +1,27 @@
+{
+  "layers": [
+    {
+      "type": "buildings",
+      "data": [
+        {
+          "id": "wall",
+          "x": 5,
+          "y": 5,
+          "level": 1
+        },
+        {
+          "id": "wall",
+          "x": 10,
+          "y": 10,
+          "level": 2
+        },
+        {
+          "id": "wall",
+          "x": 15,
+          "y": 15,
+          "level": 3
+        }
+      ]
+    }
+  ]
+}
