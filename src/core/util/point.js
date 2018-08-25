@@ -1,26 +1,53 @@
-class Point {
+export default class Point {
   constructor(x, y) {
     this.x = x
-    this.y = y
+    this.y = y || x
   }
 
-  static empty() {
-    return new Point(0, 0)
+  static zero() {
+    return new Point(0)
   }
 
-  static clone(point) {
-    return new Point(point.x, point.y)
+  static of(val) {
+    if (val instanceof Point) {
+      return val
+    }
+    return new Point(val)
   }
 
-  add(point) {
-    this.x += point.x
-    this.y += point.y
+  clone() {
+    return new Point(this.x, this.y)
   }
 
-  sub(point) {
-    this.x -= point.x
-    this.y -= point.y
+  add(pointOrNum) {
+    const point = Point.of(pointOrNum)
+    return new Point(
+      this.x + point.x,
+      this.y + point.y,
+    )
+  }
+
+  sub(pointOrNum) {
+    const point = Point.of(pointOrNum)
+    return new Point(
+      this.x - point.x,
+      this.y - point.y,
+    )
+  }
+
+  mult(pointOrNum) {
+    const point = Point.of(pointOrNum)
+    return new Point(
+      this.x * point.x,
+      this.y * point.y,
+    )
+  }
+
+  divide(pointOrNum) {
+    const point = Point.of(pointOrNum)
+    return new Point(
+      this.x / point.x,
+      this.y / point.y,
+    )
   }
 }
-
-export default Point
