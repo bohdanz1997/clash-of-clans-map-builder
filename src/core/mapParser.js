@@ -27,7 +27,7 @@ export const parseMapDefinition = (mapDefinition) => {
   const layerNames = layers.map(l => l.name)
   return {
     ...mapDefinition,
-    componentId: 'Map',
+    entityType: 'Map',
     layers: layerNames,
   }
 }

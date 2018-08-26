@@ -1,6 +1,6 @@
 {
   "id": "wall",
-  "componentId": "Wall",
+  "entityType": "Wall",
   "description": "None",
   "width": 30,
   "height": 30,

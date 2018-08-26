@@ -1,5 +1,5 @@
 import { createComponent } from '../core/factories'
 
-export const [cInfo, Info] = createComponent('info', 'type', ({ type }) => ({
-  type,
+export const [cInfo, Info] = createComponent('info', 'entityType', ({ entityType }) => ({
+  entityType,
 }))

@@ -2,9 +2,9 @@ import { createEntity } from '../core/factories'
 
 import * as c from '../components'
 
-export default ({ x, y, width, height, type, collisionRadius, health }) => (
+export default ({ x, y, width, height, entityType, collisionRadius, health }) => (
   createEntity(
-    c.Info({ type }),
+    c.Info({ entityType }),
     c.Building(),
     c.DefenceBuilding(),
     c.Wall(),
