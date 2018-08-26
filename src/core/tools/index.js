@@ -1,5 +1,3 @@
-import * as mapParser from './mapParser'
-
 import Point from './point'
 import Rectangle from './rectangle'
 import GameField, { Layer } from './gameField'
@@ -9,6 +7,4 @@ export {
   Layer,
   Rectangle,
   GameField,
-
-  mapParser,
 }
