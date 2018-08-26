@@ -19,6 +19,13 @@ export default class Point {
     return new Point(this.x, this.y)
   }
 
+  normalize() {
+    return new Point(
+      Math.round(this.x),
+      Math.round(this.y),
+    )
+  }
+
   add(pointOrNum) {
     const point = Point.of(pointOrNum)
     return new Point(

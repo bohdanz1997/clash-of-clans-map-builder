@@ -21,3 +21,13 @@ export const parseLayer = (layerData, entityDefinitions) => {
 
   return layerData.map(makeEntityParams)
 }
+
+export const parseMapDefinition = (mapDefinition) => {
+  const { layers } = mapDefinition
+  const layerNames = layers.map(l => l.name)
+  return {
+    ...mapDefinition,
+    componentId: 'Map',
+    layers: layerNames,
+  }
+}

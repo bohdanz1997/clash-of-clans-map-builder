@@ -1,5 +1,5 @@
 import { createComponent } from '../core/factories'
-import { Point, Rectangle } from '../core/util'
+import { GameField, Point, Rectangle } from '../core/tools'
 
 export const [cPosition, Position] = createComponent('position', 'pos', ({ x, y }) => ({
   pos: new Point(x, y),
@@ -27,3 +27,7 @@ export const [cCollision, Collision] = createComponent('collision', 'bounds radi
     center: bounds.center,
   }
 })
+
+export const [cMap, Map] = createComponent('map', 'gameField', ({ width, height, layers }) => ({
+  gameField: new GameField(width, height, layers),
+}))
