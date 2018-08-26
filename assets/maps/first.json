@@ -1,7 +1,9 @@
 {
+  "width": 30,
+  "height": 30,
   "layers": [
     {
-      "type": "buildings",
+      "name": "buildings",
       "data": [
         {
           "id": "wall",

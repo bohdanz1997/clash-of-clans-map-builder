@@ -1,6 +1,6 @@
 {
   "id": "wall",
-  "type": "Wall",
+  "componentId": "Wall",
   "description": "None",
   "width": 30,
   "height": 30,
