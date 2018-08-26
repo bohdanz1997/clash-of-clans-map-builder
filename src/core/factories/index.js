@@ -1,9 +1,10 @@
 import { createEntity } from "./entity"
-import { createSystem } from "./system"
 import { createComponent } from "./component"
+import { createSystem, createEnhancedSystem } from "./system"
 
 export {
   createSystem,
   createEntity,
   createComponent,
+  createEnhancedSystem,
 }

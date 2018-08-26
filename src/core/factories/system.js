@@ -17,3 +17,15 @@ export const createSystem = ({
     })
   }
 }
+
+export const createEnhancedSystem = ({
+  onUpdate,
+}) => {
+  if (!isFunction(onUpdate)) {
+    throw new Error(`onUpdate must be a function`)
+  }
+  return (engine, componentTypesList) => {
+    const nodes = componentTypesList.map(engine.getNodeType)
+    engine.onUpdate(delta => onUpdate(nodes, delta, engine))
+  }
+}
