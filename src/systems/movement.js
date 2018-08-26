@@ -1,14 +1,10 @@
 import { createSystem } from '../core/factories'
+import { nMovement } from '../nodes'
 
-import {
-  cMotion,
-  cPosition
-} from '../components'
-
-const onUpdateNode = ({ position, motion }, delta) => {
+const onUpdateNode = ({ position, motion, entityRef }, delta) => {
   position.pos = position.pos.add(motion.vel.mult(delta))
 }
 
 export default engine => createSystem({
   onUpdateNode,
-})(engine, [cPosition, cMotion])
+})(engine, nMovement)

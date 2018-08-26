@@ -1,8 +1,5 @@
 import { createSystem } from '../core/factories'
-
-import {
-  cPosition, cInfo,
-} from '../components'
+import { nRender } from '../nodes'
 
 const onStartUpdate = () => {
   console.clear()
@@ -15,4 +12,4 @@ const onUpdateNode = ({ info, position }, delta) => {
 export default engine => createSystem({
   onUpdateNode,
   onStartUpdate,
-})(engine, [cPosition, cInfo])
+})(engine, nRender)
