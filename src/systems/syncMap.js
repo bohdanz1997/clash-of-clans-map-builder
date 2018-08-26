@@ -1,4 +1,5 @@
 import { createEnhancedSystem } from '../core/factories'
+import { Layer } from '../core/tools'
 import { nMap, nBuilding } from '../nodes'
 
 const onUpdate = ([mapNode, buildingNode]) => {
@@ -8,7 +9,7 @@ const onUpdate = ([mapNode, buildingNode]) => {
 
   buildingNode.each(({ position }) => {
     const pos = position.pos.normalize()
-    layer.setIn(pos.x, pos.y, 'BUSY')
+    layer.setIn(pos.x, pos.y, Layer.cellState.BUSY)
   })
   console.log(layer.toString())
 }
