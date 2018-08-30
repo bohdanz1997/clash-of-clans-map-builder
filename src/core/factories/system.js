@@ -1,31 +1,38 @@
 import { noop, isFunction } from '../util'
 
-export const createSystem = ({
-  onUpdateNode,
-  onStartUpdate = noop,
-  onEndUpdate = noop,
-}) => {
-  if (!isFunction(onUpdateNode)) {
-    throw new Error(`onUpdateNode must be a function`)
-  }
-  return (engine, componentTypes) => {
-    const node = engine.getNodeType(componentTypes)
-    engine.onUpdate(delta => {
-      onStartUpdate(delta)
-      node.each(item => onUpdateNode(item, delta))
-      onEndUpdate(delta)
-    })
-  }
+const defaultHandler = {
+  before: noop,
+  after: noop,
+  update: undefined,
 }
 
-export const createEnhancedSystem = ({
-  onUpdate,
-}) => {
-  if (!isFunction(onUpdate)) {
-    throw new Error(`onUpdate must be a function`)
+const baseCreateSystem = systemFactory => (handler) => {
+  if (isFunction(handler)) {
+    const singleUpdateHandler = { ...defaultHandler, update: handler }
+    return systemFactory(singleUpdateHandler)
   }
-  return (engine, componentTypesList) => {
-    const nodes = componentTypesList.map(engine.getNodeType)
-    engine.onUpdate(delta => onUpdate(nodes, delta, engine))
+
+  const systemHandler = { ...defaultHandler, ...handler }
+  if (!isFunction(systemHandler.update)) {
+    throw new Error(`'update' must be a function`)
   }
+
+  return systemFactory(systemHandler)
 }
+
+const makeSystem = handler => (componentTypes) => engine => {
+  const node = engine.getNodeType(componentTypes)
+  engine.onUpdate(delta => {
+    handler.before(delta)
+    node.each(item => handler.update(item, delta))
+    handler.after(delta)
+  })
+}
+
+const makeEnhancedSystem = handler => (...componentTypesList) => engine => {
+  const nodes = componentTypesList.map(engine.getNodeType)
+  engine.onUpdate(delta => handler.update(...nodes, delta, engine))
+}
+
+export const createSystem = baseCreateSystem(makeSystem)
+export const createEnhancedSystem = baseCreateSystem(makeEnhancedSystem)

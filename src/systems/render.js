@@ -1,15 +1,14 @@
 import { createSystem } from '../core/factories'
 import { nRender } from '../nodes'
 
-const onStartUpdate = () => {
-  console.clear()
+const handler = {
+  before() {
+    console.clear()
+  },
+
+  update({ info, position }, delta) {
+    console.log(info.entityType, position.pos.toString(), delta)
+  }
 }
 
-const onUpdateNode = ({ info, position }, delta) => {
-  console.log(info.entityType, position.pos.toString(), delta)
-}
-
-export default engine => createSystem({
-  onUpdateNode,
-  onStartUpdate,
-})(engine, nRender)
+export default createSystem(handler)(nRender)

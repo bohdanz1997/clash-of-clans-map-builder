@@ -31,3 +31,5 @@ export const [cCollision, Collision] = createComponent('collision', 'bounds radi
 export const [cMap, Map] = createComponent('map', 'gameField', ({ width, height, layers }) => ({
   gameField: new GameField(width, height, layers),
 }))
+
+export const [cInteract, Interact] = createComponent('interact')
