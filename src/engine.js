@@ -1,7 +1,7 @@
 import { Engine } from 'scent'
 
 import * as systems from './systems'
-import { mapParser, entityBuilder } from './core'
+import { entityLoader } from './core'
 
 import mapData from '../assets/maps/first'
 import wallDef from '../assets/entity/wall'
@@ -12,25 +12,11 @@ const entityDefinitions = {
 
 export const createEngine = () => {
   const engine = new Engine()
-  registerEntities(engine)
-  registerSystems(engine)
+  entityLoader(engine, entityDefinitions, mapData)
+  registerSystems(engine, systems)
   return engine
 }
 
 const registerSystems = engine => {
   Object.values(systems).forEach(s => engine.addSystem(() => s(engine)))
-}
-
-const registerEntities = engine => {
-  const registerEntity = entityBuilder.buildAndAddEntity(engine)
-
-  const initEntitiesFromLayer = layer => {
-    const entitiesData = mapParser.parseLayer(layer.data, entityDefinitions)
-    entitiesData.forEach(registerEntity)
-  }
-
-  mapData.layers.forEach(initEntitiesFromLayer)
-
-  const mapEntityData = mapParser.parseMapDefinition(mapData)
-  registerEntity(mapEntityData)
 }
