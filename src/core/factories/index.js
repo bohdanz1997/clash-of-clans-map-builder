@@ -1,10 +1,3 @@
-import { createEntity } from "./entity"
-import { createComponent } from "./component"
-import { createSystem, createEnhancedSystem } from "./system"
-
-export {
-  createSystem,
-  createEntity,
-  createComponent,
-  createEnhancedSystem,
-}
+export * from './entity'
+export * from './system'
+export * from './component'
