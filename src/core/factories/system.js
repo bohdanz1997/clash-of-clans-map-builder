@@ -1,6 +1,7 @@
 import { noop, isFunction } from '../util'
 
 const defaultHandler = {
+  init: noop,
   before: noop,
   after: noop,
   update: undefined,
@@ -27,11 +28,13 @@ const makeSystem = handler => (componentTypes) => engine => {
     node.each(item => handler.update(item, delta))
     handler.after(delta)
   })
+  handler.init()
 }
 
 const makeEnhancedSystem = handler => (...componentTypesList) => engine => {
   const nodes = componentTypesList.map(engine.getNodeType)
   engine.onUpdate(delta => handler.update(...nodes, delta, engine))
+  handler.init()
 }
 
 export const createSystem = baseCreateSystem(makeSystem)
