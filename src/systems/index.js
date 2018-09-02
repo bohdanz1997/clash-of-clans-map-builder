@@ -7,7 +7,7 @@ export const registerSystems = (engine) => {
   [
     keyboardInput,
     // render,
-    // movement,
+    movement,
     // syncMap,
   ].forEach(engine.addSystem)
 }

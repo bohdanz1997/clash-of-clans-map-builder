@@ -19,9 +19,9 @@ export default ($engine, $keyboard) => createSystem({
     $keyboard.update(delta)
 
     if ($keyboard.isDown(keys.W)) {
-      // console.log('yes')
+      console.log('yes')
     } else {
-      // console.log('no')
+      console.log('no')
     }
   },
 })(nControl)($engine)

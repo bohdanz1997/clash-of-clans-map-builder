@@ -13,7 +13,7 @@ const entityDefinitions = {
 }
 
 const config = {
-  target: null,
+  target: document.body,
   width: 800,
   height: 500,
 }
