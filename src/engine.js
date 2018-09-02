@@ -17,7 +17,7 @@ const engineInitializer = (engine, provide) => {
   objectEach(provide, dependencies)
 }
 
-export const createEngine = () => {
+export default () => {
   const engine = new Engine(engineInitializer)
   registerEntities(engine)
   registerSystems(engine)

@@ -7,7 +7,7 @@ const {
 
 module.exports = {
   entry: {
-    app: './src/game.js',
+    app: './src/index.js',
   },
   optimization: {
     minimize: false,
