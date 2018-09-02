@@ -5,4 +5,4 @@ const handler = ({ position, motion }, delta) => {
   position.pos = position.pos.add(motion.vel.mult(delta))
 }
 
-export default createSystem(handler)(nMovement)
+export default $engine => createSystem(handler)(nMovement)($engine)

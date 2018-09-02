@@ -27,4 +27,4 @@ const handler = (mapNode, buildingNode) => {
   console.log(layer.toString())
 }
 
-export default createEnhancedSystem(handler)(nMap, nBuilding)
+export default $engine => createEnhancedSystem(handler)(nMap, nBuilding)($engine)

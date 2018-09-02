@@ -1,7 +1,7 @@
 import { createSystem } from '../core/factories'
 import { nRender } from '../nodes'
 
-const handler = {
+export default $engine => createSystem({
   before() {
     console.clear()
   },
@@ -9,6 +9,4 @@ const handler = {
   update({ info, position }, delta) {
     console.log(info.entityType, position.pos.toString(), delta)
   }
-}
-
-export default createSystem(handler)(nRender)
+})(nRender)($engine)
