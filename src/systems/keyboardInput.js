@@ -12,16 +12,16 @@ import {
 export default ($engine, $keyboard) => createSystem({
   init() {
     $keyboard.addKeys(keys.W, keys.A, keys.S, keys.D)
-    $keyboard.start()
+    // $keyboard.start()
   },
 
   update({ control }, delta) {
     $keyboard.update(delta)
 
     if ($keyboard.isDown(keys.W)) {
-      console.log('yes')
+      // console.log('yes')
     } else {
-      console.log('no')
+      // console.log('no')
     }
   },
 })(nControl)($engine)

@@ -1,9 +1,7 @@
 import * as mapParser from './mapParser'
-import * as entityBuilder from './entityBuilder'
-import entityLoader from './entityLoader'
+import entityBuilder from './entityBuilder'
 
 export {
   mapParser,
   entityBuilder,
-  entityLoader,
 }

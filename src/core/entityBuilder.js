@@ -1,20 +1,20 @@
-import * as entities from '../entities'
+export default (engine, entities) => {
+  const buildEntity = entityParams => {
+    const { entityType } = entityParams
+    if (entityType === undefined) {
+      throw new Error(`Entity params must include 'entityType'`)
+    }
 
-const buildEntity = entityParams => {
-  const { entityType } = entityParams
-  if (entityType === undefined) {
-    throw new Error(`Entity params must include 'entityType'`)
+    const entityFactory = entities[entityType]
+    if (!entityFactory) {
+      throw new Error(`Could not find entity factory for '${entityType}'`)
+    }
+
+    return entityFactory(entityParams)
   }
 
-  const entityFactory = entities[entityType]
-  if (!entityFactory) {
-    throw new Error(`Could not find entity factory for '${entityType}'`)
+  return (entityParams) => {
+    const entity = buildEntity(entityParams)
+    engine.addEntity(entity)
   }
-
-  return entityFactory(entityParams)
-}
-
-export const buildAndAddEntity = engine => (entityParams) => {
-  const entity = buildEntity(entityParams)
-  engine.addEntity(entity)
 }
