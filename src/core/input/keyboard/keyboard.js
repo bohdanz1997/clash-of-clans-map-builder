@@ -1,6 +1,6 @@
 import Key from './key'
 
-export default class KeyboardManager {
+export default class Keyboard {
   constructor(target) {
     this._target = target
     this._keys = {}
