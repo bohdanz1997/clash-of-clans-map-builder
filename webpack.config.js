@@ -6,6 +6,7 @@ const {
 } = require('webpack')
 
 module.exports = {
+  mode: 'development',
   entry: {
     app: './src/index.js',
   },
