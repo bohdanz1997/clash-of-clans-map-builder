@@ -10,7 +10,10 @@ export const [cMotion, Motion] = createComponent('motion', 'vel dir', ({ vx, vy 
   dir: 0,
 }))
 
-export const [cControl, Control] = createComponent('control', 'acceleration')
+export const [cControl, Control] = createComponent('control', 'dx dy', ({ dx, dy }) => ({
+  dx,
+  dy,
+}))
 
 export const [cDamage, Damage] = createComponent('damage', 'rate', ({ rate }) => ({ rate }))
 
@@ -33,3 +36,7 @@ export const [cMap, Map] = createComponent('map', 'gameField', ({ width, height,
 }))
 
 export const [cInteract, Interact] = createComponent('interact')
+
+export const [cDisplay, Display] = createComponent('display', 'sprite', ({ sprite }) => ({
+  sprite,
+}))
