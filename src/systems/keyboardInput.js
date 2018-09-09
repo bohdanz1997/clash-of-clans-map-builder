@@ -18,20 +18,20 @@ export default ($engine, $keyboard) => createSystem({
   update({ control, motion }, delta) {
     $keyboard.update(delta)
 
-    motion.vel.x = 0
-    motion.vel.y = 0
+    motion.vx = 0
+    motion.vy = 0
 
     if ($keyboard.isDown(keys.W)) {
-      motion.vel.y = -control.dy
+      motion.vy = -control.dy
     }
     if ($keyboard.isDown(keys.S)) {
-      motion.vel.y = control.dy
+      motion.vy = control.dy
     }
     if ($keyboard.isDown(keys.A)) {
-      motion.vel.x = -control.dx
+      motion.vx = -control.dx
     }
     if ($keyboard.isDown(keys.D)) {
-      motion.vel.x = control.dx
+      motion.vx = control.dx
     }
   },
 })(nControl)($engine)

@@ -3,6 +3,6 @@ import { nRender } from '../nodes'
 
 export default $engine => createSystem({
   update({ position, display }) {
-    display.sprite.position.set(position.pos.x, position.pos.y)
+    display.sprite.position.copy(position.pos)
   }
 })(nRender)($engine)
