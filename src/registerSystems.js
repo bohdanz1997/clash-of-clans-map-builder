@@ -1,15 +1,11 @@
-import {
-  render,
-  syncMap,
-  movement,
-  keyboardInput,
-} from './systems'
+import * as s from './systems'
 
 const systems = [
-  keyboardInput,
-  movement,
-  render,
-  // syncMap,
+  s.stageManage,
+  s.keyboardInput,
+  s.movement,
+  s.render,
+  // s.syncMap,
 ]
 
 export default (engine) => {

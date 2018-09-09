@@ -4,7 +4,7 @@ const defaultHandler = {
   init: noop,
   before: noop,
   after: noop,
-  update: undefined,
+  update: noop,
 }
 
 const baseCreateSystem = systemFactory => (handler) => {
@@ -14,10 +14,6 @@ const baseCreateSystem = systemFactory => (handler) => {
   }
 
   const systemHandler = { ...defaultHandler, ...handler }
-  if (!isFunction(systemHandler.update)) {
-    throw new Error(`'update' must be a function`)
-  }
-
   return systemFactory(systemHandler)
 }
 
@@ -28,7 +24,7 @@ const makeSystem = handler => (componentTypes) => engine => {
     node.each(item => handler.update(item, delta))
     handler.after(delta)
   })
-  handler.init()
+  handler.init(node)
 }
 
 const makeEnhancedSystem = handler => (...componentTypesList) => engine => {
