@@ -3,9 +3,8 @@ import { createSprite } from '../core/pixi'
 import { createEntity } from '../core/factories'
 import { expolorer } from '../assets/atlas/treasureHunter'
 
-export default ({ x, y, speed, health, damage }, app) => {
+export default ({ x, y, speed, health, damage }) => {
   const sprite = createSprite(expolorer, x, y)
-  app.stage.addChild(sprite)
 
   return createEntity(
     c.Damage({ rate: damage }),
