@@ -4,17 +4,17 @@ import { rectCenter } from '../core/util'
 
 export const [cPosition, Position] = createComponent(
   'position', 'pos',
-  ({ x, y }) => ({ pos: new Point(x, y) })
+  ({ x = 0, y = 0 } = {}) => ({ pos: new Point(x, y) })
 )
 
 export const [cMotion, Motion] = createComponent(
   'motion', 'vx vy',
-  ({ vx, vy }) => ({ vx, vy, dir: 0 })
+  ({ vx = 0, vy = 0 } = {}) => ({ vx, vy, dir: 0 })
 )
 
 export const [cControl, Control] = createComponent(
   'control', 'dx dy',
-  ({ dx, dy }) => ({ dx, dy })
+  ({ dx = 0, dy = 0 } = {}) => ({ dx, dy })
 )
 
 export const [cDamage, Damage] = createComponent(
