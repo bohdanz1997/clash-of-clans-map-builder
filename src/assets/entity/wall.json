@@ -1,7 +1,5 @@
 {
   "id": "wall",
-  "entityType": "Wall",
-  "description": "None",
   "width": 30,
   "height": 30,
   "collisionRadius": 15,

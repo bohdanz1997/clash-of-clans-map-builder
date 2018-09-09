@@ -1,0 +1,7 @@
+{
+  "id": "blob",
+  "width": 32,
+  "height": 32,
+  "speed": 2,
+  "collisionRadius": 16
+}
