@@ -7,9 +7,9 @@ import {
 
 const systems = [
   keyboardInput,
-  render,
   movement,
-  syncMap,
+  render,
+  // syncMap,
 ]
 
 export default (engine) => {

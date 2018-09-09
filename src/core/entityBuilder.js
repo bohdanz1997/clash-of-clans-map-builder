@@ -1,4 +1,4 @@
-export default (engine, entities) => {
+export default (engine, app, entities) => {
   const buildEntity = entityParams => {
     const { entityType } = entityParams
     if (entityType === undefined) {
@@ -10,7 +10,7 @@ export default (engine, entities) => {
       throw new Error(`Could not find entity factory for '${entityType}'`)
     }
 
-    return entityFactory(entityParams)
+    return entityFactory(entityParams, app)
   }
 
   return (entityParams) => {

@@ -6,20 +6,14 @@ import { objectEach } from './core/util'
 import registerSystems from './registerSystems'
 import registerEntities from './registerEntities'
 
-const config = {
-  target: null,
-  width: 800,
-  height: 500,
-}
-
-const engineInitializer = (engine, provide) => {
+const engineInitializer = config => (engine, provide) => {
   const dependencies = resolver(config)
   objectEach(provide, dependencies)
 }
 
-export default () => {
-  const engine = new Engine(engineInitializer)
-  registerEntities(engine)
+export default (config, app) => {
+  const engine = new Engine(engineInitializer(config))
+  registerEntities(engine, app)
   registerSystems(engine)
   return engine
 }

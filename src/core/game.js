@@ -1,18 +1,9 @@
-export default (engine) => {
-  let prev = Date.now()
-  const updateInterval = 100
-
-  const getDelta = (() => {
-    const trail = 0.001
-    return (prev, now) => (now - prev) * trail
-  })()
-
+export default (engine, app) => {
   engine.start()
+  const gameLoop = initGameLoop(engine)
+  app.ticker.add(gameLoop)
+}
 
-  setInterval(() => {
-    const now = Date.now()
-    const delta = getDelta(prev, now)
-    engine.update(delta)
-    prev = now
-  }, updateInterval)
+const initGameLoop = engine => (delta) => {
+  engine.update(delta)
 }

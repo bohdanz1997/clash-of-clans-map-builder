@@ -1,5 +1,45 @@
-import { createGame } from './core'
 import createEngine from './engine'
 
-const engine = createEngine()
-createGame(engine)
+import {
+  loader,
+  Application,
+  createSprite,
+} from './core/pixi'
+
+import * as atlas from './assets/atlas/treasureHunter'
+
+const rootEl = document.body
+
+const appSize = {
+  width: 512,
+  height: 512,
+}
+
+const pixiConfig = {
+  antialias: true,
+  transparent: false,
+  resolution: 1,
+  ...appSize,
+}
+
+const appConfig = {
+  target: rootEl,
+  ...appSize,
+}
+
+const app = new Application(pixiConfig)
+
+rootEl.appendChild(app.view)
+
+const setup = () => {
+  const background = createSprite(atlas.dungeon)
+  app.stage.addChild(background)
+
+  const engine = createEngine(appConfig, app)
+  engine.start()
+  app.ticker.add(engine.update)
+}
+
+loader
+  .add(atlas.file)
+  .load(setup)
