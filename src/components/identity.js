@@ -14,6 +14,9 @@ export const [cArcher, Archer] = createComponent('archer')
 
 export const [cInteract, Interact] = createComponent('interact')
 
+export const [cPlayer, Player] = createComponent('player')
+export const [cEnemy, Enemy] = createComponent('enemy')
+
 export const [cMap, Map] = createComponent(
   'map', 'gameField',
   ({ width, height, layers }) => ({

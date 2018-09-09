@@ -1,6 +1,5 @@
 import { createComponent } from '../core/factories'
 import { Point, Rectangle } from '../core/pixi'
-import { rectCenter } from '../core/util'
 
 export const [cPosition, Position] = createComponent(
   'position', 'pos',
@@ -31,13 +30,13 @@ export const [cHealth, Health] = createComponent(
 )
 
 export const [cCollision, Collision] = createComponent(
-  'collision', 'bounds radius center',
-  ({ width, height, radius }) => {
+  'collision', 'bounds',
+  ({ width, height }) => {
     const bounds = new Rectangle(0, 0, width, height)
     return {
       bounds,
-      radius,
-      center: rectCenter(bounds),
+      width,
+      height,
     }
   }
 )
@@ -45,4 +44,12 @@ export const [cCollision, Collision] = createComponent(
 export const [cDisplay, Display] = createComponent(
   'display', 'sprite',
   ({ sprite }) => ({ sprite })
+)
+
+export const [cIntelect, Intelect] = createComponent(
+  'intelect', 'maxTime timer',
+  ({ maxTime }) => ({
+    maxTime,
+    timer: 0,
+  })
 )
