@@ -24,6 +24,18 @@
           "level": 3
         }
       ]
+    },
+    {
+      "name": "objects",
+      "data": [
+        {
+          "id": "player",
+          "x": 80,
+          "y": 80,
+          "level": 1,
+          "speed": 5
+        }
+      ]
     }
   ]
 }

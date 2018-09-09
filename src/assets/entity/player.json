@@ -1,0 +1,19 @@
+{
+  "id": "player",
+  "entityType": "Player",
+  "description": "None",
+  "width": 32,
+  "height": 32,
+  "collisionRadius": 16,
+  "levels": {
+    "1": {
+      "health": 100
+    },
+    "2": {
+      "health": 200
+    },
+    "3": {
+      "health": 500
+    }
+  }
+}
