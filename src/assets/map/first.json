@@ -29,6 +29,11 @@
       "name": "objects",
       "data": [
         {
+          "id": "background",
+          "x": 0,
+          "y": 0
+        },
+        {
           "id": "player",
           "x": 80,
           "y": 80,
