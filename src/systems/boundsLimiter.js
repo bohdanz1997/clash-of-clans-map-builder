@@ -12,16 +12,16 @@ export default ($engine, $config) => createSystem({
     const { bounds } = collision
 
     if (bounds.top < screenBounds.top) {
-      motion.vy = control.dy
+      motion.vel.y = control.dy
     }
     if (bounds.bottom > screenBounds.bottom) {
-      motion.vy = -control.dy
+      motion.vel.y = -control.dy
     }
     if (bounds.left < screenBounds.left) {
-      motion.vx = control.dx
+      motion.vel.x = control.dx
     }
     if (bounds.right > screenBounds.right) {
-      motion.vx = -control.dx
+      motion.vel.x = -control.dx
     }
   }
 })(nBoundsLimiter)($engine)

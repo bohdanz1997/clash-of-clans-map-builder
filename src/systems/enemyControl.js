@@ -4,35 +4,33 @@ import { randomInt } from '../core/util'
 
 export default ($engine) => createSystem({
   update(nodeItem, delta) {
-    const { intelect } = nodeItem
-    intelect.timer += delta
-    if (intelect.timer > intelect.maxTime) {
-      intelect.timer = 0
+    const { brain } = nodeItem
+    brain.timer += delta
+    if (brain.timer > brain.currentMaxTime) {
+      brain.timer = 0
+      brain.currentMaxTime = randomInt(brain.maxTime / 2, brain.maxTime)
       this.updateState(nodeItem)
     }
   },
 
   updateState({ control, motion }) {
-    motion.vx = 0
-    motion.vy = 0
-
     if (randomInt(0, 100) > 50) {
       // move up
       if (randomInt(0, 100) > 50) {
         // move left
-        motion.vx = -control.dx
+        motion.vel.set(-control.dx, 0)
       } else {
         // move right
-        motion.vx = control.dx
+        motion.vel.set(control.dx, 0)
       }
     } else {
       // move down
       if (randomInt(0, 100) > 50) {
         // move left
-        motion.vy = -control.dy
+        motion.vel.set(0, -control.dy)
       } else {
         // move right
-        motion.vy = control.dy
+        motion.vel.set(0, control.dy)
       }
     }
   },

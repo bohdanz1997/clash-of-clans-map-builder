@@ -8,7 +8,7 @@ export const [cPosition, Position] = createComponent(
 
 export const [cMotion, Motion] = createComponent(
   'motion', 'vx vy',
-  ({ vx = 0, vy = 0 } = {}) => ({ vx, vy, dir: 0 })
+  ({ vx = 0, vy = 0 } = {}) => ({ vel: new Point(vx, vy), dir: 0 })
 )
 
 export const [cControl, Control] = createComponent(
@@ -46,10 +46,11 @@ export const [cDisplay, Display] = createComponent(
   ({ sprite }) => ({ sprite })
 )
 
-export const [cIntelect, Intelect] = createComponent(
-  'intelect', 'maxTime timer',
+export const [cBrain, Brain] = createComponent(
+  'brain', 'maxTime currentMaxTime timer',
   ({ maxTime }) => ({
     maxTime,
     timer: 0,
+    currentMaxTime: 0,
   })
 )
