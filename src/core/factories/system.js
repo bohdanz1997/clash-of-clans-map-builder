@@ -1,23 +1,42 @@
 import { noop, isFunction } from '../util'
 
 const defaultHandler = {
+  meta: {
+    priority: 0,
+    enabled: true,
+  },
   init: noop,
   before: noop,
   after: noop,
   update: noop,
 }
 
-const baseCreateSystem = systemFactory => (handler) => {
+const baseCreateSystem = systemFactory => (handler, meta) => {
   if (isFunction(handler)) {
-    const singleUpdateHandler = { ...defaultHandler, update: handler }
+    const singleUpdateHandler = {
+      ...defaultHandler,
+      update: handler,
+      meta: {
+        ...defaultHandler.meta,
+        ...meta,
+      }
+    }
     return systemFactory(singleUpdateHandler)
   }
 
-  const systemHandler = { ...defaultHandler, ...handler }
+  const systemHandler = {
+    ...defaultHandler,
+    ...handler,
+      meta: {
+        ...defaultHandler.meta,
+        ...handler.meta || {},
+      }
+   }
   return systemFactory(systemHandler)
 }
 
 const makeSystem = handler => (componentTypes) => engine => {
+  if (!handler.meta.enabled) return
   const node = engine.getNodeType(componentTypes)
   engine.onUpdate(delta => {
     handler.before(delta)
@@ -28,6 +47,7 @@ const makeSystem = handler => (componentTypes) => engine => {
 }
 
 const makeEnhancedSystem = handler => (...componentTypesList) => engine => {
+  if (!handler.meta.enabled) return
   const nodes = componentTypesList.map(engine.getNodeType)
   engine.onUpdate(delta => handler.update(...nodes, delta, engine))
   handler.init()

@@ -1,5 +1,5 @@
 import { createSystem } from '../core/factories'
-import { nControl } from '../nodes'
+import { nPlayerControl } from '../nodes'
 import {
   Keyboard,
   keyCodes as keys,
@@ -34,4 +34,4 @@ export default ($engine, $keyboard) => createSystem({
       motion.vx = control.dx
     }
   },
-})(nControl)($engine)
+})(nPlayerControl)($engine)

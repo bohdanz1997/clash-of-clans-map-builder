@@ -1,13 +1,10 @@
-import * as s from './systems'
+import { jsModuleLoader } from './core'
 
-const systems = [
-  s.stageManage,
-  s.keyboardInput,
-  s.movement,
-  s.render,
-  // s.syncMap,
-]
+const systems = jsModuleLoader(require.context('./systems'))
+const sortByPriority = (a, b) => a.priority - b.priority
 
-export default (engine) => {
-  systems.forEach(engine.addSystem)
-}
+export default (engine) => (
+  Object
+    .values(systems)
+    .map(engine.addSystem)
+)
