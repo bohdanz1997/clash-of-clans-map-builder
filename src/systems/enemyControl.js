@@ -15,21 +15,15 @@ export default ($engine) => createSystem({
 
   updateState({ control, motion }) {
     if (randomInt(0, 100) > 50) {
-      // move up
       if (randomInt(0, 100) > 50) {
-        // move left
         motion.vel.set(-control.dx, 0)
       } else {
-        // move right
         motion.vel.set(control.dx, 0)
       }
     } else {
-      // move down
       if (randomInt(0, 100) > 50) {
-        // move left
         motion.vel.set(0, -control.dy)
       } else {
-        // move right
         motion.vel.set(0, control.dy)
       }
     }
