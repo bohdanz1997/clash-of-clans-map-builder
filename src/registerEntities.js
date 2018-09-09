@@ -19,7 +19,7 @@ const entitiesLoader = (registerEntity) => {
 
   mapData.layers.forEach(initEntitiesFromLayer)
 
-  const mapEntityData = mapParser.parseMapDefinition(mapData)
+  const mapEntityData = mapParser.parseMapDefinition(mapData, entitiesDefinitions)
   registerEntity(mapEntityData)
 }
 
