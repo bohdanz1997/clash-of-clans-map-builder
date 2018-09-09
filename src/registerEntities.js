@@ -1,18 +1,19 @@
-import * as entities from './entities'
-import { mapParser, entityBuilder } from './core'
+import {
+  mapParser,
+  entityBuilder,
+  jsModuleLoader,
+  jsonModuleLoader,
+} from './core'
 
-import mapData from './assets/maps/first'
-import wallDef from './assets/entity/wall'
-import playerDef from './assets/entity/player'
+const entitiesFactories = jsModuleLoader(require.context('./entities'))
+const mapsDefinitions = jsonModuleLoader(require.context('./assets/map'))
+const entitiesDefinitions = jsonModuleLoader(require.context('./assets/entity'))
 
-const entityDefinitions = {
-  [wallDef.id]: wallDef,
-  [playerDef.id]: playerDef,
-}
+const mapData = mapsDefinitions.first
 
 const entitiesLoader = (registerEntity) => {
   const initEntitiesFromLayer = layer => {
-    const entitiesData = mapParser.parseLayer(layer.data, entityDefinitions)
+    const entitiesData = mapParser.parseLayer(layer.data, entitiesDefinitions)
     entitiesData.forEach(registerEntity)
   }
 
@@ -22,7 +23,7 @@ const entitiesLoader = (registerEntity) => {
   registerEntity(mapEntityData)
 }
 
-export default (engine, app) => {
-  const registerEntity = entityBuilder(engine, app, entities)
+export default (engine) => {
+  const registerEntity = entityBuilder(engine, entitiesFactories)
   entitiesLoader(registerEntity)
 }

@@ -3,7 +3,6 @@ import createEngine from './engine'
 import {
   loader,
   Application,
-  createSprite,
 } from './core/pixi'
 
 import * as atlas from './assets/atlas/treasureHunter'
@@ -32,9 +31,6 @@ const app = new Application(pixiConfig)
 rootEl.appendChild(app.view)
 
 const setup = () => {
-  const background = createSprite(atlas.dungeon)
-  app.stage.addChild(background)
-
   const engine = createEngine(appConfig, app)
   engine.start()
   app.ticker.add(engine.update)
