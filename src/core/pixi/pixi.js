@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js'
 
 // PIXI aliases
 const {
+  Point,
   Sprite,
   Rectangle,
   Application,
@@ -12,6 +13,7 @@ const {
 } = PIXI
 
 export {
+  Point,
   Sprite,
   Rectangle,
   Application,
