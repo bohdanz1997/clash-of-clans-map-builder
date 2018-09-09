@@ -1,6 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const {
   HotModuleReplacementPlugin,
 } = require('webpack')
@@ -23,6 +25,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'ClashLand',
     }),
+    new CopyWebpackPlugin([{
+      from: 'src/assets',
+      to: 'assets'
+    }]),
     new HotModuleReplacementPlugin(),
   ],
   output: {
@@ -38,6 +44,12 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader'
+        ]
       }
     ]
   }

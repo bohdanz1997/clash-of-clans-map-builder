@@ -1,12 +1,8 @@
 import { createSystem } from '../core/factories'
 import { nRender } from '../nodes'
 
-export default $engine => createSystem({
-  before() {
-    console.clear()
-  },
+const handler = ({ position, display }) => {
+  display.sprite.position.copy(position.pos)
+}
 
-  update({ info, position }, delta) {
-    console.log(info.entityType, position.pos.toString(), delta)
-  }
-})(nRender)($engine)
+export default $engine => createSystem(handler)(nRender)($engine)

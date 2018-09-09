@@ -1,4 +1,10 @@
 export const parseLayer = (layerData, entityDefinitions) => {
+  const getLevelDefinition = (entityDefinition, level) => (
+    entityDefinition.levels
+      ? entityDefinition.levels[level]
+      : {}
+  )
+
   const makeEntityParams = (entityLayerData) => {
     const { level, id } = entityLayerData
 
@@ -7,10 +13,7 @@ export const parseLayer = (layerData, entityDefinitions) => {
       throw new Error(`Could not find entity definition for '${id}'`)
     }
 
-    const levelDefinition = entityDefinition.levels[level]
-    if (!levelDefinition) {
-      throw new Error(`Could not find '${id}' level definition '${level}'`)
-    }
+    const levelDefinition = getLevelDefinition(entityDefinition, level)
 
     return {
       ...entityDefinition,
@@ -27,6 +30,7 @@ export const parseMapDefinition = (mapDefinition) => {
   const layerNames = layers.map(l => l.name)
   return {
     ...mapDefinition,
+    id: 'map',
     entityType: 'Map',
     layers: layerNames,
   }

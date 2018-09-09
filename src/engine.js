@@ -6,20 +6,25 @@ import { objectEach } from './core/util'
 import registerSystems from './registerSystems'
 import registerEntities from './registerEntities'
 
-const config = {
-  target: null,
-  width: 800,
-  height: 500,
-}
+import { nRender } from './nodes'
 
-const engineInitializer = (engine, provide) => {
+const engineInitializer = config => (engine, provide) => {
   const dependencies = resolver(config)
   objectEach(provide, dependencies)
 }
 
-export default () => {
-  const engine = new Engine(engineInitializer)
+const addRenderNodesToStage = (renderNodes, app) => {
+  renderNodes.each(({ display }) => app.stage.addChild(display.sprite))
+  console.log('engine: added', renderNodes.size, 'render nodes to stage')
+}
+
+export default (config, app) => {
+  const engine = new Engine(engineInitializer(config))
   registerEntities(engine)
   registerSystems(engine)
+
+  const renderNodes = engine.getNodeType(nRender)
+  addRenderNodesToStage(renderNodes, app)
+
   return engine
 }
