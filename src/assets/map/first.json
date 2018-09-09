@@ -6,45 +6,26 @@
     {
       "name": "buildings",
       "data": [
-        {
-          "id": "wall",
-          "x": 5,
-          "y": 5,
-          "level": 1
-        },
-        {
-          "id": "wall",
-          "x": 10,
-          "y": 10,
-          "level": 2
-        },
-        {
-          "id": "wall",
-          "x": 15,
-          "y": 15,
-          "level": 3
-        }
+        { "id": "wall", "x": 5, "y": 5, "level": 1 },
+        { "id": "wall", "x": 10, "y": 10, "level": 2 },
+        { "id": "wall", "x": 15, "y": 15, "level": 3 }
       ]
     },
     {
       "name": "objects",
       "data": [
-        {
-          "id": "background",
-          "x": 0,
-          "y": 0
-        },
-        {
-          "id": "player",
-          "x": 80,
-          "y": 80,
-          "level": 1
-        },
-        {
-          "id": "blob",
-          "x": 120,
-          "y": 120
-        }
+        { "id": "background", "x": 0, "y": 0 },
+        { "id": "blob", "x": 120, "y": 120 },
+        { "id": "blob", "x": 120, "y": 120 },
+        { "id": "blob", "x": 120, "y": 120 },
+        { "id": "blob", "x": 120, "y": 120 },
+        { "id": "blob", "x": 120, "y": 120 },
+        { "id": "blob", "x": 120, "y": 120 },
+        { "id": "blob", "x": 120, "y": 120 },
+        { "id": "blob", "x": 120, "y": 120 },
+        { "id": "blob", "x": 120, "y": 120 },
+        { "id": "blob", "x": 120, "y": 120 },
+        { "id": "player", "x": 80, "y": 80, "level": 1 }
       ]
     }
   ]
