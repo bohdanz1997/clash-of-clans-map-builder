@@ -3,7 +3,7 @@ import { createSprite } from '../core/pixi'
 import { createEntity } from '../core/factories'
 import { blob } from '../assets/atlas/treasureHunter'
 
-export default ({ x, y, speed }) => {
+export default ({ x, y, speed, maxTime }) => {
   const sprite = createSprite(blob)
   const { width, height } = sprite
 
@@ -14,8 +14,6 @@ export default ({ x, y, speed }) => {
     c.Collision({ width, height }),
     c.Control({ dx: speed, dy: speed }),
     c.Display({ sprite }),
-    c.Intelect({
-      maxTime: 30,
-    }),
+    c.Brain({ maxTime }),
   )
 }
