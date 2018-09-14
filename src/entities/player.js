@@ -1,8 +1,12 @@
 import StateMachine from 'javascript-state-machine'
 
+import {
+  pipeHOCs,
+  withDisplay,
+  withComponents,
+} from '../components/hoc'
 import * as c from '../components'
-import { createSprite } from '../core/pixi'
-import { buildEntity, pipeEntity } from '../core/factories'
+
 import { expolorer } from '../assets/atlas/treasureHunter'
 
 const withFSM = (entity) => {
@@ -18,14 +22,9 @@ const withFSM = (entity) => {
   return entity.add(c.FSM({ fsm }))
 }
 
-const withDisplay = (entity) => {
-  const sprite = createSprite(expolorer)
-  return entity.add(c.Display({ sprite }))
-}
-
 export default ({ x, y, width, height, speed, health, damage }) => (
-  pipeEntity(
-    buildEntity(
+  pipeHOCs(
+    withComponents(
       c.Player(),
       c.Position({ x, y }),
       c.Motion(),
@@ -35,6 +34,6 @@ export default ({ x, y, width, height, speed, health, damage }) => (
       c.Health({ health }),
     ),
     withFSM,
-    withDisplay,
+    withDisplay(expolorer),
   )
 )
