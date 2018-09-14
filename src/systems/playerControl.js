@@ -9,27 +9,32 @@ import {
  * @param $engine
  * @param {Keyboard} $keyboard
  */
-export default ($engine, $keyboard) => createSystem({
-  init() {
-    $keyboard.addKeys(keys.W, keys.A, keys.S, keys.D)
-    $keyboard.start()
-  },
+export default ($engine, $keyboard) => {
+  const [kW, kA, kS, kD] = $keyboard.addKeys(
+    keys.W, keys.A, keys.S, keys.D
+  )
 
-  update({ control, motion }, delta) {
-    $keyboard.update(delta)
-    motion.vel.set(0, 0)
+  return createSystem({
+    init() {
+      $keyboard.start()
+    },
 
-    if ($keyboard.isDown(keys.W)) {
-      motion.vel.y = -control.dy
-    }
-    if ($keyboard.isDown(keys.S)) {
-      motion.vel.y = control.dy
-    }
-    if ($keyboard.isDown(keys.A)) {
-      motion.vel.x = -control.dx
-    }
-    if ($keyboard.isDown(keys.D)) {
-      motion.vel.x = control.dx
-    }
-  },
-})(nPlayerControl)($engine)
+    update({ control, motion }, delta) {
+      $keyboard.update(delta)
+      motion.vel.set(0, 0)
+
+      if (kW.isDown) {
+        motion.vel.y = -control.dy
+      }
+      if (kS.isDown) {
+        motion.vel.y = control.dy
+      }
+      if (kA.isDown) {
+        motion.vel.x = -control.dx
+      }
+      if (kD.isDown) {
+        motion.vel.x = control.dx
+      }
+    },
+  })(nPlayerControl)($engine)
+}
