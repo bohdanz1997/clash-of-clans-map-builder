@@ -17,8 +17,7 @@ export const [cControl, Control] = createComponent(
 )
 
 export const [cDamage, Damage] = createComponent(
-  'damage', 'rate',
-  ({ rate }) => ({ rate })
+  'damage', 'damage',
 )
 
 export const [cHealth, Health] = createComponent(
@@ -43,7 +42,6 @@ export const [cCollision, Collision] = createComponent(
 
 export const [cDisplay, Display] = createComponent(
   'display', 'sprite',
-  ({ sprite }) => ({ sprite })
 )
 
 export const [cBrain, Brain] = createComponent(
@@ -57,5 +55,4 @@ export const [cBrain, Brain] = createComponent(
 
 export const [cFSM, FSM] = createComponent(
   'fsm', 'fsm',
-  ({ fsm }) => ({ fsm }),
 )

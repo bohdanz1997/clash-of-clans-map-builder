@@ -31,7 +31,7 @@ export default ({ x, y, width, height, speed, health, damage }) => (
       c.Motion(),
       c.Collision({ width, height }),
       c.Control({ dx: speed, dy: speed }),
-      c.Damage({ rate: damage }),
+      c.Damage({ damage }),
       c.Health({ health }),
     ),
     withFSM,
