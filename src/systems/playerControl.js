@@ -20,16 +20,16 @@ export default ($engine, $keyboard) => createSystem({
     motion.vel.set(0, 0)
 
     if ($keyboard.isDown(keys.W)) {
-      motion.vel.set(0, -control.dy)
+      motion.vel.y = -control.dy
     }
     if ($keyboard.isDown(keys.S)) {
-      motion.vel.set(0, control.dy)
+      motion.vel.y = control.dy
     }
     if ($keyboard.isDown(keys.A)) {
-      motion.vel.set(-control.dx, 0)
+      motion.vel.x = -control.dx
     }
     if ($keyboard.isDown(keys.D)) {
-      motion.vel.set(control.dx, 0)
+      motion.vel.x = control.dx
     }
   },
 })(nPlayerControl)($engine)
