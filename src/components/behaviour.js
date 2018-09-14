@@ -54,3 +54,8 @@ export const [cBrain, Brain] = createComponent(
     currentMaxTime: 0,
   })
 )
+
+export const [cFSM, FSM] = createComponent(
+  'fsm', 'fsm',
+  ({ fsm }) => ({ fsm }),
+)
