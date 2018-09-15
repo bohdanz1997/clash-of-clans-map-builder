@@ -15,7 +15,8 @@
   "dependencies": {
     "pathfinding": "^0.4.18",
     "pixi.js": "^4.8.1",
-    "scent": "^0.10.0"
+    "scent": "^0.10.0",
+    "stats-js": "^1.0.0-alpha1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

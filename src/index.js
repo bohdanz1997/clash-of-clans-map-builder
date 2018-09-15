@@ -1,4 +1,5 @@
 import createEngine from './engine'
+import { createStats } from './services'
 
 import {
   loader,
@@ -31,9 +32,15 @@ const app = new Application(pixiConfig)
 rootEl.appendChild(app.view)
 
 const setup = () => {
+  const stats = createStats()
   const engine = createEngine(appConfig, app)
   engine.start()
-  app.ticker.add(engine.update)
+
+  app.ticker.add((delta) => {
+    stats.begin()
+    engine.update(delta)
+    stats.end()
+  })
 }
 
 loader
