@@ -5,5 +5,5 @@ export default (config, app) => ({
   $app: app,
   $config: config,
   $createLogger: createLogger,
-  $keyboard: new Keyboard(config.target)
+  $keyboard: new Keyboard(config.target),
 })

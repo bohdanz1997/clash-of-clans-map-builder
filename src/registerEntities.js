@@ -12,7 +12,7 @@ const entitiesDefinitions = jsonModuleLoader(require.context('./assets/entity'))
 const mapData = mapsDefinitions.first
 
 const entitiesLoader = (registerEntity) => {
-  const initEntitiesFromLayer = layer => {
+  const initEntitiesFromLayer = (layer) => {
     const entitiesData = mapParser.parseLayer(layer.data, entitiesDefinitions)
     entitiesData.forEach(registerEntity)
   }

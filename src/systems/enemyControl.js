@@ -2,7 +2,7 @@ import { createSystem } from '../core/factories'
 import { nEnemyControl } from '../nodes'
 import { randomInt } from '../core/util'
 
-export default ($engine) => createSystem({
+export default $engine => createSystem({
   update(nodeItem, delta) {
     const { brain } = nodeItem
     brain.timer += delta
@@ -20,12 +20,10 @@ export default ($engine) => createSystem({
       } else {
         motion.vel.set(control.dx, 0)
       }
+    } else if (randomInt(0, 100) > 50) {
+      motion.vel.set(0, -control.dy)
     } else {
-      if (randomInt(0, 100) > 50) {
-        motion.vel.set(0, -control.dy)
-      } else {
-        motion.vel.set(0, control.dy)
-      }
+      motion.vel.set(0, control.dy)
     }
   },
 })(nEnemyControl)($engine)

@@ -77,7 +77,7 @@ export default class GameField {
   initLayers(layers) {
     this.layers = layers.reduce((acc, layer) => ({
       ...acc,
-      [layer]: new Layer(this.width, this.height)
+      [layer]: new Layer(this.width, this.height),
     }), {})
   }
 
