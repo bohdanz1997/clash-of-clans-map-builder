@@ -1,11 +1,14 @@
 import { identity } from './util'
 
-const moduleLoader = (fileNameReplacer, contextProvider = identity) => (
+export const moduleLoader = (fileNameReplacer, contextProvider = identity) => (
   (requireContext) => {
-    const loadContext = file => ([
-      fileNameReplacer(file),
-      contextProvider(requireContext(file)),
-    ])
+    const loadContext = (file) => {
+      const context = requireContext(file)
+      return [
+        fileNameReplacer(file),
+        contextProvider(context),
+      ]
+    }
 
     const resultReducer = (acc, [name, context]) => ({
       ...acc,
@@ -18,11 +21,12 @@ const moduleLoader = (fileNameReplacer, contextProvider = identity) => (
   }
 )
 
-export const jsonModuleLoader = moduleLoader(
-  x => x.replace(/(^.\/)|(\.json$)/g, '')
-)
+export const jsonFileNamesNormalizer = x => x.replace(/(^.\/)|(\.json$)/g, '')
+export const jsFileNamesNormalizer = x => x.replace(/(^.\/)|(\.js$)/g, '')
+
+export const jsonModuleLoader = moduleLoader(jsonFileNamesNormalizer)
 
 export const jsModuleLoader = moduleLoader(
-  x => x.replace(/(^.\/)|(\.js$)/g, ''),
+  jsFileNamesNormalizer,
   context => context.default || context,
 )
