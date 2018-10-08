@@ -9,7 +9,7 @@ const {
   loader,
   utils: {
     TextureCache,
-  }
+  },
 } = PIXI
 
 export {
@@ -19,6 +19,7 @@ export {
   Application,
   TextureCache,
   loader,
+  PIXI,
 }
 
 // helpers

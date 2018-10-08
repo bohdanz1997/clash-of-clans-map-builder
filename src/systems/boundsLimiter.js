@@ -23,5 +23,5 @@ export default ($engine, $config) => createSystem({
     if (bounds.right > screenBounds.right) {
       motion.vel.x = -control.dx
     }
-  }
+  },
 })(nBoundsLimiter)($engine)
