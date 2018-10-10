@@ -14,7 +14,7 @@ export default (config, app) => {
   const dependencies = resolver(config, app)
   const engine = new Engine(engineInitializer(dependencies))
 
-  registerEntities(engine)
+  registerEntities(engine, config)
   registerSystems(engine)
 
   return engine

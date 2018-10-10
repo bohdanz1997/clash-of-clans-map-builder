@@ -1,3 +1,4 @@
+import { systemPriorities } from '../core'
 import { createSystem } from '../core/factories'
 import { nBoundsLimiter } from '../nodes'
 import { Rectangle } from '../core/pixi'
@@ -25,3 +26,7 @@ export default ($engine, $config) => createSystem({
     }
   },
 })(nBoundsLimiter)($engine)
+
+export const params = {
+  priority: systemPriorities.RESOLVE_COLLISIONS,
+}
