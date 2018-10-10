@@ -27,7 +27,7 @@ export type GameConfig = {
   hTileHeight: number,
   widthInTiles: number,
   heightInTiles: number,
-  target: Object,
+  target: HTMLBodyElement,
 }
 
 export type Engine = {}

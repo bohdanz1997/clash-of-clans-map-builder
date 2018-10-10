@@ -10,7 +10,7 @@ const {
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/index.js',
+    app: './src/main.js',
   },
   optimization: {
     minimize: false,
