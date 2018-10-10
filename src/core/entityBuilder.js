@@ -1,7 +1,7 @@
 import { stringifyJSON } from './util'
 
 export default (engine, entitiesFactories) => {
-  const buildEntity = entityParams => {
+  const buildEntity = (entityParams) => {
     const { id } = entityParams
     if (id === undefined) {
       throw new Error(`Entity params must include 'id', got params: \n${stringifyJSON(entityParams)}`)

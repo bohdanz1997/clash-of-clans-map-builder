@@ -1,3 +1,4 @@
+import { systemPriorities } from '../core'
 import { createSystem } from '../core/factories'
 import { nPhysics } from '../nodes'
 
@@ -7,3 +8,7 @@ const handler = ({ position, collision }) => {
 }
 
 export default $engine => createSystem(handler)(nPhysics)($engine)
+
+export const params = {
+  priority: systemPriorities.PHYSICS,
+}

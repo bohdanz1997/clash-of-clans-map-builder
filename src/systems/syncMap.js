@@ -6,12 +6,12 @@ const getMapLayer = (layerName, mapNode) => (
   mapNode.map.gameField.getLayer(layerName)
 )
 
-const getNormalizedPos = (node) => (
+const getNormalizedPos = node => (
   node.position.pos.normalize()
 )
 
 const updateLayerCell = (layer, pos) => {
-	layer.setIn(pos.x, pos.y, Layer.cellState.BUSY)
+  layer.setIn(pos.x, pos.y, Layer.cellState.BUSY)
 }
 
 const updateBuildingNode = layer => (node) => {

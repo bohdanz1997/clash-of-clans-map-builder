@@ -7,7 +7,7 @@ export const [cPosition, Position] = createComponent(
 )
 
 export const [cMotion, Motion] = createComponent(
-  'motion', 'vx vy',
+  'motion', 'vel',
   ({ vx = 0, vy = 0 } = {}) => ({ vel: new Point(vx, vy), dir: 0 })
 )
 

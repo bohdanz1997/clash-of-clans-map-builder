@@ -10,7 +10,7 @@ const {
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/index.js',
+    app: './src/main.js',
   },
   optimization: {
     minimize: false,
@@ -18,7 +18,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
-    hot: true
+    hot: true,
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
@@ -27,7 +27,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([{
       from: 'src/assets',
-      to: 'assets'
+      to: 'assets',
     }]),
     new HotModuleReplacementPlugin(),
   ],
@@ -39,18 +39,18 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: __dirname + '/src',
+        include: `${__dirname}/src`,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
-          'file-loader'
-        ]
-      }
-    ]
-  }
+          'file-loader',
+        ],
+      },
+    ],
+  },
 }
