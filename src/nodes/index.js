@@ -10,3 +10,8 @@ export const nWall = [c.Building, c.cWall, c.cPosition]
 export const nInteract = [c.cInteract, c.cPosition]
 export const nPlayerControl = [c.cControl, c.cMotion, c.cPlayer]
 export const nEnemyControl = [c.cControl, c.cMotion, c.cBrain, c.cEnemy]
+
+// layers:
+// - ground
+// - objects
+export const nGroundLayer = [c.cDisplay, c.cGround]
