@@ -12,8 +12,8 @@ export const [cMotion, Motion] = createComponent(
 )
 
 export const [cControl, Control] = createComponent(
-  'control', 'dx dy',
-  ({ dx = 0, dy = 0 } = {}) => ({ dx, dy })
+  'control', 'dx dy dampX dampY',
+  ({ dx = 0, dy = 0, dampX = 1, dampY = 1 } = {}) => ({ dx, dy, dampX, dampY })
 )
 
 export const [cDamage, Damage] = createComponent(

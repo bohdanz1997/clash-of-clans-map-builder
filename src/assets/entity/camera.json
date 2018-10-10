@@ -1,4 +1,5 @@
 {
   "id": "player",
-  "speed": 5
+  "speed": 10,
+  "damp": 0.9
 }
