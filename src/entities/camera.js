@@ -1,9 +1,15 @@
+// @flow
+import type { GameConfig } from '../types/game'
+
 import * as c from '../components'
 import { createEntity } from '../core/factories'
 
-export default ({ x, y, speed, damp }) => createEntity(
+export default ({ speed, damp }: any, config: GameConfig) => createEntity(
   c.Camera(),
-  c.Position({ x, y }),
+  c.Position({
+    x: -config.hWidth + config.hTileWidth,
+    y: 0,
+  }),
   c.Motion(),
   c.Control({
     dx: speed,

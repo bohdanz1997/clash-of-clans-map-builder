@@ -1,6 +1,6 @@
 import { stringifyJSON } from './util'
 
-export default (engine, entitiesFactories) => {
+export default (engine, config, entitiesFactories) => {
   const buildEntity = (entityParams) => {
     const { id } = entityParams
     if (id === undefined) {
@@ -12,7 +12,7 @@ export default (engine, entitiesFactories) => {
       throw new Error(`Could not find entity factory for id '${id}'`)
     }
 
-    return entityFactory(entityParams)
+    return entityFactory(entityParams, config)
   }
 
   return (entityParams) => {

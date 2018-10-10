@@ -26,6 +26,6 @@ const entitiesLoader = (registerEntity, config) => {
 }
 
 export default (engine, config) => {
-  const registerEntity = entityBuilder(engine, entitiesFactories)
+  const registerEntity = entityBuilder(engine, config, entitiesFactories)
   entitiesLoader(registerEntity, config)
 }
