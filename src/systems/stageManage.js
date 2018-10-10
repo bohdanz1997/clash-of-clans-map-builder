@@ -1,30 +1,34 @@
 // @flow
 import type { GameConfig, Engine } from '../types/game'
-import type { Application } from '../types/pixi'
+import type { Application, Container } from '../types/pixi'
 
 import { createLogger, systemPriorities } from '../core'
-import { Container } from '../core/pixi'
+import * as PIXI from '../core/pixi'
 import { createEnhancedSystem } from '../core/factories'
-import { nGroundLayer } from '../nodes'
+import { nGroundLayer, nObjectsLayer } from '../nodes'
 
 export default ($config: GameConfig, $engine: Engine, $app: Application) => (
   createEnhancedSystem({
-    init(groundLayerNode) {
+    init(groundLayerNode, objectLayerNode) {
       const logger = createLogger('StageManageSystem')
       const worldOffsetX = $config.hWidth - $config.hTileWidth
-      const groundLayer = new Container()
+      const groundLayer = new PIXI.Container()
+      const objectsLayer = new PIXI.Container()
 
-      const addSpriteToStage = ({ display }) => {
-        groundLayer.addChild(display.sprite)
+      const addSpriteToLayer = (layer: Container) => ({ display }) => {
+        layer.addChild(display.sprite)
       }
 
-      groundLayerNode.each(addSpriteToStage)
+      groundLayerNode.each(addSpriteToLayer(groundLayer))
+      objectLayerNode.each(addSpriteToLayer(objectsLayer))
+
       $app.stage.x += worldOffsetX
       $app.stage.addChild(groundLayer)
+      $app.stage.addChild(objectsLayer)
 
       logger.log('ground layer: added', groundLayerNode.size, 'render items')
     },
-  })(nGroundLayer)($engine)
+  })(nGroundLayer, nObjectsLayer)($engine)
 )
 
 export const params = {

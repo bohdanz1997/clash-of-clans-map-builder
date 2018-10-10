@@ -17,3 +17,4 @@ export const nCameraControl = [c.cCamera, c.cPosition, c.cMotion, c.cControl]
 // - ground
 // - objects
 export const nGroundLayer = [c.cDisplay, c.cGround]
+export const nObjectsLayer = [c.cDisplay, c.cGameObject, c.cPosition]

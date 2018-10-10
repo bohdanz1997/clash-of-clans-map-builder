@@ -1,0 +1,12 @@
+{
+  "id": "clanCastle",
+  "width": 100,
+  "height": 121,
+  "offsetX": 15,
+  "offsetY": 30,
+  "levels": {
+    "1": {
+      "health": 100
+    }
+  }
+}

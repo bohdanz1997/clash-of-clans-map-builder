@@ -2,8 +2,11 @@ import { createComponent } from '../core/factories'
 import { Point, Rectangle } from '../core/pixi'
 
 export const [cPosition, Position] = createComponent(
-  'position', 'pos',
-  ({ x = 0, y = 0 } = {}) => ({ pos: new Point(x, y) })
+  'position', 'pos offset',
+  ({ x = 0, y = 0, offsetX = 0, offsetY = 0 } = {}) => ({
+    pos: new Point(x, y),
+    offset: new Point(offsetX, offsetY),
+  })
 )
 
 export const [cMotion, Motion] = createComponent(

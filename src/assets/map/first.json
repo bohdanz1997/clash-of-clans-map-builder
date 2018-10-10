@@ -11,8 +11,15 @@
     {
       "name": "objects",
       "data": [
+        { "id": "clanCastle", "x": 4, "y": 0 },
+        { "id": "clanCastle", "x": 0, "y": 0 }
+      ]
+    },
+    {
+      "name": "other",
+      "data": [
         { "id": "input" },
-        { "id": "camera", "x": 0, "y": 0 }
+        { "id": "camera" }
       ]
     }
   ]
