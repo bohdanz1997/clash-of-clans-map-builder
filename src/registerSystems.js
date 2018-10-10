@@ -1,11 +1,15 @@
-import { moduleLoader, jsFileNamesNormalizer } from './core'
+import {
+  moduleLoader,
+  systemPriorities,
+  jsFileNamesNormalizer,
+} from './core'
 
 const defaultSystemParams = {
-  priority: -1,
+  priority: systemPriorities.UPDATE,
   enabled: true,
 }
 
-const buildSystemFromContext = (context) => {
+const buildSystemFromContext = (context, meta) => {
   const {
     default: systemHandler,
     params = {},
@@ -14,6 +18,7 @@ const buildSystemFromContext = (context) => {
   const systemParams = {
     ...defaultSystemParams,
     ...params,
+    ...meta,
   }
 
   return {

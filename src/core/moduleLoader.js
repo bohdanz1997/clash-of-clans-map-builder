@@ -4,9 +4,11 @@ export const moduleLoader = (fileNameReplacer, contextProvider = identity) => (
   (requireContext) => {
     const loadContext = (file) => {
       const context = requireContext(file)
+      const name = fileNameReplacer(file)
+      const meta = { name }
       return [
-        fileNameReplacer(file),
-        contextProvider(context),
+        name,
+        contextProvider(context, meta),
       ]
     }
 
