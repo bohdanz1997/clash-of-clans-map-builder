@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js'
+import { extendPoint } from '../graphics/PIXIExtentions'
 
 // PIXI aliases
 const {
@@ -12,6 +13,8 @@ const {
     TextureCache,
   },
 } = PIXI
+
+extendPoint(Point)
 
 export {
   Point,
