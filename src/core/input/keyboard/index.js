@@ -4,6 +4,7 @@ import Keyboard from './keyboard'
 
 export {
   keyCodes,
+  keyCodes as keys,
   Key,
   Keyboard,
 }

@@ -19,8 +19,7 @@ export default ($engine, $keyboard) => {
       $keyboard.start()
     },
 
-    update({ control, motion }, delta) {
-      $keyboard.update(delta)
+    update({ control, motion }) {
       motion.vel.set(0, 0)
 
       if (kW.isDown) {

@@ -11,6 +11,8 @@
     {
       "name": "objects",
       "data": [
+        { "id": "input" },
+        { "id": "camera", "x": 0, "y": 0 }
       ]
     }
   ]
