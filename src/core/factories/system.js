@@ -50,7 +50,7 @@ const makeEnhancedSystem = handler => (...componentTypesList) => (engine) => {
   if (!handler.meta.enabled) return
   const nodes = componentTypesList.map(engine.getNodeType)
   engine.onUpdate(delta => handler.update(...nodes, delta, engine))
-  handler.init()
+  handler.init(...nodes)
 }
 
 export const createSystem = baseCreateSystem(makeSystem)
