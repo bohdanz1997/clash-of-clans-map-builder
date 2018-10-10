@@ -1,7 +1,7 @@
 import { Keyboard } from '../core/input'
 
-export default (config, app) => ({
+export default (config, app, target) => ({
   $app: app,
   $config: config,
-  $keyboard: new Keyboard(config.target),
+  $keyboard: new Keyboard(target),
 })

@@ -1,6 +1,5 @@
 import { Engine } from 'scent'
 
-import { resolver } from './inject'
 import { objectEach } from './core/util'
 
 import registerSystems from './registerSystems'
@@ -10,8 +9,7 @@ const engineInitializer = dependencies => (engine, provide) => {
   objectEach(provide, dependencies)
 }
 
-export default (config, app) => {
-  const dependencies = resolver(config, app)
+export default (config, dependencies) => {
   const engine = new Engine(engineInitializer(dependencies))
 
   registerEntities(engine, config)
