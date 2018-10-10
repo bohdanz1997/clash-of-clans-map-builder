@@ -19,6 +19,8 @@ const setup = () => {
   const height = 600
   const tileWidth = 133
   const tileHeight = 100
+  const widthInTiles = 10
+  const heightInTiles = 10
 
   const appSize = {
     width,
@@ -46,8 +48,10 @@ const setup = () => {
     tileHeight,
     hTileWidth: tileWidth / 2,
     hTileHeight: tileHeight / 2,
-    widthInTiles: 6,
-    heightInTiles: 6,
+    widthInTiles,
+    heightInTiles,
+    worldWidth: widthInTiles * tileHeight,
+    worldHeight: heightInTiles * tileHeight,
   }
 
   const app = new Application(pixiConfig)

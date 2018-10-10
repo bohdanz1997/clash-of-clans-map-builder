@@ -19,6 +19,8 @@ export type RenderNode = { position: Position, display: Display }
 export type GameConfig = {
   width: number,
   height: number,
+  worldWidth: number,
+  worldHeight: number,
   hWidth: number,
   hHeight: number,
   tileWidth: number,
@@ -31,3 +33,21 @@ export type GameConfig = {
 }
 
 export type Engine = {}
+
+export type Key = {
+  isDown: boolean,
+  isUp: boolean,
+  enabled: boolean,
+  code: number,
+}
+
+export type Keyboard = {
+  getKey(number): {},
+  addKey(number): Key,
+  addKeys(...number[]): Key[],
+  start(): void,
+  destroy(): void,
+  update(delta: number): void,
+  isUp(): boolean,
+  isDown(): boolean,
+}
