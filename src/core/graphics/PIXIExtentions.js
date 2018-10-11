@@ -67,3 +67,9 @@ export const extendPoint = (Point) => {
     point1.y / point2.y,
   )
 }
+
+export const extendContainer = (Container) => {
+  Container.prototype.childByName = function childByName(name) {
+    return this.children.find(c => c.name === name)
+  }
+}

@@ -31,8 +31,11 @@ export interface Sprite {
 export interface Container {
   x: number,
   y: number,
+  name: string,
   position: Point,
   addChild(any): any,
+  children: Container[],
+  childByName(string): Container,
 }
 
 export interface Application {

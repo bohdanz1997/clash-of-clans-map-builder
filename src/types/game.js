@@ -35,6 +35,11 @@ export type GameConfig = {
 
 export type Engine = {}
 
+export type Node = {
+  size: number,
+  each(any): void,
+}
+
 export type Key = {
   isDown: boolean,
   isUp: boolean,

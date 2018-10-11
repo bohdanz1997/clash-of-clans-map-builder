@@ -7,14 +7,14 @@ import { makeWASDKeys } from '../core/input'
 
 export default ({ speed, damp }: any, { $config, $keyboard, $app }: Deps) => createEntity(
   c.Camera({
-    world: $app.stage,
+    world: $app.stage.childByName('gameScene'),
     worldWidth: $config.worldWidth,
     worldHeight: $config.worldHeight,
     canvasWidth: $config.width,
     canvasHeight: $config.height,
   }),
   c.Position({
-    x: -$config.hWidth + $config.hTileWidth,
+    x: 0,
     y: -100,
   }),
   c.Motion({
