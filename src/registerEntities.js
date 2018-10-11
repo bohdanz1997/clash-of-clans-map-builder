@@ -24,11 +24,12 @@ const entitiesLoader = (registerEntity, config, entityParamsProvider) => (mapDat
   registerEntity(changedEntityParams)
 }
 
-export default (engine, config) => {
-  const registerEntity = entityBuilder(engine, config, entitiesFactories)
+export default (engine, deps) => {
+  const registerEntity = entityBuilder(engine, deps, entitiesFactories)
+  const { $config } = deps
 
   // TODO: move to another place
-  const toScreenCoords = ({ x, y }) => ({ x: x * config.cellWidth, y: y * config.cellWidth })
+  const toScreenCoords = ({ x, y }) => ({ x: x * $config.cellWidth, y: y * $config.cellWidth })
   const entityParamsProvider = (entityParams) => {
     if (entityParams.x !== undefined && entityParams.y !== undefined) {
       return {
@@ -38,5 +39,5 @@ export default (engine, config) => {
     }
     return entityParams
   }
-  entitiesLoader(registerEntity, config, entityParamsProvider)(mapsDefinitions.first)
+  entitiesLoader(registerEntity, $config, entityParamsProvider)(mapsDefinitions.first)
 }

@@ -1,6 +1,6 @@
 // @flow
 import type {
-  Rectangle, Point, Sprite,
+  Rectangle, Point, Sprite, Application,
 } from './pixi'
 
 // components
@@ -51,4 +51,10 @@ export type Keyboard = {
   update(delta: number): void,
   isUp(): boolean,
   isDown(): boolean,
+}
+
+export type Deps = {
+  $app: Application,
+  $config: GameConfig,
+  $keyboard: Keyboard,
 }

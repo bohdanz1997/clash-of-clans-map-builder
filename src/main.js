@@ -16,8 +16,8 @@ const setup = target => () => {
   target.appendChild(app.view)
 
   const stats = createStats()
-  const dependencies = resolver(gameConfig, app, target)
-  const engine = createEngine(gameConfig, dependencies)
+  const deps = resolver(gameConfig, app, target)
+  const engine = createEngine(gameConfig, deps)
   engine.start()
 
   app.ticker.add((delta) => {
