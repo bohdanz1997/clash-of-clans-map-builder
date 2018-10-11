@@ -10,11 +10,12 @@ export default ({ speed, damp }: any, config: GameConfig) => createEntity(
     x: -config.hWidth + config.hTileWidth,
     y: -100,
   }),
-  c.Motion(),
+  c.Motion({
+    dampX: damp,
+    dampY: damp,
+  }),
   c.Control({
     dx: speed,
     dy: speed,
-    dampX: damp,
-    dampY: damp,
   }),
 )

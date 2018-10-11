@@ -24,8 +24,7 @@ export default ($config: GameConfig, $engine: Engine, $app: Application, $keyboa
     },
 
     update({ motion, control, position }) {
-      motion.vel.x *= control.dampX
-      motion.vel.y *= control.dampY
+      motion.vel.mult(motion.damp)
 
       this.camera.x = position.pos.x
       this.camera.y = position.pos.y

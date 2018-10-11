@@ -10,13 +10,16 @@ export const [cPosition, Position] = createComponent(
 )
 
 export const [cMotion, Motion] = createComponent(
-  'motion', 'vel',
-  ({ vx = 0, vy = 0 } = {}) => ({ vel: new Point(vx, vy), dir: 0 })
+  'motion', 'vel damp',
+  ({ vx = 0, vy = 0, dampX = 1, dampY = 1 } = {}) => ({
+    vel: new Point(vx, vy),
+    damp: new Point(dampX, dampY),
+  })
 )
 
 export const [cControl, Control] = createComponent(
-  'control', 'dx dy dampX dampY',
-  ({ dx = 0, dy = 0, dampX = 1, dampY = 1 } = {}) => ({ dx, dy, dampX, dampY })
+  'control', 'dx dy',
+  ({ dx = 0, dy = 0 } = {}) => ({ dx, dy })
 )
 
 export const [cDamage, Damage] = createComponent(
