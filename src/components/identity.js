@@ -19,7 +19,6 @@ export const [cPlayer, Player] = createComponent('player')
 export const [cEnemy, Enemy] = createComponent('enemy')
 export const [cGround, Ground] = createComponent('ground')
 export const [cGameObject, GameObject] = createComponent('gameObject')
-export const [cCamera, Camera] = createComponent('camera')
 
 export const [cMap, Map] = createComponent(
   'map', 'gameField',

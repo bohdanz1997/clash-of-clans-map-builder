@@ -1,4 +1,5 @@
 export * from './other'
+export * from './camera'
 export * from './identity'
 export * from './behaviour'
 
