@@ -18,32 +18,41 @@ const extractSpritesFromNode = (node: Node): Sprite[] => {
   return sprites
 }
 
-export default ($config: GameConfig, $engine: Engine, $app: Application) => createEnhancedSystem({
-  init(groundLayerNode, objectLayerNode) {
-    const logger = createLogger('Game Scene')
-    const cursor = tink.makePointer()
-    const invertMatrix = getIsoMatrix().clone().invert()
-    const worldContainer = $app.stage.childByName('gameScene')
+export default ($config: GameConfig, $engine: Engine, $app: Application) => {
+  const logger = createLogger('Game Scene')
+  const invertMatrix = getIsoMatrix().clone().invert()
+  const cursor = tink.makePointer()
+  const world = $app.stage.childByName('gameScene')
+  const text = spriteUtils.text()
 
-    if (!worldContainer) {
-      throw new Error('Could not find \'gameScene\' container in \'app.stage.children\'')
-    }
+  return createEnhancedSystem({
+    initLayers(groundLayerNode, objectLayerNode) {
+      const spritesByLayers = [groundLayerNode, objectLayerNode].map(extractSpritesFromNode)
+      const containers = spritesByLayers.map(sprites => spriteUtils.group(...sprites))
 
-    makeIsoPointer(cursor, worldContainer, invertMatrix, $config)
+      containers.forEach(c => world.addChild(c))
+      spritesByLayers.forEach((spritesByLayer, index) => logger.log(index, 'layer', spritesByLayer.length, 'items'))
+    },
 
-    cursor.press = () => {
-      const { position, fieldPosition } = cursor
+    init(groundLayerNode, objectLayerNode) {
+      this.initLayers(groundLayerNode, objectLayerNode)
+      $app.stage.addChild(text)
+      makeIsoPointer(cursor, world, invertMatrix, $config)
+    },
 
-      logger.log('x:', position.x, 'y:', position.y)
-      logger.log('column:', fieldPosition.x, 'row:', fieldPosition.y)
-    }
-
-    const spritesByLayers = [groundLayerNode, objectLayerNode].map(extractSpritesFromNode)
-    const containers = spritesByLayers.map(sprites => spriteUtils.group(...sprites))
-    containers.forEach(c => worldContainer.addChild(c))
-    spritesByLayers.forEach((spritesByLayer, index) => logger.log(index, 'layer', spritesByLayer.length, 'items'))
-  },
-})(nGroundLayer, nObjectsLayer)($engine)
+    update() {
+      const { position, fieldPosition, isUp, isDown } = cursor
+      text.content = `
+        x: ${position.x}
+        y: ${position.y}
+        column: ${fieldPosition.x}
+        row: ${fieldPosition.y}
+        isUp: ${isUp}
+        isDown: ${isDown}
+      `
+    },
+  })(nGroundLayer, nObjectsLayer)($engine)
+}
 
 export const params = {
   priority: systemPriorities.PRE_INIT,
