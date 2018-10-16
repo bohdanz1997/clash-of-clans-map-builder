@@ -2,7 +2,7 @@ import { nRender } from '../nodes'
 import { systemPriorities } from '../core'
 import { Point } from '../core/pixi'
 import { createSystem } from '../core/factories'
-import { getIsoMatrix } from '../core/graphics/matrixHelpers'
+import { getIsoMatrix } from '../core/math'
 
 const isoMatrix = getIsoMatrix()
 
