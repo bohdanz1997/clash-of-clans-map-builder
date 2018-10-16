@@ -13,7 +13,10 @@ const entitiesDefinitions = jsonModuleLoader(require.context('./assets/entity'))
 const entitiesLoader = (registerEntity, config, entityParamsProvider) => (mapData) => {
   const initEntitiesFromLayer = (layer) => {
     const entitiesData = mapParser.parseLayer(layer.data, entitiesDefinitions)
-    entitiesData.forEach(registerEntity)
+    entitiesData.forEach((entityParams) => {
+      const changedEntityParams = entityParamsProvider(entityParams)
+      registerEntity(changedEntityParams)
+    })
   }
 
   mapData.layers.unshift(generateGroundLayer(config))

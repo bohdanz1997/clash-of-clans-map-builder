@@ -25,4 +25,5 @@ export const gameConfig: GameConfig = {
   worldHeight: heightInTiles * tileHeight,
   cellWidth: tileWidth / 6,
   cellHeight: tileHeight / 6,
+  cellsInTile: 3,
 }

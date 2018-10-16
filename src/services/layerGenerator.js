@@ -10,8 +10,8 @@ export const generateGroundLayer = (config: GameConfig) => {
   for (let i = 0; i < totalTilesCount; i++) {
     const column = i % widthInTiles
     const row = Math.floor(i / widthInTiles)
-    const x = column * config.hTileWidth
-    const y = row * config.hTileWidth
+    const x = column * config.cellsInTile
+    const y = row * config.cellsInTile
 
     layerData[i] = createItem({ x, y })
   }

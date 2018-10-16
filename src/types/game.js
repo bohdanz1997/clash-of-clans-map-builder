@@ -31,6 +31,7 @@ export type GameConfig = {
   heightInTiles: number,
   cellWidth: number,
   cellHeight: number,
+  cellsInTile: number,
 }
 
 export type Engine = {}
