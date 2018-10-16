@@ -66,10 +66,17 @@ export const extendPoint = (Point) => {
     point1.x / point2.x,
     point1.y / point2.y,
   )
-}
 
-export const extendContainer = (Container) => {
-  Container.prototype.childByName = function childByName(name) {
-    return this.children.find(c => c.name === name)
+  Point.prototype.floor = function floor() {
+    this.x = Math.floor(this.x)
+    this.y = Math.floor(this.y)
+    return this
+  }
+
+  Point.floor = function floor(point) {
+    return new Point(
+      Math.floor(point.x),
+      Math.floor(point.y)
+    )
   }
 }
