@@ -1,5 +1,7 @@
 import { Bump, Tink, Smoothie, GameUtils, TileUtils, SpriteUtils } from 'game-modules'
+
 import { PIXI } from '../core/pixi'
+import { targetEl } from '../gameConfig'
 
 /** @type {GameUtilities} */
 export const gameUtils = new GameUtils()
@@ -14,4 +16,4 @@ export const spriteUtils = new SpriteUtils(PIXI)
 export const bump = new Bump(PIXI)
 
 /** @type {Tink} */
-export const tink = new Tink(PIXI)
+export const tink = new Tink(PIXI, targetEl)

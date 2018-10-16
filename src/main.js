@@ -1,7 +1,7 @@
 import createEngine from './engine'
 import { resolver } from './inject'
-import { gameConfig } from './gameConfig'
 import { Application } from './core/pixi'
+import { gameConfig, targetEl } from './gameConfig'
 import { spriteUtils, createStats, resourceLoader } from './services'
 
 const setup = target => () => {
@@ -30,4 +30,4 @@ const setup = target => () => {
   })
 }
 
-resourceLoader(setup(document.body))
+resourceLoader(setup(targetEl))

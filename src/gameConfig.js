@@ -8,6 +8,8 @@ const tileHeight = 100
 const widthInTiles = 10
 const heightInTiles = 10
 
+export const targetEl = document.body
+
 export const gameConfig: GameConfig = {
   width,
   height,
