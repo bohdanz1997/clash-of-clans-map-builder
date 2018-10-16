@@ -14,7 +14,7 @@ export default ({ speed, damp }: any, { $config, $keyboard, $app }: Deps) => cre
     canvasHeight: $config.height,
   }),
   c.Position({
-    x: 0,
+    x: -$config.hWidth + $config.hTileWidth,
     y: -100,
   }),
   c.Motion({
