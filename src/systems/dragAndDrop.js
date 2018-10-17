@@ -13,9 +13,7 @@ const findHitDragNodeByPointer = (draggableNode, pointer) => (
 
 // manages drag & drop functionality
 export default $engine => createEnhancedSystem({
-  init(dragNode, pointerNode) {
-    this.pointerNodeItem = pointerNode.head
-    this.pointer = this.pointerNodeItem.pointer.pointer
+  init() {
     this.dragNode = null
   },
 
@@ -65,9 +63,6 @@ export default $engine => createEnhancedSystem({
 
     // display selected sprite above all the others
     moveToArrEnd(sprite, sprite.parent.children)
-
-    // Reorganize the `draggableSpites` array in the same way
-    // moveToArrEnd(sprite, this.draggableSprites)
   },
 
   moveDraggableWithPointer(pointer) {
