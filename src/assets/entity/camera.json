@@ -1,5 +1,5 @@
 {
-  "id": "player",
+  "id": "camera",
   "speed": 10,
   "damp": 0.9
 }

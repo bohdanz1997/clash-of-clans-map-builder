@@ -19,7 +19,8 @@
       "name": "other",
       "data": [
         { "id": "input" },
-        { "id": "camera" }
+        { "id": "camera" },
+        { "id": "pointer" }
       ]
     }
   ]
