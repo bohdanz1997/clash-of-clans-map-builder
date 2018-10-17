@@ -1,6 +1,7 @@
 import { createEnhancedSystem } from '../core/factories'
 import { nDraggable, nPointer } from '../nodes'
 import { hitTestRect } from '../core/hitTest'
+import { Point } from '../core/pixi'
 
 const moveToArrEnd = (item, arr) => {
   arr.splice(arr.indexOf(item), 1)
@@ -12,9 +13,14 @@ const findHitDragNodeByPointer = (draggableNode, pointer) => (
 )
 
 // manages drag & drop functionality
-export default $engine => createEnhancedSystem({
+export default ($engine, $config) => createEnhancedSystem({
   init() {
     this.dragNode = null
+
+    this.floorCellPos = point => point
+      .divNum($config.cellWidth)
+      .floor()
+      .multNum($config.cellWidth)
   },
 
   update(draggableNode, pointerNode) {
@@ -69,9 +75,11 @@ export default $engine => createEnhancedSystem({
     const { position } = this.dragNode
     const { cartPosition } = pointer
 
-    position.pos.set(
+    const newPos = this.floorCellPos(new Point(
       cartPosition.x - pointer.dragOffsetX,
-      cartPosition.y - pointer.dragOffsetY,
-    )
+      cartPosition.y - pointer.dragOffsetY
+    ))
+
+    position.pos.copy(newPos)
   },
 })(nDraggable, nPointer)($engine)
