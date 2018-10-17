@@ -15,8 +15,6 @@ const findHitDragNodeByPointer = (draggableNode, pointer) => (
 // manages drag & drop functionality
 export default ($engine, $config) => createEnhancedSystem({
   init() {
-    this.dragNode = null
-
     this.floorCellPos = point => point
       .divNum($config.cellWidth)
       .floor()
@@ -24,22 +22,23 @@ export default ($engine, $config) => createEnhancedSystem({
   },
 
   update(draggableNode, pointerNode) {
-    pointerNode.each(({ pointer: { pointer } }) => {
+    pointerNode.each(({ pointer: cPointer }) => {
+      const { pointer } = cPointer
       const foundDragNode = findHitDragNodeByPointer(draggableNode, pointer)
 
       if (pointer.isDown) {
-        if (this.dragNode === null) {
+        if (cPointer.dragTarget === null) {
           if (foundDragNode) {
-            this.dragNode = foundDragNode
-            this.setUpDragForSprite(foundDragNode, pointer)
+            cPointer.dragTarget = foundDragNode
+            this.setUpDragForSprite(cPointer)
           }
         } else {
-          this.moveDraggableWithPointer(pointer)
+          this.moveDraggableWithPointer(cPointer)
         }
       }
 
       if (pointer.isUp) {
-        this.dragNode = null
+        cPointer.dragTarget = null
       }
 
       // Change the mouse arrow pointer to a hand if it's over a
@@ -54,32 +53,24 @@ export default ($engine, $config) => createEnhancedSystem({
     })
   },
 
-  setUpDragForSprite(foundDragNode, pointer) {
-    const {
-      display: { sprite },
-      position,
-    } = foundDragNode
+  setUpDragForSprite(cPointer) {
+    const { pointer, dragTarget } = cPointer
+    const { display: { sprite } } = dragTarget
 
     // Calculate the difference between the pointer's
     // position and the sprite's position
     const { cartPosition } = pointer
-    const offset = cartPosition.sub(position.pos)
-    pointer.dragOffsetX = offset.x
-    pointer.dragOffsetY = offset.y
+    const offset = cartPosition.sub(dragTarget.position.pos)
+    cPointer.dragOffset.copy(offset)
 
     // display selected sprite above all the others
     moveToArrEnd(sprite, sprite.parent.children)
   },
 
-  moveDraggableWithPointer(pointer) {
-    const { position } = this.dragNode
-    const { cartPosition } = pointer
+  moveDraggableWithPointer(cPointer) {
+    const { pointer, dragOffset, dragTarget } = cPointer
+    const newPos = this.floorCellPos(Point.sub(pointer.cartPosition, dragOffset))
 
-    const newPos = this.floorCellPos(new Point(
-      cartPosition.x - pointer.dragOffsetX,
-      cartPosition.y - pointer.dragOffsetY
-    ))
-
-    position.pos.copy(newPos)
+    dragTarget.position.pos.copy(newPos)
   },
 })(nDraggable, nPointer)($engine)
