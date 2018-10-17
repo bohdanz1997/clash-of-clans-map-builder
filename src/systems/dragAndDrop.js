@@ -1,5 +1,6 @@
 import { createEnhancedSystem } from '../core/factories'
 import { nDraggable, nPointer } from '../nodes'
+import { hitTestRect } from '../core/hitTest'
 
 const moveToArrEnd = (item, arr) => {
   arr.splice(arr.indexOf(item), 1)
@@ -7,7 +8,7 @@ const moveToArrEnd = (item, arr) => {
 }
 
 const findHitDragNodeByPointer = (draggableNode, pointer) => (
-  draggableNode.find(({ display }) => pointer.hitTestSprite(display.sprite))
+  draggableNode.find(({ display, collision }) => hitTestRect(collision.bounds, pointer.cartPosition))
 )
 
 // manages drag & drop functionality
