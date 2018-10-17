@@ -1,11 +1,11 @@
 import * as c from '../components'
 import { withComponents, withIsoDisplay, pipeHOCs } from '../components/hoc'
 
-export default ({ x, y, width, height }) => pipeHOCs(
+export default ({ x, y, width, height, isoWidth, isoHeight }) => pipeHOCs(
   withComponents(
     c.Ground(),
     c.Position({ x, y }),
     c.IsoPosition(),
   ),
-  withIsoDisplay('ground', width, height),
+  withIsoDisplay('ground', isoWidth, isoHeight),
 )

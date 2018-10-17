@@ -1,7 +1,9 @@
 {
   "id": "clanCastle",
-  "width": 100,
-  "height": 121,
+  "width": 66.5,
+  "height": 66.5,
+  "isoWidth": 100,
+  "isoHeight": 121,
   "offsetX": 15,
   "offsetY": 30,
   "levels": {
