@@ -1,5 +1,6 @@
 export * from './other'
 export * from './camera'
+export * from './display'
 export * from './identity'
 export * from './behaviour'
 

@@ -1,17 +1,10 @@
 import { nRender } from '../nodes'
 import { systemPriorities } from '../core'
-import { Point } from '../core/pixi'
 import { createSystem } from '../core/factories'
-import { getIsoMatrix } from '../core/math'
 
-const isoMatrix = getIsoMatrix()
-
-const handler = ({ position, display }) => {
-  const isoPos = isoMatrix.apply(Point.sub(position.pos, position.offset))
-  display.sprite.position.copy(isoPos)
-}
-
-export default $engine => createSystem(handler)(nRender)($engine)
+export default $engine => createSystem(({ position, display }) => {
+  display.sprite.position.copy(position.pos)
+})(nRender)($engine)
 
 export const params = {
   priority: systemPriorities.RENDER,

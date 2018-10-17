@@ -46,10 +46,6 @@ export const [cCollision, Collision] = createComponent(
   }
 )
 
-export const [cDisplay, Display] = createComponent(
-  'display', 'sprite',
-)
-
 export const [cBrain, Brain] = createComponent(
   'brain', 'maxTime currentMaxTime timer',
   ({ maxTime }) => ({
@@ -61,4 +57,17 @@ export const [cBrain, Brain] = createComponent(
 
 export const [cFSM, FSM] = createComponent(
   'fsm', 'fsm',
+)
+
+export const [cPointer, Pointer] = createComponent(
+  'pointer', 'pointer',
+)
+
+export const [cDraggable, Draggable] = createComponent(
+  'draggable'
+)
+
+export const [cIsoPosition, IsoPosition] = createComponent(
+  'isoPosition', 'pos',
+  ({ x = 0, y = 0 } = {}) => ({ pos: new Point(x, y) })
 )

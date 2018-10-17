@@ -5,6 +5,7 @@ export default ({ x, y, width, height }) => pipeHOCs(
   withComponents(
     c.Ground(),
     c.Position({ x, y }),
+    c.IsoPosition(),
   ),
   withIsoDisplay('ground', width, height),
 )
