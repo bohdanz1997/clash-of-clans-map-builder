@@ -1,4 +1,4 @@
-import { stringifyJSON } from './util'
+import { stringifyJSON } from '../util'
 
 export default (engine, deps, entitiesFactories) => {
   const buildEntity = (entityParams) => {

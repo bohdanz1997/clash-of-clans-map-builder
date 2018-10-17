@@ -1,4 +1,4 @@
-import { identity } from './util'
+import { identity } from '../util'
 
 export const moduleLoader = (fileNameReplacer, contextProvider = identity) => (
   (requireContext) => {

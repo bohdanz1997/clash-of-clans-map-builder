@@ -63,7 +63,7 @@ export class Layer {
   }
 }
 
-export default class GameField {
+export class GameField {
   constructor(width, height, layers) {
     this.init(width, height)
     this.initLayers(layers)
