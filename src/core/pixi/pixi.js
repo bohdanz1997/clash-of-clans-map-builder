@@ -1,5 +1,9 @@
 import * as PIXI from 'pixi.js'
-import { extendPoint, extendContainer } from '../extentions'
+import {
+  extendPoint,
+  extendContainer,
+  extendRectangle,
+} from '../extentions'
 
 // PIXI aliases
 const {
@@ -16,6 +20,7 @@ const {
 
 extendPoint(Point)
 extendContainer(Container)
+extendRectangle(Rectangle)
 
 export {
   Point,
