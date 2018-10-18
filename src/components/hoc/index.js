@@ -3,6 +3,7 @@ import { pipe } from '../../core/util'
 import { createSprite } from '../../core/pixi'
 import { createEntity } from '../../core/factories'
 import { createIsoSprite } from '../../core/isometric'
+import { makeRectSprite, makeIsoRectSprite } from '../../core/graphics'
 
 export const pipeHOCs = (...HOCs) => pipe(...HOCs)()
 
@@ -15,5 +16,15 @@ export const withDisplay = texture => (entity) => {
 
 export const withIsoDisplay = (texture, width, height) => (entity) => {
   const sprite = createIsoSprite(texture, 0, 0, width, height)
+  return entity.add(c.Display({ sprite }))
+}
+
+export const withRectDisplay = (width, height, color) => (entity) => {
+  const sprite = makeRectSprite(width, height, color)
+  return entity.add(c.Display({ sprite }))
+}
+
+export const withIsoRectDisplay = (width, height, color) => (entity) => {
+  const sprite = makeIsoRectSprite(width, height, color)
   return entity.add(c.Display({ sprite }))
 }

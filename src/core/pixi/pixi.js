@@ -12,7 +12,9 @@ const {
   Rectangle,
   Container,
   Application,
+  Graphics,
   loader,
+  Matrix,
   utils: {
     TextureCache,
   },
@@ -29,6 +31,8 @@ export {
   Application,
   Container,
   TextureCache,
+  Graphics,
+  Matrix,
   loader,
   PIXI,
 }
