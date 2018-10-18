@@ -1,1 +1,2 @@
 - render priority for sprites
+- solve render order
