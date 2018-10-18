@@ -5,7 +5,6 @@ import { isoMatrix } from '../core/isometric'
 import { createSystem } from '../core/factories'
 
 export default $engine => createSystem(({ position, isoPosition }) => {
-  // calculate isometric position
   const isoPos = isoMatrix.apply(Point.sub(position.pos, position.offset))
   isoPosition.pos.copy(isoPos)
 })(nIsometric)($engine)
