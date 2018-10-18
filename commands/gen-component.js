@@ -1,3 +1,4 @@
+import 'colors'
 import fs from 'fs'
 import program from 'commander'
 
@@ -15,7 +16,7 @@ program
 const component = program.args[0]
 
 if (!component) {
-  console.error('You must specify component')
+  console.error('You must specify component name'.red)
   process.exit(1)
 }
 
@@ -41,5 +42,5 @@ const source = generateSource(component, program.fields)
 
 fs.writeFileSync(filePath, source)
 
-console.log('Generated:', filePath, '\n')
+console.log('Generated:'.green, filePath.green, '\n')
 console.log(source)
