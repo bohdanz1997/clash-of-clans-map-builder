@@ -1,3 +1,5 @@
+import 'colors'
+import fs from 'fs'
 import path from 'path'
 
 const rootPath = path.resolve(__dirname, '../src')
@@ -27,4 +29,11 @@ export const capitalizeFirst = (str) => {
 
 export const argParser = {
   list: val => val.split(','),
+}
+
+export const generate = ({ filePath, source }) => {
+  fs.writeFileSync(filePath, source)
+
+  console.log('Generated:'.green, filePath.green, '\n')
+  console.log(source)
 }

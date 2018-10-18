@@ -1,11 +1,10 @@
-import 'colors'
-import fs from 'fs'
 import program from 'commander'
 
 import {
-  capitalizeFirst,
-  argParser,
   pathGen,
+  argParser,
+  generate,
+  capitalizeFirst,
 } from './utils'
 
 program
@@ -20,7 +19,7 @@ if (!component) {
   process.exit(1)
 }
 
-const generateSource = (name, fields = []) => {
+const buildSource = (name, fields = []) => {
   const componentName = capitalizeFirst(name)
   const componentTypeName = `c${componentName}`
   const coreFactoriesPath = '../core/factories'
@@ -37,10 +36,7 @@ export const [${componentTypeName}, ${componentName}] = createComponent(
 `
 }
 
-const filePath = pathGen.component(component)
-const source = generateSource(component, program.fields)
-
-fs.writeFileSync(filePath, source)
-
-console.log('Generated:'.green, filePath.green, '\n')
-console.log(source)
+generate({
+  filePath: pathGen.component(component),
+  source: buildSource(component, program.fields),
+})
