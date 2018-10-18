@@ -12,19 +12,14 @@ export default ($engine: Engine, $app: Application, $config: GameConfig) => {
   const world = $app.stage.childByName('gameScene')
   const invertMatrix = isoMatrix.clone().invert()
 
-  const makeIsoPointerUtil = (pointer) => {
-    makeIsoPointer(pointer, world, invertMatrix, $config)
+  const makeIsoPointerUtil = ({ pointer }) => {
+    makeIsoPointer(pointer.pointer, world, invertMatrix, $config)
   }
 
   return createSystem({
     init(node) {
-      node.each(({ pointer }) => {
-        makeIsoPointerUtil(pointer.pointer)
-      })
-
-      node.onAdded(({ pointer }) => {
-        makeIsoPointerUtil(pointer.pointer)
-      })
+      node.each(makeIsoPointerUtil)
+      node.onAdded(makeIsoPointerUtil)
     },
   })(nPointer)($engine)
 }

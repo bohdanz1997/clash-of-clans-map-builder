@@ -3,10 +3,9 @@ import type { GameConfig, Engine, Node } from '../types/game'
 import type { Application, Sprite } from '../types/pixi'
 
 import { nGroundLayer, nObjectsLayer } from '../nodes'
-import { spriteUtils, tink } from '../services'
+import { spriteUtils } from '../services'
 
 import { systemPriorities, createLogger } from '../core'
-import { makeIsoPointer, isoMatrix } from '../core/isometric'
 import { createEnhancedSystem } from '../core/factories'
 
 const extractSpritesFromNode = (node: Node): Sprite[] => {
@@ -19,8 +18,6 @@ const extractSpritesFromNode = (node: Node): Sprite[] => {
 
 export default ($config: GameConfig, $engine: Engine, $app: Application) => {
   const logger = createLogger('Game Scene')
-  const invertMatrix = isoMatrix.clone().invert()
-  const cursor = tink.makePointer()
   const world = $app.stage.childByName('gameScene')
   const text = spriteUtils.text()
 
@@ -45,7 +42,6 @@ export default ($config: GameConfig, $engine: Engine, $app: Application) => {
     init(groundLayerNode, objectLayerNode) {
       this.initLayers(groundLayerNode, objectLayerNode)
       $app.stage.addChild(text)
-      makeIsoPointer(cursor, world, invertMatrix, $config)
 
       objectLayerNode.onAdded(({ display }) => {
         objectLayer.addChild(display.sprite)
@@ -54,20 +50,6 @@ export default ($config: GameConfig, $engine: Engine, $app: Application) => {
       objectLayerNode.onRemoved(({ display }) => {
         objectLayer.removeChild(display.sprite)
       })
-    },
-
-    update(groundLayerNode, objectLayerNode) {
-      const { position, fieldPosition, isUp, isDown } = cursor
-      text.content = `
-        x: ${position.x}
-        y: ${position.y}
-        column: ${fieldPosition.x}
-        row: ${fieldPosition.y}
-        isUp: ${isUp}
-        isDown: ${isDown}
-        ground: ${groundLayerNode.size}
-        object: ${objectLayerNode.size}
-      `
     },
   })(nGroundLayer, nObjectsLayer)($engine)
 }

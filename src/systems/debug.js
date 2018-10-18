@@ -1,12 +1,36 @@
-import { createSystem } from '../core/factories'
-import { nObjectsLayer } from '../nodes'
+// @flow
+import type { Engine } from '../types/game'
+import type { Application } from '../types/pixi'
 
-export default $engine => createSystem({
-  init(node) {
-    node.each(console.log)
-  },
-})(nObjectsLayer)($engine)
+import { createSystem } from '../core/factories'
+import { nPointer } from '../nodes'
+import { spriteUtils } from '../services'
+
+export default ($engine: Engine, $app: Application) => {
+
+  const text = spriteUtils.text()
+
+  createSystem({
+    init() {
+      $app.stage.addChild(text)
+    },
+
+    update(node) {
+      const { pointer } = node.pointer
+      const { position, fieldPosition, isUp, isDown } = pointer
+
+      text.content = `
+        x: ${position.x}
+        y: ${position.y}
+        column: ${fieldPosition.x}
+        row: ${fieldPosition.y}
+        isUp: ${isUp}
+        isDown: ${isDown}
+      `
+    },
+  })(nPointer)($engine)
+}
 
 export const params = {
-  enabled: false,
+  enabled: true,
 }
