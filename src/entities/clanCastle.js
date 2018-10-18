@@ -6,6 +6,7 @@ export default ({ x, y, offsetX, offsetY, isoWidth, isoHeight, width, height }) 
     withComponents(
       c.GameObject(),
       c.Draggable(),
+      c.BackGround(),
       c.Position({ x, y, offsetX, offsetY }),
       c.IsoPosition(),
       c.Collision({ width, height }),

@@ -1,10 +1,8 @@
 import { nIsometric } from '../nodes'
 import { systemPriorities } from '../core'
 import { Point } from '../core/pixi'
-import { getIsoMatrix } from '../core/math'
+import { isoMatrix } from '../core/isometric'
 import { createSystem } from '../core/factories'
-
-const isoMatrix = getIsoMatrix()
 
 export default $engine => createSystem(({ position, isoPosition }) => {
   // calculate isometric position

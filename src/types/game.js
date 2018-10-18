@@ -34,7 +34,10 @@ export type GameConfig = {
   cellsInTile: number,
 }
 
-export type Engine = {}
+export type Engine = {
+  addEntity(entity: any): void,
+  destroyEntity(entity: any): void,
+}
 
 export type Node = {
   size: number,

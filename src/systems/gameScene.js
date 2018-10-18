@@ -6,8 +6,7 @@ import { nGroundLayer, nObjectsLayer } from '../nodes'
 import { spriteUtils, tink } from '../services'
 
 import { systemPriorities, createLogger } from '../core'
-import { getIsoMatrix } from '../core/math'
-import { makeIsoPointer } from '../core/isometric'
+import { makeIsoPointer, isoMatrix } from '../core/isometric'
 import { createEnhancedSystem } from '../core/factories'
 
 const extractSpritesFromNode = (node: Node): Sprite[] => {
@@ -20,27 +19,44 @@ const extractSpritesFromNode = (node: Node): Sprite[] => {
 
 export default ($config: GameConfig, $engine: Engine, $app: Application) => {
   const logger = createLogger('Game Scene')
-  const invertMatrix = getIsoMatrix().clone().invert()
+  const invertMatrix = isoMatrix.clone().invert()
   const cursor = tink.makePointer()
   const world = $app.stage.childByName('gameScene')
   const text = spriteUtils.text()
 
-  return createEnhancedSystem({
-    initLayers(groundLayerNode, objectLayerNode) {
-      const spritesByLayers = [groundLayerNode, objectLayerNode].map(extractSpritesFromNode)
-      const containers = spritesByLayers.map(sprites => spriteUtils.group(...sprites))
+  let groundLayer
+  let objectLayer
 
-      containers.forEach(c => world.addChild(c))
-      spritesByLayers.forEach((spritesByLayer, index) => logger.log(index, 'layer', spritesByLayer.length, 'items'))
+  return createEnhancedSystem({
+    initLayer(node, name) {
+      const sprites = extractSpritesFromNode(node)
+      const container = spriteUtils.group(...sprites)
+      container.name = name
+      return container
+    },
+
+    initLayers(groundLayerNode, objectLayerNode) {
+      groundLayer = this.initLayer(groundLayerNode, 'ground')
+      objectLayer = this.initLayer(objectLayerNode, 'object')
+
+      world.addChild(groundLayer, objectLayer)
     },
 
     init(groundLayerNode, objectLayerNode) {
       this.initLayers(groundLayerNode, objectLayerNode)
       $app.stage.addChild(text)
       makeIsoPointer(cursor, world, invertMatrix, $config)
+
+      objectLayerNode.onAdded(({ display }) => {
+        objectLayer.addChild(display.sprite)
+      })
+
+      objectLayerNode.onRemoved(({ display }) => {
+        objectLayer.removeChild(display.sprite)
+      })
     },
 
-    update() {
+    update(groundLayerNode, objectLayerNode) {
       const { position, fieldPosition, isUp, isDown } = cursor
       text.content = `
         x: ${position.x}
@@ -49,6 +65,8 @@ export default ($config: GameConfig, $engine: Engine, $app: Application) => {
         row: ${fieldPosition.y}
         isUp: ${isUp}
         isDown: ${isDown}
+        ground: ${groundLayerNode.size}
+        object: ${objectLayerNode.size}
       `
     },
   })(nGroundLayer, nObjectsLayer)($engine)
