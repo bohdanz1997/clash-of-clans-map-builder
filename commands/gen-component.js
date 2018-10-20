@@ -3,9 +3,10 @@ import program from 'commander'
 import {
   pathGen,
   argParser,
-  generate,
   capitalizeFirst,
 } from './utils'
+
+import genUtils from './gen-utils'
 
 program
   .usage('generate component')
@@ -36,7 +37,7 @@ export const [${componentTypeName}, ${componentName}] = createComponent(
 `
 }
 
-generate({
+genUtils.generate({
   filePath: pathGen.component(component),
   source: buildSource(component, program.fields),
 })
