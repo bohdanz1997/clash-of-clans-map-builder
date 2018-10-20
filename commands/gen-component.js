@@ -1,9 +1,10 @@
+import fs from "fs"
 import program from 'commander'
 
 import {
   pathGen,
   argParser,
-  capitalizeFirst,
+  strUtils,
 } from './utils'
 
 import genUtils from './gen-utils'
@@ -24,7 +25,7 @@ if (!component) {
 }
 
 const buildSource = (name, fields = []) => {
-  const componentName = capitalizeFirst(name)
+  const componentName = strUtils.capitalizeFirst(name)
   const componentTypeName = `c${componentName}`
   const coreFactoriesPath = '../core/factories'
 
@@ -40,7 +41,26 @@ export const [${componentTypeName}, ${componentName}] = createComponent(
 `
 }
 
+const indexFile = pathGen.component('index')
+const componentFile = pathGen.component(component)
+
 genUtils.generate({
-  filePath: pathGen.component(component),
+  filePath: componentFile,
   source: buildSource(component, program.fields),
 })
+
+const generateExportLine = name => `export * from './${name}'\n`
+
+const exportLine = generateExportLine(component)
+const fileData = fs.readFileSync(indexFile, { encoding: 'utf8' })
+const lines = fileData.split('\n').filter(line => line !== '')
+const hasExportLine = lines.find(line => line.includes(component))
+
+if (!hasExportLine) {
+  const finalLines = [...lines, exportLine]
+
+  genUtils.update({
+    filePath: indexFile,
+    source: finalLines.join('\n'),
+  })
+}

@@ -21,9 +21,14 @@ export const pathGen = {
   system: generateFilePath(folders.systems),
 }
 
-export const capitalizeFirst = (str) => {
-  const [first, ...rest] = str
-  return `${first.toUpperCase()}${rest.join('')}`
+export const strUtils = {
+  capitalizeFirst(str) {
+    const [first, ...rest] = str
+    return `${first.toUpperCase()}${rest.join('')}`
+  },
+}
+
+export const arrUtils = {
 }
 
 export const argParser = {
