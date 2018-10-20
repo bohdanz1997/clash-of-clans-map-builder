@@ -5,7 +5,7 @@ export default {
     try {
       fs.writeFileSync(filePath, source)
     } catch (err) {
-      console.error('Got error:'.red, err)
+      console.error('Got error:'.red, err.message)
     }
 
     console.log('Generated:'.green, filePath.green, '\n')
@@ -16,7 +16,7 @@ export default {
     try {
       fs.writeFileSync(filePath, source)
     } catch (err) {
-      console.error('Got error:'.red, err)
+      console.error('Got error:'.red, err.message)
     }
 
     console.log('Updated:'.green, filePath.green, '\n')
@@ -27,7 +27,7 @@ export default {
     try {
       fs.unlinkSync(filePath)
     } catch (err) {
-      console.error('Got error:'.red, err)
+      console.error('Got error:'.red, err.message)
     }
 
     console.log('Removed:'.green, filePath.green, '\n')
