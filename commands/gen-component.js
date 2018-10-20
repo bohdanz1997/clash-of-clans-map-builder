@@ -7,6 +7,9 @@ import {
 } from './utils'
 
 import genUtils from './gen-utils'
+import { createLogger } from './log'
+
+const logger = createLogger('Add component')
 
 program
   .usage('generate component')
@@ -16,7 +19,7 @@ program
 const component = program.args[0]
 
 if (!component) {
-  console.error('You must specify component name'.red)
+  logger.error('You must specify component name'.red)
   process.exit(1)
 }
 
