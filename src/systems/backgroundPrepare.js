@@ -11,8 +11,8 @@ export default ($config: GameConfig, $engine: Engine) => createEnhancedSystem({
     // add overlay for each entity with backGround component
     bgNode.each(({ display, position }) => {
       const overlay = Overlay({
-        width: $config.hTileWidth,
-        height: $config.hTileWidth,
+        width: $config.cartTileSize,
+        height: $config.cartTileSize,
         target: position,
       })
 

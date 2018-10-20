@@ -26,4 +26,5 @@ export const gameConfig: GameConfig = {
   cellWidth: tileWidth / 6,
   cellHeight: tileHeight / 6,
   cellsInTile: 3,
+  cartTileSize: tileWidth / 2,
 }
