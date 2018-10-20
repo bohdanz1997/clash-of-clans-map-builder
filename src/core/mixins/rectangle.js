@@ -1,6 +1,6 @@
 import { Point } from '../pixi'
 
-export const extendRectangle = (Rectangle) => {
+export const rectangleMixin = (Rectangle) => {
   Rectangle.prototype.setPosition = function setPosition(point) {
     this.x = point.x
     this.y = point.y

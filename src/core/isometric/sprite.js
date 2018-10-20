@@ -1,5 +1,5 @@
 import { createSprite } from '../pixi'
-import { extendSpriteProperties } from '../extentions'
+import { spriteMixin } from '../mixins'
 
 export const createIsoSprite = (textureId, x = 0, y = 0, width = 0, height = 0) => {
   const sprite = createSprite(textureId, x, y)
@@ -12,7 +12,7 @@ export const createIsoSprite = (textureId, x = 0, y = 0, width = 0, height = 0) 
   sprite.width = width
   sprite.height = height
 
-  extendSpriteProperties(sprite)
+  spriteMixin(sprite)
 
   return sprite
 }

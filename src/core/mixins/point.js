@@ -1,4 +1,4 @@
-export const extendPoint = (Point) => {
+export const pointMixin = (Point) => {
   Point.prototype.add = function add(point) {
     this.x += point.x
     this.y += point.y

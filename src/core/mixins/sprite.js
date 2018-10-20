@@ -1,7 +1,7 @@
 import { PIXI } from '../pixi'
 
 /* eslint-disable no-underscore-dangle */
-export const extendSpriteProperties = (o) => {
+export const spriteMixin = (o) => {
 
   // Velocity
   o.vx = 0
