@@ -7,7 +7,7 @@ import { nBackGround } from '../nodes'
 import { systemPriorities } from '../core'
 import { createEnhancedSystem } from '../core/factories'
 
-import Overlay from '../entities/overlay'
+import { Overlay } from '../entities'
 
 export default ($config: GameConfig, $engine: Engine, $app: Application) => {
 
