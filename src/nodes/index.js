@@ -2,7 +2,6 @@ import * as c from '../components'
 
 export const nMovement = [c.cPosition, c.cMotion]
 export const nCollision = [c.cPosition, c.cCollision]
-export const nBoundsLimiter = [c.cPosition, c.cMotion, c.cControl, c.cCollision]
 export const nRender = [c.cPosition, c.cDisplay]
 export const nMap = [c.cMap]
 export const nBuilding = [c.cBuilding, c.cPosition]

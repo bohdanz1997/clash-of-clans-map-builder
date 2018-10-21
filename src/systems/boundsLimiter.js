@@ -1,31 +1,30 @@
 import { systemPriorities } from '../core'
 import { createSystem } from '../core/factories'
-import { nBoundsLimiter } from '../nodes'
+import { nCollision } from '../nodes'
 import { Rectangle } from '../core/pixi'
 
-export default ($engine, $config) => createSystem({
-  init() {
-    this.screenBounds = new Rectangle(0, 0, $config.width, $config.height)
-  },
+export default ($engine, $config) => {
+  const worldBounds = new Rectangle(0, 0, $config.cartWorldWidth, $config.cartWorldHeight)
 
-  update({ position, collision, motion, control }) {
-    const { screenBounds } = this
-    const { bounds } = collision
+  return createSystem({
+    update({ position, collision }) {
+      const { bounds } = collision
 
-    if (bounds.top < screenBounds.top) {
-      motion.vel.y = control.dy
-    }
-    if (bounds.bottom > screenBounds.bottom) {
-      motion.vel.y = -control.dy
-    }
-    if (bounds.left < screenBounds.left) {
-      motion.vel.x = control.dx
-    }
-    if (bounds.right > screenBounds.right) {
-      motion.vel.x = -control.dx
-    }
-  },
-})(nBoundsLimiter)($engine)
+      if (bounds.top < worldBounds.top) {
+        position.pos.y = 0
+      }
+      if (bounds.bottom > worldBounds.bottom) {
+        position.pos.y = worldBounds.bottom - bounds.height
+      }
+      if (bounds.left < worldBounds.left) {
+        position.pos.x = 0
+      }
+      if (bounds.right > worldBounds.right) {
+        position.pos.x = worldBounds.right - bounds.width
+      }
+    },
+  })(nCollision)($engine)
+}
 
 export const params = {
   priority: systemPriorities.RESOLVE_COLLISIONS,

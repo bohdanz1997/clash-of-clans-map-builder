@@ -7,6 +7,9 @@ const tileWidth = 133
 const tileHeight = 100
 const widthInTiles = 10
 const heightInTiles = 10
+const cellsInTile = 3
+const cartTileSize = tileWidth / 2
+const cartCellSize = cartTileSize / cellsInTile
 
 export const targetEl = document.body
 
@@ -25,6 +28,9 @@ export const gameConfig: GameConfig = {
   worldHeight: heightInTiles * tileHeight,
   cellWidth: tileWidth / 6,
   cellHeight: tileHeight / 6,
-  cellsInTile: 3,
-  cartTileSize: tileWidth / 2,
+  cellsInTile,
+  cartTileSize,
+  cartCellSize,
+  cartWorldWidth: cartTileSize * widthInTiles,
+  cartWorldHeight: cartTileSize * heightInTiles,
 }
