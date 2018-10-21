@@ -76,8 +76,8 @@ export default ($engine, $config) => createEnhancedSystem({
   moveDraggableWithPointer(cPointer) {
     const { pointer, dragOffset, dragTarget } = cPointer
     const newPos = Point.sub(
-      pointer.cartPosition.floorNum($config.cellWidth),
-      dragOffset.floorNum($config.cellWidth),
+      pointer.cartPosition.floorNum($config.cartCellSize),
+      dragOffset.floorNum($config.cartCellSize),
     )
 
     dragTarget.position.pos.copy(newPos)

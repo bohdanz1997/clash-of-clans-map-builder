@@ -1,33 +1,33 @@
 import { createEnhancedSystem } from '../core/factories'
 import { Layer } from '../core/tools'
+import { Point } from '../core/pixi'
 import { nMap, nBuilding } from '../nodes'
 
 const getMapLayer = (layerName, mapNode) => (
   mapNode.map.gameField.getLayer(layerName)
 )
 
-const getNormalizedPos = node => (
-  node.position.pos.normalize()
-)
+export default ($engine, $config) => {
+  const updateNodeForLayer = layer => ({ position }) => {
+    const normPos = Point.floor(Point.divNum(position.pos, $config.cartCellSize))
+    layer.setIn(normPos.x, normPos.y, Layer.cellState.BUSY)
+  }
 
-const updateLayerCell = (layer, pos) => {
-  layer.setIn(pos.x, pos.y, Layer.cellState.BUSY)
+  let buildingLayer
+
+  return createEnhancedSystem({
+    init(mapNode) {
+      buildingLayer = getMapLayer('building', mapNode.head)
+    },
+
+    update(mapNode, buildingNode) {
+      buildingLayer.clear()
+
+      buildingNode.each(updateNodeForLayer(buildingLayer))
+    },
+  })(nMap, nBuilding)($engine)
 }
 
-const updateBuildingNode = layer => (node) => {
-  const normPos = getNormalizedPos(node)
-  updateLayerCell(layer, normPos)
+export const params = {
+  enabled: true,
 }
-
-const handler = (mapNode, buildingNode) => {
-  const layer = getMapLayer('buildings', mapNode.head)
-  layer.clear()
-
-  buildingNode.each(updateBuildingNode(layer))
-  console.log(layer.toString())
-}
-
-export default $engine => createEnhancedSystem(
-  handler,
-  { enabled: false }
-)(nMap, nBuilding)($engine)
