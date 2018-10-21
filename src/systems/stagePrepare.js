@@ -11,8 +11,6 @@ import displayGroups, { groupsList, createStage } from '../renderLayers'
 
 export default ($config: GameConfig, $engine: Engine, $app: Application) => {
   const world = $app.stage.childByName('gameScene')
-  const text = spriteUtils.text()
-
   const stage = createStage(groupsList)
   stage.addChild(world)
   $app.stage = stage
@@ -32,8 +30,6 @@ export default ($config: GameConfig, $engine: Engine, $app: Application) => {
       initLayer(groundNode, displayGroups.GROUND)
       initLayer(backNode, displayGroups.OVERLAY)
       initLayer(buildingNode, displayGroups.BUILDING)
-
-      $app.stage.addChild(text)
     },
   })(
     nLayers.Ground,

@@ -8,7 +8,7 @@ import { spriteUtils } from '../services'
 
 export default ($engine: Engine, $app: Application) => {
 
-  const text = spriteUtils.text()
+  const text = spriteUtils.text(null, '12px sans', 'white')
 
   createSystem({
     init() {
