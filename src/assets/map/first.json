@@ -4,12 +4,7 @@
   "height": 30,
   "layers": [
     {
-      "name": "buildings",
-      "data": [
-      ]
-    },
-    {
-      "name": "objects",
+      "name": "building",
       "data": [
         { "id": "clanCastle", "x": 4, "y": 0 },
         { "id": "clanCastle", "x": 0, "y": 0 }

@@ -28,38 +28,22 @@ export class Layer {
     }
   }
 
-  isValidCoords(x, y) {
+  isValidCords(x, y) {
     return (x >= 0 && y >= 0 && x < this.width && y < this.height)
   }
 
   setIn(x, y, state) {
-    if (!this.isValidCoords(x, y)) {
+    if (!this.isValidCords(x, y)) {
       throw new Error(`Invalid coords [${x}, ${y}] for size [${this.width}, ${this.height}]`)
     }
     this.cells[x][y] = state
   }
 
   getIn(x, y) {
-    if (!this.isValidCoords(x, y)) {
+    if (!this.isValidCords(x, y)) {
       throw new Error(`Invalid coords [${x}, ${y}] for size [${this.width}, ${this.height}]`)
     }
     return this.cells[x][y]
-  }
-
-  toString() {
-    let str = ''
-    const stateToDisplay = state => ({
-      [Layer.cellState.EMPTY]: '-',
-      [Layer.cellState.BUSY]: 'x',
-    })[state]
-
-    for (let x = 0; x < this.width; x++) {
-      for (let y = 0; y < this.height; y++) {
-        str += stateToDisplay(this.getIn(x, y))
-      }
-      str += '\n'
-    }
-    return str
   }
 }
 
