@@ -2,6 +2,7 @@ import { createEnhancedSystem } from '../core/factories'
 import { nDraggable, nPointer } from '../nodes'
 import { hitTestRect } from '../core/hitTest'
 import { Point } from '../core/pixi'
+import displayGroups from '../renderLayers'
 
 const moveToArrEnd = (item, arr) => {
   arr.splice(arr.indexOf(item), 1)
@@ -30,7 +31,7 @@ export default ($engine, $config) => createEnhancedSystem({
         if (cPointer.dragTarget === null) {
           if (foundDragNode) {
             cPointer.dragTarget = foundDragNode
-            this.setUpDragForSprite(cPointer)
+            this.startDrag(cPointer)
           }
         } else {
           this.moveDraggableWithPointer(cPointer)
@@ -38,7 +39,9 @@ export default ($engine, $config) => createEnhancedSystem({
       }
 
       if (pointer.isUp) {
-        cPointer.dragTarget = null
+        if (cPointer.dragTarget !== null) {
+          this.endDrag(cPointer)
+        }
       }
 
       // Change the mouse arrow pointer to a hand if it's over a
@@ -53,9 +56,9 @@ export default ($engine, $config) => createEnhancedSystem({
     })
   },
 
-  setUpDragForSprite(cPointer) {
+  startDrag(cPointer) {
     const { pointer, dragTarget } = cPointer
-    const { display: { sprite } } = dragTarget
+    const { display } = dragTarget
 
     // Calculate the difference between the pointer's
     // position and the sprite's position
@@ -63,8 +66,18 @@ export default ($engine, $config) => createEnhancedSystem({
     const offset = cartPosition.sub(dragTarget.position.pos)
     cPointer.dragOffset.copy(offset)
 
+    // set higher render priority via setting drag group
+    display.oldGroup = display.group
+    display.group = displayGroups.DRAG
+
     // display selected sprite above all the others
-    moveToArrEnd(sprite, sprite.parent.children)
+    moveToArrEnd(display.sprite, display.sprite.parent.children)
+  },
+
+  endDrag(cPointer) {
+    const { display } = cPointer.dragTarget
+    display.group = display.oldGroup
+    cPointer.dragTarget = null
   },
 
   moveDraggableWithPointer(cPointer) {
