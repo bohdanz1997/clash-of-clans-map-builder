@@ -7,5 +7,5 @@ export default $engine => createSystem(({ position, collision }) => {
 })(nCollision)($engine)
 
 export const params = {
-  priority: systemPriorities.RESOLVE_COLLISIONS,
+  priority: systemPriorities.UPDATE_COLLISION,
 }
