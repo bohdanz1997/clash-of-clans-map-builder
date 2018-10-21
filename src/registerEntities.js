@@ -33,12 +33,16 @@ export default (engine, deps) => {
   const { $config } = deps
 
   // TODO: move to another place
-  const toScreenCoords = ({ x, y }) => ({ x: x * $config.cellWidth, y: y * $config.cellWidth })
+  const toScreenCords = ({ x, y }) => ({
+    x: x * $config.cartCellSize,
+    y: y * $config.cartCellSize,
+  })
+
   const entityParamsProvider = (entityParams) => {
     if (entityParams.x !== undefined && entityParams.y !== undefined) {
       return {
         ...entityParams,
-        ...toScreenCoords(entityParams),
+        ...toScreenCords(entityParams),
       }
     }
     return entityParams

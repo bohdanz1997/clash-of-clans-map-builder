@@ -15,7 +15,7 @@ export const makeIsoPointer = (pointer, world, matrix, config) => {
 
     fieldPosition: {
       get() {
-        return this.cartPosition.divNum(config.cellWidth).floor()
+        return this.cartPosition.divNum(config.cartCellSize).floor()
       },
       enumerable: true,
       configurable: true,
