@@ -17,15 +17,15 @@ export default ($engine: Engine, $app: Application) => {
 
     update(node) {
       const { pointer } = node.pointer
-      const { position, fieldPosition, isUp, isDown } = pointer
+      const { position, fieldPosition, cartPosition } = pointer
 
       text.content = `
         x: ${position.x}
         y: ${position.y}
+        cartX: ${Math.floor(cartPosition.x)}
+        cartY: ${Math.floor(cartPosition.y)}
         column: ${fieldPosition.x}
         row: ${fieldPosition.y}
-        isUp: ${isUp}
-        isDown: ${isDown}
       `
     },
   })(nPointer)($engine)
