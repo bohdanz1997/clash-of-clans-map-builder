@@ -29,8 +29,6 @@ export type GameConfig = {
   hTileHeight: number,
   widthInTiles: number,
   heightInTiles: number,
-  cellWidth: number,
-  cellHeight: number,
   cellsInTile: number,
   cartTileSize: number,
   cartCellSize: number,
