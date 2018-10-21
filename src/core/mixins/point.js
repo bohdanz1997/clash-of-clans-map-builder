@@ -73,6 +73,13 @@ export const pointMixin = (Point) => {
     return this
   }
 
+  Point.prototype.floorNum = function floorNum(num) {
+    return this
+      .divNum(num)
+      .floor()
+      .multNum(num)
+  }
+
   Point.floor = function floor(point) {
     return new Point(
       Math.floor(point.x),

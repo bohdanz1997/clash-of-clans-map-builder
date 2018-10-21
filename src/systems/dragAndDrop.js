@@ -15,13 +15,6 @@ const findHitDragNodeByPointer = (draggableNode, pointer) => (
 
 // manages drag & drop functionality
 export default ($engine, $config) => createEnhancedSystem({
-  init() {
-    this.floorCellPos = point => point
-      .divNum($config.cellWidth)
-      .floor()
-      .multNum($config.cellWidth)
-  },
-
   update(draggableNode, pointerNode) {
     pointerNode.each(({ pointer: cPointer }) => {
       const { pointer } = cPointer
@@ -82,7 +75,10 @@ export default ($engine, $config) => createEnhancedSystem({
 
   moveDraggableWithPointer(cPointer) {
     const { pointer, dragOffset, dragTarget } = cPointer
-    const newPos = this.floorCellPos(Point.sub(pointer.cartPosition, dragOffset))
+    const newPos = Point.sub(
+      pointer.cartPosition.floorNum($config.cellWidth),
+      dragOffset.floorNum($config.cellWidth),
+    )
 
     dragTarget.position.pos.copy(newPos)
   },
