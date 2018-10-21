@@ -1,2 +1,3 @@
-- render priority for sprites
-- solve render order
+- [x] render priority for sprites
+- [x] solve render order
+- [ ] learn PIXI filters
