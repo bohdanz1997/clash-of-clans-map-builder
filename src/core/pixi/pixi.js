@@ -1,4 +1,6 @@
 import * as PIXI from 'pixi.js'
+import 'pixi-layers'
+
 import * as mixins from '../mixins'
 
 // PIXI aliases
@@ -13,6 +15,11 @@ const {
   Matrix,
   utils: {
     TextureCache,
+  },
+  display: {
+    Group,
+    Layer,
+    Stage,
   },
 } = PIXI
 
@@ -31,6 +38,10 @@ export {
   Matrix,
   loader,
   PIXI,
+
+  Group,
+  Layer,
+  Stage,
 }
 
 // helpers

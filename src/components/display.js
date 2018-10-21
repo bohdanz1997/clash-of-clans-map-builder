@@ -1,5 +1,5 @@
 import { createComponent } from '../core/factories'
 
 export const [cDisplay, Display] = createComponent(
-  'display', 'sprite',
+  'display', 'sprite group oldGroup',
 )
