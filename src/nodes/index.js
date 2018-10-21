@@ -20,7 +20,8 @@ export const nBackGround = [c.cBackGround, c.cPosition]
 export const nOverlay = [c.cOverlay, c.cPosition]
 
 // layers:
-// - ground
-// - objects
-export const nGroundLayer = [c.cDisplay, c.cGround]
-export const nObjectsLayer = [c.cDisplay, c.cGameObject, c.cPosition]
+export const nLayers = {
+  Ground: [c.cDisplay, c.cGround],
+  Building: [c.cDisplay, c.cBuilding],
+  BackGround: [c.cDisplay, c.cBackGround],
+}

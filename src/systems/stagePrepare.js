@@ -1,57 +1,45 @@
 // @flow
-import type { GameConfig, Engine, Node } from '../types/game'
-import type { Application, Sprite } from '../types/pixi'
+import type { GameConfig, Engine } from '../types/game'
+import type { Application } from '../types/pixi'
 
-import { nGroundLayer, nObjectsLayer } from '../nodes'
+import { nLayers } from '../nodes'
 import { spriteUtils } from '../services'
 
-import { systemPriorities, createLogger } from '../core'
+import { systemPriorities } from '../core'
 import { createEnhancedSystem } from '../core/factories'
-
-const extractSpritesFromNode = (node: Node): Sprite[] => {
-  const sprites = []
-  node.each(({ display }) => {
-    sprites.push(display.sprite)
-  })
-  return sprites
-}
+import displayGroups, { groupsList, createStage } from '../renderLayers'
 
 export default ($config: GameConfig, $engine: Engine, $app: Application) => {
-  const logger = createLogger('Game Scene')
   const world = $app.stage.childByName('gameScene')
   const text = spriteUtils.text()
 
-  let groundLayer
-  let objectLayer
+  const stage = createStage(groupsList)
+  stage.addChild(world)
+  $app.stage = stage
+
+  const initLayer = (node, group) => {
+    node.each(({ display }) => {
+      display.group = group
+      world.addChild(display.sprite)
+    })
+
+    node.onAdded(({ display }) => world.addChild(display.sprite))
+    node.onRemoved(({ display }) => world.removeChild(display.sprite))
+  }
 
   return createEnhancedSystem({
-    initLayer(node, name) {
-      const sprites = extractSpritesFromNode(node)
-      const container = spriteUtils.group(...sprites)
-      container.name = name
-      return container
-    },
+    init(groundNode, backNode, buildingNode) {
+      initLayer(groundNode, displayGroups.GROUND)
+      initLayer(backNode, displayGroups.OVERLAY)
+      initLayer(buildingNode, displayGroups.BUILDING)
 
-    initLayers(groundLayerNode, objectLayerNode) {
-      groundLayer = this.initLayer(groundLayerNode, 'ground')
-      objectLayer = this.initLayer(objectLayerNode, 'object')
-
-      world.addChild(groundLayer, objectLayer)
-    },
-
-    init(groundLayerNode, objectLayerNode) {
-      this.initLayers(groundLayerNode, objectLayerNode)
       $app.stage.addChild(text)
-
-      objectLayerNode.onAdded(({ display }) => {
-        objectLayer.addChild(display.sprite)
-      })
-
-      objectLayerNode.onRemoved(({ display }) => {
-        objectLayer.removeChild(display.sprite)
-      })
     },
-  })(nGroundLayer, nObjectsLayer)($engine)
+  })(
+    nLayers.Ground,
+    nLayers.BackGround,
+    nLayers.Building,
+  )($engine)
 }
 
 export const params = {
