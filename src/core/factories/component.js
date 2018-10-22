@@ -6,8 +6,8 @@ export const createComponent = (name, definition, paramResolver = identity) => {
   const componentFactory = (params = {}) => {
     const component = new ComponentType()
     const paramEntries = Object.entries(paramResolver(params))
-    paramEntries.forEach(([name, value]) => {
-      component[name] = value
+    paramEntries.forEach(([innerName, value]) => {
+      component[innerName] = value
     })
     return component
   }

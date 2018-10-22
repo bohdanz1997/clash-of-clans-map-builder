@@ -19,7 +19,7 @@ const baseCreateSystem = systemFactory => (handler, meta) => {
       meta: {
         ...defaultHandler.meta,
         ...meta,
-      }
+      },
     }
     return systemFactory(singleUpdateHandler)
   }
@@ -27,18 +27,18 @@ const baseCreateSystem = systemFactory => (handler, meta) => {
   const systemHandler = {
     ...defaultHandler,
     ...handler,
-      meta: {
-        ...defaultHandler.meta,
-        ...handler.meta || {},
-      }
-   }
+    meta: {
+      ...defaultHandler.meta,
+      ...handler.meta || {},
+    },
+  }
   return systemFactory(systemHandler)
 }
 
-const makeSystem = handler => (componentTypes) => engine => {
+const makeSystem = handler => componentTypes => (engine) => {
   if (!handler.meta.enabled) return
   const node = engine.getNodeType(componentTypes)
-  engine.onUpdate(delta => {
+  engine.onUpdate((delta) => {
     handler.before(delta)
     node.each(item => handler.update(item, delta))
     handler.after(delta)
@@ -46,11 +46,11 @@ const makeSystem = handler => (componentTypes) => engine => {
   handler.init(node)
 }
 
-const makeEnhancedSystem = handler => (...componentTypesList) => engine => {
+const makeEnhancedSystem = handler => (...componentTypesList) => (engine) => {
   if (!handler.meta.enabled) return
   const nodes = componentTypesList.map(engine.getNodeType)
   engine.onUpdate(delta => handler.update(...nodes, delta, engine))
-  handler.init()
+  handler.init(...nodes)
 }
 
 export const createSystem = baseCreateSystem(makeSystem)

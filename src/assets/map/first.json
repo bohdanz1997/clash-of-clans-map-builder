@@ -4,28 +4,20 @@
   "height": 30,
   "layers": [
     {
-      "name": "buildings",
+      "name": "building",
       "data": [
-        { "id": "wall", "x": 5, "y": 5, "level": 1 },
-        { "id": "wall", "x": 10, "y": 10, "level": 2 },
-        { "id": "wall", "x": 15, "y": 15, "level": 3 }
+        { "id": "clanCastle", "x": 4, "y": 0 },
+        { "id": "clanCastle", "x": 0, "y": 0 },
+        { "id": "clanCastle", "x": 5, "y": 8 },
+        { "id": "clanCastle", "x": 9, "y": 6 }
       ]
     },
     {
-      "name": "objects",
+      "name": "other",
       "data": [
-        { "id": "background", "x": 0, "y": 0 },
-        { "id": "blob", "x": 120, "y": 120 },
-        { "id": "blob", "x": 60, "y": 480 },
-        { "id": "blob", "x": 150, "y": 350 },
-        { "id": "blob", "x": 30, "y": 240 },
-        { "id": "blob", "x": 50, "y": 430 },
-        { "id": "blob", "x": 400, "y": 230 },
-        { "id": "blob", "x": 310, "y": 350 },
-        { "id": "blob", "x": 200, "y": 180 },
-        { "id": "blob", "x": 240, "y": 40 },
-        { "id": "blob", "x": 320, "y": 210 },
-        { "id": "player", "x": 80, "y": 80, "level": 1 }
+        { "id": "input" },
+        { "id": "camera" },
+        { "id": "pointer" }
       ]
     }
   ]

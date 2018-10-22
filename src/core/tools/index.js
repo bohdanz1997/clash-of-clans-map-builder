@@ -1,6 +1,2 @@
-import GameField, { Layer } from './gameField'
-
-export {
-  Layer,
-  GameField,
-}
+export * from './gameField'
+export { default as entityBuilder } from './entityBuilder'

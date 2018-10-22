@@ -51,7 +51,7 @@ export default class Keyboard {
     return this.getKey(keyCode)
   }
 
-  addKeys(...keyCodes){
+  addKeys(...keyCodes) {
     return keyCodes.map(this.addKey)
   }
 

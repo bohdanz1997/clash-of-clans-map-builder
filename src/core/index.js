@@ -1,11 +1,10 @@
 import * as mapParser from './mapParser'
-import entityBuilder from './entityBuilder'
-import { createLogger } from './log'
+import * as systemPriorities from './systemPriorities'
 
-export * from './moduleLoader'
+export * from './log'
+export * from './loaders/moduleLoaders'
 
 export {
   mapParser,
-  createLogger,
-  entityBuilder,
+  systemPriorities,
 }

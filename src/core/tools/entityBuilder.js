@@ -1,7 +1,7 @@
-import { stringifyJSON } from './util'
+import { stringifyJSON } from '../util'
 
-export default (engine, entitiesFactories) => {
-  const buildEntity = entityParams => {
+export default (engine, deps, entitiesFactories) => {
+  const buildEntity = (entityParams) => {
     const { id } = entityParams
     if (id === undefined) {
       throw new Error(`Entity params must include 'id', got params: \n${stringifyJSON(entityParams)}`)
@@ -12,7 +12,7 @@ export default (engine, entitiesFactories) => {
       throw new Error(`Could not find entity factory for id '${id}'`)
     }
 
-    return entityFactory(entityParams)
+    return entityFactory(entityParams, deps)
   }
 
   return (entityParams) => {
