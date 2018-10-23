@@ -27,7 +27,7 @@ if (!component) {
 const buildSource = (name, fields = []) => {
   const componentName = strUtils.capitalizeFirst(name)
   const componentTypeName = `c${componentName}`
-  const coreFactoriesPath = '../core/factories'
+  const coreFactoriesPath = 'core/factories'
 
   const paramsSource = fields.length > 0
     ? `'${name}', '${fields.join(' ')}',`
