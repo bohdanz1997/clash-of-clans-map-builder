@@ -4,17 +4,13 @@ import {
   Text,
 } from 'core/pixi'
 
-export const createSprite = (textureId, x = 0, y = 0) => {
+export const createSprite = (textureId, x = 0, y = 0, width = undefined, height = undefined) => {
   const texture = getTextureFromCache(textureId)
+
   const sprite = new Sprite(texture)
   sprite.position.set(x, y)
-  return sprite
-}
-
-export const createIsoSprite = (textureId, x = 0, y = 0, width = 0, height = 0) => {
-  const sprite = createSprite(textureId, x, y)
-  sprite.width = width
-  sprite.height = height
+  sprite.width = width || sprite.width
+  sprite.height = height || sprite.height
 
   return sprite
 }

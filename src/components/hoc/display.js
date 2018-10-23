@@ -1,5 +1,5 @@
 import * as c from '..'
-import { createIsoSprite, createSprite } from 'core/factories'
+import { createSprite } from 'core/factories'
 import { makeIsoRectSprite, makeRectSprite } from 'core/graphics'
 
 export const withDisplay = texture => (entity) => {
@@ -8,7 +8,7 @@ export const withDisplay = texture => (entity) => {
 }
 
 export const withIsoDisplay = (texture, width, height) => (entity) => {
-  const sprite = createIsoSprite(texture, 0, 0, width, height)
+  const sprite = createSprite(texture, 0, 0, width, height)
   return entity.add(c.Display({ sprite }))
 }
 
