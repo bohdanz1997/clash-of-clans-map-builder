@@ -1,5 +1,5 @@
-import { createComponent } from '../core/factories'
-import { Point } from '../core/pixi'
+import { createComponent } from 'core/factories'
+import { Point } from 'core/pixi'
 
 export const [cPosition, Position] = createComponent(
   'position', 'pos offset',

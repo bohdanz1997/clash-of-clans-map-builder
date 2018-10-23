@@ -2,7 +2,7 @@ import {
   moduleLoader,
   systemPriorities,
   jsFileNamesNormalizer,
-} from './core'
+} from 'core'
 
 const defaultSystemParams = {
   priority: systemPriorities.UPDATE,

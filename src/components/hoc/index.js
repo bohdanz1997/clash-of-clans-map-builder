@@ -1,9 +1,9 @@
 import * as c from '..'
-import { pipe } from '../../core/util'
-import { createSprite } from '../../core/pixi'
-import { createEntity } from '../../core/factories'
-import { createIsoSprite } from '../../core/isometric'
-import { makeRectSprite, makeIsoRectSprite } from '../../core/graphics'
+import { pipe } from 'core/util'
+import { createSprite } from 'core/pixi'
+import { createEntity } from 'core/factories'
+import { createIsoSprite } from 'core/isometric'
+import { makeRectSprite, makeIsoRectSprite } from 'core/graphics'
 
 export const pipeHOCs = (...HOCs) => pipe(...HOCs)()
 

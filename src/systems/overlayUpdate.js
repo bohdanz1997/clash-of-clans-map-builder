@@ -1,5 +1,5 @@
-import { systemPriorities } from '../core'
-import { createSystem } from '../core/factories'
+import { systemPriorities } from 'core'
+import { createSystem } from 'core/factories'
 import { nOverlay } from '../nodes'
 
 export default $engine => createSystem(({ overlay, position }) => {

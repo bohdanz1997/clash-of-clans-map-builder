@@ -1,6 +1,6 @@
+import { Application } from 'core/pixi'
 import createEngine from './engine'
 import { resolver } from './inject'
-import { Application } from './core/pixi'
 import { gameConfig, targetEl } from './gameConfig'
 import { spriteUtils, createStats, resourceLoader } from './services'
 

@@ -2,8 +2,8 @@
 import type { GameConfig, Engine } from '../types/game'
 import type { Application } from '../types/pixi'
 
-import { createSystem } from '../core/factories'
-import { makeIsoPointer, isoMatrix } from '../core/isometric'
+import { createSystem } from 'core/factories'
+import { makeIsoPointer, isoMatrix } from 'core/isometric'
 
 import { nPointer } from '../nodes'
 

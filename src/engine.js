@@ -1,6 +1,5 @@
 import { Engine } from 'scent'
-
-import { objectEach } from './core/util'
+import { objectEach } from 'core/util'
 
 import registerSystems from './registerSystems'
 import registerEntities from './registerEntities'

@@ -1,9 +1,9 @@
-import { createEnhancedSystem } from '../core/factories'
+import { Point } from 'core/pixi'
+import { hitTestRect } from 'core/hitTest'
+import { createEnhancedSystem } from 'core/factories'
+import * as systemPriorities from 'core/systemPriorities'
 import { nDraggable, nPointer } from '../nodes'
-import { hitTestRect } from '../core/hitTest'
-import { Point } from '../core/pixi'
 import displayGroups from '../renderLayers'
-import * as systemPriorities from "../core/systemPriorities";
 
 const moveToArrEnd = (item, arr) => {
   arr.splice(arr.indexOf(item), 1)

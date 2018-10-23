@@ -1,12 +1,12 @@
 // @flow
+import { systemPriorities } from 'core'
+import { createEnhancedSystem } from 'core/factories'
+
 import type { GameConfig, Engine } from '../types/game'
 import type { Application } from '../types/pixi'
 
 import { nLayers } from '../nodes'
-import { spriteUtils } from '../services'
 
-import { systemPriorities } from '../core'
-import { createEnhancedSystem } from '../core/factories'
 import displayGroups, { groupsList, createStage } from '../renderLayers'
 
 export default ($config: GameConfig, $engine: Engine, $app: Application) => {

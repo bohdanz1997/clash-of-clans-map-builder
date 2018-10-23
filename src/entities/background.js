@@ -1,6 +1,7 @@
+import { createSprite } from 'core/pixi'
+import { createEntity } from 'core/factories'
+
 import * as c from '../components'
-import { createSprite } from '../core/pixi'
-import { createEntity } from '../core/factories'
 import { dungeon } from '../assets/atlas/treasureHunter'
 
 export default ({ x, y }) => {

@@ -1,4 +1,4 @@
-import { Keyboard } from '../core/input'
+import { Keyboard } from 'core/input'
 
 export default (config, app, target) => ({
   $app: app,

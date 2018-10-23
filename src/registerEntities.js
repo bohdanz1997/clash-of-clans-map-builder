@@ -1,11 +1,12 @@
-import { entityBuilder } from './core/tools'
-import { generateGroundLayer } from './services'
-
 import {
   mapParser,
   jsModuleLoader,
   jsonModuleLoader,
-} from './core'
+} from 'core'
+
+import { entityBuilder } from 'core/tools'
+
+import { generateGroundLayer } from './services'
 
 const entitiesFactories = jsModuleLoader(require.context('./entities'))
 const mapsDefinitions = jsonModuleLoader(require.context('./assets/map'))

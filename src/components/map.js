@@ -1,5 +1,5 @@
-import { createComponent } from '../core/factories'
-import { GameField } from '../core/tools'
+import { createComponent } from 'core/factories'
+import { GameField } from 'core/tools'
 
 export const [cMap, Map] = createComponent(
   'map', 'gameField',

@@ -1,4 +1,4 @@
-import { Group, Layer, Stage } from './core/pixi'
+import { Group, Layer, Stage } from 'core/pixi'
 
 const spriteSorting = {
   // sprites with greater 'y' go backward

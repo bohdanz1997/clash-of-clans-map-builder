@@ -1,7 +1,7 @@
-import { systemPriorities } from '../core'
-import { createSystem } from '../core/factories'
+import { systemPriorities } from 'core'
+import { createSystem } from 'core/factories'
 import { nCollision } from '../nodes'
-import { Rectangle } from '../core/pixi'
+import { Rectangle } from 'core/pixi'
 
 export default ($engine, $config) => {
   const worldBounds = new Rectangle(0, 0, $config.cartWorldWidth, $config.cartWorldHeight)

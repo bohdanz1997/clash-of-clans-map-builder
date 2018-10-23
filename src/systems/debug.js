@@ -1,8 +1,9 @@
 // @flow
+import { createSystem } from 'core/factories'
+
 import type { Engine } from '../types/game'
 import type { Application } from '../types/pixi'
 
-import { createSystem } from '../core/factories'
 import { nPointer } from '../nodes'
 import { spriteUtils } from '../services'
 

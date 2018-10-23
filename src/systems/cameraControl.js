@@ -1,8 +1,8 @@
 // @flow
 import type { GameConfig, Engine } from '../types/game'
 
-import { systemPriorities } from '../core'
-import { createSystem } from '../core/factories'
+import { systemPriorities } from 'core'
+import { createSystem } from 'core/factories'
 import { nCameraControl } from '../nodes'
 
 export default ($config: GameConfig, $engine: Engine) => (

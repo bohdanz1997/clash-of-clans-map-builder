@@ -53,4 +53,9 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    alias: {
+      core: path.resolve(__dirname, 'src/core'),
+    },
+  },
 }

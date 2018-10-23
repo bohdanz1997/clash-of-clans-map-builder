@@ -1,4 +1,4 @@
-import { loader } from '../core/pixi'
+import { loader } from 'core/pixi'
 
 import * as atlas from '../assets/atlas/treasureHunter'
 import ground from '../assets/image/ground.png'

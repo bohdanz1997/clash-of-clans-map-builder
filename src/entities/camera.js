@@ -1,9 +1,10 @@
 // @flow
+import { createEntity } from 'core/factories'
+import { makeWASDKeys } from 'core/input'
+
 import type { Deps } from '../types/game'
 
 import * as c from '../components'
-import { createEntity } from '../core/factories'
-import { makeWASDKeys } from '../core/input'
 
 export default ({ speed, damp }: any, { $config, $keyboard, $app }: Deps) => createEntity(
   c.Camera({

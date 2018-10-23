@@ -1,4 +1,4 @@
-import { createComponent } from '../core/factories'
+import { createComponent } from 'core/factories'
 
 export const [cUnit, Unit] = createComponent('unit')
 export const [cSpell, Spell] = createComponent('spell')

@@ -1,6 +1,6 @@
-import { createEnhancedSystem } from '../core/factories'
-import { Layer } from '../core/tools'
-import { Point } from '../core/pixi'
+import { createEnhancedSystem } from 'core/factories'
+import { Layer } from 'core/tools'
+import { Point } from 'core/pixi'
 import { nMap, nBuilding } from '../nodes'
 
 const getMapLayer = (layerName, mapNode) => (

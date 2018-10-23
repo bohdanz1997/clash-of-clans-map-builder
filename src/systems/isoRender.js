@@ -1,6 +1,6 @@
+import { systemPriorities } from 'core'
+import { createSystem } from 'core/factories'
 import { nIsoRender } from '../nodes'
-import { systemPriorities } from '../core'
-import { createSystem } from '../core/factories'
 
 export default $engine => createSystem(({ isoPosition, display }) => {
   display.sprite.position.copy(isoPosition.pos)

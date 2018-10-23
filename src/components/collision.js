@@ -1,5 +1,5 @@
-import { createComponent } from '../core/factories'
-import { Rectangle } from '../core/pixi'
+import { createComponent } from 'core/factories'
+import { Rectangle } from 'core/pixi'
 
 export const [cCollision, Collision] = createComponent(
   'collision', 'bounds',

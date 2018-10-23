@@ -1,6 +1,6 @@
 import { Bump, Tink, Smoothie, GameUtils, TileUtils, SpriteUtils } from 'game-modules'
 
-import { PIXI } from '../core/pixi'
+import { PIXI } from 'core/pixi'
 import { targetEl } from '../gameConfig'
 
 /** @type {GameUtilities} */
