@@ -2,14 +2,16 @@
 import type { Engine } from 'types/game'
 import type { Application } from 'types/pixi'
 
-import { createSystem } from 'core/factories'
+import { createSystem, createText } from 'core/factories'
 
 import { nPointer } from '../nodes'
-import { spriteUtils } from '../services'
 
 export default ($engine: Engine, $app: Application) => {
 
-  const text = spriteUtils.text(null, '12px sans', 'white')
+  const text = createText({
+    font: '12px sans',
+    fillStyle: 'white',
+  })
 
   createSystem({
     init() {

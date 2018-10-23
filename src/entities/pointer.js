@@ -1,11 +1,15 @@
 import { createEntity } from 'core/factories'
+import { makePointer } from 'core/input'
+
 import * as c from '../components'
-import { tink } from '../services'
+import { targetEl } from '../gameConfig'
 
 export default () => (
   createEntity(
     c.Pointer({
-      pointer: tink.makePointer(),
+      pointer: makePointer({
+        element: targetEl,
+      }),
     }),
   )
 )

@@ -1,4 +1,4 @@
-import { Point } from '../pixi'
+import { Point } from 'core/pixi'
 
 export const rectangleMixin = (Rectangle) => {
   Rectangle.prototype.setPosition = function setPosition(point) {

@@ -1,8 +1,8 @@
-import { Application } from 'core/pixi'
+import { Application, Container } from 'core/pixi'
 import createEngine from './engine'
 import { resolver } from './inject'
 import { gameConfig, targetEl } from './gameConfig'
-import { spriteUtils, createStats, resourceLoader } from './services'
+import { createStats, resourceLoader } from './services'
 
 const setup = target => () => {
   const app = new Application({
@@ -13,7 +13,7 @@ const setup = target => () => {
     height: gameConfig.height,
   })
 
-  const gameScene = spriteUtils.group()
+  const gameScene = new Container()
   gameScene.name = 'gameScene'
   app.stage.addChild(gameScene)
   target.appendChild(app.view)
