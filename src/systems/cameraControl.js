@@ -1,9 +1,9 @@
 // @flow
 import type { GameConfig, Engine } from 'types/game'
 
-import { systemPriorities } from 'core'
 import { createSystem } from 'core/factories'
 import { nCameraControl } from '../nodes'
+import priorities from './priorities'
 
 export default ($config: GameConfig, $engine: Engine) => (
   createSystem({
@@ -30,5 +30,5 @@ export default ($config: GameConfig, $engine: Engine) => (
 )
 
 export const params = {
-  priority: systemPriorities.MOVEMENT,
+  priority: priorities.MOVEMENT,
 }

@@ -1,11 +1,11 @@
 // @flow
 import type { GameConfig, Engine } from 'types/game'
 
-import { systemPriorities } from 'core'
 import { createEnhancedSystem } from 'core/factories'
 
 import { nBackGround } from '../nodes'
 import { Overlay } from '../entities'
+import priorities from './priorities'
 
 export default ($config: GameConfig, $engine: Engine) => createEnhancedSystem({
   init(bgNode) {
@@ -23,5 +23,5 @@ export default ($config: GameConfig, $engine: Engine) => createEnhancedSystem({
 })(nBackGround)($engine)
 
 export const params = {
-  priority: systemPriorities.PRE_INIT,
+  priority: priorities.PRE_INIT,
 }

@@ -1,6 +1,6 @@
-import { nRender } from '../nodes'
-import { systemPriorities } from 'core'
 import { createSystem } from 'core/factories'
+import { nRender } from '../nodes'
+import priorities from './priorities'
 
 export default $engine => createSystem(({ position, display }) => {
   const { sprite, group } = display
@@ -10,5 +10,5 @@ export default $engine => createSystem(({ position, display }) => {
 })(nRender)($engine)
 
 export const params = {
-  priority: systemPriorities.RENDER,
+  priority: priorities.RENDER,
 }

@@ -1,9 +1,9 @@
 import { Point } from 'core/pixi'
 import { hitTestRect } from 'core/collision'
 import { createEnhancedSystem } from 'core/factories'
-import * as systemPriorities from 'core/systemPriorities'
 import { nDraggable, nPointer } from '../nodes'
 import displayGroups from '../renderLayers'
+import priorities from './priorities'
 
 const moveToArrEnd = (item, arr) => {
   arr.splice(arr.indexOf(item), 1)
@@ -86,5 +86,5 @@ export default ($engine, $config) => createEnhancedSystem({
 })(nDraggable, nPointer)($engine)
 
 export const params = {
-  priority: systemPriorities.MOVEMENT,
+  priority: priorities.MOVEMENT,
 }

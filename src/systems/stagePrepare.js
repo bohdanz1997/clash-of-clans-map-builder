@@ -2,12 +2,12 @@
 import type { GameConfig, Engine } from 'types/game'
 import type { Application } from 'types/pixi'
 
-import { systemPriorities } from 'core'
 import { createEnhancedSystem } from 'core/factories'
 
 import { nLayers } from '../nodes'
 
 import displayGroups, { groupsList, createStage } from '../renderLayers'
+import priorities from './priorities'
 
 export default ($config: GameConfig, $engine: Engine, $app: Application) => {
   const world = $app.stage.childByName('gameScene')
@@ -39,5 +39,5 @@ export default ($config: GameConfig, $engine: Engine, $app: Application) => {
 }
 
 export const params = {
-  priority: systemPriorities.PRE_INIT,
+  priority: priorities.PRE_INIT,
 }

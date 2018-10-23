@@ -1,11 +1,12 @@
 import {
   moduleLoader,
-  systemPriorities,
   jsFileNamesNormalizer,
 } from 'core'
 
+import priorities from './systems/priorities'
+
 const defaultSystemParams = {
-  priority: systemPriorities.UPDATE,
+  priority: priorities.UPDATE,
   enabled: true,
 }
 
@@ -32,17 +33,18 @@ const systemsLoader = moduleLoader(
   buildSystemFromContext,
 )
 
-const systems = systemsLoader(require.context('./systems'))
-
 const sortByPriority = (a, b) => a.priority - b.priority
-const onlyEnabled = system => system.enabled
 const mapSystemHandler = system => system.systemHandler
 
-export default engine => (
+export default ({ engine, context, ignoredFiles = [] }) => {
+  const systems = systemsLoader(context)
+
   Object
     .values(systems)
     .sort(sortByPriority)
-    .filter(onlyEnabled)
+    .filter(system => (
+      system.enabled && !ignoredFiles.includes(system.name)
+    ))
     .map(mapSystemHandler)
     .map(engine.addSystem)
-)
+}

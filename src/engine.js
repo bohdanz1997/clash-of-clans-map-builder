@@ -12,7 +12,12 @@ export default (config, deps) => {
   const engine = new Engine(engineInitializer(deps))
 
   registerEntities(engine, deps)
-  registerSystems(engine)
+
+  registerSystems({
+    engine,
+    ignoredFiles: ['priorities'],
+    context: require.context('./systems'),
+  })
 
   return engine
 }

@@ -1,6 +1,6 @@
-import { systemPriorities } from 'core'
 import { createSystem } from 'core/factories'
 import { nInput } from '../nodes'
+import priorities from './priorities'
 
 export default ($engine, $keyboard) => {
   $keyboard.start()
@@ -11,5 +11,5 @@ export default ($engine, $keyboard) => {
 }
 
 export const params = {
-  priority: systemPriorities.PRE_UPDATE,
+  priority: priorities.PRE_UPDATE,
 }

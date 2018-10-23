@@ -1,8 +1,8 @@
-import { systemPriorities } from 'core'
 import { Point } from 'core/pixi'
 import { isoMatrix } from 'core/isometric'
 import { createSystem } from 'core/factories'
 import { nIsometric } from '../nodes'
+import priorities from './priorities'
 
 export default $engine => createSystem(({ position, isoPosition }) => {
   const isoPos = isoMatrix.apply(Point.sub(position.pos, position.offset))
@@ -10,5 +10,5 @@ export default $engine => createSystem(({ position, isoPosition }) => {
 })(nIsometric)($engine)
 
 export const params = {
-  priority: systemPriorities.PRE_RENDER,
+  priority: priorities.PRE_RENDER,
 }
