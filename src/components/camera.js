@@ -1,17 +1,15 @@
 import { createComponent } from 'core/factories'
-import { gameUtils } from '../services'
+import { createCamera } from 'core/camera'
 
 export const [cCamera, Camera] = createComponent(
   'camera', 'camera',
-  ({ world, worldWidth, worldHeight, canvasWidth, canvasHeight }) => ({
-    camera: gameUtils.worldCamera(
+  ({ world, worldWidth, worldHeight, width, height }) => ({
+    camera: createCamera({
       world,
       worldWidth,
       worldHeight,
-      {
-        width: canvasWidth,
-        height: canvasHeight,
-      }
-    ),
+      width,
+      height,
+    }),
   })
 )

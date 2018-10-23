@@ -11,8 +11,8 @@ export default ({ speed, damp }: any, { $config, $keyboard, $app }: Deps) => cre
     world: $app.stage.childByName('gameScene'),
     worldWidth: $config.worldWidth,
     worldHeight: $config.worldHeight,
-    canvasWidth: $config.width,
-    canvasHeight: $config.height,
+    width: $config.width,
+    height: $config.height,
   }),
   c.Position({
     x: -$config.hWidth + $config.hTileWidth,
