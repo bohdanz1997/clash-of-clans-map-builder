@@ -26,7 +26,7 @@ module.exports = {
       title: 'ClashLand',
     }),
     new CopyWebpackPlugin([{
-      from: 'src/assets',
+      from: 'assets',
       to: 'assets',
     }]),
     new HotModuleReplacementPlugin(),
@@ -42,6 +42,7 @@ module.exports = {
         include: [
           `${__dirname}/src`,
           `${__dirname}/core`,
+          `${__dirname}/assets`,
         ],
         exclude: /(node_modules)/,
         use: {
@@ -60,6 +61,7 @@ module.exports = {
     alias: {
       core: path.resolve(__dirname, 'core'),
       types: path.resolve(__dirname, 'types'),
+      assets: path.resolve(__dirname, 'assets'),
     },
   },
 }

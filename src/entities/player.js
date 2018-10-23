@@ -1,4 +1,5 @@
 import StateMachine from 'javascript-state-machine'
+import { expolorer } from 'assets/atlas/treasureHunter'
 
 import {
   pipeHOCs,
@@ -6,8 +7,6 @@ import {
   withComponents,
 } from '../components/hoc'
 import * as c from '../components'
-
-import { expolorer } from '../assets/atlas/treasureHunter'
 
 const withFSM = (entity) => {
   const fsm = new StateMachine({

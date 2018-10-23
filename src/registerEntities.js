@@ -9,8 +9,8 @@ import { entityBuilder } from 'core/tools'
 import { generateGroundLayer } from './services'
 
 const entitiesFactories = jsModuleLoader(require.context('./entities'))
-const mapsDefinitions = jsonModuleLoader(require.context('./assets/map'))
-const entitiesDefinitions = jsonModuleLoader(require.context('./assets/entity'))
+const mapsDefinitions = jsonModuleLoader(require.context('assets/map'))
+const entitiesDefinitions = jsonModuleLoader(require.context('assets/entity'))
 
 const entitiesLoader = (registerEntity, config, entityParamsProvider) => (mapData) => {
   const initEntitiesFromLayer = (layer) => {
