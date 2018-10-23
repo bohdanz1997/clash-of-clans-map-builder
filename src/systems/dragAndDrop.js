@@ -1,5 +1,5 @@
 import { Point } from 'core/pixi'
-import { hitTestRect } from 'core/hitTest'
+import { hitTestRect } from 'core/collision'
 import { createEnhancedSystem } from 'core/factories'
 import * as systemPriorities from 'core/systemPriorities'
 import { nDraggable, nPointer } from '../nodes'
