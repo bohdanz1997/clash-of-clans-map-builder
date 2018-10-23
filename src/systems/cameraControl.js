@@ -1,5 +1,5 @@
 // @flow
-import type { GameConfig, Engine } from '../types/game'
+import type { GameConfig, Engine } from 'types/game'
 
 import { systemPriorities } from 'core'
 import { createSystem } from 'core/factories'

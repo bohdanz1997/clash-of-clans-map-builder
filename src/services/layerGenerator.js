@@ -1,5 +1,5 @@
 // @flow
-import type { GameConfig } from '../types/game'
+import type { GameConfig } from 'types/game'
 
 export const generateGroundLayer = (config: GameConfig) => {
   const createItem = ({ x, y }) => ({ id: 'tile', x, y })

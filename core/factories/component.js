@@ -1,5 +1,5 @@
 import { Component } from 'scent'
-import { identity } from "../util"
+import { identity } from '../util'
 
 export const createComponent = (name, definition, paramResolver = identity) => {
   const ComponentType = new Component(name, definition)

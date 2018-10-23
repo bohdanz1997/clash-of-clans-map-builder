@@ -39,7 +39,10 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: `${__dirname}/src`,
+        include: [
+          `${__dirname}/src`,
+          `${__dirname}/core`,
+        ],
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
@@ -55,7 +58,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      core: path.resolve(__dirname, 'src/core'),
+      core: path.resolve(__dirname, 'core'),
+      types: path.resolve(__dirname, 'types'),
     },
   },
 }

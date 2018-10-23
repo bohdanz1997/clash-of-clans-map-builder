@@ -1,6 +1,6 @@
 // @flow
-import type { GameConfig, Engine } from '../types/game'
-import type { Application } from '../types/pixi'
+import type { GameConfig, Engine } from 'types/game'
+import type { Application } from 'types/pixi'
 
 import { createSystem } from 'core/factories'
 import { makeIsoPointer, isoMatrix } from 'core/isometric'

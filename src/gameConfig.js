@@ -1,5 +1,5 @@
 // @flow
-import type { GameConfig } from './types/game'
+import type { GameConfig } from 'types/game'
 
 const width = 800
 const height = 600

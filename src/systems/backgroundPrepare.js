@@ -1,10 +1,11 @@
 // @flow
-import type { GameConfig, Engine } from '../types/game'
+import type { GameConfig, Engine } from 'types/game'
+
+import { systemPriorities } from 'core'
+import { createEnhancedSystem } from 'core/factories'
 
 import { nBackGround } from '../nodes'
 import { Overlay } from '../entities'
-import { systemPriorities } from 'core'
-import { createEnhancedSystem } from 'core/factories'
 
 export default ($config: GameConfig, $engine: Engine) => createEnhancedSystem({
   init(bgNode) {

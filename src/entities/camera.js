@@ -1,8 +1,8 @@
 // @flow
+import type { Deps } from 'types/game'
+
 import { createEntity } from 'core/factories'
 import { makeWASDKeys } from 'core/input'
-
-import type { Deps } from '../types/game'
 
 import * as c from '../components'
 

@@ -1,5 +1,5 @@
 // @flow
-import type { Matrix } from '../../types/pixi'
+import type { Matrix } from 'types/pixi'
 
 import { PIXI } from '../pixi'
 import { toRad } from '../math'

@@ -1,9 +1,9 @@
 // @flow
+import type { GameConfig, Engine } from 'types/game'
+import type { Application } from 'types/pixi'
+
 import { systemPriorities } from 'core'
 import { createEnhancedSystem } from 'core/factories'
-
-import type { GameConfig, Engine } from '../types/game'
-import type { Application } from '../types/pixi'
 
 import { nLayers } from '../nodes'
 
