@@ -7,6 +7,8 @@ const {
   HotModuleReplacementPlugin,
 } = require('webpack')
 
+const withRootPath = dir => path.resolve(__dirname, dir)
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -33,7 +35,7 @@ module.exports = {
   ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: withRootPath('dist'),
   },
   module: {
     rules: [
@@ -59,9 +61,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      core: path.resolve(__dirname, 'core'),
-      types: path.resolve(__dirname, 'types'),
-      assets: path.resolve(__dirname, 'assets'),
+      core: withRootPath('core'),
+      types: withRootPath('types'),
+      assets: withRootPath('assets'),
     },
   },
 }
