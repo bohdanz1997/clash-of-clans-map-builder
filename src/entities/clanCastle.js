@@ -1,7 +1,7 @@
 import * as c from '../components'
 import { withComponents, withIsoDisplay, pipeHOCs } from '../components/hoc'
 
-export default ({ x, y, offsetX, offsetY, isoWidth, isoHeight, width, height }) => (
+export default ({ x, y, offsetX, offsetY, isoWidth, isoHeight }, { $config }) => (
   pipeHOCs(
     withComponents(
       c.GameObject(),
@@ -10,8 +10,11 @@ export default ({ x, y, offsetX, offsetY, isoWidth, isoHeight, width, height }) 
       c.BackGround(),
       c.Position({ x, y, offsetX, offsetY }),
       c.IsoPosition(),
-      c.Collision({ width, height }),
+      c.Collision({
+        width: $config.cartTileSize,
+        height: $config.cartTileSize,
+      }),
     ),
-    withIsoDisplay('clanCastle', isoWidth, isoHeight),
+    withIsoDisplay('clanCastle'),
   )
 )
