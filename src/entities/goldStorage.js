@@ -1,7 +1,7 @@
 import * as c from '../components'
 import { withComponents, withIsoDisplay, pipeHOCs } from '../components/hoc'
 
-export default ({ x, y, offsetX, offsetY, isoWidth, isoHeight }, { $config }) => (
+export default ({ id, x, y, offsetX, offsetY, isoWidth, isoHeight }, { $config }) => (
   pipeHOCs(
     withComponents(
       c.GameObject(),
@@ -15,6 +15,6 @@ export default ({ x, y, offsetX, offsetY, isoWidth, isoHeight }, { $config }) =>
         height: $config.cartTileSize,
       }),
     ),
-    withIsoDisplay('goldStorage'),
+    withIsoDisplay(id),
   )
 )
