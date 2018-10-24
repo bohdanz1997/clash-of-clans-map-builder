@@ -6,10 +6,9 @@
     {
       "name": "building",
       "data": [
-        { "id": "clanCastle", "x": 4, "y": 0 },
-        { "id": "clanCastle", "x": 0, "y": 0 },
-        { "id": "elixirCollector", "x": 5, "y": 8 },
-        { "id": "goldStorage", "x": 9, "y": 6 }
+        { "id": "clanCastle", "x": 13, "y": 13 },
+        { "id": "elixirCollector", "x": 10, "y": 18 },
+        { "id": "goldStorage", "x": 15, "y": 7 }
       ]
     },
     {

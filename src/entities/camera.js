@@ -16,7 +16,7 @@ export default ({ speed, damp }: any, { $config, $keyboard, $app }: Deps) => cre
   }),
   c.Position({
     x: -$config.hWidth + $config.hTileWidth,
-    y: -100,
+    y: $config.hHeight - $config.tileHeight,
   }),
   c.Motion({
     dampX: damp,
