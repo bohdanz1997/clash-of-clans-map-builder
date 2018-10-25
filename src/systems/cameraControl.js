@@ -1,22 +1,44 @@
 // @flow
 import type { GameConfig, Engine, Keyboard } from 'types/game'
+import type { Application } from 'types/pixi'
 
-import { createSystem } from 'core/factories'
 import { keys } from 'core/input'
-import type { Application } from 'types/pixi';
-import { nCameraControl } from '../nodes'
+import { keepInRanges } from 'core/util'
+import { createSystem } from 'core/factories'
 import priorities from './priorities'
+import { nCameraControl } from '../nodes'
 
-const minScale = 0.75
-const maxScale = 1.5
-const scaleInc = 0.002
-const maxScaleInc = 0.1
-const damping = 0.9
+const createSmoothSpeed = ({ minRange, maxRange, increment, maxSpeed, damping }) => {
+  let speed = 0
+
+  return {
+    applySpeedTo(value) {
+      speed *= damping
+      return keepInRanges(minRange, maxRange, value + speed)
+    },
+
+    increase() {
+      speed += increment
+      speed = Math.min(speed, maxSpeed)
+    },
+
+    decrease() {
+      speed -= increment
+      speed = Math.max(speed, -maxSpeed)
+    },
+  }
+}
 
 export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $app: Application) => {
   $keyboard.addKeys(keys.PLUS, keys.MINUS)
   const world = $app.stage.childByName('gameScene')
-  let inc = 0
+
+  const smoothSpeed = createSmoothSpeed({
+    minRange: 0.75,
+    maxRange: 1.5,
+    increment: 0.002,
+    damping: 0.9,
+  })
 
   return (
     createSystem({
@@ -40,19 +62,13 @@ export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $app:
         }
 
         if ($keyboard.isDown(keys.PLUS)) {
-          inc += scaleInc
-          inc = Math.min(inc, maxScaleInc)
+          smoothSpeed.increase()
         } else if ($keyboard.isDown(keys.MINUS)) {
-          inc -= scaleInc
-          inc = Math.max(inc, -maxScaleInc)
+          smoothSpeed.decrease()
         }
 
-        let scale = world.scale.x + inc
-        if (scale > maxScale) scale = maxScale
-        else if (scale < minScale) scale = minScale
-
+        const scale = smoothSpeed.applySpeedTo(world.scale.x)
         world.scale.set(scale)
-        inc *= damping
       },
     })(nCameraControl)($engine)
   )
