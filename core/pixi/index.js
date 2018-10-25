@@ -7,7 +7,6 @@ export * from 'pixi.js'
 
 // PIXI aliases
 const {
-  TextureCache,
   Point,
   Container,
   Rectangle,
@@ -15,6 +14,9 @@ const {
     Group,
     Layer,
     Stage,
+  },
+  utils: {
+    TextureCache,
   },
 } = PIXI
 
