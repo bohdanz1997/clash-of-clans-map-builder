@@ -1,3 +1,6 @@
 - [x] render priority for sprites
 - [x] solve render order
 - [ ] learn PIXI filters
+- [ ] implement screen bounds for rendering
+- [ ] render ground tiles into one texture via renderTexture
+- [ ] camera zoom
