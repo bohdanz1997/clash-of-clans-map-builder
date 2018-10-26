@@ -10,7 +10,7 @@ import { nCameraControl } from '../nodes'
 
 export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $app: Application) => {
   const [keyZoomPlus, keyZoomMinus] = $keyboard.addKeys(keys.ZERO, keys.NINE)
-  const world = $app.stage.childByName('gameScene')
+  const world = $app.stage.childByName('world')
 
   const smoothZoom = createSmoothStep({
     step: 0.002,

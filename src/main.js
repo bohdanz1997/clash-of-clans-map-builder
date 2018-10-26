@@ -13,9 +13,9 @@ const setup = target => () => {
     height: gameConfig.height,
   })
 
-  const gameScene = new Container()
-  gameScene.name = 'gameScene'
-  app.stage.addChild(gameScene)
+  const world = new Container()
+  world.name = 'world'
+  app.stage.addChild(world)
   target.appendChild(app.view)
 
   const stats = createStats()

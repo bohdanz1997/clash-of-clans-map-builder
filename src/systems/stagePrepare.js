@@ -10,7 +10,7 @@ import displayGroups, { groupsList, createStage } from '../renderLayers'
 import priorities from './priorities'
 
 export default ($config: GameConfig, $engine: Engine, $app: Application) => {
-  const world = $app.stage.childByName('gameScene')
+  const world = $app.stage.childByName('world')
   const stage = createStage(groupsList)
   stage.addChild(world)
   $app.stage = stage

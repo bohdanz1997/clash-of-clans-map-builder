@@ -9,7 +9,7 @@ import { nPointer } from '../nodes'
 
 export default ($engine: Engine, $app: Application, $config: GameConfig) => {
 
-  const world = $app.stage.childByName('gameScene')
+  const world = $app.stage.childByName('world')
   const invertMatrix = isoMatrix.clone().invert()
 
   const makeIsoPointerUtil = ({ pointer }) => {

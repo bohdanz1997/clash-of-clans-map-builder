@@ -8,7 +8,7 @@ import * as c from '../components'
 
 export default ({ speed, damp }: any, { $config, $keyboard, $app }: Deps) => createEntity(
   c.Camera({
-    world: $app.stage.childByName('gameScene'),
+    world: $app.stage.childByName('world'),
     worldWidth: $config.worldWidth,
     worldHeight: $config.worldHeight,
     width: $config.width,
