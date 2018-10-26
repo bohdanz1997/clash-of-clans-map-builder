@@ -3,41 +3,21 @@ import type { GameConfig, Engine, Keyboard } from 'types/game'
 import type { Application } from 'types/pixi'
 
 import { keys } from 'core/input'
-import { keepInRanges } from 'core/util'
 import { createSystem } from 'core/factories'
+import { createSmoothStep } from 'core/tools'
 import priorities from './priorities'
 import { nCameraControl } from '../nodes'
 
-const createSmoothSpeed = ({ minRange, maxRange, increment, maxSpeed, damping }) => {
-  let speed = 0
-
-  return {
-    applySpeedTo(value) {
-      speed *= damping
-      return keepInRanges(minRange, maxRange, value + speed)
-    },
-
-    increase() {
-      speed += increment
-      speed = Math.min(speed, maxSpeed)
-    },
-
-    decrease() {
-      speed -= increment
-      speed = Math.max(speed, -maxSpeed)
-    },
-  }
-}
-
 export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $app: Application) => {
-  $keyboard.addKeys(keys.PLUS, keys.MINUS)
+  const [keyZoomPlus, keyZoomMinus] = $keyboard.addKeys(keys.ZERO, keys.NINE)
   const world = $app.stage.childByName('gameScene')
 
-  const smoothSpeed = createSmoothSpeed({
+  const smoothZoom = createSmoothStep({
+    step: 0.002,
+    damping: 0.9,
+    maxForce: 0.15,
     minRange: 0.75,
     maxRange: 1.5,
-    increment: 0.002,
-    damping: 0.9,
   })
 
   return (
@@ -61,13 +41,13 @@ export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $app:
           motion.vel.x = control.dx
         }
 
-        if ($keyboard.isDown(keys.PLUS)) {
-          smoothSpeed.increase()
-        } else if ($keyboard.isDown(keys.MINUS)) {
-          smoothSpeed.decrease()
+        if (keyZoomPlus.isDown) {
+          smoothZoom.increase()
+        } else if (keyZoomMinus.isDown) {
+          smoothZoom.decrease()
         }
 
-        const scale = smoothSpeed.applySpeedTo(world.scale.x)
+        const scale = smoothZoom.applyForce(world.scale.x)
         world.scale.set(scale)
       },
     })(nCameraControl)($engine)
