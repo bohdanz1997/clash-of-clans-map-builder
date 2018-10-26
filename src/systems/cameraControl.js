@@ -1,6 +1,6 @@
 // @flow
 import type { GameConfig, Engine, Keyboard } from 'types/game'
-import type { Application } from 'types/pixi'
+import type { Container } from 'types/pixi'
 
 import { keys } from 'core/input'
 import { createSystem } from 'core/factories'
@@ -8,9 +8,8 @@ import { createSmoothStep } from 'core/tools'
 import priorities from './priorities'
 import { nCameraControl } from '../nodes'
 
-export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $app: Application) => {
+export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $world: Container) => {
   const [keyZoomPlus, keyZoomMinus] = $keyboard.addKeys(keys.ZERO, keys.NINE)
-  const world = $app.stage.childByName('world')
 
   const smoothZoom = createSmoothStep({
     step: 0.002,
@@ -47,8 +46,8 @@ export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $app:
           smoothZoom.decrease()
         }
 
-        const scale = smoothZoom.applyForce(world.scale.x)
-        world.scale.set(scale)
+        const scale = smoothZoom.applyForce($world.scale.x)
+        $world.scale.set(scale)
       },
     })(nCameraControl)($engine)
   )

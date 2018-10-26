@@ -6,9 +6,9 @@ import { makeWASDKeys } from 'core/input'
 
 import * as c from '../components'
 
-export default ({ speed, damp }: any, { $config, $keyboard, $app }: Deps) => createEntity(
+export default ({ speed, damp }: any, { $config, $keyboard, $world }: Deps) => createEntity(
   c.Camera({
-    world: $app.stage.childByName('world'),
+    world: $world,
     worldWidth: $config.worldWidth,
     worldHeight: $config.worldHeight,
     width: $config.width,
