@@ -3,4 +3,4 @@
 - [ ] learn PIXI filters
 - [ ] implement screen bounds for rendering
 - [ ] render ground tiles into one texture via renderTexture
-- [ ] camera zoom
+- [x] camera zoom
