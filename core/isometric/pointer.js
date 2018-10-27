@@ -1,6 +1,6 @@
-import { Point } from '../pixi'
+import { Point } from 'core/pixi'
 
-export const makeIsoPointer = (pointer, world, matrix, config) => {
+export const makeIsoPointer = ({ pointer, world, matrix, config }) => {
   const cursorOffset = new Point(config.hTileWidth, 0)
 
   Object.defineProperties(pointer, {
