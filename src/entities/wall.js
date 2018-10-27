@@ -11,6 +11,6 @@ export default ({ x, y, width, height, collisionRadius, health }) => (
     c.Position({ x, y }),
     c.Collision({ width, height, radius: collisionRadius }),
     c.Interact(),
-    c.Control(),
+    c.MotionControl(),
   )
 )

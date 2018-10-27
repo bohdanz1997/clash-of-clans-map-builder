@@ -2,56 +2,43 @@
 import type { GameConfig, Engine, Keyboard } from 'types/game'
 import type { Container } from 'types/pixi'
 
-import { keys } from 'core/input'
 import { createSystem } from 'core/factories'
-import { createSmoothStep } from 'core/tools'
 import priorities from './priorities'
 import { nCameraControl } from '../nodes'
 
-export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $world: Container) => {
-  const [keyZoomPlus, keyZoomMinus] = $keyboard.addKeys(keys.ZERO, keys.NINE)
+export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $world: Container) => (
+  createSystem({
+    update({ camera, position, motion, motionControl, zoomControl }) {
+      const { smoothZoom } = zoomControl
+      motion.vel.mult(motion.damp)
 
-  const smoothZoom = createSmoothStep({
-    step: 0.002,
-    damping: 0.9,
-    maxForce: 0.15,
-    minRange: 0.75,
-    maxRange: 1.5,
-  })
+      camera.camera.x = position.pos.x
+      camera.camera.y = position.pos.y
 
-  return (
-    createSystem({
-      update({ camera, motion, control, position }) {
-        motion.vel.mult(motion.damp)
+      if (motionControl.up.isDown) {
+        motion.vel.y = -motionControl.dy
+      }
+      if (motionControl.down.isDown) {
+        motion.vel.y = motionControl.dy
+      }
+      if (motionControl.left.isDown) {
+        motion.vel.x = -motionControl.dx
+      }
+      if (motionControl.right.isDown) {
+        motion.vel.x = motionControl.dx
+      }
 
-        camera.camera.x = position.pos.x
-        camera.camera.y = position.pos.y
+      if (zoomControl.plus.isDown) {
+        smoothZoom.increase()
+      } else if (zoomControl.minus.isDown) {
+        smoothZoom.decrease()
+      }
 
-        if (control.up.isDown) {
-          motion.vel.y = -control.dy
-        }
-        if (control.down.isDown) {
-          motion.vel.y = control.dy
-        }
-        if (control.left.isDown) {
-          motion.vel.x = -control.dx
-        }
-        if (control.right.isDown) {
-          motion.vel.x = control.dx
-        }
-
-        if (keyZoomPlus.isDown) {
-          smoothZoom.increase()
-        } else if (keyZoomMinus.isDown) {
-          smoothZoom.decrease()
-        }
-
-        const scale = smoothZoom.applyForce($world.scale.x)
-        $world.scale.set(scale)
-      },
-    })(nCameraControl)($engine)
-  )
-}
+      const scale = smoothZoom.applyForce($world.scale.x)
+      $world.scale.set(scale)
+    },
+  })(nCameraControl)($engine)
+)
 
 export const params = {
   priority: priorities.MOVEMENT,
