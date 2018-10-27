@@ -5,16 +5,10 @@ import { nDraggable, nPointer } from '../nodes'
 import displayGroups from '../renderLayers'
 import priorities from './priorities'
 
-const moveToArrEnd = (item, arr) => {
-  arr.splice(arr.indexOf(item), 1)
-  arr.push(item)
-}
-
 const findHitDragNodeByPointer = (draggableNode, pointer) => (
   draggableNode.find(({ display, collision }) => hitTestRect(collision.bounds, pointer.cartPosition))
 )
 
-// manages drag & drop functionality
 export default ($engine, $config) => createEnhancedSystem({
   update(draggableNode, pointerNode) {
     pointerNode.each(({ pointer: cPointer }) => {
@@ -63,9 +57,6 @@ export default ($engine, $config) => createEnhancedSystem({
     // set higher render priority via setting drag group
     display.oldGroup = display.group
     display.group = displayGroups.DRAG
-
-    // display selected sprite above all the others
-    moveToArrEnd(display.sprite, display.sprite.parent.children)
   },
 
   endDrag(cPointer) {

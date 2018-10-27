@@ -6,7 +6,7 @@ export const makeIsoPointer = ({ pointer, world, matrix, config }) => {
   Object.defineProperties(pointer, {
     cartPosition: {
       get() {
-        const pos = new Point(this.x, this.y).sub(world.position).sub(cursorOffset)
+        const pos = Point.sub(this.position, world.position).sub(cursorOffset)
         return matrix.apply(pos)
       },
       enumerable: true,

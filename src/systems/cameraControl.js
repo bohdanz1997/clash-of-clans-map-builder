@@ -10,10 +10,6 @@ export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $worl
   createSystem({
     update({ camera, position, motion, motionControl, zoomControl }) {
       const { smoothZoom } = zoomControl
-      motion.vel.mult(motion.damp)
-
-      camera.camera.x = position.pos.x
-      camera.camera.y = position.pos.y
 
       if (motionControl.up.isDown) {
         motion.vel.y = -motionControl.dy
@@ -33,6 +29,11 @@ export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $worl
       } else if (zoomControl.minus.isDown) {
         smoothZoom.decrease()
       }
+
+      motion.vel.mult(motion.damp)
+
+      camera.camera.x = position.pos.x
+      camera.camera.y = position.pos.y
 
       const scale = smoothZoom.applyForce($world.scale.x)
       $world.scale.set(scale)
