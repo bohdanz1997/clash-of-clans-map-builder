@@ -1,4 +1,4 @@
-import { Graphics, Sprite } from '../pixi'
+import { Graphics, Sprite } from 'core/pixi'
 import { isoMatrix } from '../isometric'
 
 const makeRect = (width, height, fillStyle) => {
