@@ -2,28 +2,35 @@ import { createSystem } from 'core/factories'
 import { nRender } from '../nodes'
 import priorities from './priorities'
 
-export default ($engine, $world) => createSystem({
-  init(node) {
-    node.each(({ display }) => {
-      $world.addChild(display.sprite)
-    })
+export default ($engine, $world, $hud) => {
+  const matchContainer = parentId => ({
+    world: $world,
+    hud: $hud,
+  })[parentId]
 
-    node.onAdded(({ display }) => {
-      $world.addChild(display.sprite)
-    })
+  return createSystem({
+    init(node) {
+      node.each(({ display }) => {
+        matchContainer(display.parentId).addChild(display.sprite)
+      })
 
-    node.onRemoved(({ display }) => {
-      $world.removeChild(display.sprite)
-    })
-  },
+      node.onAdded(({ display }) => {
+        matchContainer(display.parentId).addChild(display.sprite)
+      })
 
-  update({ position, display }) {
-    const { sprite, group } = display
+      node.onRemoved(({ display }) => {
+        matchContainer(display.parentId).removeChild(display.sprite)
+      })
+    },
 
-    sprite.parentGroup = group
-    sprite.position.copy(position.pos)
-  },
-})(nRender)($engine)
+    update({ position, display }) {
+      const { sprite, group } = display
+
+      sprite.parentGroup = group
+      sprite.position.copy(position.pos)
+    },
+  })(nRender)($engine)
+}
 
 export const params = {
   priority: priorities.RENDER,

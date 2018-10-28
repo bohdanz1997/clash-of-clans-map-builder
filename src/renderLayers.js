@@ -15,6 +15,7 @@ const groups = {
   SHADOW: new Group(3, false),
   BUILDING: new Group(5, spriteSorting.forward),
   DRAG: new Group(10, false),
+  HUD: new Group(20, false),
 }
 
 export const groupsList = Object.values(groups)

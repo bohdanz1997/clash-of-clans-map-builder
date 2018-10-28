@@ -19,6 +19,7 @@ export const [cGroundLayer, GroundLayer] = createComponent('ground layer')
 export const [cBackGroundLayer, BackGroundLayer] = createComponent('background layer')
 export const [cBuildingLayer, BuildingLayer] = createComponent('game object layer')
 export const [cDragLayer, DragLayer] = createComponent('drag layer')
+export const [cHudLayer, HudLayer] = createComponent('hud layer')
 
 let idx = 0
 

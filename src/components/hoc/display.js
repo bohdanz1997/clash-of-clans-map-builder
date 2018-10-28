@@ -21,3 +21,10 @@ export const withIsoRectDisplay = (width, height, color) => (entity) => {
   const sprite = makeIsoRectSprite(width, height, color)
   return entity.add(c.Display({ sprite }))
 }
+
+export const withTextDisplay = sprite => entity => (
+  entity.add(c.Display({
+    sprite,
+    parentId: 'hud',
+  }))
+)

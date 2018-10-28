@@ -5,4 +5,5 @@ export default (config, app, target) => ({
   $config: config,
   $keyboard: new Keyboard(target),
   $world: app.stage.childByName('world'),
+  $hud: app.stage.childByName('hud'),
 })

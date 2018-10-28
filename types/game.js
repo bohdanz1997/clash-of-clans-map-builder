@@ -69,4 +69,5 @@ export type Deps = {
   $config: GameConfig,
   $keyboard: Keyboard,
   $world: Container,
+  $hud: Container,
 }

@@ -1,4 +1,5 @@
-import { Application, Container } from 'core/pixi'
+import { Application } from 'core/pixi'
+import { spriteUtils } from 'core/tools'
 import createEngine from './engine'
 import { resolver } from './inject'
 import { gameConfig, targetEl } from './gameConfig'
@@ -13,9 +14,9 @@ const setup = target => () => {
     height: gameConfig.height,
   })
 
-  const world = new Container()
-  world.name = 'world'
-  app.stage.addChild(world)
+  const world = spriteUtils.group('world')
+  const hud = spriteUtils.group('hud')
+  app.stage.addChild(world, hud)
   target.appendChild(app.view)
 
   const stats = createStats()

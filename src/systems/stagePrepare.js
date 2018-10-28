@@ -1,6 +1,6 @@
 // @flow
 import type { GameConfig, Engine } from 'types/game'
-import type { Application } from 'types/pixi'
+import type { Application, Container } from 'types/pixi'
 
 import { createEnhancedSystem } from 'core/factories'
 
@@ -10,29 +10,33 @@ import displayGroups, { groupsList, createStage } from '../renderLayers'
 import priorities from './priorities'
 
 export default ($config: GameConfig, $engine: Engine, $app: Application) => {
-  const world = $app.stage.childByName('world')
+  const world: Container = $app.stage.childByName('world')
+  const hud: Container = $app.stage.childByName('hud')
   const stage = createStage(groupsList)
-  stage.addChild(world)
+
+  stage.addChild(world, hud)
   $app.stage = stage
 
-  const initLayer = (node, group, name) => {
+  const initLayer = (node, group) => {
     node.each(({ display }) => {
       display.group = group
     })
   }
 
   return createEnhancedSystem({
-    init(groundNode, backNode, buildingNode, dragNode) {
-      initLayer(groundNode, displayGroups.GROUND, 'ground')
-      initLayer(backNode, displayGroups.OVERLAY, 'back')
-      initLayer(buildingNode, displayGroups.BUILDING, 'building')
-      initLayer(dragNode, displayGroups.DRAG, 'drag')
+    init(groundNode, backNode, buildingNode, dragNode, hudNode) {
+      initLayer(groundNode, displayGroups.GROUND)
+      initLayer(backNode, displayGroups.OVERLAY)
+      initLayer(buildingNode, displayGroups.BUILDING)
+      initLayer(dragNode, displayGroups.DRAG)
+      initLayer(hudNode, displayGroups.HUD)
     },
   })(
     nLayers.Ground,
     nLayers.BackGround,
     nLayers.Building,
     nLayers.Drag,
+    nLayers.Hud,
   )($engine)
 }
 

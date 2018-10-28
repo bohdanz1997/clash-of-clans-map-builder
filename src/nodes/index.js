@@ -33,6 +33,7 @@ export const nIsometric = [c.cPosition, c.cIsoPosition]
 export const nIsoRender = [c.cIsoPosition, c.cDisplay]
 export const nBackGround = [c.cBackGround, c.cPosition]
 export const nOverlay = [c.cOverlay, c.cPosition]
+export const nHud = [c.cHudLayer, c.cDisplay]
 
 // layers
 export const nLayers = {
@@ -40,12 +41,11 @@ export const nLayers = {
   BackGround: [c.cBackGroundLayer, c.cDisplay],
   Building: [c.cBuildingLayer, c.cDisplay],
   Drag: [c.cDragLayer, c.cDisplay],
+  Hud: [c.cHudLayer, c.cDisplay],
 }
 
 // map layers
 export const nMapLayers = {
-  Ground: [c.cGroundLayer, c.cIdentity, c.cPosition, c.cCollision],
-  BackGround: [c.cBackGroundLayer, c.cIdentity, c.cPosition, c.cCollision],
   Building: [c.cBuildingLayer, c.cIdentity, c.cPosition, c.cCollision],
   Drag: [c.cDragLayer, c.cIdentity, c.cPosition, c.cCollision],
 }
