@@ -1,5 +1,4 @@
 import { Point } from 'core/pixi'
-import { Layer } from 'core/tools'
 import { hitTestRect } from 'core/collision'
 import { createEnhancedSystem } from 'core/factories'
 import { nDraggable, nPointer, nMap } from '../nodes'
