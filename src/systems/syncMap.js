@@ -1,31 +1,38 @@
 import { createEnhancedSystem } from 'core/factories'
 import { Layer } from 'core/tools'
 import { Point } from 'core/pixi'
-import { nMap, nBuilding } from '../nodes'
-
-const getMapLayer = (layerName, mapNode) => (
-  mapNode.map.gameField.getLayer(layerName)
-)
+import { nMap, nMapLayers } from '../nodes'
 
 export default ($engine, $config) => {
-  const updateNodeForLayer = layer => ({ position }) => {
+  const updateNodeForLayer = layer => (node) => {
+    const { position, identity } = node
     const normPos = Point.floor(Point.divNum(position.pos, $config.cartCellSize))
-    layer.setIn(normPos.x, normPos.y, Layer.cellState.BUSY)
+    const id = layer.getIn(normPos.x, normPos.y)
+
+    if (id === Layer.EMPTY_CELL) {
+      layer.setIn(normPos.x, normPos.y, identity.id)
+    }
   }
 
   let buildingLayer
+  let dragLayer
 
   return createEnhancedSystem({
     init(mapNode) {
-      buildingLayer = getMapLayer('building', mapNode.head)
+      const { gameField } = mapNode.head.map
+
+      buildingLayer = gameField.getLayer('building')
+      dragLayer = gameField.getLayer('drag')
     },
 
-    update(mapNode, buildingNode) {
+    update(mapNode, buildingNode, dragNode) {
       buildingLayer.clear()
+      dragLayer.clear()
 
       buildingNode.each(updateNodeForLayer(buildingLayer))
+      dragNode.each(updateNodeForLayer(dragLayer))
     },
-  })(nMap, nBuilding)($engine)
+  })(nMap, nMapLayers.Building, nMapLayers.Drag)($engine)
 }
 
 export const params = {

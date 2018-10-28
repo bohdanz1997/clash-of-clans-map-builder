@@ -1,15 +1,19 @@
 {
   "id": "map",
-  "width": 30,
-  "height": 30,
+  "width": 15,
+  "height": 15,
   "layers": [
     {
       "name": "building",
       "data": [
-        { "id": "clanCastle", "x": 13, "y": 13 },
-        { "id": "elixirCollector", "x": 10, "y": 18 },
-        { "id": "goldStorage", "x": 15, "y": 7 }
+        { "id": "clanCastle", "x": 9, "y": 9 },
+        { "id": "elixirCollector", "x": 0, "y": 8 },
+        { "id": "goldStorage", "x": 5, "y": 7 }
       ]
+    },
+    {
+      "name": "drag",
+      "data": []
     },
     {
       "name": "other",

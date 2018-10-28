@@ -46,6 +46,21 @@ export class Layer {
   isEmptyIn(x, y) {
     return this.getIn(x, y) === Layer.EMPTY_CELL
   }
+
+  toString() {
+    let str = ''
+    const stateToDisplay = state => ({
+      [Layer.EMPTY_CELL]: '-',
+    })[state] || 'x'
+
+    for (let x = 0; x < this.width; x++) {
+      for (let y = 0; y < this.height; y++) {
+        str += stateToDisplay(this.getIn(x, y))
+      }
+      str += '\n'
+    }
+    return str
+  }
 }
 
 export class GameField {

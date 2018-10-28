@@ -8,14 +8,21 @@ export const [cDefenceBuilding, DefenceBuilding] = createComponent('defence buil
 export const [cServiceBuilding, ServiceBuilding] = createComponent('service building')
 export const [cResourceBuilding, ResourceBuilding] = createComponent('resource building')
 export const [cWall, Wall] = createComponent('wall')
-
-export const [cArcher, Archer] = createComponent('archer')
-
-export const [cInteract, Interact] = createComponent('interact')
+export const [cBackGround, BackGround] = createComponent('background')
 
 export const [cInput, Input] = createComponent('input')
 export const [cPlayer, Player] = createComponent('player')
 export const [cEnemy, Enemy] = createComponent('enemy')
-export const [cGround, Ground] = createComponent('ground')
-export const [cGameObject, GameObject] = createComponent('gameObject')
-export const [cBackGround, BackGround] = createComponent('background')
+
+// layers
+export const [cGroundLayer, GroundLayer] = createComponent('ground layer')
+export const [cBackGroundLayer, BackGroundLayer] = createComponent('background layer')
+export const [cBuildingLayer, BuildingLayer] = createComponent('game object layer')
+export const [cDragLayer, DragLayer] = createComponent('drag layer')
+
+let idx = 0
+
+export const [cIdentity, Identity] = createComponent(
+  'identity', 'id type',
+  () => ({ id: idx++, type: null }),
+)
