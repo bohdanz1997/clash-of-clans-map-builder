@@ -6,3 +6,4 @@
 - [x] camera zoom
 - [ ] proper cursor work for camera zoom
 - [x] move camera by touch
+- [ ] proper manage poiter for drag an move
