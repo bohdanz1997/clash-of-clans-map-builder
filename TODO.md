@@ -4,3 +4,5 @@
 - [ ] implement screen bounds for rendering
 - [ ] render ground tiles into one texture via renderTexture
 - [x] camera zoom
+- [ ] proper cursor work for camera zoom
+- [ ] move camera by touch
