@@ -2,21 +2,17 @@ import { Application } from 'core/pixi'
 import { spriteUtils } from 'core/tools'
 import createEngine from './engine'
 import { resolver } from './inject'
-import { gameConfig, targetEl } from './gameConfig'
 import { createStats, resourceLoader } from './services'
+import { gameConfig, appOpts, targetEl } from './gameConfig'
 
 const setup = target => () => {
-  const app = new Application({
-    antialias: true,
-    transparent: false,
-    resolution: 1,
-    width: gameConfig.width,
-    height: gameConfig.height,
-  })
+  const app = new Application(appOpts)
+  const childContainers = [
+    spriteUtils.group('world'),
+    spriteUtils.group('hud'),
+  ]
 
-  const world = spriteUtils.group('world')
-  const hud = spriteUtils.group('hud')
-  app.stage.addChild(world, hud)
+  app.stage.addChild(...childContainers)
   target.appendChild(app.view)
 
   const stats = createStats()

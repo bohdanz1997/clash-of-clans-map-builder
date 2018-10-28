@@ -32,3 +32,11 @@ export const gameConfig: GameConfig = {
   cartWorldWidth: cartTileSize * widthInTiles,
   cartWorldHeight: cartTileSize * heightInTiles,
 }
+
+export const appOpts = {
+  antialias: true,
+  transparent: false,
+  resolution: 1,
+  width: gameConfig.width,
+  height: gameConfig.height,
+}
