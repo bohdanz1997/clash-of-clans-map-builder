@@ -25,20 +25,27 @@ export const nMovement = [c.cPosition, c.cMotion]
 export const nCollision = [c.cPosition, c.cCollision]
 export const nRender = [c.cPosition, c.cDisplay]
 export const nMap = [c.cMap]
-export const nBuilding = [c.cBuilding, c.cPosition]
-export const nWall = [c.Building, c.cWall, c.cPosition]
-export const nInteract = [c.cInteract, c.cPosition]
+export const nBuilding = [c.cBuilding, c.cPosition, c.cIdentity]
 export const nInput = [c.cInput]
-export const nDraggable = [c.cDraggable, c.cPosition, c.cDisplay, c.cCollision]
+export const nDraggable = [c.cDraggable, c.cPosition, c.cDisplay, c.cCollision, c.cIdentity]
 export const nPointer = [c.cPointer]
 export const nIsometric = [c.cPosition, c.cIsoPosition]
 export const nIsoRender = [c.cIsoPosition, c.cDisplay]
 export const nBackGround = [c.cBackGround, c.cPosition]
 export const nOverlay = [c.cOverlay, c.cPosition]
 
-// layers:
+// layers
 export const nLayers = {
-  Ground: [c.cDisplay, c.cGround],
-  Building: [c.cDisplay, c.cBuilding],
-  BackGround: [c.cDisplay, c.cBackGround],
+  Ground: [c.cGroundLayer, c.cDisplay],
+  BackGround: [c.cBackGroundLayer, c.cDisplay],
+  Building: [c.cBuildingLayer, c.cDisplay],
+  Drag: [c.cDragLayer, c.cDisplay],
+}
+
+// map layers
+export const nMapLayers = {
+  Ground: [c.cGroundLayer, c.cPosition, c.cIdentity],
+  BackGround: [c.cBackGroundLayer, c.cPosition, c.cIdentity],
+  Building: [c.cBuildingLayer, c.cPosition, c.cIdentity],
+  Drag: [c.cDragLayer, c.cPosition, c.cIdentity],
 }

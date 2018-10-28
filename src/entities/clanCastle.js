@@ -4,12 +4,13 @@ import { withComponents, withIsoDisplay, pipeHOCs } from '../components/hoc'
 export default ({ id, x, y, offsetX, offsetY, isoWidth, isoHeight }, { $config }) => (
   pipeHOCs(
     withComponents(
-      c.GameObject(),
-      c.Building(),
+      c.Identity(),
+      c.BuildingLayer(),
       c.Draggable(),
       c.BackGround(),
       c.Position({ x, y, offsetX, offsetY }),
       c.IsoPosition(),
+      c.Motion(),
       c.Collision({
         width: $config.cartTileSize,
         height: $config.cartTileSize,

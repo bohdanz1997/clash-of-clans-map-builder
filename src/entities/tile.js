@@ -3,7 +3,7 @@ import { withComponents, withIsoDisplay, pipeHOCs } from '../components/hoc'
 
 export default ({ x, y, isoWidth, isoHeight }) => pipeHOCs(
   withComponents(
-    c.Ground(),
+    c.GroundLayer(),
     c.Position({ x, y }),
     c.IsoPosition(),
   ),

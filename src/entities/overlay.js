@@ -3,8 +3,8 @@ import { withComponents, withIsoRectDisplay, pipeHOCs } from '../components/hoc'
 
 export default ({ width, height, target }) => pipeHOCs(
   withComponents(
-    c.GameObject(),
     c.BackGround(),
+    c.BackGroundLayer(),
     c.Overlay({ target }),
     c.Position(),
     c.IsoPosition(),

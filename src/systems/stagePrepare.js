@@ -15,26 +15,24 @@ export default ($config: GameConfig, $engine: Engine, $app: Application) => {
   stage.addChild(world)
   $app.stage = stage
 
-  const initLayer = (node, group) => {
+  const initLayer = (node, group, name) => {
     node.each(({ display }) => {
       display.group = group
-      world.addChild(display.sprite)
     })
-
-    node.onAdded(({ display }) => world.addChild(display.sprite))
-    node.onRemoved(({ display }) => world.removeChild(display.sprite))
   }
 
   return createEnhancedSystem({
-    init(groundNode, backNode, buildingNode) {
-      initLayer(groundNode, displayGroups.GROUND)
-      initLayer(backNode, displayGroups.OVERLAY)
-      initLayer(buildingNode, displayGroups.BUILDING)
+    init(groundNode, backNode, buildingNode, dragNode) {
+      initLayer(groundNode, displayGroups.GROUND, 'ground')
+      initLayer(backNode, displayGroups.OVERLAY, 'back')
+      initLayer(buildingNode, displayGroups.BUILDING, 'building')
+      initLayer(dragNode, displayGroups.DRAG, 'drag')
     },
   })(
     nLayers.Ground,
     nLayers.BackGround,
     nLayers.Building,
+    nLayers.Drag,
   )($engine)
 }
 
