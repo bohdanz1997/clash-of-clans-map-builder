@@ -5,10 +5,7 @@ export class Layer {
     this.clear()
   }
 
-  static cellState = {
-    EMPTY: 'EMPTY',
-    BUSY: 'BUSY',
-  }
+  static EMPTY_CELL = -1
 
   init(width, height) {
     this.width = width
@@ -16,7 +13,7 @@ export class Layer {
   }
 
   clear() {
-    this.fillCells(Layer.cellState.EMPTY)
+    this.fillCells(Layer.EMPTY_CELL)
   }
 
   fillCells(state) {
@@ -44,6 +41,10 @@ export class Layer {
       throw new Error(`Invalid coords [${x}, ${y}] for size [${this.width}, ${this.height}]`)
     }
     return this.cells[x][y]
+  }
+
+  isEmptyIn(x, y) {
+    return this.getIn(x, y) === Layer.EMPTY_CELL
   }
 }
 
