@@ -44,8 +44,8 @@ export const nLayers = {
 
 // map layers
 export const nMapLayers = {
-  Ground: [c.cGroundLayer, c.cPosition, c.cIdentity],
-  BackGround: [c.cBackGroundLayer, c.cPosition, c.cIdentity],
-  Building: [c.cBuildingLayer, c.cPosition, c.cIdentity],
-  Drag: [c.cDragLayer, c.cPosition, c.cIdentity],
+  Ground: [c.cGroundLayer, c.cIdentity, c.cPosition, c.cCollision],
+  BackGround: [c.cBackGroundLayer, c.cIdentity, c.cPosition, c.cCollision],
+  Building: [c.cBuildingLayer, c.cIdentity, c.cPosition, c.cCollision],
+  Drag: [c.cDragLayer, c.cIdentity, c.cPosition, c.cCollision],
 }

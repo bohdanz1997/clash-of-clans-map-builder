@@ -1,7 +1,7 @@
 import * as c from '../components'
 import { withComponents, withIsoDisplay, pipeHOCs } from '../components/hoc'
 
-export default ({ id, x, y, offsetX, offsetY, isoWidth, isoHeight }, { $config }) => (
+export default ({ id, x, y, offsetX, offsetY, isoWidth, isoHeight, sizeInCells }, { $config }) => (
   pipeHOCs(
     withComponents(
       c.Identity(),
@@ -14,6 +14,7 @@ export default ({ id, x, y, offsetX, offsetY, isoWidth, isoHeight }, { $config }
       c.Collision({
         width: $config.cartTileSize,
         height: $config.cartTileSize,
+        sizeInCells,
       }),
     ),
     withIsoDisplay(id),

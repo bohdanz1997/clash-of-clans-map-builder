@@ -79,14 +79,11 @@ export default ($engine, $config) => {
 
     endDrag(cPointer) {
       const { dragTarget } = cPointer
-      const { display, draggable, position, identity } = dragTarget
-
-      const id = buildingLayer.getIn(position.fieldPos.x, position.fieldPos.y)
-      const ownId = identity.id
+      const { display, draggable, position, collision } = dragTarget
 
       display.group = display.oldGroup
 
-      if (id !== Layer.EMPTY_CELL && id !== ownId) {
+      if (!buildingLayer.isEmptyInSize(position.fieldPos.x, position.fieldPos.y, collision.sizeInCells)) {
         position.pos.copy(draggable.prevPos)
       }
 
