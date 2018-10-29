@@ -1,23 +1,20 @@
 import { Application } from 'core/pixi'
-import { spriteUtils } from 'core/tools'
-import createEngine from './engine'
-import { resolver } from './inject'
+import { createStage } from 'core/renderLayers'
+import { pipe } from 'core/util'
+
 import { createStats, resourceLoader } from './services'
-import { gameConfig, appOpts, targetEl } from './gameConfig'
+import { viewConfig, gameConfig, inject } from './config'
+import createEngine from './engine'
 
 const setup = target => () => {
-  const app = new Application(appOpts)
-  const childContainers = [
-    spriteUtils.group('world'),
-    spriteUtils.group('hud'),
-  ]
-
-  app.stage.addChild(...childContainers)
+  const app = new Application(gameConfig.pixi)
+  app.stage = createStage(viewConfig.groups)
+  app.stage.addChild(...viewConfig.containers)
   target.appendChild(app.view)
 
   const stats = createStats()
-  const deps = resolver(gameConfig, app, target)
-  const engine = createEngine(gameConfig, deps)
+  const deps = inject(gameConfig.game, app, target)
+  const engine = createEngine(gameConfig.game, deps)
   engine.start()
 
   app.ticker.add((delta) => {
@@ -27,4 +24,7 @@ const setup = target => () => {
   })
 }
 
-resourceLoader(setup(targetEl))
+pipe(
+  setup,
+  resourceLoader,
+)(gameConfig.targetEl)

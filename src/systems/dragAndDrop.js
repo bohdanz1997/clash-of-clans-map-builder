@@ -2,9 +2,11 @@ import { Point } from 'core/pixi'
 import { hitTestRect } from 'core/collision'
 import { createEnhancedSystem } from 'core/factories'
 import { nDraggable, nPointer, nMap } from '../nodes'
-import displayGroups from '../renderLayers'
+import { viewConfig } from '../config'
 import priorities from './priorities'
 import * as c from '../components'
+
+const { groups } = viewConfig
 
 const findHitDragNodeByPointer = (draggableNode, pointer) => (
   draggableNode.find(({ display, collision }) => hitTestRect(collision.bounds, pointer.cartPosition))
@@ -69,7 +71,7 @@ export default ($engine, $config) => {
 
       // set higher render priority via setting drag group
       display.oldGroup = display.group
-      display.group = displayGroups.DRAG
+      display.group = groups.DRAG
 
       // TODO: use FSM
       dragTarget.entityRef.remove(c.cBuildingLayer)

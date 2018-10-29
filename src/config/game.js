@@ -13,7 +13,7 @@ const cartCellSize = cartTileSize / cellsInTile
 
 export const targetEl = document.body
 
-export const gameConfig: GameConfig = {
+export const game: GameConfig = {
   width,
   height,
   hWidth: width / 2,
@@ -33,10 +33,16 @@ export const gameConfig: GameConfig = {
   cartWorldHeight: cartTileSize * heightInTiles,
 }
 
-export const appOpts = {
+export const pixi = {
   antialias: true,
   transparent: false,
   resolution: 1,
-  width: gameConfig.width,
-  height: gameConfig.height,
+  width: game.width,
+  height: game.height,
+}
+
+export default {
+  pixi,
+  game,
+  targetEl,
 }
