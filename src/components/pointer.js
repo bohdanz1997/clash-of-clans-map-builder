@@ -6,6 +6,6 @@ export const [cPointer, Pointer] = createComponent(
   ({ pointer }) => ({
     pointer,
     dragTarget: null,
-    dragOffset: new Point(0, 0),
+    dragOffset: Point.EMPTY,
   })
 )

@@ -34,3 +34,9 @@ export const arrUtils = {
 export const argParser = {
   list: val => val.split(','),
 }
+
+export const staticPaths = {
+  coreFactories: 'core/factories',
+  components: '../components',
+  componentsHoc: '../components/hoc',
+}

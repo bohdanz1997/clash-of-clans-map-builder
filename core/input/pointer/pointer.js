@@ -1,7 +1,7 @@
 import { Point } from 'core/pixi'
 
 export const makePointer = ({ element, scale = 1 }) => {
-  const position = new Point(0, 0)
+  const position = Point.EMPTY
 
   let pScale = scale
   let visible = true

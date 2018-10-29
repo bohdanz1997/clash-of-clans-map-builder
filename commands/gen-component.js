@@ -1,14 +1,15 @@
-import fs from "fs"
+import fs from 'fs'
 import program from 'commander'
+import { createLogger } from './log'
 
 import {
   pathGen,
   argParser,
   strUtils,
+  staticPaths as paths,
 } from './utils'
 
 import genUtils from './gen-utils'
-import { createLogger } from './log'
 
 const logger = createLogger('Add component')
 
@@ -27,13 +28,12 @@ if (!component) {
 const buildSource = (name, fields = []) => {
   const componentName = strUtils.capitalizeFirst(name)
   const componentTypeName = `c${componentName}`
-  const coreFactoriesPath = 'core/factories'
 
   const paramsSource = fields.length > 0
     ? `'${name}', '${fields.join(' ')}',`
     : `'${name}',`
 
-  return `import { createComponent } from '${coreFactoriesPath}'
+  return `import { createComponent } from '${paths.coreFactories}'
 
 export const [${componentTypeName}, ${componentName}] = createComponent(
   ${paramsSource}

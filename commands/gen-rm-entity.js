@@ -8,29 +8,29 @@ import {
 
 import genUtils from './gen-utils'
 
-const logger = createLogger('Remove component')
+const logger = createLogger('Remove entity')
 
 program
-  .usage('remove component')
+  .usage('remove entity')
   .parse(process.argv)
 
-const component = program.args[0]
+const entity = program.args[0]
 
-if (!component) {
-  logger.error('You must specify component name'.red)
+if (!entity) {
+  logger.error('You must specify entity name'.red)
   process.exit(1)
 }
 
-const indexFile = pathGen.component('index')
-const componentFile = pathGen.component(component)
+const indexFile = pathGen.entity('index')
+const entityFile = pathGen.entity(entity)
 
 genUtils.remove({
-  filePath: componentFile,
+  filePath: entityFile,
 })
 
 const fileData = fs.readFileSync(indexFile, { encoding: 'utf8' })
 const lines = fileData.split('\n')
-const finalLines = lines.filter(line => !line.includes(component))
+const finalLines = lines.filter(line => !line.includes(entity))
 
 genUtils.update({
   filePath: indexFile,
