@@ -106,4 +106,12 @@ export const pointMixin = (Point) => {
       Math.floor(point.y)
     )
   }
+
+  Object.defineProperty(Point, 'EMPTY', {
+    get() {
+      return new Point(0, 0)
+    },
+    enumerable: true,
+    configurable: true,
+  })
 }

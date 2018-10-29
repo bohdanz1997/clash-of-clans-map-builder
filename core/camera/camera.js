@@ -1,7 +1,7 @@
 import { Point } from 'core/pixi'
 
 export default ({ world, worldWidth, worldHeight, width, height }) => {
-  const position = new Point(0, 0)
+  const position = Point.EMPTY
   const hWidth = width / 2
   const hHeight = height / 2
   const qWidth = width / 4
