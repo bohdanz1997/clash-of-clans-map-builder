@@ -1,5 +1,6 @@
-import fs from "fs"
+import fs from 'fs'
 import program from 'commander'
+import { createLogger } from 'core/log'
 
 import {
   pathGen,
@@ -8,7 +9,6 @@ import {
 } from './utils'
 
 import genUtils from './gen-utils'
-import { createLogger } from './log'
 
 const logger = createLogger('Add component')
 
