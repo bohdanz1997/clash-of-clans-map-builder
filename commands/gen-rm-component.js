@@ -1,10 +1,9 @@
 import fs from 'fs'
 import program from 'commander'
-import { createLogger } from 'core/log'
+import { createLogger } from './log'
 
 import {
   pathGen,
-  argParser,
 } from './utils'
 
 import genUtils from './gen-utils'
@@ -12,8 +11,7 @@ import genUtils from './gen-utils'
 const logger = createLogger('Remove component')
 
 program
-  .usage('generate component')
-  .option('-f, --fields <items>', 'component fields definition', argParser.list)
+  .usage('remove component')
   .parse(process.argv)
 
 const component = program.args[0]
