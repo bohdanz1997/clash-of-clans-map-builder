@@ -9,7 +9,8 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "start": "webpack-dev-server",
-    "flow": "flow"
+    "flow": "flow",
+    "gen": "./gen"
   },
   "author": "",
   "license": "ISC",
