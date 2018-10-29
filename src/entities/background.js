@@ -1,5 +1,4 @@
-import { createSprite } from 'core/pixi'
-import { createEntity } from 'core/factories'
+import { createEntity, createSprite } from 'core/factories'
 import { dungeon } from 'assets/atlas/treasureHunter'
 
 import * as c from '../components'
