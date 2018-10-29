@@ -2,29 +2,52 @@
 import type { Deps } from 'types/game'
 
 import { createEntity } from 'core/factories'
-import { makeWASDKeys } from 'core/input'
+import { keys, makeWASDKeys } from 'core/input'
+import { createSmoothStep } from 'core/tools'
 
 import * as c from '../components'
 
-export default ({ speed, damp }: any, { $config, $keyboard, $app }: Deps) => createEntity(
-  c.Camera({
-    world: $app.stage.childByName('gameScene'),
-    worldWidth: $config.worldWidth,
-    worldHeight: $config.worldHeight,
-    width: $config.width,
-    height: $config.height,
-  }),
-  c.Position({
-    x: -$config.hWidth + $config.hTileWidth,
-    y: -100,
-  }),
-  c.Motion({
-    dampX: damp,
-    dampY: damp,
-  }),
-  c.Control({
-    dx: speed,
-    dy: speed,
-    ...makeWASDKeys($keyboard),
-  }),
-)
+export default ({ speed, damp }: any, deps: Deps) => {
+  const keyboard = deps.$keyboard
+  const world = deps.$world
+  const config = deps.$config
+
+  const [
+    keyZoomPlus,
+    keyZoomMinus,
+  ] = keyboard.addKeys(keys.ZERO, keys.NINE)
+
+  return createEntity(
+    c.Camera({
+      world,
+      worldWidth: config.worldWidth,
+      worldHeight: config.worldHeight,
+      width: config.width,
+      height: config.height,
+    }),
+    c.Position({
+      x: -config.hWidth + config.hTileWidth,
+      y: config.hHeight - config.tileHeight,
+    }),
+    c.Motion({
+      dampX: damp,
+      dampY: damp,
+    }),
+    c.MotionControl({
+      dx: speed,
+      dy: speed,
+      ...makeWASDKeys(keyboard),
+    }),
+    c.ZoomControl({
+      plus: keyZoomPlus,
+      minus: keyZoomMinus,
+      smoothZoom: createSmoothStep({
+        damping: damp,
+        step: 0.002,
+        maxForce: 0.15,
+        minRange: 0.75,
+        maxRange: 1.5,
+      }),
+    })
+  )
+}

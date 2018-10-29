@@ -1,23 +1,27 @@
 {
   "id": "map",
-  "width": 30,
-  "height": 30,
+  "width": 15,
+  "height": 15,
   "layers": [
     {
       "name": "building",
       "data": [
-        { "id": "clanCastle", "x": 4, "y": 0 },
-        { "id": "clanCastle", "x": 0, "y": 0 },
-        { "id": "clanCastle", "x": 5, "y": 8 },
-        { "id": "clanCastle", "x": 9, "y": 6 }
+        { "id": "clanCastle", "x": 9, "y": 9 },
+        { "id": "elixirCollector", "x": 0, "y": 8 },
+        { "id": "goldStorage", "x": 5, "y": 7 }
       ]
+    },
+    {
+      "name": "drag",
+      "data": []
     },
     {
       "name": "other",
       "data": [
         { "id": "input" },
         { "id": "camera" },
-        { "id": "pointer" }
+        { "id": "pointer" },
+        { "id": "hud", "x": 0, "y": 0 }
       ]
     }
   ]

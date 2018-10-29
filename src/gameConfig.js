@@ -1,12 +1,12 @@
 // @flow
 import type { GameConfig } from 'types/game'
 
-const width = 800
+const width = 1300
 const height = 600
 const tileWidth = 133
 const tileHeight = 100
-const widthInTiles = 10
-const heightInTiles = 10
+const widthInTiles = 5
+const heightInTiles = 5
 const cellsInTile = 3
 const cartTileSize = tileWidth / 2
 const cartCellSize = cartTileSize / cellsInTile
@@ -31,4 +31,12 @@ export const gameConfig: GameConfig = {
   cartCellSize,
   cartWorldWidth: cartTileSize * widthInTiles,
   cartWorldHeight: cartTileSize * heightInTiles,
+}
+
+export const appOpts = {
+  antialias: true,
+  transparent: false,
+  resolution: 1,
+  width: gameConfig.width,
+  height: gameConfig.height,
 }

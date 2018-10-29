@@ -1,6 +1,6 @@
 // @flow
 import type {
-  Rectangle, Point, Sprite, Application,
+  Rectangle, Point, Sprite, Application, Container,
 } from './pixi'
 
 // components
@@ -68,4 +68,6 @@ export type Deps = {
   $app: Application,
   $config: GameConfig,
   $keyboard: Keyboard,
+  $world: Container,
+  $hud: Container,
 }

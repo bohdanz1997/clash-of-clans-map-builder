@@ -1,4 +1,4 @@
-import { Point } from '../pixi'
+import { Point } from 'core/pixi'
 
 export const calcOffset = (rect, offset = undefined) => {
   if (offset !== undefined) {

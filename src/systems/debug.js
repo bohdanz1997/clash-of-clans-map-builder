@@ -1,28 +1,17 @@
 // @flow
 import type { Engine } from 'types/game'
-import type { Application } from 'types/pixi'
 
-import { createSystem, createText } from 'core/factories'
+import { createEnhancedSystem } from 'core/factories'
+import { nHud, nPointer } from '../nodes'
 
-import { nPointer } from '../nodes'
-
-export default ($engine: Engine, $app: Application) => {
-
-  const text = createText({
-    font: '12px sans',
-    fillStyle: 'white',
-  })
-
-  createSystem({
-    init() {
-      $app.stage.addChild(text)
-    },
-
-    update(node) {
-      const { pointer } = node.pointer
+export default ($engine: Engine) => {
+  createEnhancedSystem({
+    update(pointerNode, hudNode) {
+      const { display } = hudNode.head
+      const { pointer } = pointerNode.head.pointer
       const { position, fieldPosition, cartPosition } = pointer
 
-      text.content = `
+      display.sprite.content = `
         x: ${position.x}
         y: ${position.y}
         cartX: ${Math.floor(cartPosition.x)}
@@ -31,7 +20,7 @@ export default ($engine: Engine, $app: Application) => {
         row: ${fieldPosition.y}
       `
     },
-  })(nPointer)($engine)
+  })(nPointer, nHud)($engine)
 }
 
 export const params = {

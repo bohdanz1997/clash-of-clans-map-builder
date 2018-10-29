@@ -1,4 +1,4 @@
-import { Point } from '../pixi'
+import { Point } from 'core/pixi'
 
 export const rectCenter = rect => new Point(
   rect.x + rect.width / 2,

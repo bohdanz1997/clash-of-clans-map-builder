@@ -1,8 +1,7 @@
-
 {
-  "id": "clanCastle",
-  "offsetX": 15,
-  "offsetY": 30,
+  "id": "elixirCollector",
+  "offsetX": 25,
+  "offsetY": 35,
   "sizeInCells": 3,
   "levels": {
     "1": {

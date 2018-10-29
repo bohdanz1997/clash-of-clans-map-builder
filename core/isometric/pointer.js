@@ -1,12 +1,12 @@
-import { Point } from '../pixi'
+import { Point } from 'core/pixi'
 
-export const makeIsoPointer = (pointer, world, matrix, config) => {
+export const makeIsoPointer = ({ pointer, world, matrix, config }) => {
   const cursorOffset = new Point(config.hTileWidth, 0)
 
   Object.defineProperties(pointer, {
     cartPosition: {
       get() {
-        const pos = new Point(this.x, this.y).sub(world.position).sub(cursorOffset)
+        const pos = Point.sub(this.position, world.position).sub(cursorOffset)
         return matrix.apply(pos)
       },
       enumerable: true,

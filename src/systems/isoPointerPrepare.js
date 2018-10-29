@@ -1,19 +1,20 @@
 // @flow
 import type { GameConfig, Engine } from 'types/game'
-import type { Application } from 'types/pixi'
+import type { Container } from 'types/pixi'
 
 import { createSystem } from 'core/factories'
-import { makeIsoPointer, isoMatrix } from 'core/isometric'
+import { makeIsoPointer, invertIsoMatrix } from 'core/isometric'
 
 import { nPointer } from '../nodes'
 
-export default ($engine: Engine, $app: Application, $config: GameConfig) => {
-
-  const world = $app.stage.childByName('gameScene')
-  const invertMatrix = isoMatrix.clone().invert()
-
+export default ($engine: Engine, $world: Container, $config: GameConfig) => {
   const makeIsoPointerUtil = ({ pointer }) => {
-    makeIsoPointer(pointer.pointer, world, invertMatrix, $config)
+    makeIsoPointer({
+      pointer: pointer.pointer,
+      matrix: invertIsoMatrix,
+      config: $config,
+      world: $world,
+    })
   }
 
   return createSystem({

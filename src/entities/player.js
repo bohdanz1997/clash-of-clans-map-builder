@@ -28,7 +28,7 @@ export default ({ x, y, width, height, speed, health, damage }) => (
       c.Position({ x, y }),
       c.Motion(),
       c.Collision({ width, height }),
-      c.Control({ dx: speed, dy: speed }),
+      c.MotionControl({ dx: speed, dy: speed }),
       c.Damage({ damage }),
       c.Health({ health }),
     ),

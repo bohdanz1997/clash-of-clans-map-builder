@@ -13,3 +13,4 @@ export const makeIsoMatrix = (angle: number, scaleY: number): Matrix => {
 }
 
 export const isoMatrix = makeIsoMatrix(toRad(45), 0.75)
+export const invertIsoMatrix = isoMatrix.clone().invert()
