@@ -7,3 +7,8 @@
 - [ ] proper cursor work for camera zoom
 - [x] move camera by touch
 - [ ] proper manage pointer for drag an move
+- [ ] core:entityMapLoader
+
+entityMapLoader
+- input: map, entityDefinitions, entityFactories
+- output: built entities list
