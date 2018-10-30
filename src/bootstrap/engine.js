@@ -1,8 +1,8 @@
 import { Engine } from 'scent'
 import { objectEach } from 'core/util'
 
-import registerSystems from './registerSystems'
-import registerEntities from './registerEntities'
+import registerSystems from './systems'
+import registerEntities from './entities'
 
 const engineInitializer = deps => (engine, provide) => {
   objectEach(provide, deps)
@@ -16,7 +16,7 @@ export default (config, deps) => {
   registerSystems({
     engine,
     ignoredFiles: ['priorities'],
-    context: require.context('./systems'),
+    context: require.context('../systems'),
   })
 
   return engine

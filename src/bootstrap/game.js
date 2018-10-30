@@ -1,12 +1,11 @@
 import { Application } from 'core/pixi'
 import { createStage } from 'core/renderLayers'
-import { pipe } from 'core/util'
 
-import { createStats, resourceLoader } from './services'
-import { viewConfig, gameConfig, inject } from './config'
+import { createStats } from '../services'
+import { viewConfig, gameConfig, inject } from '../config'
 import createEngine from './engine'
 
-const setup = target => () => {
+export default target => () => {
   const app = new Application(gameConfig.pixi)
   app.stage = createStage(viewConfig.groups)
   app.stage.addChild(...viewConfig.containers)
@@ -23,8 +22,3 @@ const setup = target => () => {
     stats.end()
   })
 }
-
-pipe(
-  setup,
-  resourceLoader,
-)(gameConfig.targetEl)

@@ -3,7 +3,7 @@ import {
   jsFileNamesNormalizer,
 } from 'core'
 
-import priorities from './systems/priorities'
+import priorities from '../systems/priorities'
 
 const defaultSystemParams = {
   priority: priorities.UPDATE,

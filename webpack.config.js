@@ -12,7 +12,7 @@ const withRootPath = dir => path.resolve(__dirname, dir)
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/main.js',
+    app: './src',
   },
   optimization: {
     minimize: false,
