@@ -3,7 +3,7 @@ import type { GameConfig, Engine } from 'types/game'
 
 import { createEnhancedSystem } from 'core/factories'
 import { Point } from 'core/pixi'
-import priorities from './priorities'
+import { gameConfig } from '../config'
 import { nCameraControl, nPointer } from '../nodes'
 
 export default ($config: GameConfig, $engine: Engine) => {
@@ -34,5 +34,5 @@ export default ($config: GameConfig, $engine: Engine) => {
 }
 
 export const params = {
-  priority: priorities.MOVEMENT,
+  priority: gameConfig.priorities.MOVEMENT,
 }

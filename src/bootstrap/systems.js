@@ -1,50 +1,14 @@
-import {
-  moduleLoader,
-  jsFileNamesNormalizer,
-} from 'core'
+import createSystemsLoader from 'core/loaders/system'
+import { gameConfig } from '../config'
 
-import priorities from '../systems/priorities'
+export default (engine) => {
+  const systemsLoader = createSystemsLoader({
+    engine,
+    defaultSystemPriority: gameConfig.priorities.UPDATE,
+  })
 
-const defaultSystemParams = {
-  priority: priorities.UPDATE,
-  enabled: true,
-}
+  const systemsContext = require.context('../systems')
+  const systems = systemsLoader(systemsContext)
 
-const buildSystemFromContext = (context, meta) => {
-  const {
-    default: systemHandler,
-    params = {},
-  } = context
-
-  const systemParams = {
-    ...defaultSystemParams,
-    ...params,
-    ...meta,
-  }
-
-  return {
-    ...systemParams,
-    systemHandler,
-  }
-}
-
-const systemsLoader = moduleLoader(
-  jsFileNamesNormalizer,
-  buildSystemFromContext,
-)
-
-const sortByPriority = (a, b) => a.priority - b.priority
-const mapSystemHandler = system => system.systemHandler
-
-export default ({ engine, context, ignoredFiles = [] }) => {
-  const systems = systemsLoader(context)
-
-  Object
-    .values(systems)
-    .sort(sortByPriority)
-    .filter(system => (
-      system.enabled && !ignoredFiles.includes(system.name)
-    ))
-    .map(mapSystemHandler)
-    .map(engine.addSystem)
+  systems.forEach(engine.addSystem)
 }

@@ -5,8 +5,6 @@ import {
 
 export default (config) => {
   const {
-    engine,
-    ignoredFiles = [],
     defaultSystemPriority,
   } = config
 
@@ -43,13 +41,10 @@ export default (config) => {
   return (context) => {
     const systems = systemsLoader(context)
 
-    Object
+    return Object
       .values(systems)
       .sort(sortByPriority)
-      .filter(system => (
-        system.enabled && !ignoredFiles.includes(system.name)
-      ))
+      .filter(system => system.enabled)
       .map(system => system.systemHandler)
-      .map(engine.addSystem)
   }
 }

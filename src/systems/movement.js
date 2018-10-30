@@ -1,7 +1,7 @@
 import { createSystem } from 'core/factories'
 import { Point } from 'core/pixi'
 import { nMovement } from '../nodes'
-import priorities from './priorities'
+import { gameConfig } from '../config'
 
 export default ($engine, $config) => createSystem(({ position, motion }, delta) => {
   position.pos.add(motion.vel.multNum(delta))
@@ -11,5 +11,5 @@ export default ($engine, $config) => createSystem(({ position, motion }, delta) 
 })(nMovement)($engine)
 
 export const params = {
-  priority: priorities.MOVEMENT,
+  priority: gameConfig.priorities.MOVEMENT,
 }
