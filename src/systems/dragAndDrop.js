@@ -3,7 +3,7 @@ import { hitTestRect } from 'core/collision'
 import { createEnhancedSystem } from 'core/factories'
 import { nDraggable, nPointer, nMap } from '../nodes'
 import { viewConfig } from '../config'
-import priorities from './priorities'
+import { gameConfig } from '../config'
 import * as c from '../components'
 
 const { groups } = viewConfig
@@ -106,5 +106,5 @@ export default ($engine, $config) => {
 }
 
 export const params = {
-  priority: priorities.MOVEMENT,
+  priority: gameConfig.priorities.MOVEMENT,
 }

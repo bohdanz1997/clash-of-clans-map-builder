@@ -1,7 +1,7 @@
 import { createSystem } from 'core/factories'
 import { Rectangle } from 'core/pixi'
 import { nCollision } from '../nodes'
-import priorities from './priorities'
+import { gameConfig } from '../config'
 
 export default ($engine, $config) => {
   const worldBounds = new Rectangle(0, 0, $config.cartWorldWidth, $config.cartWorldHeight)
@@ -27,5 +27,5 @@ export default ($engine, $config) => {
 }
 
 export const params = {
-  priority: priorities.RESOLVE_COLLISIONS,
+  priority: gameConfig.priorities.RESOLVE_COLLISIONS,
 }

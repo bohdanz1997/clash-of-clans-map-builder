@@ -5,7 +5,7 @@ import { createEnhancedSystem } from 'core/factories'
 
 import { nBackGround } from '../nodes'
 import { Overlay } from '../entities'
-import priorities from './priorities'
+import { gameConfig } from '../config'
 
 export default ($config: GameConfig, $engine: Engine) => createEnhancedSystem({
   init(bgNode) {
@@ -23,5 +23,5 @@ export default ($config: GameConfig, $engine: Engine) => createEnhancedSystem({
 })(nBackGround)($engine)
 
 export const params = {
-  priority: priorities.PRE_INIT,
+  priority: gameConfig.priorities.PRE_INIT,
 }

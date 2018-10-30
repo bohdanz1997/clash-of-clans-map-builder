@@ -4,7 +4,7 @@ import type { GameConfig, Engine } from 'types/game'
 import { createEnhancedSystem } from 'core/factories'
 import { nLayers } from '../nodes'
 import { viewConfig } from '../config'
-import priorities from './priorities'
+import { gameConfig } from '../config'
 
 const { groups } = viewConfig
 
@@ -33,5 +33,5 @@ export default ($config: GameConfig, $engine: Engine) => {
 }
 
 export const params = {
-  priority: priorities.PRE_INIT,
+  priority: gameConfig.priorities.PRE_INIT,
 }

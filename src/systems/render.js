@@ -1,6 +1,6 @@
 import { createSystem } from 'core/factories'
 import { nRender } from '../nodes'
-import priorities from './priorities'
+import { gameConfig } from '../config'
 
 export default ($engine, $world, $hud) => {
   const matchContainer = parentId => ({
@@ -33,5 +33,5 @@ export default ($engine, $world, $hud) => {
 }
 
 export const params = {
-  priority: priorities.RENDER,
+  priority: gameConfig.priorities.RENDER,
 }

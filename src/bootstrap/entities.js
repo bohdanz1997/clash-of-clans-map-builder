@@ -1,52 +1,55 @@
+import { flatArr } from 'core/util'
 import {
-  mapParser,
-  jsModuleLoader,
-  jsonModuleLoader,
+  createMapParser,
+  createEntityBuilder,
 } from 'core'
 
-import { entityBuilder } from 'core/tools'
-
+import { appConfig, gameConfig } from '../config'
 import { generateGroundLayer } from '../services'
 
-const entitiesFactories = jsModuleLoader(require.context('../entities'))
-const mapsDefinitions = jsonModuleLoader(require.context('assets/map'))
-const entitiesDefinitions = jsonModuleLoader(require.context('assets/entity'))
+const toScreenCords = ({ x, y }) => ({
+  x: x * gameConfig.game.cartCellSize,
+  y: y * gameConfig.game.cartCellSize,
+})
 
-const entitiesLoader = (registerEntity, config, entityParamsProvider) => (mapData) => {
-  const initEntitiesFromLayer = (layer) => {
-    const entitiesData = mapParser.parseLayer(layer.data, entitiesDefinitions)
-    entitiesData.forEach((entityParams) => {
-      const changedEntityParams = entityParamsProvider(entityParams)
-      registerEntity(changedEntityParams)
-    })
+const entityParamsProvider = (entityParams) => {
+  if (entityParams.x !== undefined && entityParams.y !== undefined) {
+    return {
+      ...entityParams,
+      ...toScreenCords(entityParams),
+    }
   }
-
-  mapData.layers.unshift(generateGroundLayer(config))
-  mapData.layers.forEach(initEntitiesFromLayer)
-
-  const entityParams = mapParser.parseMapDefinition(mapData, entitiesDefinitions)
-  const changedEntityParams = entityParamsProvider(entityParams)
-  registerEntity(changedEntityParams)
+  return entityParams
 }
 
 export default (engine, deps) => {
-  const registerEntity = entityBuilder(engine, deps, entitiesFactories)
-  const { $config } = deps
+  const {
+    mapDefinitions,
+    entityFactories,
+    entityDefinitions,
+  } = appConfig
 
-  // TODO: move to another place
-  const toScreenCords = ({ x, y }) => ({
-    x: x * $config.cartCellSize,
-    y: y * $config.cartCellSize,
+  const initEntitiesFromLayer = layer => (
+    mapParser.parseLayer(layer.data)
+  )
+
+  const mapParser = createMapParser({
+    entityDefinitions,
   })
 
-  const entityParamsProvider = (entityParams) => {
-    if (entityParams.x !== undefined && entityParams.y !== undefined) {
-      return {
-        ...entityParams,
-        ...toScreenCords(entityParams),
-      }
-    }
-    return entityParams
-  }
-  entitiesLoader(registerEntity, $config, entityParamsProvider)(mapsDefinitions.first)
+  const entityBuilder = createEntityBuilder({
+    deps,
+    entityFactories,
+    entityParamsProvider,
+  })
+
+  const mapDef = mapDefinitions.first
+  const layers = [generateGroundLayer(gameConfig.game), ...mapDef.layers]
+
+  const entitiesParams = layers.map(initEntitiesFromLayer)
+  const gameMapParams = mapParser.parseMapDefinition(mapDef)
+  const allParams = flatArr(...entitiesParams, [gameMapParams])
+
+  const entities = allParams.map(entityBuilder)
+  entities.forEach(engine.addEntity)
 }

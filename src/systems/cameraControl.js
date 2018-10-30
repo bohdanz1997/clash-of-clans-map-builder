@@ -3,7 +3,7 @@ import type { GameConfig, Engine, Keyboard } from 'types/game'
 import type { Container } from 'types/pixi'
 
 import { createSystem } from 'core/factories'
-import priorities from './priorities'
+import { gameConfig } from '../config'
 import { nCameraControl } from '../nodes'
 
 export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $world: Container) => (
@@ -42,5 +42,5 @@ export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $worl
 )
 
 export const params = {
-  priority: priorities.MOVEMENT,
+  priority: gameConfig.priorities.MOVEMENT,
 }
