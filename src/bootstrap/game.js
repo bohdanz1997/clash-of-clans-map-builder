@@ -1,9 +1,9 @@
 import { Application } from 'core/pixi'
 import { createStage } from 'core/renderLayers'
 
+import { createEngine } from '.'
 import { createStats } from '../services'
 import { viewConfig, gameConfig, inject } from '../config'
-import createEngine from './engine'
 
 export default target => () => {
   const app = new Application(gameConfig.pixi)

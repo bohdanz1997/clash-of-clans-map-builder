@@ -5,7 +5,7 @@ import clanCastle from 'assets/image/clanCastle.png'
 import goldStorage from 'assets/image/goldStorage.png'
 import elixirCollector from 'assets/image/elixirCollector.png'
 
-export const resourceLoader = (done) => {
+export default (done) => {
   loader
     .add('ground', ground)
     .add('clanCastle', clanCastle)

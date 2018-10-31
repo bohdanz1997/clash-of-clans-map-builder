@@ -1,8 +1,7 @@
 import { Engine } from 'scent'
 import { objectEach } from 'core/util'
 
-import registerSystems from './systems'
-import registerEntities from './entities'
+import { registerEntities, registerSystems } from '.'
 
 const engineInitializer = deps => (engine, provide) => {
   objectEach(provide, deps)
