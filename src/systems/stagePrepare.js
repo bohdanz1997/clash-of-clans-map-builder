@@ -2,9 +2,8 @@
 import type { GameConfig, Engine } from 'types/game'
 
 import { createEnhancedSystem } from 'core/factories'
+import { viewConfig, gameConfig } from '../config'
 import { nLayers } from '../nodes'
-import { viewConfig } from '../config'
-import { gameConfig } from '../config'
 
 const { groups } = viewConfig
 

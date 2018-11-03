@@ -1,9 +1,8 @@
 import { Point } from 'core/pixi'
 import { hitTestRect } from 'core/collision'
 import { createEnhancedSystem } from 'core/factories'
+import { viewConfig, gameConfig } from '../config'
 import { nDraggable, nPointer, nMap } from '../nodes'
-import { viewConfig } from '../config'
-import { gameConfig } from '../config'
 import * as c from '../components'
 
 const { groups } = viewConfig

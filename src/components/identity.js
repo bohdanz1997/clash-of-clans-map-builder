@@ -10,7 +10,7 @@ export const [cResourceBuilding, ResourceBuilding] = createComponent('resource b
 export const [cWall, Wall] = createComponent('wall')
 export const [cBackGround, BackGround] = createComponent('background')
 
-export const [cInput, Input] = createComponent('input')
+export const [cKeyboard, Keyboard] = createComponent('keyboard')
 export const [cPlayer, Player] = createComponent('player')
 export const [cEnemy, Enemy] = createComponent('enemy')
 

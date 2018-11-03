@@ -18,7 +18,7 @@
     {
       "name": "other",
       "data": [
-        { "id": "input" },
+        { "id": "keyboard" },
         { "id": "camera" },
         { "id": "pointer" },
         { "id": "hud", "x": 0, "y": 0 }

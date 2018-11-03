@@ -1,13 +1,13 @@
 import { createSystem } from 'core/factories'
-import { nInput } from '../nodes'
+import { nKeyboard } from '../nodes'
 import { gameConfig } from '../config'
 
 export default ($engine, $keyboard) => {
   $keyboard.start()
 
-  return createSystem((delta) => {
+  return createSystem((node, delta) => {
     $keyboard.update(delta)
-  })(nInput)($engine)
+  })(nKeyboard)($engine)
 }
 
 export const params = {

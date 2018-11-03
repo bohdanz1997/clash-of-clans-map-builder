@@ -1,7 +1,7 @@
 export { default as Background } from './background'
 export { default as Camera } from './camera'
 export { default as ClanCastle } from './clanCastle'
-export { default as Input } from './input'
+export { default as Input } from './keyboard'
 export { default as Map } from './map'
 export { default as Overlay } from './overlay'
 export { default as Pointer } from './player'
