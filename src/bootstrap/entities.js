@@ -29,6 +29,11 @@ export default (engine, deps) => {
     entityDefinitions,
   } = appConfig
 
+  const mapSize = {
+    width: gameConfig.game.widthInTiles,
+    height: gameConfig.game.heightInTiles,
+  }
+
   const initEntitiesFromLayer = layer => (
     mapParser.parseLayer(layer.data)
   )
@@ -47,7 +52,7 @@ export default (engine, deps) => {
   const layers = [generateGroundLayer(gameConfig.game), ...mapDef.layers]
 
   const entitiesParams = layers.map(initEntitiesFromLayer)
-  const gameMapParams = mapParser.parseMapDefinition(mapDef)
+  const gameMapParams = { ...mapParser.parseMapDefinition(mapDef), ...mapSize }
   const allParams = flatArr(...entitiesParams, [gameMapParams])
 
   const entities = allParams.map(entityBuilder)
