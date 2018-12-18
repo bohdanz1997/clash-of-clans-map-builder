@@ -3,15 +3,22 @@ import { pipeHOCs, withComponents } from '../components/hoc'
 import { withDisplay } from '../services'
 import * as c from '../components'
 
-export default ({ x, y, entityId }, { $positioning }) => {
+export default ({ index, entityMeta }, { $positioning }) => {
   const bounds = new Rectangle(0, 0, 80, 80)
-  const pos = $positioning.bottomLeft({ x: 0, y: bounds.height })
+  const margin = 20
+
+  const pos = $positioning.bottomLeft({
+    x: index * bounds.width + margin,
+    y: bounds.height,
+  })
 
   return pipeHOCs(
     withComponents(
       c.DeckItem(),
       c.EntityMeta({
-        id: 'clanCastle',
+        id: entityMeta.id,
+        level: entityMeta.level,
+        count: entityMeta.count,
       }),
       c.HudLayer(),
       c.Position(pos),
@@ -19,7 +26,7 @@ export default ({ x, y, entityId }, { $positioning }) => {
       c.Collision(bounds),
     ),
     withDisplay.sprite({
-      texture: entityId,
+      texture: entityMeta.id,
       width: bounds.width,
       height: bounds.height,
       parentId: 'hud',

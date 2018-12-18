@@ -11,7 +11,10 @@ export const [cResourceBuilding, ResourceBuilding] = createComponent('resource b
 export const [cWall, Wall] = createComponent('wall')
 export const [cOverlayOwner, OverlayOwner] = createComponent('overlayOwner')
 export const [cDeckItem, DeckItem] = createComponent('deckItem')
-export const [cEntityMeta, EntityMeta] = createComponent('entityMeta', 'id level')
+export const [cEntityMeta, EntityMeta] = createComponent(
+  'entityMeta', 'id level count',
+  ({ id, level = 1, count = 1 }) => ({ id, level, count }),
+)
 
 export const [cKeyboard, Keyboard] = createComponent('keyboard')
 export const [cPlayer, Player] = createComponent('player')

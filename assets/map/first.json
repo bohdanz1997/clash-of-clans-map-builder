@@ -21,7 +21,20 @@
         { "id": "pointer" },
         { "id": "hud", "x": 0, "y": 0 },
         { "id": "deck" },
-        { "id": "deckItem", "x": 100, "y": 100, "entityId": "clanCastle" }
+        {
+          "id": "deckItem",
+          "index": 0,
+          "entityMeta": {
+            "id": "clanCastle"
+          }
+        },
+        {
+          "id": "deckItem",
+          "index": 1,
+          "entityMeta": {
+            "id": "goldStorage"
+          }
+        }
       ]
     }
   ]
