@@ -1,5 +1,6 @@
 import { Rectangle } from 'core/pixi'
-import { withRectDisplay, pipeHOCs, withComponents } from '../components/hoc'
+import { pipeHOCs, withComponents } from '../components/hoc'
+import { withDisplay } from '../services'
 import * as c from '../components'
 
 export default (_, { $positioning }) => {
@@ -10,8 +11,13 @@ export default (_, { $positioning }) => {
     withComponents(
       c.HudLayer(),
       c.Deck(),
-      c.Position({ x: pos.x, y: pos.y })
+      c.Position(pos)
     ),
-    withRectDisplay(bounds.width, bounds.height, 0xf44336, 'hud')
+    withDisplay.rect({
+      width: bounds.width,
+      height: bounds.height,
+      color: 0xf44336,
+      parentId: 'hud',
+    })
   )
 }

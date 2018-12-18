@@ -1,5 +1,6 @@
 import * as c from '../components'
-import { withComponents, withIsoRectDisplay, pipeHOCs } from '../components/hoc'
+import { withComponents, pipeHOCs } from '../components/hoc'
+import { withDisplay } from '../services'
 
 export default ({ width, height, target }) => pipeHOCs(
   withComponents(
@@ -8,5 +9,5 @@ export default ({ width, height, target }) => pipeHOCs(
     c.Position(),
     c.IsoPosition(),
   ),
-  withIsoRectDisplay(width, height, 0x8bc34a),
+  withDisplay.isoRect({ width, height, color: 0x8bc34a }),
 )

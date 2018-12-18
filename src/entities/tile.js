@@ -1,5 +1,6 @@
 import * as c from '../components'
-import { withComponents, withIsoDisplay, pipeHOCs } from '../components/hoc'
+import { withComponents, pipeHOCs } from '../components/hoc'
+import { withDisplay } from '../services'
 
 export default ({ x, y, isoWidth, isoHeight }) => pipeHOCs(
   withComponents(
@@ -7,5 +8,9 @@ export default ({ x, y, isoWidth, isoHeight }) => pipeHOCs(
     c.Position({ x, y }),
     c.IsoPosition(),
   ),
-  withIsoDisplay('ground', isoWidth, isoHeight),
+  withDisplay.sprite({
+    texture: 'ground',
+    width: isoWidth,
+    height: isoHeight,
+  }),
 )

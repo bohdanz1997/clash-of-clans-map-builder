@@ -3,9 +3,9 @@ import { expolorer } from 'assets/atlas/treasureHunter'
 
 import {
   pipeHOCs,
-  withDisplay,
   withComponents,
 } from '../components/hoc'
+import { withDisplay } from '../services'
 import * as c from '../components'
 
 const withFSM = (entity) => {
@@ -33,6 +33,6 @@ export default ({ x, y, width, height, speed, health, damage }) => (
       c.Health({ health }),
     ),
     withFSM,
-    withDisplay(expolorer),
+    withDisplay.sprite({ texture: expolorer }),
   )
 )

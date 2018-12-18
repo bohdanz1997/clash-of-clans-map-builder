@@ -1,6 +1,7 @@
 import { Rectangle } from 'pixi.js'
+import { pipeHOCs, withComponents } from '../components/hoc'
+import { withDisplay } from '../services'
 import * as c from '../components'
-import { withDisplay, pipeHOCs, withComponents } from '../components/hoc'
 
 export default ({ x, y, entityId }, { $positioning }) => {
   const bounds = new Rectangle(0, 0, 80, 80)
@@ -13,10 +14,15 @@ export default ({ x, y, entityId }, { $positioning }) => {
         id: 'clanCastle',
       }),
       c.HudLayer(),
-      c.Position({ x: pos.x, y: pos.y }),
+      c.Position(pos),
       c.Interactive(),
-      c.Collision({ width: bounds.width, height: bounds.height }),
+      c.Collision(bounds),
     ),
-    withDisplay(entityId, bounds.width, bounds.height, 'hud')
+    withDisplay.sprite({
+      texture: entityId,
+      width: bounds.width,
+      height: bounds.height,
+      parentId: 'hud',
+    }),
   )
 }

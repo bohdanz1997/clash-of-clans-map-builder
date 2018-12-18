@@ -1,20 +1,15 @@
-import { createText } from 'core/factories'
 import * as c from '../components'
-import { withComponents, withTextDisplay, pipeHOCs } from '../components/hoc'
+import { withComponents, pipeHOCs } from '../components/hoc'
+import { withDisplay } from '../services'
 
-export default ({ id, x, y }) => {
-  const text = createText({
+export default ({ id, x, y }) => pipeHOCs(
+  withComponents(
+    c.HudLayer(),
+    c.Position({ x, y }),
+  ),
+  withDisplay.text({
     font: '12px sans',
     fillStyle: 'white',
-    x,
-    y,
-  })
-
-  return pipeHOCs(
-    withComponents(
-      c.HudLayer(),
-      c.Position({ x, y }),
-    ),
-    withTextDisplay(text),
-  )
-}
+    parentId: 'hud',
+  }),
+)

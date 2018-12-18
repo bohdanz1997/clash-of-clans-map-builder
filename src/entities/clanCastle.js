@@ -1,5 +1,6 @@
 import * as c from '../components'
-import { withComponents, withIsoDisplay, pipeHOCs } from '../components/hoc'
+import { withComponents, pipeHOCs } from '../components/hoc'
+import { withDisplay } from '../services'
 
 export default ({ id, x, y, offsetX, offsetY, isoWidth, isoHeight, sizeInCells }, { $config }) => (
   pipeHOCs(
@@ -18,6 +19,6 @@ export default ({ id, x, y, offsetX, offsetY, isoWidth, isoHeight, sizeInCells }
         sizeInCells,
       }),
     ),
-    withIsoDisplay(id),
+    withDisplay.sprite({ texture: id }),
   )
 )
