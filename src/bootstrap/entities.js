@@ -22,7 +22,7 @@ const entityParamsProvider = (entityParams) => {
   return entityParams
 }
 
-export default (engine, deps) => {
+export default (engine, scope) => {
   const {
     mapDefinitions,
     entityFactories,
@@ -43,7 +43,7 @@ export default (engine, deps) => {
   })
 
   const entityBuilder = createEntityBuilder({
-    deps,
+    scope,
     entityFactories,
     entityParamsProvider,
   })

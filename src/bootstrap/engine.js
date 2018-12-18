@@ -3,14 +3,14 @@ import { objectEach } from 'core/util'
 
 import { registerEntities, registerSystems } from '.'
 
-const engineInitializer = deps => (engine, provide) => {
-  objectEach(provide, deps)
+const engineInitializer = scope => (engine, provide) => {
+  objectEach(provide, scope)
 }
 
-export default (config, deps) => {
-  const engine = new Engine(engineInitializer(deps))
+export default (scope) => {
+  const engine = new Engine(engineInitializer(scope))
 
-  registerEntities(engine, deps)
+  registerEntities(engine, scope)
   registerSystems(engine)
 
   return engine

@@ -1,4 +1,4 @@
-const getEntityDefinition = (definitions, id) => {
+export const getEntityDefinition = (definitions, id) => {
   const entityDefinition = definitions[id]
   if (!entityDefinition) {
     throw new Error(`Could not find entity definition for '${id}'`)
@@ -6,7 +6,20 @@ const getEntityDefinition = (definitions, id) => {
   return entityDefinition
 }
 
-const getLevelDefinition = (entityDefinition, level) => (
+export const makeEntityParams = (definitions, data) => {
+  const { level, id } = data
+
+  const entityDefinition = getEntityDefinition(definitions, id)
+  const levelDefinition = getLevelDefinition(entityDefinition, level)
+
+  return {
+    ...entityDefinition,
+    ...levelDefinition,
+    ...data,
+  }
+}
+
+export const getLevelDefinition = (entityDefinition, level) => (
   entityDefinition.levels
     ? entityDefinition.levels[level]
     : {}
@@ -26,18 +39,6 @@ export default ({ entityDefinitions }) => ({
   },
 
   parseLayer(layerData) {
-    const makeEntityParams = (entityData) => {
-      const { level, id } = entityData
-
-      const entityDefinition = getEntityDefinition(entityDefinitions, id)
-      const levelDefinition = getLevelDefinition(entityDefinition, level)
-
-      return {
-        ...entityDefinition,
-        ...levelDefinition,
-        ...entityData,
-      }
-    }
-    return layerData.map(makeEntityParams)
+    return layerData.map(item => makeEntityParams(entityDefinitions, item))
   },
 })

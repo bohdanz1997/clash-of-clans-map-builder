@@ -2,7 +2,7 @@ import { stringifyJSON, pipe } from 'core/util'
 
 export default (config) => {
   const {
-    deps,
+    scope,
     entityFactories,
     entityParamsProvider,
   } = config
@@ -18,7 +18,7 @@ export default (config) => {
       throw new Error(`Could not find entity factory for id '${id}'`)
     }
 
-    return entityFactory(entityParams, deps)
+    return entityFactory(entityParams, scope)
   }
 
   return pipe(

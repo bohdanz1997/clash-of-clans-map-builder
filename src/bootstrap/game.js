@@ -1,9 +1,21 @@
+import { createEntityBuilder } from 'core'
 import { Application } from 'core/pixi'
 import { createStage } from 'core/renderLayers'
-
 import { createEngine } from '.'
-import { createStats } from '../services'
-import { viewConfig, gameConfig, inject } from '../config'
+
+import {
+  createStats,
+  createEntityFactory,
+} from '../services'
+
+import {
+  viewConfig,
+  gameConfig,
+  appConfig,
+  inject,
+} from '../config'
+
+const { entityFactories } = appConfig
 
 export default target => () => {
   const app = new Application(gameConfig.pixi)
@@ -12,8 +24,17 @@ export default target => () => {
   target.appendChild(app.view)
 
   const stats = createStats()
-  const deps = inject(gameConfig.game, app, target)
-  const engine = createEngine(gameConfig.game, deps)
+  const scope = inject(gameConfig.game, app, target)
+
+  const entityBuilder = createEntityBuilder({
+    scope,
+    entityFactories,
+    entityParamsProvider: x => x,
+  })
+
+  scope.$entityFactory = createEntityFactory(entityBuilder)
+
+  const engine = createEngine(scope)
   engine.start()
 
   app.ticker.add((delta) => {
