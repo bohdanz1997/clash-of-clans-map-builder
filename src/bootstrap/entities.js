@@ -30,8 +30,8 @@ export default (engine, deps) => {
   } = appConfig
 
   const mapSize = {
-    width: gameConfig.game.widthInTiles,
-    height: gameConfig.game.heightInTiles,
+    width: gameConfig.game.widthInCells,
+    height: gameConfig.game.heightInCells,
   }
 
   const initEntitiesFromLayer = layer => (
