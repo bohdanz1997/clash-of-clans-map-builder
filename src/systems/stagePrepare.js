@@ -8,10 +8,13 @@ import { nLayers } from '../nodes'
 const { groups } = viewConfig
 
 export default ($config: GameConfig, $engine: Engine) => {
+  const setDisplayGroup = group => ({ display }) => {
+    display.group = group
+  }
+
   const initLayer = (node, group) => {
-    node.each(({ display }) => {
-      display.group = group
-    })
+    node.each(setDisplayGroup(group))
+    node.onAdded(setDisplayGroup(group))
   }
 
   return createEnhancedSystem({

@@ -22,5 +22,9 @@ export default ($engine: Engine, $world: Container, $config: GameConfig) => {
       node.each(makeIsoPointerUtil)
       node.onAdded(makeIsoPointerUtil)
     },
+
+    update({ pointer }) {
+      pointer.pointer.scale = $world.scale.x
+    },
   })(nPointer)($engine)
 }

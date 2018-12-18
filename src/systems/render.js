@@ -8,19 +8,19 @@ export default ($engine, $world, $hud) => {
     hud: $hud,
   })[parentId]
 
+  const addRenderChild = ({ display }) => {
+    matchContainer(display.parentId).addChild(display.sprite)
+  }
+
+  const removeRenderChild = ({ display }) => {
+    matchContainer(display.parentId).removeChild(display.sprite)
+  }
+
   return createSystem({
     init(node) {
-      node.each(({ display }) => {
-        matchContainer(display.parentId).addChild(display.sprite)
-      })
-
-      node.onAdded(({ display }) => {
-        matchContainer(display.parentId).addChild(display.sprite)
-      })
-
-      node.onRemoved(({ display }) => {
-        matchContainer(display.parentId).removeChild(display.sprite)
-      })
+      node.each(addRenderChild)
+      node.onAdded(addRenderChild)
+      node.onRemoved(removeRenderChild)
     },
 
     update({ position, display }) {
