@@ -1,5 +1,5 @@
 import { Point } from 'core/pixi'
-import { hitTestRect } from 'core/collision'
+import { hitTest } from 'core/collision'
 import { createEnhancedSystem } from 'core/factories'
 import { viewConfig, gameConfig } from '../config'
 import { nDraggable, nPointer, nMap } from '../nodes'
@@ -8,7 +8,7 @@ import * as c from '../components'
 const { groups } = viewConfig
 
 const findHitDragNodeByPointer = (draggableNode, pointer) => (
-  draggableNode.find(({ display, collision }) => hitTestRect(collision.bounds, pointer.cartPosition))
+  draggableNode.find(({ collision }) => hitTest.rect(collision.bounds, pointer.cartPosition))
 )
 
 export default ($engine, $config) => {

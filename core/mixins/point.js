@@ -107,6 +107,8 @@ export const pointMixin = (Point) => {
     )
   }
 
+  Point.of = (x, y) => new Point(x, y)
+
   Object.defineProperty(Point, 'EMPTY', {
     get() {
       return new Point(0, 0)
