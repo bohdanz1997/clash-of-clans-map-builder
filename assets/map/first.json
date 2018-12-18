@@ -19,7 +19,9 @@
         { "id": "keyboard" },
         { "id": "camera" },
         { "id": "pointer" },
-        { "id": "hud", "x": 0, "y": 0 }
+        { "id": "hud", "x": 0, "y": 0 },
+        { "id": "deck" },
+        { "id": "deckItem", "x": 100, "y": 100, "entityId": "clanCastle" }
       ]
     }
   ]

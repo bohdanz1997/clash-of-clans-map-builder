@@ -4,10 +4,11 @@ import { withComponents, withIsoDisplay, pipeHOCs } from '../components/hoc'
 export default ({ id, x, y, offsetX, offsetY, isoWidth, isoHeight, sizeInCells }, { $config }) => (
   pipeHOCs(
     withComponents(
-      c.Identity(),
+      c.Identity({ id }),
       c.BuildingLayer(),
       c.Draggable(),
-      c.BackGround(),
+      c.Interactive(),
+      c.OverlayOwner(),
       c.Position({ x, y, offsetX, offsetY }),
       c.IsoPosition(),
       c.Motion(),

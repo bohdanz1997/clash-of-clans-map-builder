@@ -7,10 +7,10 @@ import { createSmoothStep } from 'core/tools'
 
 import * as c from '../components'
 
-export default ({ speed, damp }: any, deps: Deps) => {
-  const keyboard = deps.$keyboard
-  const world = deps.$world
-  const config = deps.$config
+export default ({ speed, damp }: any, scope: Deps) => {
+  const keyboard = scope.$keyboard
+  const world = scope.$world
+  const config = scope.$config
 
   const [
     keyZoomPlus,
