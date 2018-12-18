@@ -1,4 +1,5 @@
 import { createComponent } from 'core/factories'
+import { uuid } from '../../core/util'
 
 export const [cUnit, Unit] = createComponent('unit')
 export const [cSpell, Spell] = createComponent('spell')
@@ -8,7 +9,9 @@ export const [cDefenceBuilding, DefenceBuilding] = createComponent('defence buil
 export const [cServiceBuilding, ServiceBuilding] = createComponent('service building')
 export const [cResourceBuilding, ResourceBuilding] = createComponent('resource building')
 export const [cWall, Wall] = createComponent('wall')
-export const [cBackGround, BackGround] = createComponent('background')
+export const [cOverlayOwner, OverlayOwner] = createComponent('overlayOwner')
+export const [cDeckItem, DeckItem] = createComponent('deckItem')
+export const [cEntityMeta, EntityMeta] = createComponent('entityMeta', 'id level')
 
 export const [cKeyboard, Keyboard] = createComponent('keyboard')
 export const [cPlayer, Player] = createComponent('player')
@@ -21,9 +24,7 @@ export const [cBuildingLayer, BuildingLayer] = createComponent('game object laye
 export const [cDragLayer, DragLayer] = createComponent('drag layer')
 export const [cHudLayer, HudLayer] = createComponent('hud layer')
 
-let idx = 0
-
 export const [cIdentity, Identity] = createComponent(
-  'identity', 'id type',
-  () => ({ id: idx++, type: null }),
+  'identity', 'id seed',
+  ({ id = null } = {}) => ({ seed: uuid(), id }),
 )

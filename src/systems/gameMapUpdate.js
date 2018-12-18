@@ -8,7 +8,7 @@ export default ($engine, $config) => {
     const normPos = Point.floor(Point.divNum(position.pos, $config.cartCellSize))
 
     if (layer.isEmptyInSize(normPos.x, normPos.y, collision.sizeInCells)) {
-      layer.setInSize(normPos.x, normPos.y, identity.id, collision.sizeInCells)
+      layer.setInSize(normPos.x, normPos.y, identity.seed, collision.sizeInCells)
     }
   }
 
