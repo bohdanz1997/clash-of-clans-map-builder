@@ -72,6 +72,9 @@ export const makePointer = ({ element, scale = 1 }) => {
     dragOffsetX: 0,
     dragOffsetY: 0,
 
+    // Detects pointer is hovered over other entity
+    hoverOver: false,
+
     // A property to check whether or not the pointer
     // is visible
     get visible() {

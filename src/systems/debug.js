@@ -8,8 +8,8 @@ export default ($engine: Engine) => {
   createEnhancedSystem({
     update(pointerNode, hudNode) {
       const { display } = hudNode.head
-      const { pointer } = pointerNode.head.pointer
-      const { position, fieldPosition, cartPosition } = pointer
+      const { pointer } = pointerNode.head
+      const { position, fieldPosition, cartPosition } = pointer.input
 
       display.sprite.content = `
         x: ${position.x}
@@ -18,6 +18,7 @@ export default ($engine: Engine) => {
         cartY: ${Math.floor(cartPosition.y)}
         column: ${fieldPosition.x}
         row: ${fieldPosition.y}
+        hover: ${pointer.input.hoverOver}
       `
     },
   })(PointerNode, HudNode)($engine)

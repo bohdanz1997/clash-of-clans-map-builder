@@ -1,5 +1,4 @@
 import { createEnhancedSystem } from 'core/scent'
-import * as c from '../components'
 import { createDnD } from '../services'
 import { DeckNode, DeckItemNode, PointerNode } from '../nodes'
 
@@ -8,20 +7,21 @@ export default ($engine, $entityFactory, $config) => {
 
   createEnhancedSystem({
     init(nDeck, nDeckItem, nPointer) {
-      const { pointer: cPointer } = nPointer.head
+      const { pointer } = nPointer.head
 
       nDeckItem.each((node) => {
         const { entityMeta, interactive } = node
         interactive.press = () => {
-          const entity = $entityFactory.create({
-            id: entityMeta.id,
+          const pos = pointer.input.cartPosition
+          const entity = $entityFactory.create(entityMeta.id, {
+            def: entityMeta.def,
+            x: pos.x,
+            y: pos.y,
           })
-          const cPosition = entity.get(c.cPosition)
-          cPosition.pos.copy(cPointer.pointer.cartPosition)
 
           $engine.addEntity(entity)
 
-          dndManager.start(cPointer, entity)
+          dndManager.start(nPointer.head, entity)
         }
       })
     },

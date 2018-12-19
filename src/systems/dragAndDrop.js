@@ -4,8 +4,10 @@ import { gameConfig } from '../config'
 import { createDnD } from '../services'
 import { DraggableNode, PointerNode, MapNode } from '../nodes'
 
-const findHitDragNodeByPointer = (draggableNode, pointer) => (
-  draggableNode.find(({ collision }) => hitTest.rect(collision.bounds, pointer.cartPosition))
+const findHitDragNodeByPointer = (draggableNode, position) => (
+  draggableNode.find(({ collision }) => (
+    hitTest.rect(collision.bounds, position)
+  ))
 )
 
 export default ($engine, $config) => {
@@ -19,34 +21,22 @@ export default ($engine, $config) => {
     },
 
     update(draggableNode, pointerNode) {
-      pointerNode.each(({ pointer: cPointer }) => {
-        const { pointer } = cPointer
-        const foundDragNode = findHitDragNodeByPointer(draggableNode, pointer)
+      pointerNode.each((nPointer) => {
+        const { pointer } = nPointer
+        const foundDragNode = findHitDragNodeByPointer(
+          draggableNode,
+          pointer.input.cartPosition
+        )
 
-        if (pointer.isDown) {
-          if (cPointer.dragTarget === null) {
-            if (foundDragNode) {
-              dndManager.start(cPointer, foundDragNode.entityRef)
-            }
-          } else {
-            dndManager.move(cPointer)
+        if (pointer.input.isDown) {
+          if (foundDragNode) {
+            dndManager.start(nPointer, foundDragNode.entityRef)
           }
+          dndManager.move(nPointer)
         }
 
-        if (pointer.isUp) {
-          if (cPointer.dragTarget !== null) {
-            dndManager.end(cPointer)
-          }
-        }
-
-        // Change the mouse arrow pointer to a hand if it's over a
-        // draggable sprite
-        if (foundDragNode) {
-          if (pointer.visible) {
-            pointer.cursor = 'pointer'
-          }
-        } else if (pointer.visible) {
-          pointer.cursor = 'auto'
+        if (pointer.input.isUp) {
+          dndManager.end(nPointer)
         }
       })
     },

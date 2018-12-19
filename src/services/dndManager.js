@@ -5,59 +5,68 @@ import viewConfig from '../config/view'
 const { groups } = viewConfig
 
 export const createDnD = ({ cellSize }) => ({
-  start(cPointer, dragTarget) {
-    cPointer.dragTarget = dragTarget
+  start(nPointer, dragTarget) {
+    const { pointer, dragSource } = nPointer
 
-    const { pointer } = cPointer
-    const display = dragTarget.get(c.cDisplay)
-    const draggable = dragTarget.get(c.cDraggable)
-    const position = dragTarget.get(c.cPosition)
+    if (!dragSource.target) {
+      dragSource.target = dragTarget
 
-    // store target position
-    draggable.prevPos = position.pos.clone()
+      const display = dragTarget.get(c.cDisplay)
+      const draggable = dragTarget.get(c.cDraggable)
+      const position = dragTarget.get(c.cPosition)
 
-    // Calculate the difference between the pointer's
-    // position and the sprite's position
-    const { cartPosition } = pointer
-    const offset = cartPosition.sub(position.pos)
-    cPointer.dragOffset.copy(offset)
+      // store target position
+      draggable.prevPos = position.pos.clone()
 
-    // set higher render priority via setting drag group
-    display.oldGroup = display.group
-    display.group = groups.DRAG
+      // Calculate the difference between the pointer's
+      // position and the sprite's position
+      const offset = pointer.input.cartPosition.sub(position.pos)
+      dragSource.offset.copy(offset)
 
-    // TODO: use FSM
-    dragTarget.remove(c.cBuildingLayer)
-    dragTarget.add(c.cDragLayer)
+      // set higher render priority via setting drag group
+      display.oldGroup = display.group
+      display.group = groups.DRAG
+
+      // TODO: use FSM
+      dragTarget.remove(c.cBuildingLayer)
+      dragTarget.add(c.cDragLayer)
+    }
   },
 
-  end(cPointer) {
-    const { dragTarget } = cPointer
-    const display = dragTarget.get(c.cDisplay)
-    const draggable = dragTarget.get(c.cDraggable)
-    const position = dragTarget.get(c.cPosition)
-    const collision = dragTarget.get(c.cCollision)
+  end(nPointer) {
+    const { dragSource } = nPointer
+    const dragTarget = dragSource.target
 
-    display.group = display.oldGroup
+    if (dragTarget) {
+      const display = dragTarget.get(c.cDisplay)
+      // const draggable = dragTarget.get(c.cDraggable)
+      // const position = dragTarget.get(c.cPosition)
+      // const collision = dragTarget.get(c.cCollision)
 
-    // if (!buildingLayer.isEmptyInSize(position.fieldPos.x, position.fieldPos.y, collision.sizeInCells)) {
-    //   position.pos.copy(draggable.prevPos)
-    // }
+      display.group = display.oldGroup
 
-    dragTarget.remove(c.cDragLayer)
-    dragTarget.add(c.cBuildingLayer)
-    cPointer.dragTarget = null
+      // if (!buildingLayer.isEmptyInSize(position.fieldPos.x, position.fieldPos.y, collision.sizeInCells)) {
+      //   position.pos.copy(draggable.prevPos)
+      // }
+
+      dragTarget.remove(c.cDragLayer)
+      dragTarget.add(c.cBuildingLayer)
+      dragSource.target = null
+    }
   },
 
-  move(cPointer) {
-    const { pointer, dragOffset, dragTarget } = cPointer
-    const position = dragTarget.get(c.cPosition)
+  move(nPointer) {
+    const { pointer, dragSource } = nPointer
 
-    const newPos = Point.sub(
-      pointer.cartPosition.floorNum(cellSize),
-      dragOffset.floorNum(cellSize),
-    )
+    if (dragSource.target) {
+      const targetPosition = dragSource.target.get(c.cPosition)
 
-    position.pos.copy(newPos)
+      const newPos = Point.sub(
+        pointer.input.cartPosition.floorNum(cellSize),
+        dragSource.offset.floorNum(cellSize),
+      )
+
+      targetPosition.pos.copy(newPos)
+    }
   },
 })

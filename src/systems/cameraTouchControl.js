@@ -6,26 +6,40 @@ import { Point } from 'core/pixi'
 import { gameConfig } from '../config'
 import { CameraControlNode, PointerNode } from '../nodes'
 
+const pointIn = range => (point) => {
+  let x = Math.min(point.x, range)
+  x = Math.max(x, -range)
+
+  let y = Math.min(point.y, range)
+  y = Math.max(y, -range)
+
+  return Point.of(x, y)
+}
+
 export default ($config: GameConfig, $engine: Engine) => {
   let origDragPoint = null
+  const maxScrollSpeed = 30
+  const pointInRange = pointIn(maxScrollSpeed)
 
   return createEnhancedSystem({
-    update(cameraNode, pointerNode) {
+    update(nCamera, nPointer) {
       const {
         motion,
-      } = cameraNode.head
+      } = nCamera.head
 
       const {
         pointer,
-      } = pointerNode.head
+        dragSource,
+      } = nPointer.head
 
-      if (pointer.pointer.isDown && pointer.dragTarget === null) {
+      if (pointer.input.isDown && dragSource.target === null) {
         if (origDragPoint) {
-          const diff = Point.sub(origDragPoint, pointer.pointer.position)
-          motion.vel.copy(diff)
+          const diff = Point.sub(origDragPoint, pointer.input.position)
+          const corrected = pointInRange(diff)
+          motion.vel.copy(corrected)
         }
 
-        origDragPoint = pointer.pointer.position.clone()
+        origDragPoint = pointer.input.position.clone()
       } else {
         origDragPoint = null
       }
@@ -34,5 +48,6 @@ export default ($config: GameConfig, $engine: Engine) => {
 }
 
 export const params = {
+  enabled: true,
   priority: gameConfig.priorities.MOVEMENT,
 }

@@ -2,6 +2,7 @@ import { hitTest } from 'core/collision'
 import { withReducer } from 'core/util'
 import { createEnhancedSystem } from 'core/scent'
 import { gameConfig } from '../config'
+import * as c from '../components'
 import { PointerNode, InteractiveNode } from '../nodes'
 import { interactActions, interactStates } from '../constants'
 
@@ -22,18 +23,28 @@ const interactiveReducer = withReducer((state, action) => ({
   } : state),
 }[action.state]))
 
-export default ($engine, $config) => createEnhancedSystem({
-  updateInteractive(interactive, pointer, hit) {
+const detectHit = (nInteractive, pointerInput) => {
+  const { collision, entityRef } = nInteractive
+  const isIso = entityRef.has(c.cIsoPosition)
+  const pointerPos = isIso
+    ? pointerInput.cartPosition
+    : pointerInput.position
+
+  return hitTest.rect(collision.bounds, pointerPos)
+}
+
+export default $engine => createEnhancedSystem({
+  updateInteractive(interactive, pointerInput, didHit) {
     // set default UP state
     interactive.state = interactStates.UP
     interactive.action = interactActions.NONE
 
     // pointer is touching element
-    if (hit) {
+    if (didHit) {
       // set default OVER state while pointer is touching
       interactive.state = interactStates.OVER
 
-      if (pointer.isDown) {
+      if (pointerInput.isDown) {
         // set DOWN state while pointer is pressed
         interactive.state = interactStates.DOWN
       }
@@ -45,14 +56,16 @@ export default ($engine, $config) => createEnhancedSystem({
     }
 
     const action = {
-      state: interactive.state,
       pressed: interactive.pressed,
+      state: interactive.state,
     }
 
     const newState = interactiveReducer(state, action)
 
     interactive.pressed = newState.pressed
     interactive.action = newState.action
+
+    interactive.hoverOver = didHit
 
     if (interactive.action === interactActions.PRESSED) {
       interactive.press()
@@ -64,19 +77,17 @@ export default ($engine, $config) => createEnhancedSystem({
   },
 
   update(interactiveNode, pointerNode) {
-    const cPointer = pointerNode.head.pointer
-    const { pointer } = cPointer
-    let hitDetected = false
+    pointerNode.each(({ pointer }) => {
+      pointer.input.hoverOver = false
 
-    interactiveNode.each((item) => {
-      const { collision, interactive } = item
-      const hit = hitTest.rect(collision.bounds, pointer.position)
-      if (hit) hitDetected = true
+      interactiveNode.each((nInteractive) => {
+        const { interactive } = nInteractive
+        const hit = detectHit(nInteractive, pointer.input)
 
-      this.updateInteractive(interactive, pointer, hit)
+        this.updateInteractive(interactive, pointer.input, hit)
+        if (hit) pointer.input.hoverOver = true
+      })
     })
-
-    // pointer.cursor = (hitDetected && pointer.visible) ? 'pointer' : 'auto'
   },
 })(InteractiveNode, PointerNode)($engine)
 
