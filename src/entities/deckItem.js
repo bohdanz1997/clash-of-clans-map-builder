@@ -17,6 +17,7 @@ export default ({ index, entityMeta }, { $positioning }) => {
       c.DeckItem(),
       c.EntityMeta({
         id: entityMeta.id,
+        def: entityMeta.def,
         level: entityMeta.level,
         count: entityMeta.count,
       }),
@@ -26,7 +27,7 @@ export default ({ index, entityMeta }, { $positioning }) => {
       c.Collision(bounds),
     ),
     withDisplay.sprite({
-      texture: entityMeta.id,
+      texture: entityMeta.def,
       width: bounds.width,
       height: bounds.height,
       parentId: 'hud',

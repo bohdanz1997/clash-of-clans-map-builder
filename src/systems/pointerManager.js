@@ -11,7 +11,7 @@ import { PointerNode } from '../nodes'
 export default ($engine: Engine, $world: Container, $config: GameConfig) => {
   const makeIsoPointerUtil = ({ pointer }) => {
     pointerManager.toIso({
-      pointer: pointer.pointer,
+      pointer: pointer.input,
       matrix: invertIsoMatrix,
       config: $config,
       world: $world,
@@ -25,7 +25,12 @@ export default ($engine: Engine, $world: Container, $config: GameConfig) => {
     },
 
     update({ pointer }) {
-      pointer.pointer.scale = $world.scale.x
+      const { input } = pointer
+
+      input.scale = $world.scale.x
+      input.cursor = (input.hoverOver && input.visible)
+        ? 'pointer'
+        : 'auto'
     },
   })(PointerNode)($engine)
 }

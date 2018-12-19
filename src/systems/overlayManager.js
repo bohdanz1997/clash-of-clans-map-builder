@@ -4,13 +4,12 @@ import type { GameConfig, Engine } from 'types/game'
 import { createEnhancedSystem } from 'core/scent'
 
 import { OverlayOwnerNode, OverlayNode } from '../nodes'
-import { Overlay } from '../entities'
 import { gameConfig } from '../config'
 
-export default ($config: GameConfig, $engine: Engine) => {
+export default ($config: GameConfig, $engine: Engine, $entityFactory) => {
 
   const createOverlay = ({ position }) => {
-    const overlay = Overlay({
+    const overlay = $entityFactory.create('overlay', {
       width: $config.cartTileSize,
       height: $config.cartTileSize,
       target: position,

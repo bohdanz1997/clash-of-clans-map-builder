@@ -8,8 +8,9 @@ export const getEntityDefinition = (definitions, id) => {
 
 export const makeEntityParams = (definitions, data) => {
   const { level, id } = data
+  const def = data.def || id
 
-  const entityDefinition = getEntityDefinition(definitions, id)
+  const entityDefinition = getEntityDefinition(definitions, def)
   const levelDefinition = getLevelDefinition(entityDefinition, level)
 
   return {
