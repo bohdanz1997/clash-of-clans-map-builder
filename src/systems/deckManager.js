@@ -7,10 +7,10 @@ export default ($engine, $entityFactory, $config) => {
   const dndManager = createDnD({ cellSize: $config.cartCellSize })
 
   createEnhancedSystem({
-    init(deckNode, deckItemNode, pointerNode) {
-      const { pointer: cPointer } = pointerNode.head
+    init(nDeck, nDeckItem, nPointer) {
+      const { pointer: cPointer } = nPointer.head
 
-      deckItemNode.each((node) => {
+      nDeckItem.each((node) => {
         const { entityMeta, interactive } = node
         interactive.press = () => {
           const entity = $entityFactory.create({
@@ -24,10 +24,6 @@ export default ($engine, $entityFactory, $config) => {
           dndManager.start(cPointer, entity)
         }
       })
-    },
-
-    update(deckNode, deckItemNode, pointerNode) {
-
     },
   })(DeckNode, DeckItemNode, PointerNode)($engine)
 }
