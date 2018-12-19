@@ -3,7 +3,7 @@ import { withComponents, pipeHOCs } from '../components/hoc'
 import { withDisplay } from '../services'
 
 export default ({
-  id, def, x, y, offsetX, offsetY, isoWidth, isoHeight, sizeInCells,
+  id, def, x, y, offsetX, offsetY, isoWidth, isoHeight, radius,
 }, { $config }) => pipeHOCs(
   withComponents(
     c.Identity({ id }),
@@ -17,7 +17,7 @@ export default ({
     c.Collision({
       width: $config.cartTileSize,
       height: $config.cartTileSize,
-      sizeInCells,
+      radius,
     }),
   ),
   withDisplay.sprite({ asset: def }),

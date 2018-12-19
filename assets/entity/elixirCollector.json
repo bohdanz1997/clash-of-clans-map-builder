@@ -2,7 +2,7 @@
   "id": "elixirCollector",
   "offsetX": 25,
   "offsetY": 35,
-  "sizeInCells": 3,
+  "radius": 3,
   "levels": {
     "1": {
       "health": 100

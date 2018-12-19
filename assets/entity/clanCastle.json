@@ -3,7 +3,7 @@
   "id": "clanCastle",
   "offsetX": 15,
   "offsetY": 30,
-  "sizeInCells": 3,
+  "radius": 3,
   "levels": {
     "1": {
       "health": 100

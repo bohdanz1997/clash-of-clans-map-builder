@@ -45,7 +45,7 @@ export const createDnD = ({ cellSize }) => ({
 
       display.group = display.oldGroup
 
-      // if (!buildingLayer.isEmptyInSize(position.fieldPos.x, position.fieldPos.y, collision.sizeInCells)) {
+      // if (!buildingLayer.isEmptyInSize(position.fieldPos.x, position.fieldPos.y, collision.radius)) {
       //   position.pos.copy(draggable.prevPos)
       // }
 
