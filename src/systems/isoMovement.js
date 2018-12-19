@@ -1,5 +1,5 @@
 import { Point } from 'core/pixi'
-import { isoMatrix } from 'core/isometric'
+import { isoMatrix } from 'core/math'
 import { createSystem } from 'core/scent'
 import { IsometricNode } from '../nodes'
 import { gameConfig } from '../config'

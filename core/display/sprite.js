@@ -1,6 +1,6 @@
 import { getTextureFromCache, Sprite } from 'core/pixi'
 import { rectangleFactory } from '../shape'
-import { isoMatrix } from '../isometric'
+import { isoMatrix } from '../math'
 
 export const spriteFactory = {
   create(asset, x = 0, y = 0, width = undefined, height = undefined) {

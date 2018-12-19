@@ -2,7 +2,7 @@
 import type { Matrix } from 'types/pixi'
 
 import { PIXI } from '../pixi'
-import { toRad } from '../math'
+import { toRad } from './utils'
 
 export const makeIsoMatrix = (angle: number, scaleY: number): Matrix => {
   const m: Matrix = new PIXI.Matrix()

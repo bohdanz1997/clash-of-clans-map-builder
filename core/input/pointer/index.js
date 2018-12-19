@@ -1,1 +1,1 @@
-export * from './pointer'
+export * from './factory'

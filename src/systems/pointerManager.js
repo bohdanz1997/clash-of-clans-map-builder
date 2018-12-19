@@ -3,13 +3,14 @@ import type { GameConfig, Engine } from 'types/game'
 import type { Container } from 'types/pixi'
 
 import { createSystem } from 'core/scent'
-import { makeIsoPointer, invertIsoMatrix } from 'core/isometric'
+import { invertIsoMatrix } from 'core/math'
+import { pointerManager } from 'core/input'
 
 import { PointerNode } from '../nodes'
 
 export default ($engine: Engine, $world: Container, $config: GameConfig) => {
   const makeIsoPointerUtil = ({ pointer }) => {
-    makeIsoPointer({
+    pointerManager.toIso({
       pointer: pointer.pointer,
       matrix: invertIsoMatrix,
       config: $config,
