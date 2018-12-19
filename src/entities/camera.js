@@ -3,7 +3,7 @@ import type { Deps } from 'types/game'
 
 import { createEntity } from 'core/scent'
 import { keys, makeWASDKeys } from 'core/input'
-import { createSmoothStep } from 'core/tools'
+import { createSmoothStep } from 'core/animation'
 
 import * as c from '../components'
 

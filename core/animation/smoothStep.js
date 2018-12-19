@@ -1,6 +1,6 @@
-import { keepInRanges } from 'core/util'
+import { keepInRanges } from 'core/util/index'
 
-export default ({ step, maxForce, minRange, maxRange, damping }) => {
+export const createSmoothStep = ({ step, maxForce, minRange, maxRange, damping }) => {
   let force = 0
 
   return {

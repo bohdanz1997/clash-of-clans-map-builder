@@ -1,6 +1,6 @@
 import { Container } from 'core/pixi'
 
-export default {
+export const spriteUtils = {
   group(name, sprites = []) {
     const container = new Container()
     const spritesList = Array.isArray(sprites)

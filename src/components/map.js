@@ -1,9 +1,9 @@
 import { createComponent } from 'core/scent'
-import { GameField } from 'core/tools'
+import { TileMap } from 'core/tilemap'
 
 export const [cMap, Map] = createComponent(
   'map', 'gameField',
   ({ width, height, layers }) => ({
-    gameField: new GameField(width, height, layers),
+    gameField: new TileMap(width, height, layers),
   })
 )

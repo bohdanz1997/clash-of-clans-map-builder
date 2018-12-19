@@ -1,6 +1,6 @@
 import { Layer, Stage } from 'core/pixi'
 
-export const sorting = {
+export const sortingStrategy = {
   // sprites with greater 'y' go backward
   backward: sprite => sprite.zOrder = +sprite.y,
   // sprites with greater 'y' go forward
