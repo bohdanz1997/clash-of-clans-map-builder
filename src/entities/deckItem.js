@@ -27,7 +27,7 @@ export default ({ index, entityMeta }, { $positioning }) => {
       c.Collision(bounds),
     ),
     withDisplay.sprite({
-      texture: entityMeta.def,
+      asset: entityMeta.def,
       width: bounds.width,
       height: bounds.height,
       parentId: 'hud',

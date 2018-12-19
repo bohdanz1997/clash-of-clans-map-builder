@@ -9,7 +9,7 @@ export default ({ x, y, isoWidth, isoHeight }) => pipeHOCs(
     c.IsoPosition(),
   ),
   withDisplay.sprite({
-    texture: 'ground',
+    asset: 'ground',
     width: isoWidth,
     height: isoHeight,
   }),

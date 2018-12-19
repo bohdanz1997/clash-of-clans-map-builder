@@ -9,9 +9,9 @@ const withDisplayComponent = ({ createSprite, parentId }) => entity => (
 )
 
 export const withDisplay = ({
-  sprite({ texture, width, height, parentId }) {
+  sprite({ asset, width, height, parentId }) {
     return withDisplayComponent({
-      createSprite: () => spriteFactory.create(texture, null, null, width, height),
+      createSprite: () => spriteFactory.create(asset, null, null, width, height),
       parentId,
     })
   },

@@ -33,6 +33,6 @@ export default ({ x, y, width, height, speed, health, damage }) => (
       c.Health({ health }),
     ),
     withFSM,
-    withDisplay.sprite({ texture: expolorer }),
+    withDisplay.sprite({ asset: expolorer }),
   )
 )

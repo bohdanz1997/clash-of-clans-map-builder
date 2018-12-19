@@ -20,5 +20,5 @@ export default ({
       sizeInCells,
     }),
   ),
-  withDisplay.sprite({ texture: def }),
+  withDisplay.sprite({ asset: def }),
 )
