@@ -15,12 +15,7 @@ export default ({ index, entityMeta }, { $positioning }) => {
   return pipeHOCs(
     withComponents(
       c.DeckItem(),
-      c.EntityMeta({
-        id: entityMeta.id,
-        def: entityMeta.def,
-        level: entityMeta.level,
-        count: entityMeta.count,
-      }),
+      c.EntityMeta(entityMeta),
       c.HudLayer(),
       c.Position(pos),
       c.Interactive(),
