@@ -1,6 +1,6 @@
 import { createSystem } from 'core/factories'
 import { Rectangle } from 'core/pixi'
-import { nCollision } from '../nodes'
+import { CollisionNode } from '../nodes'
 import { gameConfig } from '../config'
 
 export default ($engine, $config) => {
@@ -23,7 +23,7 @@ export default ($engine, $config) => {
         position.pos.x = worldBounds.right - bounds.width
       }
     },
-  })(nCollision)($engine)
+  })(CollisionNode)($engine)
 }
 
 export const params = {

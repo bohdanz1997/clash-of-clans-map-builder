@@ -1,6 +1,6 @@
 import { createEnhancedSystem } from 'core/factories'
 import { Point } from 'core/pixi'
-import { nMap, nMapLayers } from '../nodes'
+import { MapNode, MapLayersNode } from '../nodes'
 
 export default ($engine, $config) => {
   const updateNodeForLayer = layer => (node) => {
@@ -30,7 +30,7 @@ export default ($engine, $config) => {
       buildingNode.each(updateNodeForLayer(buildingLayer))
       dragNode.each(updateNodeForLayer(dragLayer))
     },
-  })(nMap, nMapLayers.Building, nMapLayers.Drag)($engine)
+  })(MapNode, MapLayersNode.Building, MapLayersNode.Drag)($engine)
 }
 
 export const params = {

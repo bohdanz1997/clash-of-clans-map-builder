@@ -1,7 +1,7 @@
 import * as c from '../components'
 
 // control
-export const nCameraControl = [
+export const CameraControlNode = [
   c.cCamera,
   c.cPosition,
   c.cMotion,
@@ -9,19 +9,7 @@ export const nCameraControl = [
   c.cZoomControl,
 ]
 
-export const nPlayerControl = [
-  c.cPlayer,
-  c.cMotion,
-  c.cMotionControl,
-]
-
-export const nEnemyControl = [
-  c.cEnemy,
-  c.cMotion,
-  c.cMotionControl,
-]
-
-export const nDraggable = [
+export const DraggableNode = [
   c.cDraggable,
   c.cPosition,
   c.cDisplay,
@@ -29,24 +17,24 @@ export const nDraggable = [
   c.cIdentity,
 ]
 
-export const nMovement = [c.cPosition, c.cMotion]
-export const nCollision = [c.cPosition, c.cCollision]
-export const nRender = [c.cPosition, c.cDisplay]
-export const nMap = [c.cMap]
-export const nBuilding = [c.cBuilding, c.cPosition, c.cIdentity]
-export const nKeyboard = [c.cKeyboard]
-export const nInteractive = [c.cInteractive, c.cCollision]
-export const nPointer = [c.cPointer, c.cIdentity]
-export const nIsometric = [c.cPosition, c.cIsoPosition]
-export const nIsoRender = [c.cIsoPosition, c.cDisplay]
-export const nOverlayOwner = [c.cOverlayOwner, c.cPosition]
-export const nOverlay = [c.cOverlay, c.cPosition]
-export const nHud = [c.cHudLayer, c.cDisplay]
-export const nDeck = [c.cDeck]
-export const nDeckItem = [c.cDeckItem, c.cInteractive, c.cEntityMeta]
+export const MovementNode = [c.cPosition, c.cMotion]
+export const CollisionNode = [c.cPosition, c.cCollision]
+export const RenderNode = [c.cPosition, c.cDisplay]
+export const MapNode = [c.cMap]
+export const BuildingNode = [c.cBuilding, c.cPosition, c.cIdentity]
+export const KeyboardNode = [c.cKeyboard]
+export const InteractiveNode = [c.cInteractive, c.cCollision]
+export const PointerNode = [c.cPointer, c.cIdentity]
+export const IsometricNode = [c.cPosition, c.cIsoPosition]
+export const IsoRenderNode = [c.cIsoPosition, c.cDisplay]
+export const OverlayOwnerNode = [c.cOverlayOwner, c.cPosition]
+export const OverlayNode = [c.cOverlay, c.cPosition]
+export const HudNode = [c.cHudLayer, c.cDisplay]
+export const DeckNode = [c.cDeck]
+export const DeckItemNode = [c.cDeckItem, c.cInteractive, c.cEntityMeta]
 
 // layers
-export const nLayers = {
+export const LayersNode = {
   Ground: [c.cGroundLayer, c.cDisplay],
   BackGround: [c.cBackGroundLayer, c.cDisplay],
   Building: [c.cBuildingLayer, c.cDisplay],
@@ -55,7 +43,7 @@ export const nLayers = {
 }
 
 // map layers
-export const nMapLayers = {
+export const MapLayersNode = {
   Building: [c.cBuildingLayer, c.cIdentity, c.cPosition, c.cCollision],
   Drag: [c.cDragLayer, c.cIdentity, c.cPosition, c.cCollision],
 }

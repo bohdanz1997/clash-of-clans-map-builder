@@ -3,7 +3,7 @@ import type { GameConfig, Engine } from 'types/game'
 
 import { createEnhancedSystem } from 'core/factories'
 import { viewConfig, gameConfig } from '../config'
-import { nLayers } from '../nodes'
+import { LayersNode } from '../nodes'
 
 const { groups } = viewConfig
 
@@ -26,11 +26,11 @@ export default ($config: GameConfig, $engine: Engine) => {
       initLayer(hudNode, groups.HUD)
     },
   })(
-    nLayers.Ground,
-    nLayers.BackGround,
-    nLayers.Building,
-    nLayers.Drag,
-    nLayers.Hud,
+    LayersNode.Ground,
+    LayersNode.BackGround,
+    LayersNode.Building,
+    LayersNode.Drag,
+    LayersNode.Hud,
   )($engine)
 }
 

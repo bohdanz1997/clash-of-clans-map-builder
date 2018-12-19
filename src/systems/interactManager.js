@@ -2,7 +2,7 @@ import { hitTest } from 'core/collision'
 import { withReducer } from 'core/util'
 import { createEnhancedSystem } from 'core/factories'
 import { gameConfig } from '../config'
-import { nPointer, nInteractive } from '../nodes'
+import { PointerNode, InteractiveNode } from '../nodes'
 import { interactActions, interactStates } from '../constants'
 
 const interactiveReducer = withReducer((state, action) => ({
@@ -78,7 +78,7 @@ export default ($engine, $config) => createEnhancedSystem({
 
     // pointer.cursor = (hitDetected && pointer.visible) ? 'pointer' : 'auto'
   },
-})(nInteractive, nPointer)($engine)
+})(InteractiveNode, PointerNode)($engine)
 
 export const params = {
   priority: gameConfig.priorities.UPDATE,

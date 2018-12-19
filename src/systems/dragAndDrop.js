@@ -2,7 +2,7 @@ import { hitTest } from 'core/collision'
 import { createEnhancedSystem } from 'core/factories'
 import { gameConfig } from '../config'
 import { createDnD } from '../services'
-import { nDraggable, nPointer, nMap } from '../nodes'
+import { DraggableNode, PointerNode, MapNode } from '../nodes'
 
 const findHitDragNodeByPointer = (draggableNode, pointer) => (
   draggableNode.find(({ collision }) => hitTest.rect(collision.bounds, pointer.cartPosition))
@@ -50,7 +50,7 @@ export default ($engine, $config) => {
         }
       })
     },
-  })(nDraggable, nPointer, nMap)($engine)
+  })(DraggableNode, PointerNode, MapNode)($engine)
 }
 
 export const params = {

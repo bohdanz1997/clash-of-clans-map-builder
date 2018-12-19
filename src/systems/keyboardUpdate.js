@@ -1,5 +1,5 @@
 import { createSystem } from 'core/factories'
-import { nKeyboard } from '../nodes'
+import { KeyboardNode } from '../nodes'
 import { gameConfig } from '../config'
 
 export default ($engine, $keyboard) => {
@@ -7,7 +7,7 @@ export default ($engine, $keyboard) => {
 
   return createSystem((node, delta) => {
     $keyboard.update(delta)
-  })(nKeyboard)($engine)
+  })(KeyboardNode)($engine)
 }
 
 export const params = {

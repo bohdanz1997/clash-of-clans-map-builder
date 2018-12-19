@@ -1,7 +1,7 @@
 import { createEnhancedSystem } from 'core/factories'
 import * as c from '../components'
 import { createDnD } from '../services'
-import { nDeck, nDeckItem, nPointer } from '../nodes'
+import { DeckNode, DeckItemNode, PointerNode } from '../nodes'
 
 export default ($engine, $entityFactory, $config) => {
   const dndManager = createDnD({ cellSize: $config.cartCellSize })
@@ -29,7 +29,7 @@ export default ($engine, $entityFactory, $config) => {
     update(deckNode, deckItemNode, pointerNode) {
 
     },
-  })(nDeck, nDeckItem, nPointer)($engine)
+  })(DeckNode, DeckItemNode, PointerNode)($engine)
 }
 
 export const params = {

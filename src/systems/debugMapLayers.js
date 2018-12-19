@@ -1,5 +1,5 @@
 import { createSystem, createText } from 'core/factories'
-import { nMap } from '../nodes'
+import { MapNode } from '../nodes'
 
 export default ($engine, $config, $app) => {
   let buildingLayer
@@ -34,7 +34,7 @@ export default ($engine, $config, $app) => {
       buildingLayerText.content = `building layer\n${buildingLayer.toString()}`
       dragLayerText.content = `drag layer\n${dragLayer.toString()}`
     },
-  })(nMap)($engine)
+  })(MapNode)($engine)
 }
 
 export const params = {

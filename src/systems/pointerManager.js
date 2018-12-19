@@ -5,7 +5,7 @@ import type { Container } from 'types/pixi'
 import { createSystem } from 'core/factories'
 import { makeIsoPointer, invertIsoMatrix } from 'core/isometric'
 
-import { nPointer } from '../nodes'
+import { PointerNode } from '../nodes'
 
 export default ($engine: Engine, $world: Container, $config: GameConfig) => {
   const makeIsoPointerUtil = ({ pointer }) => {
@@ -26,5 +26,5 @@ export default ($engine: Engine, $world: Container, $config: GameConfig) => {
     update({ pointer }) {
       pointer.pointer.scale = $world.scale.x
     },
-  })(nPointer)($engine)
+  })(PointerNode)($engine)
 }

@@ -4,7 +4,7 @@ import type { GameConfig, Engine } from 'types/game'
 import { createEnhancedSystem } from 'core/factories'
 import { Point } from 'core/pixi'
 import { gameConfig } from '../config'
-import { nCameraControl, nPointer } from '../nodes'
+import { CameraControlNode, PointerNode } from '../nodes'
 
 export default ($config: GameConfig, $engine: Engine) => {
   let origDragPoint = null
@@ -30,7 +30,7 @@ export default ($config: GameConfig, $engine: Engine) => {
         origDragPoint = null
       }
     },
-  })(nCameraControl, nPointer)($engine)
+  })(CameraControlNode, PointerNode)($engine)
 }
 
 export const params = {

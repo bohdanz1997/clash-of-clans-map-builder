@@ -2,7 +2,7 @@
 import type { Engine } from 'types/game'
 
 import { createEnhancedSystem } from 'core/factories'
-import { nHud, nPointer } from '../nodes'
+import { HudNode, PointerNode } from '../nodes'
 
 export default ($engine: Engine) => {
   createEnhancedSystem({
@@ -20,7 +20,7 @@ export default ($engine: Engine) => {
         row: ${fieldPosition.y}
       `
     },
-  })(nPointer, nHud)($engine)
+  })(PointerNode, HudNode)($engine)
 }
 
 export const params = {

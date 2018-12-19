@@ -1,5 +1,5 @@
 import { createSystem } from 'core/factories'
-import { nRender } from '../nodes'
+import { RenderNode } from '../nodes'
 import { gameConfig } from '../config'
 
 export default ($engine, $world, $hud) => {
@@ -29,7 +29,7 @@ export default ($engine, $world, $hud) => {
       sprite.parentGroup = group
       sprite.position.copy(position.pos)
     },
-  })(nRender)($engine)
+  })(RenderNode)($engine)
 }
 
 export const params = {
