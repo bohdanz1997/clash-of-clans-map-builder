@@ -1,5 +1,5 @@
 import { noop } from 'core/util'
-import { createComponent } from 'core/factories'
+import { createComponent } from 'core/scent'
 import { interactActions, interactStates } from '../constants'
 
 export const [cInteractive, Interactive] = createComponent(

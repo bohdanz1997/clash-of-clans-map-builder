@@ -1,4 +1,4 @@
-import { createComponent } from 'core/factories'
+import { createComponent } from 'core/scent'
 import { Rectangle } from 'core/pixi'
 
 export const [cCollision, Collision] = createComponent(

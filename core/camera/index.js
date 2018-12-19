@@ -1,1 +1,1 @@
-export { default as createCamera } from './camera'
+export * from './camera'

@@ -1,7 +1,7 @@
 // @flow
 import type { GameConfig, Engine } from 'types/game'
 
-import { createEnhancedSystem } from 'core/factories'
+import { createEnhancedSystem } from 'core/scent'
 import { Point } from 'core/pixi'
 import { gameConfig } from '../config'
 import { CameraControlNode, PointerNode } from '../nodes'

@@ -1,4 +1,4 @@
-import { createEnhancedSystem } from 'core/factories'
+import { createEnhancedSystem } from 'core/scent'
 import { Point } from 'core/pixi'
 import { MapNode, MapLayersNode } from '../nodes'
 

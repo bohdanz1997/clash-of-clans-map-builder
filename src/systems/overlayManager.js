@@ -1,7 +1,7 @@
 // @flow
 import type { GameConfig, Engine } from 'types/game'
 
-import { createEnhancedSystem } from 'core/factories'
+import { createEnhancedSystem } from 'core/scent'
 
 import { OverlayOwnerNode, OverlayNode } from '../nodes'
 import { Overlay } from '../entities'

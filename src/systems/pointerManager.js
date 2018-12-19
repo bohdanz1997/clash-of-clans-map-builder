@@ -2,7 +2,7 @@
 import type { GameConfig, Engine } from 'types/game'
 import type { Container } from 'types/pixi'
 
-import { createSystem } from 'core/factories'
+import { createSystem } from 'core/scent'
 import { makeIsoPointer, invertIsoMatrix } from 'core/isometric'
 
 import { PointerNode } from '../nodes'

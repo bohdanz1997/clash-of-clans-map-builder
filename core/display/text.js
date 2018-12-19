@@ -1,21 +1,6 @@
-import {
-  getTextureFromCache,
-  Sprite,
-  Text,
-} from 'core/pixi'
+import { Text } from 'core/pixi'
 
-export const createSprite = (textureId, x = 0, y = 0, width = undefined, height = undefined) => {
-  const texture = getTextureFromCache(textureId)
-
-  const sprite = new Sprite(texture)
-  sprite.position.set(x, y)
-  sprite.width = width || sprite.width
-  sprite.height = height || sprite.height
-
-  return sprite
-}
-
-export const createText = ({
+const createText = ({
   content = 'message',
   font = '16px sans',
   fillStyle = 'red',
@@ -43,4 +28,8 @@ export const createText = ({
 
   // Return the text object
   return message
+}
+
+export const textFactory = {
+  create: createText,
 }

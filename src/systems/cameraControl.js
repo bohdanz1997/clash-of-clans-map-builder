@@ -2,7 +2,7 @@
 import type { GameConfig, Engine, Keyboard } from 'types/game'
 import type { Container } from 'types/pixi'
 
-import { createSystem } from 'core/factories'
+import { createSystem } from 'core/scent'
 import { gameConfig } from '../config'
 import { CameraControlNode } from '../nodes'
 

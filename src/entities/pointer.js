@@ -1,4 +1,4 @@
-import { createEntity } from 'core/factories'
+import { createEntity } from 'core/scent'
 
 import * as c from '../components'
 import { gameConfig } from '../config'

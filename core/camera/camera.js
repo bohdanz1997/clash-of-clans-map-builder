@@ -1,6 +1,6 @@
 import { Point } from 'core/pixi'
 
-export default ({ world, worldWidth, worldHeight, width, height }) => {
+export const createCamera = ({ world, worldWidth, worldHeight, width, height }) => {
   const position = Point.EMPTY
   const hWidth = width / 2
   const hHeight = height / 2

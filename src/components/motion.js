@@ -1,4 +1,4 @@
-import { createComponent } from 'core/factories'
+import { createComponent } from 'core/scent'
 import { Point } from 'core/pixi'
 
 export const [cMotion, Motion] = createComponent(

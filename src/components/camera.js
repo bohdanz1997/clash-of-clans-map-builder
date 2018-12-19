@@ -1,4 +1,4 @@
-import { createComponent } from 'core/factories'
+import { createComponent } from 'core/scent'
 import { createCamera } from 'core/camera'
 
 export const [cCamera, Camera] = createComponent(

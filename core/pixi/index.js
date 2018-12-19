@@ -33,4 +33,4 @@ export {
 }
 
 // helpers
-export const getTextureFromCache = textureId => TextureCache[textureId]
+export const getTextureFromCache = asset => TextureCache[asset]

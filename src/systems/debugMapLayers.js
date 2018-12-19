@@ -1,18 +1,19 @@
-import { createSystem, createText } from 'core/factories'
+import { createSystem } from 'core/scent'
+import { textFactory } from 'core/display'
 import { MapNode } from '../nodes'
 
 export default ($engine, $config, $app) => {
   let buildingLayer
   let dragLayer
 
-  const buildingLayerText = createText({
+  const buildingLayerText = textFactory.create({
     font: '12px mono',
     fillStyle: 'white',
     x: 1000,
     y: 20,
   })
 
-  const dragLayerText = createText({
+  const dragLayerText = textFactory.create({
     font: '12px mono',
     fillStyle: 'white',
     x: 1150,

@@ -1,5 +1,5 @@
 import { hitTest } from 'core/collision'
-import { createEnhancedSystem } from 'core/factories'
+import { createEnhancedSystem } from 'core/scent'
 import { gameConfig } from '../config'
 import { createDnD } from '../services'
 import { DraggableNode, PointerNode, MapNode } from '../nodes'

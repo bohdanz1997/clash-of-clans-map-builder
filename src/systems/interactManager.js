@@ -1,6 +1,6 @@
 import { hitTest } from 'core/collision'
 import { withReducer } from 'core/util'
-import { createEnhancedSystem } from 'core/factories'
+import { createEnhancedSystem } from 'core/scent'
 import { gameConfig } from '../config'
 import { PointerNode, InteractiveNode } from '../nodes'
 import { interactActions, interactStates } from '../constants'

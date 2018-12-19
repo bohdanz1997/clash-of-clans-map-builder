@@ -1,4 +1,4 @@
-import { createSystem } from 'core/factories'
+import { createSystem } from 'core/scent'
 import { Point } from 'core/pixi'
 import { MovementNode } from '../nodes'
 import { gameConfig } from '../config'

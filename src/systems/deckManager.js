@@ -1,4 +1,4 @@
-import { createEnhancedSystem } from 'core/factories'
+import { createEnhancedSystem } from 'core/scent'
 import * as c from '../components'
 import { createDnD } from '../services'
 import { DeckNode, DeckItemNode, PointerNode } from '../nodes'

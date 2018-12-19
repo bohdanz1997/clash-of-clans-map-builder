@@ -1,4 +1,4 @@
-import { createSystem } from 'core/factories'
+import { createSystem } from 'core/scent'
 import { IsoRenderNode } from '../nodes'
 import { gameConfig } from '../config'
 

@@ -1,4 +1,3 @@
-export { default as Background } from './background'
 export { default as Camera } from './camera'
 export { default as ClanCastle } from './clanCastle'
 export { default as Input } from './keyboard'

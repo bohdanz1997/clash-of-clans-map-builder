@@ -1,4 +1,4 @@
-import { createComponent } from 'core/factories'
+import { createComponent } from 'core/scent'
 
 export const [cInfo, Info] = createComponent(
   'info', 'entityType',

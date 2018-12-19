@@ -1,4 +1,4 @@
-import { createComponent } from 'core/factories'
+import { createComponent } from 'core/scent'
 import { uuid } from '../../core/util'
 
 export const [cUnit, Unit] = createComponent('unit')

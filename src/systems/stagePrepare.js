@@ -1,7 +1,7 @@
 // @flow
 import type { GameConfig, Engine } from 'types/game'
 
-import { createEnhancedSystem } from 'core/factories'
+import { createEnhancedSystem } from 'core/scent'
 import { viewConfig, gameConfig } from '../config'
 import { LayersNode } from '../nodes'
 

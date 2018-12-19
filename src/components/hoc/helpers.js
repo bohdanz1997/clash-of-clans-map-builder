@@ -1,5 +1,5 @@
 import { pipe } from 'core/util'
-import { createEntity } from 'core/factories'
+import { createEntity } from 'core/scent'
 
 export const pipeHOCs = (...HOCs) => pipe(...HOCs)()
 

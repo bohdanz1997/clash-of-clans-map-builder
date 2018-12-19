@@ -1,7 +1,7 @@
 // @flow
 import type { Engine } from 'types/game'
 
-import { createEnhancedSystem } from 'core/factories'
+import { createEnhancedSystem } from 'core/scent'
 import { HudNode, PointerNode } from '../nodes'
 
 export default ($engine: Engine) => {
