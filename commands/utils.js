@@ -36,7 +36,7 @@ export const argParser = {
 }
 
 export const staticPaths = {
-  coreFactories: 'core/factories',
+  coreFactories: 'core/scent',
   components: '../components',
   componentsHoc: '../components/hoc',
 }

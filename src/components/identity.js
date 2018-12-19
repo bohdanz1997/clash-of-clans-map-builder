@@ -1,5 +1,5 @@
 import { createComponent } from 'core/scent'
-import { uuid } from '../../core/util'
+import { uuid } from 'core/util'
 
 export const [cUnit, Unit] = createComponent('unit')
 export const [cSpell, Spell] = createComponent('spell')
@@ -11,10 +11,6 @@ export const [cResourceBuilding, ResourceBuilding] = createComponent('resource b
 export const [cWall, Wall] = createComponent('wall')
 export const [cOverlayOwner, OverlayOwner] = createComponent('overlayOwner')
 export const [cDeckItem, DeckItem] = createComponent('deckItem')
-export const [cEntityMeta, EntityMeta] = createComponent(
-  'entityMeta', 'id level count',
-  ({ id, level = 1, count = 1 }) => ({ id, level, count }),
-)
 
 export const [cKeyboard, Keyboard] = createComponent('keyboard')
 export const [cPlayer, Player] = createComponent('player')
