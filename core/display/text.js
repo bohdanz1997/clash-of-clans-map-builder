@@ -1,14 +1,18 @@
 import { Text } from 'core/pixi'
 
 const createText = ({
-  content = 'message',
-  font = '16px sans',
-  fillStyle = 'red',
+  content = 'empty message',
+  fontSize = 16,
+  fontFamily = 'sans',
+  fill = 'red',
   x = 0,
   y = 0,
 }) => {
-  // Create a Pixi Sprite object
-  const message = new Text(content, { font, fill: fillStyle })
+  const message = new Text(content, {
+    fontSize,
+    fontFamily,
+    fill,
+  })
   message.x = x
   message.y = y
 

@@ -8,8 +8,8 @@ export default ({ id, x, y }) => pipeHOCs(
     c.Position({ x, y }),
   ),
   withDisplay.text({
-    font: '12px sans',
-    fillStyle: 'white',
+    fontSize: 12,
+    fill: 'white',
     parentId: 'hud',
   }),
 )

@@ -30,9 +30,11 @@ export const withDisplay = ({
     })
   },
 
-  text({ x, y, font, fillStyle, content, parentId }) {
+  text({ x, y, fontSize, fill, content, parentId }) {
     return withDisplayComponent({
-      createSprite: () => textFactory.create({ x, y, font, fillStyle, content }),
+      createSprite: () => textFactory.create({
+        x, y, fontSize, fill, content,
+      }),
       parentId,
     })
   },
