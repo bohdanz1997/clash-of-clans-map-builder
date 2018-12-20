@@ -1,8 +1,17 @@
 import { createEnhancedSystem, nodeEachTwice } from 'core/scent'
 import { createDnD } from '../services'
-import { DeckNode, DeckItemNode, PointerNode } from '../nodes'
+import { DeckItemNode, PointerNode } from '../nodes'
 
-export default ($engine, $entityFactory, $config) => {
+/**
+ * @param {Engine} $engine
+ * @param $config
+ * @param {EntityFactory} $entityFactory
+ */
+export default (
+  $engine,
+  $config,
+  $entityFactory,
+) => {
   const dndManager = createDnD({ cellSize: $config.cartCellSize })
 
   const makeEntityFromDeck = (entityMeta, position) => (
@@ -35,10 +44,10 @@ export default ($engine, $entityFactory, $config) => {
   })
 
   createEnhancedSystem({
-    init(nDecks, nDeckItems, nPointers) {
+    init(nDeckItems, nPointers) {
       addListeners(nPointers, nDeckItems)
     },
-  })(DeckNode, DeckItemNode, PointerNode)($engine)
+  })(DeckItemNode, PointerNode)($engine)
 }
 
 export const params = {
