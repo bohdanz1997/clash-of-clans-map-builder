@@ -1,4 +1,4 @@
-import { Entity } from 'scent'
+import { Entity } from 'scent2'
 
 Entity.prototype.safeAdd = function safeAdd(component) {
   if (!this.has(component)) {
