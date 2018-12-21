@@ -1,4 +1,4 @@
-import { createSystem } from 'core/scent'
+import { system } from 'core/scent'
 import { Rectangle } from 'core/pixi'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
@@ -6,7 +6,7 @@ import * as n from '../nodes'
 export default ($engine, $config) => {
   const worldBounds = new Rectangle(0, 0, $config.cartWorldWidth, $config.cartWorldHeight)
 
-  return createSystem({
+  system({
     update({ position, collision }) {
       const { bounds } = collision
 

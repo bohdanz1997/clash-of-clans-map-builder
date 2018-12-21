@@ -1,7 +1,7 @@
 // @flow
 import type { GameConfig, Engine } from 'types/game'
 
-import { createEnhancedSystem } from 'core/scent'
+import { system } from 'core/scent'
 import { Point } from 'core/pixi'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
@@ -21,7 +21,7 @@ export default ($config: GameConfig, $engine: Engine) => {
   const maxScrollSpeed = 30
   const pointInRange = pointIn(maxScrollSpeed)
 
-  return createEnhancedSystem({
+  system({
     update(nCamera, nPointer) {
       const {
         motion,

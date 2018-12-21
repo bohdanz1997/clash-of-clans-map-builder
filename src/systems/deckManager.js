@@ -1,4 +1,4 @@
-import { createEnhancedSystem, nodeEachTwice } from 'core/scent'
+import { system, nodeEachTwice } from 'core/scent'
 import { createDnD } from '../services'
 import * as n from '../nodes'
 
@@ -43,7 +43,7 @@ export default (
     }
   })
 
-  createEnhancedSystem({
+  system({
     init(nDeckItems, nPointers) {
       addListeners(nPointers, nDeckItems)
     },

@@ -1,4 +1,4 @@
-import { createSystem } from 'core/scent'
+import { system } from 'core/scent'
 import { textFactory } from 'core/display'
 import * as n from '../nodes'
 
@@ -20,7 +20,7 @@ export default ($engine, $config, $app) => {
     y: 20,
   })
 
-  return createSystem({
+  system({
     init(node) {
       const { gameField } = node.head.map
 

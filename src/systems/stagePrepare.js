@@ -1,7 +1,7 @@
 // @flow
 import type { GameConfig, Engine } from 'types/game'
 
-import { createEnhancedSystem } from 'core/scent'
+import { system } from 'core/scent'
 import { viewConfig, gameConfig } from '../config'
 import * as n from '../nodes'
 
@@ -17,7 +17,7 @@ export default ($config: GameConfig, $engine: Engine) => {
     node.onAdded(setDisplayGroup(group))
   }
 
-  return createEnhancedSystem({
+  system({
     init(groundNode, backNode, buildingNode, dragNode, hudNode) {
       initLayer(groundNode, groups.GROUND)
       initLayer(backNode, groups.OVERLAY)

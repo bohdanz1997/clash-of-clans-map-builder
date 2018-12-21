@@ -1,6 +1,6 @@
 import { hitTest } from 'core/collision'
 import { withReducer } from 'core/util'
-import { createEnhancedSystem } from 'core/scent'
+import { system } from 'core/scent'
 import { gameConfig } from '../config'
 import * as c from '../components'
 import * as n from '../nodes'
@@ -33,7 +33,7 @@ const detectHit = (nInteractive, pointerInput) => {
   return hitTest.rect(collision.bounds, pointerPos)
 }
 
-export default $engine => createEnhancedSystem({
+export default $engine => system({
   updateInteractive(interactive, pointerInput, didHit) {
     // set default UP state
     interactive.state = interactStates.UP

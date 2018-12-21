@@ -1,4 +1,4 @@
-import { createEnhancedSystem } from 'core/scent'
+import { system } from 'core/scent'
 import { Point } from 'core/pixi'
 import * as n from '../nodes'
 
@@ -15,7 +15,7 @@ export default ($engine, $config) => {
   let buildingLayer
   let dragLayer
 
-  return createEnhancedSystem({
+  system({
     init(mapNode) {
       const { gameField } = mapNode.head.map
 

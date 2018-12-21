@@ -2,7 +2,7 @@
 import type { GameConfig, Engine } from 'types/game'
 import type { Container } from 'types/pixi'
 
-import { createSystem } from 'core/scent'
+import { system } from 'core/scent'
 import { invertIsoMatrix } from 'core/math'
 import { pointerManager } from 'core/input'
 import * as n from '../nodes'
@@ -17,7 +17,7 @@ export default ($engine: Engine, $world: Container, $config: GameConfig) => {
     })
   }
 
-  return createSystem({
+  system({
     init(node) {
       node.each(makeIsoPointerUtil)
       node.onAdded(makeIsoPointerUtil)

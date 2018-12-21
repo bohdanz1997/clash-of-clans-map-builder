@@ -1,4 +1,4 @@
-import { createSystem } from 'core/scent'
+import { system } from 'core/scent'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
 
@@ -16,7 +16,7 @@ export default ($engine, $world, $hud) => {
     matchContainer(display.parentId).removeChild(display.sprite)
   }
 
-  return createSystem({
+  system({
     init(node) {
       node.each(addRenderChild)
       node.onAdded(addRenderChild)

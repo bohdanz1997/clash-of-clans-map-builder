@@ -2,12 +2,12 @@
 import type { GameConfig, Engine, Keyboard } from 'types/game'
 import type { Container } from 'types/pixi'
 
-import { createSystem } from 'core/scent'
+import { system } from 'core/scent'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
 
 export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $world: Container) => (
-  createSystem({
+  system({
     update({ camera, position, motion, motionControl, zoomControl }) {
       const { smoothZoom } = zoomControl
 

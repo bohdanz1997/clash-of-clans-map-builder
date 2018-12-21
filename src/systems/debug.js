@@ -1,11 +1,11 @@
 // @flow
 import type { Engine } from 'types/game'
 
-import { createEnhancedSystem } from 'core/scent'
+import { system } from 'core/scent'
 import * as n from '../nodes'
 
 export default ($engine: Engine) => {
-  createEnhancedSystem({
+  system({
     update(pointerNode, hudNode) {
       const { display } = hudNode.head
       const { pointer } = pointerNode.head
