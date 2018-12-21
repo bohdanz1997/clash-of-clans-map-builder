@@ -18,8 +18,8 @@ export default ($config: GameConfig, $engine: Engine, $entityFactory) => {
     $engine.addEntity(overlay)
   }
 
-  const removeOverlay = ({ entityRef }) => {
-    $engine.destroyEntity(entityRef)
+  const removeOverlay = ({ entity }) => {
+    $engine.destroyEntity(entity)
   }
 
   return createEnhancedSystem({
