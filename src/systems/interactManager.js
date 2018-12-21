@@ -79,7 +79,7 @@ export default $engine => createEnhancedSystem({
   update(interactiveNodes, pointerNodes) {
     pointerNodes.each(({ pointer }) => {
       interactiveNodes.each((nInteractive) => {
-        const { interactive, entityRef: eInteractive } = nInteractive
+        const { interactive, entity: eInteractive } = nInteractive
         const hit = detectHit(nInteractive, pointer.input)
 
         eInteractive.addOrRemove(c.cHovered, hit)

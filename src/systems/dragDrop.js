@@ -10,8 +10,8 @@ import {
 } from '../nodes'
 
 const detectHit = (nInteractive, pointerInput) => {
-  const { collision, entityRef } = nInteractive
-  const isIso = entityRef.has(c.cIsoPosition)
+  const { collision, entity } = nInteractive
+  const isIso = entity.has(c.cIsoPosition)
   const pointerPos = isIso
     ? pointerInput.cartPosition
     : pointerInput.position
@@ -22,13 +22,8 @@ const detectHit = (nInteractive, pointerInput) => {
 export default ($engine, $config, $entityFactory) => {
   const observersMap = new Map()
   const cellSize = $config.cartCellSize
-  let map
 
   system('interactSystem', {
-    init(_, __, maps) {
-      map = maps.head.map.gameField.getLayer('building')
-    },
-
     update(interactiveNodes, pointerNodes) {
       pointerNodes.each((pointerNode) => {
         interactiveNodes.each((interactiveNode) => {
@@ -37,8 +32,8 @@ export default ($engine, $config, $entityFactory) => {
 
           if (hit && !observersMap.has(mixedId)) {
             const eObserver = $entityFactory.create('observer', {
-              client: pointerNode.entityRef,
-              source: interactiveNode.entityRef,
+              client: pointerNode.entity,
+              source: interactiveNode.entity,
             })
 
             eObserver.add(c.cHovered)
@@ -67,20 +62,20 @@ export default ($engine, $config, $entityFactory) => {
     },
 
     update(node) {
-      const { client, entityRef } = node
+      const { client, entity } = node
       const pointer = client.entity.get(c.cPointer)
 
       if (pointer.input.isDown) {
-        if (!entityRef.has(c.Dragging)) {
-          entityRef.add(c.Dragging.of())
-          entityRef.add(c.cDragContext)
+        if (!entity.has(c.cDragging)) {
+          entity.add(c.cDragging)
+          entity.add(c.cDragContext)
         }
       }
 
       if (pointer.input.isUp) {
-        if (entityRef.has(c.Dragging)) {
-          entityRef.remove(c.Dragging)
-          entityRef.remove(c.cDragContext)
+        if (entity.has(c.cDragging)) {
+          entity.remove(c.cDragging)
+          entity.remove(c.cDragContext)
         }
       }
     },
@@ -90,7 +85,7 @@ export default ($engine, $config, $entityFactory) => {
     init(nodes) {
       nodes.onAdded((node) => {
         const {
-          entityRef,
+          entity,
           client,
           source,
         } = node
@@ -100,14 +95,14 @@ export default ($engine, $config, $entityFactory) => {
         const pointer = client.entity.get(c.cPointer)
         const offsetFromClient = pointer.input.cartPosition.sub(sourcePos)
 
-        const dragContext = entityRef.get(c.cDragContext)
+        const dragContext = entity.get(c.cDragContext)
         dragContext.startPos = startPos
         dragContext.offsetFromClient = offsetFromClient
         console.log('drag start')
       })
 
       nodes.onRemoved((node) => {
-        const { entityRef, source, dragContext } = node
+        const { entity, source, dragContext } = node
 
         const [
           position,
@@ -117,11 +112,11 @@ export default ($engine, $config, $entityFactory) => {
           c.cCollision,
         )
 
-        if (!map.isEmptyInSize(position.fieldPos.x, position.fieldPos.y, collision.radius)) {
-          position.pos.copy(dragContext.startPos)
-        }
+        // if (!map.isEmptyInSize(position.fieldPos.x, position.fieldPos.y, collision.radius)) {
+        //   position.pos.copy(dragContext.startPos)
+        // }
 
-        entityRef.remove(c.cDragContext)
+        entity.remove(c.cDragContext)
         console.log('drag end')
       })
     },
