@@ -4,8 +4,8 @@ import { withDisplay } from '../services'
 
 export default ({ id, x, y }) => pipeHOCs(
   withComponents(
-    c.HudLayer(),
-    c.Position({ x, y }),
+    c.HudLayer.of(),
+    c.Position.of({ x, y }),
   ),
   withDisplay.text({
     fontSize: 12,
