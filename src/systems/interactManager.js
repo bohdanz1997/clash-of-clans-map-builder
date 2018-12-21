@@ -24,8 +24,8 @@ const interactiveReducer = withReducer((state, action) => ({
 }[action.state]))
 
 const detectHit = (nInteractive, pointerInput) => {
-  const { collision, entityRef } = nInteractive
-  const isIso = entityRef.has(c.cIsoPosition)
+  const { collision, entity } = nInteractive
+  const isIso = entity.has(c.cIsoPosition)
   const pointerPos = isIso
     ? pointerInput.cartPosition
     : pointerInput.position

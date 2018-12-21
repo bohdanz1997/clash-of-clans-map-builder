@@ -1,4 +1,4 @@
-import { Engine } from 'scent'
+import { Engine } from 'scent2'
 import { objectEach } from 'core/util'
 
 import { registerEntities, registerSystems } from '.'
