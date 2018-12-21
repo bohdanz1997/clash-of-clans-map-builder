@@ -4,7 +4,7 @@ import type { GameConfig, Engine } from 'types/game'
 import { createEnhancedSystem } from 'core/scent'
 import { Point } from 'core/pixi'
 import { gameConfig } from '../config'
-import { CameraControlNode, PointerNode } from '../nodes'
+import * as n from '../nodes'
 
 const pointIn = range => (point) => {
   let x = Math.min(point.x, range)
@@ -44,7 +44,7 @@ export default ($config: GameConfig, $engine: Engine) => {
         origDragPoint = null
       }
     },
-  })(CameraControlNode, PointerNode)($engine)
+  })(n.CameraControl, n.Pointer)($engine)
 }
 
 export const params = {

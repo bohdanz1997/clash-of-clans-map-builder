@@ -2,9 +2,8 @@
 import type { GameConfig, Engine } from 'types/game'
 
 import { createEnhancedSystem } from 'core/scent'
-
-import { OverlayOwnerNode, OverlayNode } from '../nodes'
 import { gameConfig } from '../config'
+import * as n from '../nodes'
 
 export default ($config: GameConfig, $engine: Engine, $entityFactory) => {
 
@@ -34,7 +33,7 @@ export default ($config: GameConfig, $engine: Engine, $entityFactory) => {
         position.pos.copy(overlay.target.pos)
       })
     },
-  })(OverlayNode, OverlayOwnerNode)($engine)
+  })(n.Overlay, n.OverlayOwner)($engine)
 }
 
 export const params = {

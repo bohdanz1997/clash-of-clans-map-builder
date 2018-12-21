@@ -1,7 +1,7 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 import { Point } from 'core/pixi'
 
-export const [cPosition, Position] = createComponent(
+export const Position = defComponent(
   'position', 'pos fieldPos offset',
   ({ x = 0, y = 0, offsetX = 0, offsetY = 0 } = {}) => ({
     pos: new Point(x, y),
@@ -10,7 +10,7 @@ export const [cPosition, Position] = createComponent(
   })
 )
 
-export const [cIsoPosition, IsoPosition] = createComponent(
+export const IsoPosition = defComponent(
   'isoPosition', 'pos',
   ({ x = 0, y = 0 } = {}) => ({ pos: new Point(x, y) })
 )

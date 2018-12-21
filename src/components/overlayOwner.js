@@ -1,5 +1,5 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cOverlayOwner, OverlayOwner] = createComponent(
+export const OverlayOwner = defComponent(
   'overlayOwner',
 )

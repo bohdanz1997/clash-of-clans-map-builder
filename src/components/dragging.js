@@ -1,5 +1,5 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cDragging, Dragging] = createComponent(
+export const Dragging = defComponent(
   'dragging',
 )

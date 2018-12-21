@@ -1,8 +1,8 @@
 import { noop } from 'core/util'
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 import { interactActions, interactStates } from '../constants'
 
-export const [cInteractive, Interactive] = createComponent(
+export const Interactive = defComponent(
   'interactive', 'state action pressed hoverOver',
   ({ press = noop, release = noop } = {}) => ({
     state: interactStates.UP,
@@ -14,12 +14,7 @@ export const [cInteractive, Interactive] = createComponent(
   })
 )
 
-const [cClient, Client] = createComponent('client', 'entity')
-const [cSource, Source] = createComponent('source', 'entity')
-
 export const Interact = {
-  cClient,
-  Client,
-  cSource,
-  Source,
+  Client: defComponent('client', 'entity'),
+  Source: defComponent('source', 'entity'),
 }

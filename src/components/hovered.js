@@ -1,5 +1,5 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cHovered, Hovered] = createComponent(
+export const Hovered = defComponent(
   'hovered',
 )

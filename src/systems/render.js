@@ -1,6 +1,6 @@
 import { createSystem } from 'core/scent'
-import { RenderNode } from '../nodes'
 import { gameConfig } from '../config'
+import * as n from '../nodes'
 
 export default ($engine, $world, $hud) => {
   const matchContainer = parentId => ({
@@ -29,7 +29,7 @@ export default ($engine, $world, $hud) => {
       sprite.parentGroup = group
       sprite.position.copy(position.pos)
     },
-  })(RenderNode)($engine)
+  })(n.Render)($engine)
 }
 
 export const params = {

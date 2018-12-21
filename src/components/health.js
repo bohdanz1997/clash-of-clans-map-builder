@@ -1,6 +1,6 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cHealth, Health] = createComponent(
+export const Health = defComponent(
   'health', 'current max',
   ({ health }) => ({
     current: health,

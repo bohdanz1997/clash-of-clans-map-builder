@@ -1,5 +1,5 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cKeyboard, Keyboard] = createComponent(
+export const Keyboard = defComponent(
   'keyboard',
 )

@@ -1,7 +1,7 @@
 import { Point } from 'core/pixi'
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cDragSource, DragSource] = createComponent(
+export const DragSource = defComponent(
   'dragSource', 'target offset startPos',
   () => ({
     target: null,

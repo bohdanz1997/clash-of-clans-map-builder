@@ -2,7 +2,7 @@
 import type { Engine } from 'types/game'
 
 import { createEnhancedSystem } from 'core/scent'
-import { HudNode, PointerNode } from '../nodes'
+import * as n from '../nodes'
 
 export default ($engine: Engine) => {
   createEnhancedSystem({
@@ -21,7 +21,7 @@ export default ($engine: Engine) => {
         hover: ${pointer.input.hoverOver}
       `
     },
-  })(PointerNode, HudNode)($engine)
+  })(n.Pointer, n.Hud)($engine)
 }
 
 export const params = {

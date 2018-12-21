@@ -1,7 +1,7 @@
 import { createSystem } from 'core/scent'
 import { Rectangle } from 'core/pixi'
-import { CollisionNode } from '../nodes'
 import { gameConfig } from '../config'
+import * as n from '../nodes'
 
 export default ($engine, $config) => {
   const worldBounds = new Rectangle(0, 0, $config.cartWorldWidth, $config.cartWorldHeight)
@@ -23,7 +23,7 @@ export default ($engine, $config) => {
         position.pos.x = worldBounds.right - bounds.width
       }
     },
-  })(CollisionNode)($engine)
+  })(n.Collision)($engine)
 }
 
 export const params = {

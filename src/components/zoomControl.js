@@ -1,5 +1,5 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cZoomControl, ZoomControl] = createComponent(
+export const ZoomControl = defComponent(
   'zoomControl', 'plus minus smoothZoom'
 )

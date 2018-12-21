@@ -4,7 +4,7 @@ import type { Container } from 'types/pixi'
 
 import { createSystem } from 'core/scent'
 import { gameConfig } from '../config'
-import { CameraControlNode } from '../nodes'
+import * as n from '../nodes'
 
 export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $world: Container) => (
   createSystem({
@@ -38,7 +38,7 @@ export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $worl
       const scale = smoothZoom.applyForce($world.scale.x)
       $world.scale.set(scale)
     },
-  })(CameraControlNode)($engine)
+  })(n.CameraControl)($engine)
 )
 
 export const params = {

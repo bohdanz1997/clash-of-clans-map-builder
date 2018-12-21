@@ -1,5 +1,5 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cDragContext, DragContext] = createComponent(
+export const DragContext = defComponent(
   'dragContext', 'startPos offsetFromClient'
 )

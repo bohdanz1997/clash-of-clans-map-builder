@@ -1,6 +1,6 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cMotionControl, MotionControl] = createComponent(
+export const MotionControl = defComponent(
   'motionControl', 'dx dy up down left right',
   ({ dx = 0, dy = 0, ...rest } = {}) => ({
     dx, dy, ...rest,

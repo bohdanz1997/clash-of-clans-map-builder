@@ -1,5 +1,5 @@
 import { createSystem } from 'core/scent'
-import { KeyboardNode } from '../nodes'
+import * as n from '../nodes'
 import { gameConfig } from '../config'
 
 export default ($engine, $keyboard) => {
@@ -7,7 +7,7 @@ export default ($engine, $keyboard) => {
 
   return createSystem((node, delta) => {
     $keyboard.update(delta)
-  })(KeyboardNode)($engine)
+  })(n.Keyboard)($engine)
 }
 
 export const params = {

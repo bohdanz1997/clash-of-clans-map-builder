@@ -3,7 +3,7 @@ import { withReducer } from 'core/util'
 import { createEnhancedSystem } from 'core/scent'
 import { gameConfig } from '../config'
 import * as c from '../components'
-import { PointerNode, InteractiveNode } from '../nodes'
+import * as n from '../nodes'
 import { interactActions, interactStates } from '../constants'
 
 const interactiveReducer = withReducer((state, action) => ({
@@ -25,7 +25,7 @@ const interactiveReducer = withReducer((state, action) => ({
 
 const detectHit = (nInteractive, pointerInput) => {
   const { collision, entity } = nInteractive
-  const isIso = entity.has(c.cIsoPosition)
+  const isIso = entity.has(c.IsoPosition)
   const pointerPos = isIso
     ? pointerInput.cartPosition
     : pointerInput.position
@@ -82,13 +82,13 @@ export default $engine => createEnhancedSystem({
         const { interactive, entity: eInteractive } = nInteractive
         const hit = detectHit(nInteractive, pointer.input)
 
-        eInteractive.addOrRemove(c.cHovered, hit)
+        eInteractive.addOrRemove(c.Hovered, hit)
 
         this.updateInteractive(interactive, pointer.input, hit)
       })
     })
   },
-})(InteractiveNode, PointerNode)($engine)
+})(n.Interactive, n.Pointer)($engine)
 
 export const params = {
   priority: gameConfig.priorities.UPDATE,
