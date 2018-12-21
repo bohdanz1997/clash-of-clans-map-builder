@@ -1,5 +1,5 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cOverlay, Overlay] = createComponent(
+export const Overlay = defComponent(
   'overlay', 'target',
 )

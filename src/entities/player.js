@@ -18,19 +18,19 @@ const withFSM = (entity) => {
     ],
   })
 
-  return entity.add(c.FSM({ fsm }))
+  return entity.add(c.FSM.of({ fsm }))
 }
 
 export default ({ x, y, width, height, speed, health, damage }) => (
   pipeHOCs(
     withComponents(
-      c.Player(),
-      c.Position({ x, y }),
-      c.Motion(),
-      c.Collision({ width, height }),
-      c.MotionControl({ dx: speed, dy: speed }),
-      c.Damage({ damage }),
-      c.Health({ health }),
+      c.Player.of(),
+      c.Position.of({ x, y }),
+      c.Motion.of(),
+      c.Collision.of({ width, height }),
+      c.MotionControl.of({ dx: speed, dy: speed }),
+      c.Damage.of({ damage }),
+      c.Health.of({ health }),
     ),
     withFSM,
     withDisplay.sprite({ asset: expolorer }),

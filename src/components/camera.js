@@ -1,7 +1,7 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 import { createCamera } from 'core/camera'
 
-export const [cCamera, Camera] = createComponent(
+export const Camera = defComponent(
   'camera', 'camera',
   ({ world, worldWidth, worldHeight, width, height }) => ({
     camera: createCamera({

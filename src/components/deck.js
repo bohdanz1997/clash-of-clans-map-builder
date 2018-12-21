@@ -1,6 +1,6 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cDeck, Deck] = createComponent(
+export const Deck = defComponent(
   'deck', 'items selected',
   () => ({
     items: [],

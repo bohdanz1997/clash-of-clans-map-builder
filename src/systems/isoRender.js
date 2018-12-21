@@ -1,10 +1,10 @@
-import { createSystem } from 'core/scent'
-import { IsoRenderNode } from '../nodes'
+import { system } from 'core/scent'
+import * as n from '../nodes'
 import { gameConfig } from '../config'
 
-export default $engine => createSystem(({ isoPosition, display }) => {
+export default $engine => system(({ isoPosition, display }) => {
   display.sprite.position.copy(isoPosition.pos)
-})(IsoRenderNode)($engine)
+})(n.IsoRender)($engine)
 
 export const params = {
   priority: gameConfig.priorities.ISO_RENDER,

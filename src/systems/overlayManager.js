@@ -1,10 +1,9 @@
 // @flow
 import type { GameConfig, Engine } from 'types/game'
 
-import { createEnhancedSystem } from 'core/scent'
-
-import { OverlayOwnerNode, OverlayNode } from '../nodes'
+import { system } from 'core/scent'
 import { gameConfig } from '../config'
+import * as n from '../nodes'
 
 export default ($config: GameConfig, $engine: Engine, $entityFactory) => {
 
@@ -22,7 +21,7 @@ export default ($config: GameConfig, $engine: Engine, $entityFactory) => {
     $engine.destroyEntity(entity)
   }
 
-  return createEnhancedSystem({
+  system({
     init(overlayNode, ownerNode) {
       ownerNode.each(createOverlay)
       ownerNode.onAdded(createOverlay)
@@ -34,7 +33,7 @@ export default ($config: GameConfig, $engine: Engine, $entityFactory) => {
         position.pos.copy(overlay.target.pos)
       })
     },
-  })(OverlayNode, OverlayOwnerNode)($engine)
+  })(n.Overlay, n.OverlayOwner)($engine)
 }
 
 export const params = {

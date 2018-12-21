@@ -1,10 +1,10 @@
-import { createSystem } from 'core/scent'
-import { CollisionNode } from '../nodes'
+import { system } from 'core/scent'
 import { gameConfig } from '../config'
+import * as n from '../nodes'
 
-export default $engine => createSystem(({ position, collision }) => {
+export default $engine => system(({ position, collision }) => {
   collision.bounds.setPosition(position.pos)
-})(CollisionNode)($engine)
+})(n.Collision)($engine)
 
 export const params = {
   priority: gameConfig.priorities.UPDATE_COLLISION,

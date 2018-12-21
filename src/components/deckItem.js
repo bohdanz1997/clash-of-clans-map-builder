@@ -1,5 +1,5 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cDeckItem, DeckItem] = createComponent(
+export const DeckItem = defComponent(
   'deckItem',
 )

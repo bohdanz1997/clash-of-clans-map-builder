@@ -1,13 +1,13 @@
-import { createSystem } from 'core/scent'
-import { KeyboardNode } from '../nodes'
+import { system } from 'core/scent'
+import * as n from '../nodes'
 import { gameConfig } from '../config'
 
 export default ($engine, $keyboard) => {
   $keyboard.start()
 
-  return createSystem((node, delta) => {
+  system((node, delta) => {
     $keyboard.update(delta)
-  })(KeyboardNode)($engine)
+  })(n.Keyboard)($engine)
 }
 
 export const params = {

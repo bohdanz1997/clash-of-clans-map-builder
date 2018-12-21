@@ -3,15 +3,11 @@ import { system } from 'core/scent'
 import { hitTest } from 'core/collision'
 
 import * as c from '../components'
-import {
-  InteractiveNode,
-  PointerNode,
-  HoverObserverNode, DragObserverNode,
-} from '../nodes'
+import * as n from '../nodes'
 
 const detectHit = (nInteractive, pointerInput) => {
   const { collision, entity } = nInteractive
-  const isIso = entity.has(c.cIsoPosition)
+  const isIso = entity.has(c.IsoPosition)
   const pointerPos = isIso
     ? pointerInput.cartPosition
     : pointerInput.position
@@ -36,7 +32,7 @@ export default ($engine, $config, $entityFactory) => {
               source: interactiveNode.entity,
             })
 
-            eObserver.add(c.cHovered)
+            eObserver.add(c.Hovered)
             $engine.addEntity(eObserver)
             observersMap.set(mixedId, eObserver)
           }
@@ -49,7 +45,7 @@ export default ($engine, $config, $entityFactory) => {
         })
       })
     },
-  })(InteractiveNode, PointerNode)($engine)
+  })(n.Interactive, n.Pointer)($engine)
 
   system('hover observer system', {
     init(nodes) {
@@ -63,23 +59,23 @@ export default ($engine, $config, $entityFactory) => {
 
     update(node) {
       const { client, entity } = node
-      const pointer = client.entity.get(c.cPointer)
+      const pointer = client.entity.get(c.Pointer)
 
       if (pointer.input.isDown) {
-        if (!entity.has(c.cDragging)) {
-          entity.add(c.cDragging)
-          entity.add(c.cDragContext)
+        if (!entity.has(c.Dragging)) {
+          entity.add(c.Dragging)
+          entity.add(c.DragContext)
         }
       }
 
       if (pointer.input.isUp) {
-        if (entity.has(c.cDragging)) {
-          entity.remove(c.cDragging)
-          entity.remove(c.cDragContext)
+        if (entity.has(c.Dragging)) {
+          entity.remove(c.Dragging)
+          entity.remove(c.DragContext)
         }
       }
     },
-  })(HoverObserverNode)($engine)
+  })(n.HoverObserver)($engine)
 
   system('dragging observer system', {
     init(nodes) {
@@ -90,12 +86,12 @@ export default ($engine, $config, $entityFactory) => {
           source,
         } = node
 
-        const sourcePos = source.entity.get(c.cPosition).pos
+        const sourcePos = source.entity.get(c.Position).pos
         const startPos = sourcePos.clone()
-        const pointer = client.entity.get(c.cPointer)
+        const pointer = client.entity.get(c.Pointer)
         const offsetFromClient = pointer.input.cartPosition.sub(sourcePos)
 
-        const dragContext = entity.get(c.cDragContext)
+        const dragContext = entity.get(c.DragContext)
         dragContext.startPos = startPos
         dragContext.offsetFromClient = offsetFromClient
         console.log('drag start')
@@ -108,23 +104,23 @@ export default ($engine, $config, $entityFactory) => {
           position,
           collision,
         ] = source.entity.getMany(
-          c.cPosition,
-          c.cCollision,
+          c.Position,
+          c.Collision,
         )
 
         // if (!map.isEmptyInSize(position.fieldPos.x, position.fieldPos.y, collision.radius)) {
         //   position.pos.copy(dragContext.startPos)
         // }
 
-        entity.remove(c.cDragContext)
+        entity.remove(c.DragContext)
         console.log('drag end')
       })
     },
 
     update(node) {
       const { client, source, dragContext } = node
-      const clientPointer = client.entity.get(c.cPointer)
-      const sourcePosition = source.entity.get(c.cPosition)
+      const clientPointer = client.entity.get(c.Pointer)
+      const sourcePosition = source.entity.get(c.Position)
 
       const nextPos = Point.sub(
         clientPointer.input.cartPosition.floorNum(cellSize),
@@ -133,18 +129,18 @@ export default ($engine, $config, $entityFactory) => {
 
       sourcePosition.pos.copy(nextPos)
     },
-  })(DragObserverNode)($engine)
+  })(n.DragObserver)($engine)
 
   system('pointerHoverSystem', {
     init(nodes) {
       nodes.onAdded((node) => {
         const ePointer = node.client.entity
-        ePointer.get(c.cPointer).input.hoverOver = true
+        ePointer.get(c.Pointer).input.hoverOver = true
       })
       nodes.onRemoved((node) => {
         const ePointer = node.client.entity
-        ePointer.get(c.cPointer).input.hoverOver = false
+        ePointer.get(c.Pointer).input.hoverOver = false
       })
     },
-  })(HoverObserverNode)($engine)
+  })(n.HoverObserver)($engine)
 }

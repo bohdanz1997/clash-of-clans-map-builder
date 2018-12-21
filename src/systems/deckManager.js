@@ -1,6 +1,6 @@
-import { createEnhancedSystem, nodeEachTwice } from 'core/scent'
+import { system, nodeEachTwice } from 'core/scent'
 import { createDnD } from '../services'
-import { DeckItemNode, PointerNode } from '../nodes'
+import * as n from '../nodes'
 
 /**
  * @param {Engine} $engine
@@ -43,11 +43,11 @@ export default (
     }
   })
 
-  createEnhancedSystem({
+  system({
     init(nDeckItems, nPointers) {
       addListeners(nPointers, nDeckItems)
     },
-  })(DeckItemNode, PointerNode)($engine)
+  })(n.DeckItem, n.Pointer)($engine)
 }
 
 export const params = {

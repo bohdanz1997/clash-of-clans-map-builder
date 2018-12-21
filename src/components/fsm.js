@@ -1,5 +1,5 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cFSM, FSM] = createComponent(
+export const FSM = defComponent(
   'fsm', 'fsm',
 )

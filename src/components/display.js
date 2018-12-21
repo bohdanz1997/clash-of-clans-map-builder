@@ -1,6 +1,6 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 
-export const [cDisplay, Display] = createComponent(
+export const Display = defComponent(
   'display', 'sprite group oldGroup parentId',
   ({ sprite, parentId = 'world' }) => ({
     sprite,

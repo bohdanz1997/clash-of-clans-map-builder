@@ -1,10 +1,9 @@
-import { createComponent } from 'core/scent'
+import { defComponent } from 'core/scent'
 import { uuid } from 'core/util'
 
-export const [cPlayer, Player] = createComponent('player')
-export const [cActive, Active] = createComponent('active')
+export const Player = defComponent('player')
 
-export const [cIdentity, Identity] = createComponent(
+export const Identity = defComponent(
   'identity', 'id seed',
   ({ id = null } = {}) => ({ seed: uuid(), id }),
 )

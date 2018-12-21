@@ -1,56 +1,56 @@
 import * as c from '../components'
 
 // control
-export const CameraControlNode = [
-  c.cCamera,
-  c.cPosition,
-  c.cMotion,
-  c.cMotionControl,
-  c.cZoomControl,
+export const CameraControl = [
+  c.Camera,
+  c.Position,
+  c.Motion,
+  c.MotionControl,
+  c.ZoomControl,
 ]
 
-export const DraggableNode = [
-  c.cDraggable,
-  c.cPosition,
-  c.cDisplay,
-  c.cCollision,
-  c.cIdentity,
+export const Draggable = [
+  c.Draggable,
+  c.Position,
+  c.Display,
+  c.Collision,
+  c.Identity,
 ]
 
-export const MovementNode = [c.cPosition, c.cMotion]
-export const CollisionNode = [c.cPosition, c.cCollision]
-export const RenderNode = [c.cPosition, c.cDisplay]
-export const MapNode = [c.cMap]
-export const BuildingNode = [c.cBuilding, c.cPosition, c.cIdentity]
-export const KeyboardNode = [c.cKeyboard]
-export const InteractiveNode = [c.cInteractive, c.cCollision, c.cIdentity]
-export const IsometricNode = [c.cPosition, c.cIsoPosition]
-export const IsoRenderNode = [c.cIsoPosition, c.cDisplay]
-export const OverlayOwnerNode = [c.cOverlayOwner, c.cPosition]
-export const OverlayNode = [c.cOverlay, c.cPosition]
-export const HudNode = [c.cHudLayer, c.cDisplay]
-export const DeckNode = [c.cDeck]
-export const DeckItemNode = [c.cDeckItem, c.cInteractive, c.cEntityMeta]
+export const Movement = [c.Position, c.Motion]
+export const Collision = [c.Position, c.Collision]
+export const Render = [c.Position, c.Display]
+export const Map = [c.Map]
+export const Building = [c.Building, c.Position, c.Identity]
+export const Keyboard = [c.Keyboard]
+export const Interactive = [c.Interactive, c.Collision, c.Identity]
+export const Isometric = [c.Position, c.IsoPosition]
+export const IsoRender = [c.IsoPosition, c.Display]
+export const OverlayOwner = [c.OverlayOwner, c.Position]
+export const Overlay = [c.Overlay, c.Position]
+export const Hud = [c.HudLayer, c.Display]
+export const Deck = [c.Deck]
+export const DeckItem = [c.DeckItem, c.Interactive, c.EntityMeta]
 
-export const PointerNode = [c.cPointer, c.cDragSource, c.cIdentity]
-export const PointerDraggingNode = [c.cPointer, c.cDragSource, c.Dragging]
-export const InteractiveHoverNode = [c.cInteractive, c.cHovered]
+export const Pointer = [c.Pointer, c.DragSource, c.Identity]
+export const PointerDragging = [c.Pointer, c.DragSource, c.Dragging]
+export const InteractiveHover = [c.Interactive, c.Hovered]
 
 // observers
-export const HoverObserverNode = [c.cHovered, c.Interact.cClient, c.Interact.cSource]
-export const DragObserverNode = [c.Dragging, c.cDragContext, c.Interact.cClient, c.Interact.cSource]
+export const HoverObserver = [c.Hovered, c.Interact.Client, c.Interact.Source]
+export const DragObserver = [c.Dragging, c.DragContext, c.Interact.Client, c.Interact.Source]
 
 // layers
-export const LayersNode = {
-  Ground: [c.cGroundLayer, c.cDisplay],
-  BackGround: [c.cBackGroundLayer, c.cDisplay],
-  Building: [c.cBuildingLayer, c.cDisplay],
-  Drag: [c.cDragLayer, c.cDisplay],
-  Hud: [c.cHudLayer, c.cDisplay],
+export const Layers = {
+  Ground: [c.GroundLayer, c.Display],
+  BackGround: [c.BackGroundLayer, c.Display],
+  Building: [c.BuildingLayer, c.Display],
+  Drag: [c.DragLayer, c.Display],
+  Hud: [c.HudLayer, c.Display],
 }
 
 // map layers
-export const MapLayersNode = {
-  Building: [c.cBuildingLayer, c.cIdentity, c.cPosition, c.cCollision],
-  Drag: [c.cDragLayer, c.cIdentity, c.cPosition, c.cCollision],
+export const MapLayers = {
+  Building: [c.BuildingLayer, c.Identity, c.Position, c.Collision],
+  Drag: [c.DragLayer, c.Identity, c.Position, c.Collision],
 }
