@@ -8,6 +8,8 @@
 - [x] move camera by touch
 - [ ] proper manage pointer for drag an move
 - [ ] core:entityMapLoader
+- [ ] pointer position component
+- [ ] add identity component by default
 
 entityMapLoader
 - input: map, entityDefinitions, entityFactories
