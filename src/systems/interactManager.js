@@ -76,16 +76,15 @@ export default $engine => createEnhancedSystem({
     }
   },
 
-  update(interactiveNode, pointerNode) {
-    pointerNode.each(({ pointer }) => {
-      pointer.input.hoverOver = false
-
-      interactiveNode.each((nInteractive) => {
-        const { interactive } = nInteractive
+  update(interactiveNodes, pointerNodes) {
+    pointerNodes.each(({ pointer }) => {
+      interactiveNodes.each((nInteractive) => {
+        const { interactive, entityRef: eInteractive } = nInteractive
         const hit = detectHit(nInteractive, pointer.input)
 
+        eInteractive.addOrRemove(c.cHovered, hit)
+
         this.updateInteractive(interactive, pointer.input, hit)
-        if (hit) pointer.input.hoverOver = true
       })
     })
   },

@@ -13,3 +13,13 @@ export const [cInteractive, Interactive] = createComponent(
     release,
   })
 )
+
+const [cClient, Client] = createComponent('client', 'entity')
+const [cSource, Source] = createComponent('source', 'entity')
+
+export const Interact = {
+  cClient,
+  Client,
+  cSource,
+  Source,
+}
