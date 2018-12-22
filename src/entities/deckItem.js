@@ -14,12 +14,12 @@ export default ({ index, entityMeta }, { $positioning }) => {
 
   return pipeHOCs(
     withComponents(
-      c.DeckItem.of(),
-      c.EntityMeta.of(entityMeta),
-      c.HudLayer.of(),
-      c.Position.of(pos),
-      c.Interactive.of(),
-      c.Collision.of(bounds),
+      c.DeckItem(),
+      c.EntityMeta(entityMeta),
+      c.HudLayer(),
+      c.Position(pos),
+      c.Interactive(),
+      c.Collision(bounds),
     ),
     withDisplay.sprite({
       asset: entityMeta.def,

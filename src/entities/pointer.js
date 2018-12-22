@@ -5,10 +5,10 @@ import { gameConfig } from '../config'
 
 export default () => (
   createEntity(
-    c.Identity.of(),
-    c.Position.of(),
-    c.DragSource.of(),
-    c.Pointer.of({
+    c.Identity(),
+    c.Position(),
+    c.DragSource(),
+    c.Pointer({
       element: gameConfig.targetEl,
     }),
   )

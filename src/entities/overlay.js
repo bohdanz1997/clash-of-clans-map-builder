@@ -4,10 +4,10 @@ import { withDisplay } from '../services'
 
 export default ({ width, height, target }) => pipeHOCs(
   withComponents(
-    c.BackGroundLayer.of(),
-    c.Overlay.of({ target }),
-    c.Position.of(),
-    c.IsoPosition.of(),
+    c.BackGroundLayer(),
+    c.Overlay({ target }),
+    c.Position(),
+    c.IsoPosition(),
   ),
   withDisplay.isoRect({ width, height, color: 0x8bc34a }),
 )
