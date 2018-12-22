@@ -18,27 +18,27 @@ export default ({ speed, damp }: any, scope: Deps) => {
   ] = keyboard.addKeys(keys.ZERO, keys.NINE)
 
   return createEntity(
-    c.Camera.of({
+    c.Camera({
       world,
       worldWidth: config.worldWidth,
       worldHeight: config.worldHeight,
       width: config.width,
       height: config.height,
     }),
-    c.Position.of({
+    c.Position({
       x: -config.hWidth + config.hTileWidth,
       y: config.hHeight - config.tileHeight,
     }),
-    c.Motion.of({
+    c.Motion({
       dampX: damp,
       dampY: damp,
     }),
-    c.MotionControl.of({
+    c.MotionControl({
       dx: speed,
       dy: speed,
       ...makeWASDKeys(keyboard),
     }),
-    c.ZoomControl.of({
+    c.ZoomControl({
       plus: keyZoomPlus,
       minus: keyZoomMinus,
       smoothZoom: createSmoothStep({

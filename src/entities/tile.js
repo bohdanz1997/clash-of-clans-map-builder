@@ -4,9 +4,9 @@ import { withDisplay } from '../services'
 
 export default ({ x, y, isoWidth, isoHeight }) => pipeHOCs(
   withComponents(
-    c.GroundLayer.of(),
-    c.Position.of({ x, y }),
-    c.IsoPosition.of(),
+    c.GroundLayer(),
+    c.Position({ x, y }),
+    c.IsoPosition(),
   ),
   withDisplay.sprite({
     asset: 'ground',

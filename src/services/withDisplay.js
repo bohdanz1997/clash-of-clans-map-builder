@@ -2,7 +2,7 @@ import { spriteFactory, textFactory } from 'core/display'
 import { Display as DisplayComponent } from '../components'
 
 const withDisplayComponent = ({ createSprite, parentId }) => entity => (
-  entity.add(DisplayComponent.of({
+  entity.add(DisplayComponent({
     sprite: createSprite(),
     parentId,
   }))

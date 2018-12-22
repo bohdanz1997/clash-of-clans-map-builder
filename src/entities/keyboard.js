@@ -3,6 +3,6 @@ import * as c from '../components'
 
 export default () => (
   createEntity(
-    c.Keyboard.of(),
+    c.Keyboard(),
   )
 )

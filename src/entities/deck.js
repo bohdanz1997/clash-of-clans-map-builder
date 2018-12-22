@@ -9,9 +9,9 @@ export default (_, { $positioning }) => {
 
   return pipeHOCs(
     withComponents(
-      c.HudLayer.of(),
-      c.Deck.of(),
-      c.Position.of(pos)
+      c.HudLayer(),
+      c.Deck(),
+      c.Position(pos)
     ),
     withDisplay.rect({
       width: bounds.width,
