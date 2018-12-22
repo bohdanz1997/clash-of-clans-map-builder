@@ -10,6 +10,9 @@
 - [ ] core:entityMapLoader
 - [ ] pointer position component
 - [ ] add identity component by default
+- [ ] combine dragSource, dragContext
+- [ ] refactor core/scent/mixins
+- [ ] tilemap, camera services
 
 entityMapLoader
 - input: map, entityDefinitions, entityFactories
