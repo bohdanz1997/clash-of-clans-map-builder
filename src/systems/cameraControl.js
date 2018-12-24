@@ -1,12 +1,8 @@
-// @flow
-import type { GameConfig, Engine, Keyboard } from 'types/game'
-import type { Container } from 'types/pixi'
-
 import { system } from 'core/scent'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
 
-export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $world: Container) => (
+export default ({ config, engine, keyboard, world }) => (
   system({
     update({ camera, position, motion, motionControl, zoomControl }) {
       const { smoothZoom } = zoomControl
@@ -35,10 +31,10 @@ export default ($config: GameConfig, $engine: Engine, $keyboard: Keyboard, $worl
       camera.camera.x = position.pos.x
       camera.camera.y = position.pos.y
 
-      const scale = smoothZoom.applyForce($world.scale.x)
-      $world.scale.set(scale)
+      const scale = smoothZoom.applyForce(world.scale.x)
+      world.scale.set(scale)
     },
-  })(n.CameraControl)($engine)
+  })(n.CameraControl)(engine)
 )
 
 export const params = {

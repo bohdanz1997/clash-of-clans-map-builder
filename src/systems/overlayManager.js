@@ -1,27 +1,24 @@
-// @flow
-import type { GameConfig, Engine } from 'types/game'
-
 import { system } from 'core/scent'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
 
-export default ($config: GameConfig, $engine: Engine, $entityFactory) => {
+export default ({ map, engine, entityFactory }) => {
 
   const createOverlay = ({ position }) => {
-    const overlay = $entityFactory.create('overlay', {
-      width: $config.cartTileSize,
-      height: $config.cartTileSize,
+    const overlay = entityFactory.create('overlay', {
+      width: map.config.tileWidth,
+      height: map.config.tileHeight,
       target: position,
     })
 
-    $engine.addEntity(overlay)
+    engine.addEntity(overlay)
   }
 
   const removeOverlay = ({ entity }) => {
-    $engine.destroyEntity(entity)
+    engine.destroyEntity(entity)
   }
 
-  system({
+  return system({
     init(overlayNode, ownerNode) {
       ownerNode.each(createOverlay)
       ownerNode.onAdded(createOverlay)
@@ -33,7 +30,7 @@ export default ($config: GameConfig, $engine: Engine, $entityFactory) => {
         position.pos.copy(overlay.target.pos)
       })
     },
-  })(n.Overlay, n.OverlayOwner)($engine)
+  })(n.Overlay, n.OverlayOwner)(engine)
 }
 
 export const params = {

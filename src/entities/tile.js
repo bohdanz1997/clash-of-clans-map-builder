@@ -2,7 +2,9 @@ import * as c from '../components'
 import { withComponents, pipeHOCs } from '../components/hoc'
 import { withDisplay } from '../services'
 
-export default ({ x, y, isoWidth, isoHeight }) => pipeHOCs(
+export const Tile = ({
+  data: { x, y, isoWidth, isoHeight },
+}) => pipeHOCs(
   withComponents(
     c.GroundLayer(),
     c.Position({ x, y }),

@@ -33,7 +33,7 @@ const detectHit = (nInteractive, pointerInput) => {
   return hitTest.rect(collision.bounds, pointerPos)
 }
 
-export default $engine => system({
+export default ({ engine }) => system({
   updateInteractive(interactive, pointerInput, didHit) {
     // set default UP state
     interactive.state = interactStates.UP
@@ -88,7 +88,7 @@ export default $engine => system({
       })
     })
   },
-})(n.Interactive, n.Pointer)($engine)
+})(n.Interactive, n.Pointer)(engine)
 
 export const params = {
   priority: gameConfig.priorities.UPDATE,

@@ -1,6 +1,3 @@
-// @flow
-import type { GameConfig, Engine } from 'types/game'
-
 import { system } from 'core/scent'
 import { Point } from 'core/pixi'
 import { gameConfig } from '../config'
@@ -16,12 +13,12 @@ const pointIn = range => (point) => {
   return Point.of(x, y)
 }
 
-export default ($config: GameConfig, $engine: Engine) => {
+export default ({ config, engine }) => {
   let origDragPoint = null
   const maxScrollSpeed = 30
   const pointInRange = pointIn(maxScrollSpeed)
 
-  system({
+  return system({
     update(nCamera, nPointer) {
       const {
         motion,
@@ -44,7 +41,7 @@ export default ($config: GameConfig, $engine: Engine) => {
         origDragPoint = null
       }
     },
-  })(n.CameraControl, n.Pointer)($engine)
+  })(n.CameraControl, n.Pointer)(engine)
 }
 
 export const params = {

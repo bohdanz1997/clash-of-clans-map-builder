@@ -1,0 +1,7 @@
+{
+  "files.autoSave": "afterDelay",
+  "path-autocomplete.pathMappings": {
+    "@": "${folder}/src",
+    "core": "${folder}/core"
+  }
+}

@@ -2,10 +2,10 @@ import { system } from 'core/scent'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
 
-export default ($engine, $world, $hud) => {
+export default ({ engine, world, hud }) => {
   const matchContainer = parentId => ({
-    world: $world,
-    hud: $hud,
+    world,
+    hud,
   })[parentId]
 
   const addRenderChild = ({ display }) => {
@@ -16,7 +16,7 @@ export default ($engine, $world, $hud) => {
     matchContainer(display.parentId).removeChild(display.sprite)
   }
 
-  system({
+  return system({
     init(node) {
       node.each(addRenderChild)
       node.onAdded(addRenderChild)
@@ -29,7 +29,7 @@ export default ($engine, $world, $hud) => {
       sprite.parentGroup = group
       sprite.position.copy(position.pos)
     },
-  })(n.Render)($engine)
+  })(n.Render)(engine)
 }
 
 export const params = {
