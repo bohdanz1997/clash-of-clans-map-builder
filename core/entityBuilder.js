@@ -1,13 +1,8 @@
-import { stringifyJSON, pipe } from 'core/util'
+import { asFunction } from 'awilix'
+import { stringifyJSON } from 'core/util'
 
-export default (config) => {
-  const {
-    scope,
-    entityFactories,
-    entityParamsProvider,
-  } = config
-
-  const entityBuilder = (entityParams) => {
+export default ({ container, entityFactories }) => (
+  (entityParams, dataForInject) => {
     const { id } = entityParams
     if (id === undefined) {
       throw new Error(`Entity params must include 'id', got params: \n${stringifyJSON(entityParams)}`)
@@ -18,11 +13,11 @@ export default (config) => {
       throw new Error(`Could not find entity factory for id '${id}'`)
     }
 
-    return entityFactory(entityParams, scope)
-  }
+    const entityResolver = asFunction(entityFactory).inject(() => ({
+      data: entityParams,
+      ...dataForInject,
+    }))
 
-  return pipe(
-    entityParamsProvider,
-    entityBuilder,
-  )
-}
+    return container.build(entityResolver)
+  }
+)

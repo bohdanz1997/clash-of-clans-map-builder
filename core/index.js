@@ -8,3 +8,5 @@ export {
   createMapParser,
   createEntityBuilder,
 }
+
+export { Game } from './boot'
