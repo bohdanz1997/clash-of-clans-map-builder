@@ -1,13 +1,10 @@
-// @flow
-import type { GameConfig, Engine } from 'types/game'
-
 import { system } from 'core/scent'
 import { viewConfig, gameConfig } from '../config'
 import * as n from '../nodes'
 
 const { groups } = viewConfig
 
-export default ($config: GameConfig, $engine: Engine) => {
+export default ({ app, engine }) => {
   const setDisplayGroup = group => ({ display }) => {
     display.group = group
   }
@@ -17,7 +14,7 @@ export default ($config: GameConfig, $engine: Engine) => {
     node.onAdded(setDisplayGroup(group))
   }
 
-  system({
+  return system({
     init(groundNode, backNode, buildingNode, dragNode, hudNode) {
       initLayer(groundNode, groups.GROUND)
       initLayer(backNode, groups.OVERLAY)
@@ -31,7 +28,7 @@ export default ($config: GameConfig, $engine: Engine) => {
     n.Layers.Building,
     n.Layers.Drag,
     n.Layers.Hud,
-  )($engine)
+  )(engine)
 }
 
 export const params = {

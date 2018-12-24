@@ -17,6 +17,7 @@ const {
   },
   utils: {
     TextureCache,
+    EventEmitter,
   },
 } = PIXI
 
@@ -30,6 +31,8 @@ export {
   Group,
   Layer,
   Stage,
+
+  EventEmitter,
 }
 
 // helpers

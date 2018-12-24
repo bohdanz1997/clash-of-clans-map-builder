@@ -1,4 +1,5 @@
-import Key from './key'
+/* eslint-disable no-underscore-dangle */
+import { Key, keys } from '.'
 
 export default class Keyboard {
   constructor(target) {
@@ -83,6 +84,20 @@ export default class Keyboard {
 
   start() {
     this._startListeners()
+  }
+
+  makeWASDKeys() {
+    const [up, down, left, right] = this.addKeys(keys.W, keys.S, keys.A, keys.D)
+    return {
+      up, down, left, right,
+    }
+  }
+
+  makeArrowKeys() {
+    const [up, down, left, right] = this.addKeys(keys.UP, keys.DOWN, keys.LEFT, keys.RIGHT)
+    return {
+      up, down, left, right,
+    }
   }
 
   destroy() {

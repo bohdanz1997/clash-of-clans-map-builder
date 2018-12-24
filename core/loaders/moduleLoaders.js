@@ -28,7 +28,10 @@ export const jsFileNamesNormalizer = x => x.replace(/(^.\/)|(\.js$)/g, '')
 
 export const jsonModuleLoader = moduleLoader(jsonFileNamesNormalizer)
 
-export const jsModuleLoader = moduleLoader(
-  jsFileNamesNormalizer,
-  context => context.default || context,
+const jsContextMapper = context => context.default || context
+export const jsModuleLoader = (context, contextMapper = jsContextMapper) => (
+  moduleLoader(
+    jsFileNamesNormalizer,
+    contextMapper,
+  )(context)
 )

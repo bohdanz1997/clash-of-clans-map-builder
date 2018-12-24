@@ -3,7 +3,6 @@ import { gameConfig } from '../config'
 
 export default (engine) => {
   const systemsLoader = createSystemsLoader({
-    engine,
     defaultSystemPriority: gameConfig.priorities.UPDATE,
   })
 

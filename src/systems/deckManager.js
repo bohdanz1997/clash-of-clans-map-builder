@@ -3,19 +3,15 @@ import { createDnD } from '../services'
 import * as n from '../nodes'
 
 /**
- * @param {Engine} $engine
- * @param $config
- * @param {EntityFactory} $entityFactory
+ * @param {Engine} engine
+ * @param map
+ * @param {EntityFactory} entityFactory
  */
-export default (
-  $engine,
-  $config,
-  $entityFactory,
-) => {
-  const dndManager = createDnD({ cellSize: $config.cartCellSize })
+export default ({ engine, map, entityFactory }) => {
+  const dndManager = createDnD({ cellSize: map.config.cellWidth })
 
   const makeEntityFromDeck = (entityMeta, position) => (
-    $entityFactory.create(entityMeta.id, {
+    entityFactory.create(entityMeta.id, {
       def: entityMeta.def,
       x: position.x,
       y: position.y,
@@ -28,7 +24,7 @@ export default (
       nPointer.pointer.input.cartPosition
     )
 
-    $engine.addEntity(entity)
+    engine.addEntity(entity)
     dndManager.start(nPointer, entity)
   }
 
@@ -43,11 +39,11 @@ export default (
     }
   })
 
-  system({
+  return system({
     init(nDeckItems, nPointers) {
       addListeners(nPointers, nDeckItems)
     },
-  })(n.DeckItem, n.Pointer)($engine)
+  })(n.DeckItem, n.Pointer)(engine)
 }
 
 export const params = {

@@ -15,9 +15,9 @@ const detectHit = (nInteractive, pointerInput) => {
   return hitTest.rect(collision.bounds, pointerPos)
 }
 
-export default ($engine, $config, $entityFactory) => {
+export default ({ engine, map, entityFactory }) => {
   const observersMap = new Map()
-  const cellSize = $config.cartCellSize
+  const cellSize = map.config.cellWidth
 
   system('interactSystem', {
     update(interactiveNodes, pointerNodes) {
@@ -27,13 +27,13 @@ export default ($engine, $config, $entityFactory) => {
           const mixedId = `${interactiveNode.identity.seed}${pointerNode.identity.seed}`
 
           if (hit && !observersMap.has(mixedId)) {
-            const eObserver = $entityFactory.create('observer', {
+            const eObserver = entityFactory.create('observer', {
               client: pointerNode.entity,
               source: interactiveNode.entity,
             })
 
             eObserver.add(c.Hovered)
-            $engine.addEntity(eObserver)
+            engine.addEntity(eObserver)
             observersMap.set(mixedId, eObserver)
           }
 
@@ -45,7 +45,7 @@ export default ($engine, $config, $entityFactory) => {
         })
       })
     },
-  })(n.Interactive, n.Pointer)($engine)
+  })(n.Interactive, n.Pointer)(engine)
 
   system('hover observer system', {
     init(nodes) {
@@ -75,7 +75,7 @@ export default ($engine, $config, $entityFactory) => {
         }
       }
     },
-  })(n.HoverObserver)($engine)
+  })(n.HoverObserver)(engine)
 
   system('dragging observer system', {
     init(nodes) {
@@ -129,9 +129,9 @@ export default ($engine, $config, $entityFactory) => {
 
       sourcePosition.pos.copy(nextPos)
     },
-  })(n.DragObserver)($engine)
+  })(n.DragObserver)(engine)
 
-  system('pointerHoverSystem', {
+  return system('pointerHoverSystem', {
     init(nodes) {
       nodes.onAdded((node) => {
         const ePointer = node.client.entity
@@ -142,5 +142,5 @@ export default ($engine, $config, $entityFactory) => {
         ePointer.get(c.Pointer).input.hoverOver = false
       })
     },
-  })(n.HoverObserver)($engine)
+  })(n.HoverObserver)(engine)
 }

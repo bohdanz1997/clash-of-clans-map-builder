@@ -3,7 +3,7 @@ import {
   jsFileNamesNormalizer,
 } from './moduleLoaders'
 
-export default (config) => {
+export const createSystemsLoader = (config) => {
   const {
     defaultSystemPriority,
   } = config
@@ -45,6 +45,7 @@ export default (config) => {
       .values(systems)
       .sort(sortByPriority)
       .filter(system => system.enabled)
-      .map(system => system.systemHandler)
   }
 }
+
+export default createSystemsLoader

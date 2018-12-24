@@ -3,10 +3,10 @@ import { Rectangle } from 'core/pixi'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
 
-export default ($engine, $config) => {
-  const worldBounds = new Rectangle(0, 0, $config.cartWorldWidth, $config.cartWorldHeight)
+export default ({ engine, map }) => {
+  const worldBounds = new Rectangle(0, 0, map.config.widthInPixels, map.config.heightInPixels)
 
-  system({
+  return system({
     update({ position, collision }) {
       const { bounds } = collision
 
@@ -23,7 +23,7 @@ export default ($engine, $config) => {
         position.pos.x = worldBounds.right - bounds.width
       }
     },
-  })(n.Collision)($engine)
+  })(n.Collision)(engine)
 }
 
 export const params = {

@@ -1,25 +1,30 @@
-export class Layer {
-  constructor(width, height, name) {
+export default class Layer {
+  constructor(name, width, height) {
     this.cells = []
     this.name = name
-    this.init(width, height)
-    this.clear()
+    this.width = width
+    this.height = height
+    this.objects = []
+    this.init()
   }
 
   static EMPTY_CELL = -1
 
-  init(width, height) {
-    this.width = width
-    this.height = height
-  }
-
   clear() {
-    this.fillCells(Layer.EMPTY_CELL)
+    this.fill(Layer.EMPTY_CELL)
   }
 
-  fillCells(state) {
+  init() {
     for (let x = 0; x < this.width; x++) {
       this.cells[x] = []
+      for (let y = 0; y < this.height; y++) {
+        this.setIn(x, y, Layer.EMPTY_CELL)
+      }
+    }
+  }
+
+  fill(state) {
+    for (let x = 0; x < this.width; x++) {
       for (let y = 0; y < this.height; y++) {
         this.setIn(x, y, state)
       }

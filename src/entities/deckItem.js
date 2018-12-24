@@ -3,11 +3,14 @@ import { pipeHOCs, withComponents } from '../components/hoc'
 import { withDisplay } from '../services'
 import * as c from '../components'
 
-export default ({ index, entityMeta }, { $positioning }) => {
+export const DeckItem = ({
+  data: { index, entityMeta },
+  positioning,
+}) => {
   const bounds = new Rectangle(0, 0, 80, 80)
   const margin = 20
 
-  const pos = $positioning.bottomLeft({
+  const pos = positioning.bottomLeft({
     x: index * bounds.width + margin,
     y: bounds.height,
   })

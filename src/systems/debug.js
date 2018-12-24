@@ -1,11 +1,8 @@
-// @flow
-import type { Engine } from 'types/game'
-
 import { system } from 'core/scent'
 import * as n from '../nodes'
 
-export default ($engine: Engine) => {
-  system({
+export default ({ engine }) => {
+  return system({
     update(pointerNode, hudNode) {
       const { display } = hudNode.head
       const { pointer } = pointerNode.head
@@ -21,7 +18,7 @@ export default ($engine: Engine) => {
         hover: ${pointer.input.hoverOver}
       `
     },
-  })(n.Pointer, n.Hud)($engine)
+  })(n.Pointer, n.Hud)(engine)
 }
 
 export const params = {

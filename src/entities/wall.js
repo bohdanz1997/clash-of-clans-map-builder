@@ -2,7 +2,9 @@ import { createEntity } from 'core/scent'
 
 import * as c from '../components'
 
-export default ({ x, y, width, height, collisionRadius, health }) => (
+export const Wall = ({
+  data: { x, y, width, height, collisionRadius, health },
+}) => (
   createEntity(
     c.Building(),
     c.DefenceBuilding(),

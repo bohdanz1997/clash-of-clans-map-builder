@@ -2,7 +2,7 @@ import { system } from 'core/scent'
 import { textFactory } from 'core/display'
 import * as n from '../nodes'
 
-export default ($engine, $config, $app) => {
+export default ({ engine, config, app, map }) => {
   let buildingLayer
   let dragLayer
 
@@ -20,24 +20,22 @@ export default ($engine, $config, $app) => {
     y: 20,
   })
 
-  system({
-    init(node) {
-      const { gameField } = node.head.map
+  return system({
+    init() {
+      buildingLayer = map.getLayer('building')
+      dragLayer = map.getLayer('drag')
 
-      buildingLayer = gameField.getLayer('building')
-      dragLayer = gameField.getLayer('drag')
-
-      $app.stage.addChild(buildingLayerText)
-      $app.stage.addChild(dragLayerText)
+      app.stage.addChild(buildingLayerText)
+      app.stage.addChild(dragLayerText)
     },
 
     update() {
       buildingLayerText.content = `building layer\n${buildingLayer.toString()}`
       dragLayerText.content = `drag layer\n${dragLayer.toString()}`
     },
-  })(n.Map)($engine)
+  })()(engine)
 }
 
 export const params = {
-  enabled: true,
+  enabled: false,
 }
