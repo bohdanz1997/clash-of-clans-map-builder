@@ -23,7 +23,7 @@ export default class Config {
 
     this.inputKeyboardEventTarget = get('input.keyboard.target', window)
     this.inputMouseEventTarget = get('input.mouse.target', null) // canvas
-    this.inputTouchEventTarget = get('input.touch.target', null) // canvas
+    this.inputTouchEventTarget = get('input.touch.target', document.body) // canvas
 
     this.preBoot = get('callbacks.preBoot', noop)
     this.postBoot = get('callbacks.postBoot', noop)
