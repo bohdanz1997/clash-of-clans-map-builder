@@ -1,5 +1,8 @@
 import './mixins/entity'
 
+import EntityManager from './EntityManager'
+import SystemManager from './SystemManager'
+
 /**
  * @typedef Component
  */
@@ -35,3 +38,8 @@ export * from './entity'
 export * from './system'
 export * from './component'
 export * from './node'
+
+export {
+  EntityManager,
+  SystemManager,
+}
