@@ -1,0 +1,86 @@
+{
+  "camera": {
+    "speed": 6,
+    "damp": 0.9
+  },
+  "clanCastle": {
+    "offsetX": 15,
+    "offsetY": 30,
+    "radius": 3,
+    "levels": {
+      "1": {
+        "health": 100
+      }
+    }
+  },
+  "elixirCollector": {
+    "offsetX": 25,
+    "offsetY": 35,
+    "radius": 3,
+    "levels": {
+      "1": {
+        "health": 100
+      }
+    }
+  },
+  "goldStorage": {
+    "offsetX": 7.5,
+    "offsetY": 25,
+    "radius": 3,
+    "levels": {
+      "1": {
+        "health": 100
+      }
+    }
+  },
+  "overlay": {
+    "width": 66.5,
+    "height": 66.5,
+    "isoWidth": 133,
+    "isoHeight": 100
+  },
+  "player": {
+    "width": 32,
+    "height": 32,
+    "collisionRadius": 16,
+    "speed": 5,
+    "levels": {
+      "1": {
+        "health": 100
+      },
+      "2": {
+        "health": 200
+      },
+      "3": {
+        "health": 500
+      }
+    }
+  },
+  "tile": {
+    "isoWidth": 133,
+    "isoHeight": 100
+  },
+  "wall": {
+    "width": 30,
+    "height": 30,
+    "collisionRadius": 15,
+    "levels": {
+      "1": {
+        "health": 100
+      },
+      "2": {
+        "health": 200
+      },
+      "3": {
+        "health": 500
+      }
+    }
+  },
+  "deck": {},
+  "map": {},
+  "hud": {},
+  "pointer": {},
+  "keyboard": {},
+  "deckItem": {},
+  "observer": {}
+}
