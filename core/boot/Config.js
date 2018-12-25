@@ -19,13 +19,14 @@ export default class Config {
     this.gameTitle = get('title', '')
     this.gameVersion = get('version', '')
 
+    this.baseAssetsUrl = get('baseAssetsUrl', 'assets')
+
     this.inputKeyboardEventTarget = get('input.keyboard.target', window)
     this.inputMouseEventTarget = get('input.mouse.target', null) // canvas
     this.inputTouchEventTarget = get('input.touch.target', null) // canvas
 
     this.preBoot = get('callbacks.preBoot', noop)
     this.postBoot = get('callbacks.postBoot', noop)
-    this.preload = get('callbacks.preload', noop)
 
     this.sceneConfig = get('scene')
 

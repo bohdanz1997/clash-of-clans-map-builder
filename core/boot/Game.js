@@ -1,14 +1,10 @@
-import {
-  createContainer,
-  asValue,
-} from 'awilix'
-import { Application, loader } from 'pixi.js'
-import { EventEmitter } from 'core/pixi'
-import { Keyboard } from 'core/input'
 import { Engine } from 'core/scent'
+import { Keyboard } from 'core/input'
+import { EventEmitter, Loader, Application } from 'core/pixi'
 import { createStage } from 'core/renderLayers'
+import { createContainer, asValue } from 'awilix'
 
-import Config from './Config'
+import { Config, Cache } from '.'
 import TextureManager from './TextureManager'
 import { SceneManager, sceneCreator } from '../scenes'
 
@@ -53,13 +49,16 @@ export default class Game {
 
     this.textures = new TextureManager()
 
-    this.loader = loader
+    this.loader = new Loader(this.config.baseAssetsUrl)
+
+    this.cache = new Cache(this.loader)
 
     this.container = createContainer()
 
     this.container.register({
       app: asValue(this.app),
       events: asValue(this.app),
+      cache: asValue(this.cache),
       engine: asValue(this.engine),
       config: asValue(this.config),
       loader: asValue(this.loader),
@@ -83,14 +82,11 @@ export default class Game {
 
     this.events.emit('boot')
 
-    // TODO: move to scene
-    this.config.preload(this)
-
     this.loader.load(this.start)
   }
 
   create() {
-    sceneCreator(this.scenes, this.config.sceneConfig, this)
+    sceneCreator(this.scenes, this.config.sceneConfig)
   }
 
   start = () => {
