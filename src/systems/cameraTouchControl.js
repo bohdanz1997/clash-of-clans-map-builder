@@ -1,6 +1,5 @@
 import { system } from 'core/scent'
 import { Point } from 'core/pixi'
-import { gameConfig } from '../config'
 import * as n from '../nodes'
 
 const pointIn = range => (point) => {
@@ -42,9 +41,4 @@ export const CameraTouchControl = ({ config, engine }) => {
       }
     },
   })(n.CameraControl, n.Pointer)(engine)
-}
-
-export const params = {
-  enabled: true,
-  priority: gameConfig.priorities.MOVEMENT,
 }

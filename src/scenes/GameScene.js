@@ -8,7 +8,7 @@ import {
 } from 'core'
 
 import { createPositioning } from '../services'
-import { priorities } from '../config/game'
+import { priorities } from '../constants'
 
 import * as s from '../systems'
 import * as entities from '../entities'

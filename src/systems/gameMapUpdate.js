@@ -30,7 +30,3 @@ export const GameMapUpdate = ({ engine, map }) => {
     },
   })(n.MapLayers.Building, n.MapLayers.Drag)(engine)
 }
-
-export const params = {
-  enabled: true,
-}

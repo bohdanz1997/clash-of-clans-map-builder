@@ -1,5 +1,4 @@
 import { system } from 'core/scent'
-import { gameConfig } from '../config'
 import * as n from '../nodes'
 
 export const CameraControl = ({ config, engine, keyboard, world }) => (
@@ -36,7 +35,3 @@ export const CameraControl = ({ config, engine, keyboard, world }) => (
     },
   })(n.CameraControl)(engine)
 )
-
-export const params = {
-  priority: gameConfig.priorities.MOVEMENT,
-}

@@ -1,7 +1,6 @@
 import { hitTest } from 'core/collision'
 import { withReducer } from 'core/util'
 import { system } from 'core/scent'
-import { gameConfig } from '../config'
 import * as c from '../components'
 import * as n from '../nodes'
 import { interactActions, interactStates } from '../constants'
@@ -89,7 +88,3 @@ export const InteractManager = ({ engine }) => system({
     })
   },
 })(n.Interactive, n.Pointer)(engine)
-
-export const params = {
-  priority: gameConfig.priorities.UPDATE,
-}

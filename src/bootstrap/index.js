@@ -1,5 +1,0 @@
-export { default as gameSetup } from './game'
-export { default as createEngine } from './engine'
-export { default as resourceLoader } from './resources'
-export { default as registerSystems } from './systems'
-export { default as registerEntities } from './entities'

@@ -35,7 +35,3 @@ export const DebugMapLayers = ({ engine, config, app, map }) => {
     },
   })(n.Hud)(engine)
 }
-
-export const params = {
-  enabled: false,
-}

@@ -1,8 +1,8 @@
 import { Point } from 'core/pixi'
 import * as c from '../components'
-import viewConfig from '../config/view'
+import * as config from '../config'
 
-const { groups } = viewConfig
+const { groups } = config
 
 export const createDnD = ({ cellSize }) => ({
   start(nPointer, dragTarget) {

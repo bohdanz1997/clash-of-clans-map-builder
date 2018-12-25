@@ -1,7 +1,7 @@
 import { Game } from 'core'
 
+import { display } from './config'
 import { GameScene } from './scenes'
-import { viewConfig } from './config'
 import { createStats } from './services'
 
 (() => {
@@ -10,8 +10,8 @@ import { createStats } from './services'
   const game = new Game({
     scene: [GameScene],
     display: {
-      groups: viewConfig.groups,
-      containers: viewConfig.containers,
+      groups: display.groups,
+      containers: display.containers,
     },
   })
 

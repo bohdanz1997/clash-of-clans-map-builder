@@ -47,7 +47,3 @@ export const DeckManager = ({ engine, map, entityFactory }) => {
     },
   })(n.DeckItem, n.Pointer)(engine)
 }
-
-export const params = {
-  enabled: true,
-}

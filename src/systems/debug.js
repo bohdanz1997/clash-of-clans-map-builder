@@ -20,7 +20,3 @@ export const Debug = ({ engine }) => {
     },
   })(n.Pointer, n.Hud)(engine)
 }
-
-export const params = {
-  enabled: true,
-}

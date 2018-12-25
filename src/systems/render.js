@@ -1,5 +1,4 @@
 import { system } from 'core/scent'
-import { gameConfig } from '../config'
 import * as n from '../nodes'
 
 export const Render = ({ engine, world, hud }) => {
@@ -30,8 +29,4 @@ export const Render = ({ engine, world, hud }) => {
       sprite.position.copy(position.pos)
     },
   })(n.Render)(engine)
-}
-
-export const params = {
-  priority: gameConfig.priorities.RENDER,
 }

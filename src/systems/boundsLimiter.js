@@ -1,6 +1,5 @@
 import { system } from 'core/scent'
 import { Rectangle } from 'core/pixi'
-import { gameConfig } from '../config'
 import * as n from '../nodes'
 
 export const BoundsLimiter = ({ engine, map }) => {
@@ -24,8 +23,4 @@ export const BoundsLimiter = ({ engine, map }) => {
       }
     },
   })(n.Collision)(engine)
-}
-
-export const params = {
-  priority: gameConfig.priorities.RESOLVE_COLLISIONS,
 }

@@ -1,8 +1,8 @@
 import { Group } from 'core/pixi'
+import { sortingStrategy } from 'core'
 import { spriteUtils } from 'core/display'
-import { sortingStrategy } from 'core/renderLayers'
 
-export default {
+export const display = {
   groups: {
     GROUND: new Group(0, false),
     OVERLAY: new Group(2, true),

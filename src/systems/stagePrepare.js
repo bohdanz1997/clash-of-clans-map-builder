@@ -1,8 +1,8 @@
 import { system } from 'core/scent'
-import { viewConfig, gameConfig } from '../config'
+import * as config from '../config'
 import * as n from '../nodes'
 
-const { groups } = viewConfig
+const { groups } = config.display
 
 export const StagePrepare = ({ app, engine }) => {
   const setDisplayGroup = group => ({ display }) => {
@@ -31,6 +31,3 @@ export const StagePrepare = ({ app, engine }) => {
   )(engine)
 }
 
-export const params = {
-  priority: gameConfig.priorities.PRE_INIT,
-}

@@ -1,5 +1,4 @@
 import { system } from 'core/scent'
-import { gameConfig } from '../config'
 import * as n from '../nodes'
 
 export const OverlayManager = ({ map, engine, entityFactory }) => {
@@ -31,8 +30,4 @@ export const OverlayManager = ({ map, engine, entityFactory }) => {
       })
     },
   })(n.Overlay, n.OverlayOwner)(engine)
-}
-
-export const params = {
-  priority: gameConfig.priorities.UPDATE,
 }
