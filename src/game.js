@@ -1,31 +1,8 @@
 import { Game } from 'core'
-import { asFunction } from 'awilix'
 
-import Ignitor from './Ignitor'
 import { GameScene } from './scenes'
-import { createStats } from './services'
 import { viewConfig } from './config'
-
-const createIgnitor = () => (
-  new Ignitor({
-    paths: {
-      base: 'src',
-      assets: 'assets',
-      systems: 'systems',
-      entities: 'entities',
-    },
-    defaultSystemPriority: 0,
-  })
-)
-
-/**
- * @param {Game} game
- */
-const preBoot = (game) => {
-  game.container.register({
-    ignitor: asFunction(createIgnitor),
-  })
-}
+import { createStats } from './services'
 
 (() => {
   const stats = createStats()
@@ -36,8 +13,6 @@ const preBoot = (game) => {
       groups: viewConfig.groups,
       containers: viewConfig.containers,
     },
-  }, {
-    preBoot,
   })
 
   game.events
