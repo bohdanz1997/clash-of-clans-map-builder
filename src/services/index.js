@@ -1,5 +1,4 @@
 export * from './stats'
 export * from './positioning'
-export * from './entityFactory'
 export * from './withDisplay'
 export * from './dndManager'
