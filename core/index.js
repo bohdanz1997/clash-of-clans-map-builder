@@ -9,4 +9,10 @@ export {
   createEntityBuilder,
 }
 
-export { Game } from './boot'
+export * from './renderLayers'
+export * from './scent'
+export * from './pixi'
+export * from './scenes'
+export * from './boot'
+export * from './input'
+export * from './tilemap'
