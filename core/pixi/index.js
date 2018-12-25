@@ -1,15 +1,10 @@
-import * as PIXI from 'pixi.js'
 import 'pixi-layers'
+import './mixins/point'
+import './mixins/rectangle'
 
-import * as mixins from '../mixins'
+import * as PIXI from 'pixi.js'
 
-export * from 'pixi.js'
-
-// PIXI aliases
 const {
-  Point,
-  Container,
-  Rectangle,
   display: {
     Group,
     Layer,
@@ -19,20 +14,21 @@ const {
     TextureCache,
     EventEmitter,
   },
+  loaders: {
+    Loader,
+    Resource,
+  },
 } = PIXI
 
-mixins.pointMixin(Point)
-mixins.containerMixin(Container)
-mixins.rectangleMixin(Rectangle)
+export * from 'pixi.js'
 
 export {
-  PIXI,
-
+  EventEmitter,
   Group,
   Layer,
   Stage,
-
-  EventEmitter,
+  Loader,
+  Resource,
 }
 
 // helpers
