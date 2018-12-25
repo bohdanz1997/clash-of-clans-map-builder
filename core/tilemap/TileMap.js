@@ -1,4 +1,4 @@
-import { TileMapConfig, Layer } from '.'
+import { TileMapConfig, MapLayer } from '.'
 
 export default class TileMap {
   /**
@@ -10,18 +10,18 @@ export default class TileMap {
     this.width = this.config.width
     this.height = this.config.height
 
-    /** @type {Map<string, Layer>} */
+    /** @type {Map<string, MapLayer>} */
     this.layers = new Map()
   }
 
   /**
-   * @param {srting} name
+   * @param {string} name
    * @param {Object} options
    * @param {Object} [options.width]
    * @param {Object} [options.height]
    * @param {Object} [options.fillId=null]
    * @param {Array} [options.objects=[]]
-   * @return {Layer}
+   * @return {MapLayer}
    */
   createLayer(name, options = {}) {
     this.checkLayer(name)
@@ -32,7 +32,7 @@ export default class TileMap {
       objects = [],
     } = options
 
-    const layer = new Layer(name, width, height)
+    const layer = new MapLayer(name, width, height)
     layer.objects = objects
 
     this.layers.set(name, layer)
