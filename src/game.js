@@ -27,21 +27,6 @@ const preBoot = (game) => {
   })
 }
 
-/**
- * @param {Game} game
- */
-const preload = (game) => {
-  game.loader.onProgress.add((loader) => {
-    console.log('loading progress %', loader.progress)
-  })
-
-  game.loader
-    .add('ground', 'assets/image/ground.png')
-    .add('clanCastle', 'assets/image/clanCastle.png')
-    .add('goldStorage', 'assets/image/goldStorage.png')
-    .add('elixirCollector', 'assets/image/elixirCollector.png')
-}
-
 (() => {
   const stats = createStats()
 
@@ -53,7 +38,6 @@ const preload = (game) => {
     },
   }, {
     preBoot,
-    preload,
   })
 
   game.events

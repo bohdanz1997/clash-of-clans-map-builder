@@ -1,4 +1,3 @@
-
 import { prop, capitalizeFirst } from 'core/util'
 import {
   jsModuleLoader as loadJS,

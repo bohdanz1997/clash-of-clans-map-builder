@@ -1,13 +1,15 @@
-import { system, nodeEachTwice } from 'core/scent'
+import { Engine, system, nodeEachTwice } from 'core/scent'
+import { TileMap } from 'core/tilemap'
 import { createDnD } from '../services'
 import * as n from '../nodes'
 
 /**
- * @param {Engine} engine
- * @param map
- * @param {EntityFactory} entityFactory
+ * @param {Object} args
+ * @param {Engine} args.engine
+ * @param {TileMap} args.map
+ * @param {EntityFactory} args.entityFactory
  */
-export default ({ engine, map, entityFactory }) => {
+export const DeckManager = ({ engine, map, entityFactory }) => {
   const dndManager = createDnD({ cellSize: map.config.cellWidth })
 
   const makeEntityFromDeck = (entityMeta, position) => (
