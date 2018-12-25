@@ -1,16 +1,12 @@
 {
-  // This file is required for VSCode to understand webpack aliases
   "compilerOptions": {
     "module": "system",
     "moduleResolution": "node",
     "target": "es2015",
-    // This must be specified if "paths" is set
     "baseUrl": ".",
-    // Relative to "baseUrl"
     "paths": {
       "core": ["./core"],
-      "types": ["./types"],
-      "assets": ["./assets"],
+      "assets": ["./assets"]
     }
   }
 }

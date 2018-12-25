@@ -9,7 +9,6 @@
     "build": "webpack",
     "watch": "webpack --watch",
     "start": "webpack-dev-server",
-    "flow": "flow",
     "gen": "./gen"
   },
   "author": "Sneaky Raven",
@@ -31,7 +30,6 @@
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.5",
     "babel-eslint": "10.0.1",
-    "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",
@@ -39,7 +37,6 @@
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.1",
-    "flow-bin": "^0.82.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.20.2",
