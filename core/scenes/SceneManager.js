@@ -1,5 +1,6 @@
 import { Game } from '../boot'
 import { Scene } from '.'
+import injections from './injections'
 
 export default class SceneManager {
   /**
@@ -12,8 +13,25 @@ export default class SceneManager {
     /** @type {Scene} */
     this.activeScene = null
 
+    this.game = game
+
     game.events.on('boot', this.preload)
     game.events.on('start', this.create)
+  }
+
+  applyInjectionsToScene(scene) {
+    injections.forEach((injection) => {
+      switch (injection) {
+        case 'game':
+          scene.game = this.game
+          break
+        case 'container':
+          scene.container = this.game.container
+          break
+        default:
+          scene[injection] = this.game.container.resolve(injection)
+      }
+    })
   }
 
   preload = () => {
@@ -35,6 +53,7 @@ export default class SceneManager {
   }
 
   add(name, scene) {
+    this.applyInjectionsToScene(scene)
     this.scenesMap.set(name, scene)
   }
 

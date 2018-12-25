@@ -1,14 +1,12 @@
 import { SceneManager } from '.'
-import { Game } from '../boot'
 
 /**
  * @param {SceneManager} sceneManager
  * @param {Array} sceneConfig
- * @param {Game} game
  */
-export default function creator(sceneManager, sceneConfig, game) {
+export default function creator(sceneManager, sceneConfig) {
   const scenes = sceneConfig.map(SceneClass => (
-    new SceneClass(game)
+    new SceneClass()
   ))
 
   scenes.forEach((scene) => {
