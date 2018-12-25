@@ -15,7 +15,7 @@ const detectHit = (nInteractive, pointerInput) => {
   return hitTest.rect(collision.bounds, pointerPos)
 }
 
-export default ({ engine, map, entityFactory }) => {
+export const DragDrop = ({ engine, map, entityFactory }) => {
   const observersMap = new Map()
   const cellSize = map.config.cellWidth
 

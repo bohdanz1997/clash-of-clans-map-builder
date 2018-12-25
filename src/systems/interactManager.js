@@ -33,7 +33,7 @@ const detectHit = (nInteractive, pointerInput) => {
   return hitTest.rect(collision.bounds, pointerPos)
 }
 
-export default ({ engine }) => system({
+export const InteractManager = ({ engine }) => system({
   updateInteractive(interactive, pointerInput, didHit) {
     // set default UP state
     interactive.state = interactStates.UP

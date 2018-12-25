@@ -2,7 +2,7 @@ import { system } from 'core/scent'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
 
-export default ({ map, engine, entityFactory }) => {
+export const OverlayManager = ({ map, engine, entityFactory }) => {
 
   const createOverlay = ({ position }) => {
     const overlay = entityFactory.create('overlay', {

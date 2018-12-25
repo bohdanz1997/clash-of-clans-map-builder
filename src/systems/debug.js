@@ -1,7 +1,7 @@
 import { system } from 'core/scent'
 import * as n from '../nodes'
 
-export default ({ engine }) => {
+export const Debug = ({ engine }) => {
   return system({
     update(pointerNode, hudNode) {
       const { display } = hudNode.head

@@ -4,7 +4,7 @@ import * as n from '../nodes'
 
 const { groups } = viewConfig
 
-export default ({ app, engine }) => {
+export const StagePrepare = ({ app, engine }) => {
   const setDisplayGroup = group => ({ display }) => {
     display.group = group
   }

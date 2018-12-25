@@ -2,7 +2,7 @@ import { system } from 'core/scent'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
 
-export default ({ config, engine, keyboard, world }) => (
+export const CameraControl = ({ config, engine, keyboard, world }) => (
   system({
     update({ camera, position, motion, motionControl, zoomControl }) {
       const { smoothZoom } = zoomControl

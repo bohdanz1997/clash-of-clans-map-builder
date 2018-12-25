@@ -2,7 +2,7 @@ import { system } from 'core/scent'
 import { Point } from 'core/pixi'
 import * as n from '../nodes'
 
-export default ({ engine, map }) => {
+export const GameMapUpdate = ({ engine, map }) => {
   const updateNodeForLayer = layer => (node) => {
     const { position, identity, collision } = node
     const normPos = Point.floor(Point.divNum(position.pos, map.config.cellWidth))

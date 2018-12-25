@@ -3,7 +3,7 @@ import { Rectangle } from 'core/pixi'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
 
-export default ({ engine, map }) => {
+export const BoundsLimiter = ({ engine, map }) => {
   const worldBounds = new Rectangle(0, 0, map.config.widthInPixels, map.config.heightInPixels)
 
   return system({

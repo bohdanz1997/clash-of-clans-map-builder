@@ -13,7 +13,7 @@ const pointIn = range => (point) => {
   return Point.of(x, y)
 }
 
-export default ({ config, engine }) => {
+export const CameraTouchControl = ({ config, engine }) => {
   let origDragPoint = null
   const maxScrollSpeed = 30
   const pointInRange = pointIn(maxScrollSpeed)

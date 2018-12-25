@@ -3,7 +3,7 @@ import { invertIsoMatrix } from 'core/math'
 import { pointerManager } from 'core/input'
 import * as n from '../nodes'
 
-export default ({ engine, world, map }) => {
+export const PointerManager = ({ engine, world, map }) => {
   const makeIsoPointerUtil = ({ pointer }) => {
     pointerManager.toIso({
       pointer: pointer.input,

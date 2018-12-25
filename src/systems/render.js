@@ -2,7 +2,7 @@ import { system } from 'core/scent'
 import { gameConfig } from '../config'
 import * as n from '../nodes'
 
-export default ({ engine, world, hud }) => {
+export const Render = ({ engine, world, hud }) => {
   const matchContainer = parentId => ({
     world,
     hud,

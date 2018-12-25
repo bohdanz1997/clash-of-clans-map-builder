@@ -4,7 +4,7 @@ import { system } from 'core/scent'
 import * as n from '../nodes'
 import { gameConfig } from '../config'
 
-export default ({ engine }) => system(({ position, isoPosition }) => {
+export const IsoMovement = ({ engine }) => system(({ position, isoPosition }) => {
   const isoPos = isoMatrix.apply(Point.sub(position.pos, position.offset))
   isoPosition.pos.copy(isoPos)
 })(n.Isometric)(engine)
