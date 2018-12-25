@@ -1,9 +1,7 @@
 import { utils, Texture } from 'pixi.js'
 
 export default class TextureManager {
-  constructor() {
-    this.cache = utils.TextureCache
-  }
+  static cache = utils.TextureCache
 
   /**
    * Get texture from cache or throw error

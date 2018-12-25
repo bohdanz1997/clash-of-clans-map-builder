@@ -1,22 +1,36 @@
-import { Config } from '../boot'
+import { Game } from '../boot'
 import { Scene } from '.'
 
 export default class SceneManager {
   /**
-   * @param {Config} config
+   * @param {Game} game
    */
-  constructor(config) {
+  constructor(game) {
     /** @type {Map<string,Scene>} */
     this.scenesMap = new Map()
 
     /** @type {Scene} */
     this.activeScene = null
+
+    game.events.on('boot', this.preload)
+    game.events.on('start', this.create)
+  }
+
+  preload = () => {
+    this.scenesMap.forEach((scene) => {
+      scene.preload()
+    })
+  }
+
+  create = () => {
+    this.scenesMap.forEach((scene) => {
+      scene.create()
+    })
   }
 
   start(name) {
     if (this.scenesMap.has(name)) {
       this.activeScene = this.scenesMap.get(name)
-      this.activeScene.start()
     }
   }
 

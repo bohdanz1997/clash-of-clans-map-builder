@@ -2,10 +2,10 @@ import {
   createContainer,
   asValue,
 } from 'awilix'
-import { Engine } from 'scent2'
 import { Application, loader } from 'pixi.js'
 import { EventEmitter } from 'core/pixi'
 import { Keyboard } from 'core/input'
+import { Engine } from 'core/scent'
 import { createStage } from 'core/renderLayers'
 
 import Config from './Config'
@@ -48,6 +48,7 @@ export default class Game {
 
     this.app = configurePixiApp(this.config)
 
+    /** @type {Engine} */
     this.engine = new Engine()
 
     this.textures = new TextureManager()
@@ -66,11 +67,10 @@ export default class Game {
       keyboard: asValue(this.keyboard),
     })
 
-    this.scenes = new SceneManager(this.config, this.container)
+    this.scenes = new SceneManager(this)
 
     this.isRunning = false
 
-    this.events.emit('boot')
     this.boot()
   }
 
@@ -79,29 +79,35 @@ export default class Game {
 
     addToDOM(this.app, this.config.parent)
 
+    this.create()
+
+    this.events.emit('boot')
+
     // TODO: move to scene
     this.config.preload(this)
 
     this.loader.load(this.start)
   }
 
+  create() {
+    sceneCreator(this.scenes, this.config.sceneConfig, this)
+  }
+
   start = () => {
     this.isRunning = true
 
-    this.create()
+    this.events.emit('start')
+    this.engine.start()
 
     this.config.postBoot(this)
 
     this.app.ticker.add(this.update)
   }
 
-  create() {
-    sceneCreator(this.scenes, this.config.sceneConfig, this.container)
-  }
-
   update = (delta) => {
     this.events.emit('preUpdate')
 
+    this.engine.update(delta)
     this.scenes.update(delta)
 
     this.events.emit('postUpdate')
@@ -110,5 +116,6 @@ export default class Game {
   destroy() {
     this.app.destroy()
     this.scenes.destroy()
+    this.engine = null
   }
 }
