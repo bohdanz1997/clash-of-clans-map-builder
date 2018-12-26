@@ -1,4 +1,4 @@
-export default class Layer {
+export default class MapLayer {
   constructor(name, width, height) {
     this.cells = []
     this.name = name
@@ -11,14 +11,14 @@ export default class Layer {
   static EMPTY_CELL = -1
 
   clear() {
-    this.fill(Layer.EMPTY_CELL)
+    this.fill(MapLayer.EMPTY_CELL)
   }
 
   init() {
     for (let x = 0; x < this.width; x++) {
       this.cells[x] = []
       for (let y = 0; y < this.height; y++) {
-        this.setIn(x, y, Layer.EMPTY_CELL)
+        this.setIn(x, y, MapLayer.EMPTY_CELL)
       }
     }
   }
@@ -74,18 +74,18 @@ export default class Layer {
   }
 
   isEmptyIn(x, y) {
-    return this.getIn(x, y) === Layer.EMPTY_CELL
+    return this.getIn(x, y) === MapLayer.EMPTY_CELL
   }
 
   isEmptyInSize(x, y, size) {
     const cells = this.getInSize(x, y, size)
-    return cells.every(cell => cell === Layer.EMPTY_CELL)
+    return cells.every(cell => cell === MapLayer.EMPTY_CELL)
   }
 
   toString() {
     let str = ''
     const stateToDisplay = state => ({
-      [Layer.EMPTY_CELL]: '-',
+      [MapLayer.EMPTY_CELL]: '-',
     })[state] || 'x'
 
     for (let x = 0; x < this.width; x++) {
