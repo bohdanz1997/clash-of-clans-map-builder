@@ -1,10 +1,9 @@
-import { Engine } from 'core/scent'
 import { Keyboard } from 'core/input'
-import { EventEmitter, Loader, Application } from 'core/pixi'
 import { createStage } from 'core/renderLayers'
 import { createContainer, asValue } from 'awilix'
+import { EventEmitter, Loader, Application } from 'core/pixi'
+import { SystemManager, EntityManager, Engine } from 'core/scent'
 
-import SystemManager from 'core/scent/SystemManager'
 import { Config, Cache } from '.'
 import TextureManager from './TextureManager'
 import { SceneManager, sceneCreator } from '../scenes'
@@ -56,6 +55,8 @@ export default class Game {
 
     this.scenes = new SceneManager(this)
 
+    this.entities = new EntityManager()
+
     this.container = createContainer()
 
     this.container.register({
@@ -67,6 +68,7 @@ export default class Game {
       loader: asValue(this.loader),
       textures: asValue(this.textures),
       keyboard: asValue(this.keyboard),
+      entities: asValue(this.entities),
     })
 
     this.systems = new SystemManager(this)

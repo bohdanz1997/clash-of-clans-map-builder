@@ -7,6 +7,7 @@ import {
   Config,
   Application,
   SystemManager,
+  EntityManager,
 } from 'core'
 import { AwilixContainer } from 'awilix'
 
@@ -38,6 +39,9 @@ export default class Scene {
 
   /** @type {SystemManager} */
   systems = null
+
+  /** @type {EntityManager} */
+  entities = null
 
   constructor(config) {
     if (isString(config)) {

@@ -9,17 +9,10 @@ const defaultBuilder = (factory, data, dataForInject) => (
 )
 
 export default class EntityManager {
-  defs = {}
-
-  factories = {}
-
-  builder = defaultBuilder
-
-  constructor(factories = {}, definitions = {}, builder = defaultBuilder) {
-    this.setDefinitions(definitions)
-    this.setFactories(factories)
-
-    this.builder = builder
+  constructor() {
+    this.defs = {}
+    this.factories = {}
+    this.builder = defaultBuilder
   }
 
   create(id, data = {}, dataForInject = {}, builder) {
@@ -86,6 +79,10 @@ export default class EntityManager {
       ...acc,
       [firstToLower(key)]: val,
     }), factories || {})
+  }
+
+  setBuilder(builder) {
+    this.builder = builder
   }
 
   getAllDefinitions() {

@@ -7,4 +7,5 @@ export default [
   'loader',
   'container',
   'systems',
+  'entities',
 ]
