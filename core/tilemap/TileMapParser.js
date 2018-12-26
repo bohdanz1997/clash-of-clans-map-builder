@@ -15,12 +15,10 @@ export default class Parser {
       layers,
     } = data
 
-    const mapConfig = new TileMapConfig({
+    const map = new TileMap({
       width,
       height,
     })
-
-    const map = new TileMap(mapConfig)
 
     layers.forEach((layerData) => {
       const entitiesData = layerData.data.map(itemData => (

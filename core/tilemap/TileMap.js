@@ -1,11 +1,8 @@
 import { TileMapConfig, MapLayer } from '.'
 
 export default class TileMap {
-  /**
-   * @param {TileMapConfig} config
-   */
   constructor(config) {
-    this.config = config
+    this.config = new TileMapConfig(config)
 
     this.width = this.config.width
     this.height = this.config.height
