@@ -6,4 +6,5 @@ export default [
   'config',
   'loader',
   'container',
+  'systems',
 ]

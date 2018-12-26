@@ -34,5 +34,9 @@ export default class Config {
       groups: get('display.groups', {}),
       containers: get('display.containers', []),
     }
+
+    this.systems = {
+      defaultPriority: get('systems.defaultPriority', 0),
+    }
   }
 }

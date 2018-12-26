@@ -4,6 +4,7 @@ import { EventEmitter, Loader, Application } from 'core/pixi'
 import { createStage } from 'core/renderLayers'
 import { createContainer, asValue } from 'awilix'
 
+import SystemManager from 'core/scent/SystemManager'
 import { Config, Cache } from '.'
 import TextureManager from './TextureManager'
 import { SceneManager, sceneCreator } from '../scenes'
@@ -53,6 +54,8 @@ export default class Game {
 
     this.cache = new Cache(this.loader)
 
+    this.scenes = new SceneManager(this)
+
     this.container = createContainer()
 
     this.container.register({
@@ -66,7 +69,11 @@ export default class Game {
       keyboard: asValue(this.keyboard),
     })
 
-    this.scenes = new SceneManager(this)
+    this.systems = new SystemManager(this)
+
+    this.container.register({
+      systems: asValue(this.systems),
+    })
 
     this.isRunning = false
 

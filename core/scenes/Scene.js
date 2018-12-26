@@ -6,6 +6,7 @@ import {
   Loader,
   Config,
   Application,
+  SystemManager,
 } from 'core'
 import { AwilixContainer } from 'awilix'
 
@@ -34,6 +35,9 @@ export default class Scene {
 
   /** @type {Loader} */
   loader = null
+
+  /** @type {SystemManager} */
+  systems = null
 
   constructor(config) {
     if (isString(config)) {

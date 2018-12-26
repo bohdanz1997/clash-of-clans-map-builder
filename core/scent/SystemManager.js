@@ -1,13 +1,13 @@
+import { Game } from '../boot'
+
 export default class SystemManager {
   /**
-   * @param container
-   * @param engine
-   * @param options
+   * @param {Game} game
    */
-  constructor(container, engine, options) {
-    this.container = container
-    this.engine = engine
-    this.defaultPriority = options.defaultPriority || 0
+  constructor(game) {
+    this.container = game.container
+    this.engine = game.engine
+    this.defaultPriority = game.config.systems.defaultPriority
 
     this.instances = []
   }
