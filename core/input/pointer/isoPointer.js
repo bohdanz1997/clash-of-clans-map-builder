@@ -1,7 +1,7 @@
 import { Point } from 'core/pixi'
 
 export const makeIsoPointer = ({ pointer, world, matrix, config }) => {
-  const cursorOffset = new Point(config.hTileWidth, 0)
+  const cursorOffset = new Point(config.hIsoTileWidth, 0)
 
   Object.defineProperties(pointer, {
     cartPosition: {
