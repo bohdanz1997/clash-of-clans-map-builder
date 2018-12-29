@@ -4,20 +4,21 @@ import { withDisplay } from '../services'
 
 export const Building = ({
   data: { id, def, x, y, offsetX, offsetY, radius },
-  mapConfig,
+  map,
 }) => pipeHOCs(
   withComponents(
     c.Identity({ id }),
     c.BuildingLayer(),
     c.Draggable(),
     c.Interactive(),
+    c.Idle(),
     c.OverlayOwner(),
     c.Position({ x, y, offsetX, offsetY }),
     c.IsoPosition(),
     c.Motion(),
     c.Collision({
-      width: mapConfig.tileWidth,
-      height: mapConfig.tileHeight,
+      width: map.config.tileWidth,
+      height: map.config.tileHeight,
       radius,
     }),
   ),

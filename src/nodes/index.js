@@ -23,7 +23,6 @@ export const Render = [c.Position, c.Display]
 export const Map = [c.Map]
 export const Building = [c.Building, c.Position, c.Identity]
 export const Keyboard = [c.Keyboard]
-export const Interactive = [c.Interactive, c.Collision, c.Identity]
 export const Isometric = [c.Position, c.IsoPosition]
 export const IsoRender = [c.IsoPosition, c.Display]
 export const OverlayOwner = [c.OverlayOwner, c.Position]
@@ -31,14 +30,20 @@ export const Overlay = [c.Overlay, c.Position]
 export const Hud = [c.HudLayer, c.Display]
 export const Deck = [c.Deck]
 export const DeckItem = [c.DeckItem, c.Interactive, c.EntityMeta]
+export const Animation = [c.Animatable, c.Display]
+export const Logger = [c.Log, c.Display]
 
-export const Pointer = [c.Pointer, c.DragSource, c.Identity]
-export const PointerDragging = [c.Pointer, c.DragSource, c.Dragging]
-export const InteractiveHover = [c.Interactive, c.Hovered]
+export const Pointer = [c.Pointer, c.Position, c.DragSource, c.Identity]
+export const Interactive = [c.Interactive, c.Collision, c.Identity]
+
+export const Client = [c.Pointer, c.Idle, c.Position, c.DragSource]
+export const Source = [c.Interactive, c.Idle, c.Collision]
 
 // observers
+export const Observer = [c.Interact.Client, c.Interact.Source]
 export const HoverObserver = [c.Hovered, c.Interact.Client, c.Interact.Source]
-export const DragObserver = [c.Dragging, c.DragContext, c.Interact.Client, c.Interact.Source]
+export const DragObserver = [c.Dragging, c.Interact.Client, c.Interact.Source]
+export const DropObserver = [c.Dropped, c.Interact.Client, c.Interact.Source]
 
 // layers
 export const Layers = {
