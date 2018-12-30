@@ -1,8 +1,11 @@
-import { createEntity } from 'core/scent'
-import { keys, Keyboard } from 'core/input'
-import { createSmoothStep } from 'core/animation'
-import { Config } from 'core/boot'
-import { TileMapConfig } from 'core/tilemap'
+import {
+  createEntity,
+  createSmoothStep,
+  keys,
+  Keyboard,
+  Config,
+  TileMap,
+} from 'core'
 
 import * as c from '../components'
 
@@ -10,14 +13,14 @@ import * as c from '../components'
  * @param {Object} args
  * @param {Keyboard} args.keyboard
  * @param {Config} args.config
- * @param {TileMapConfig} args.mapConfig
+ * @param {TileMap} args.map
  */
 export const Camera = ({
   data: { speed, damp },
   keyboard,
   world,
   config,
-  mapConfig,
+  map,
 }) => {
   const [
     keyZoomPlus,
@@ -27,14 +30,14 @@ export const Camera = ({
   return createEntity(
     c.Camera({
       world,
-      worldWidth: mapConfig.widthInPixels,
-      worldHeight: mapConfig.heightInPixels,
+      worldWidth: map.config.widthInPixels,
+      worldHeight: map.config.heightInPixels,
       width: config.width,
       height: config.height,
     }),
     c.Position({
-      x: -config.hWidth + mapConfig.hIsoTileWidth,
-      y: config.hHeight - mapConfig.hIsoTileHeight,
+      x: -config.hWidth + map.config.hIsoTileWidth,
+      y: 0,
     }),
     c.Motion({
       dampX: damp,

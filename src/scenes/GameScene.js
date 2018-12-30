@@ -2,8 +2,6 @@ import { asFunction, asValue } from 'awilix'
 
 import {
   Scene,
-  EntityManager,
-  SystemManager,
   TileMapParser,
 } from 'core'
 
@@ -25,12 +23,6 @@ const containerBuilder = container => (factory, data, dataForInject) => {
 export default class GameScene extends Scene {
   constructor() {
     super('game')
-
-    /** @type {SystemManager} */
-    this.systemManager = null
-
-    /** @type {EntityManager} */
-    this.entityManager = null
   }
 
   preload() {
@@ -44,18 +36,13 @@ export default class GameScene extends Scene {
   }
 
   create() {
-    this.systemManager = new SystemManager(
-      this.container,
-      this.engine,
-      { defaultPriority: priorities.UPDATE }
-    )
+    this.entities.setDefinitions(this.cache.get('entityDefinitions'))
+    this.entities.setFactories(entities)
+    this.entities.setBuilder(containerBuilder(this.container))
 
-    const builder = containerBuilder(this.container)
-    this.entityManager = new EntityManager(entities, this.cache.get('entityDefinitions'), builder)
-
-    const mapParser = new TileMapParser(this.entityManager.getAllDefinitions())
+    const mapParser = new TileMapParser(this.entities.getAllDefinitions())
     const map = mapParser.fromJSON(this.cache.get('myMap'))
-    const tileData = this.entityManager.getDefinition('tile')
+    const tileData = this.entities.getDefinition('tile')
 
     map.createLayer('ground', {
       objects: map.createEntitiesForLayer('tile', {}, tileData),
@@ -63,7 +50,7 @@ export default class GameScene extends Scene {
 
     this.container.register({
       map: asValue(map),
-      entityFactory: asValue(this.entityManager),
+      entityFactory: asValue(this.entities),
       world: asValue(this.app.stage.getChildByName('world')),
       hud: asValue(this.app.stage.getChildByName('hud')),
       positioning: asValue(createPositioning(this.config, this.app)),
@@ -84,32 +71,33 @@ export default class GameScene extends Scene {
 
     map.layers.forEach((layer) => {
       layer.objects.forEach((entityData) => {
-        const entity = this.entityManager.create(
-          entityData.id,
-          xy2World(entityData),
-          { mapConfig: map.config },
-        )
-        this.engine.addEntity(entity)
+        this.entities.add(entityData.id, xy2World(entityData))
       })
     })
   }
 
   registerSystems() {
-    const { register, init } = this.systemManager
+    const { register, init } = this.systems
 
     register(s.StagePrepare, priorities.PRE_INIT)
-    register(s.KeyboardUpdate, priorities.PRE_UPDATE)
+    register(s.KeyboardManager, priorities.PRE_UPDATE)
     register(s.Movement, priorities.MOVEMENT)
     register(s.CameraControl, priorities.MOVEMENT)
-    register(s.CameraTouchControl, priorities.MOVEMENT)
+    // register(s.CameraTouchControl, priorities.MOVEMENT)
     register(s.CollisionUpdate, priorities.UPDATE_COLLISION)
     register(s.BoundsLimiter, priorities.RESOLVE_COLLISIONS)
     register(s.Debug)
-    register(s.DebugMapLayers)
+    // register(s.DebugMapLayers)
     register(s.DeckManager)
+
     register(s.DragDrop)
-    register(s.GameMapUpdate)
-    register(s.InteractManager)
+    register(s.InteractiveIdleState)
+    register(s.InteractiveHoverState)
+    register(s.InteractiveDragState)
+    register(s.InteractiveDropState)
+    register(s.InteractiveDropStateListener)
+
+    register(s.TileMapManager)
     register(s.OverlayManager)
     register(s.PointerManager)
     register(s.IsoMovement, priorities.PRE_RENDER)

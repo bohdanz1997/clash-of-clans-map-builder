@@ -42,8 +42,8 @@ export const Source = [c.Interactive, c.Idle, c.Collision]
 // observers
 export const Observer = [c.Interact.Client, c.Interact.Source]
 export const HoverObserver = [c.Hovered, c.Interact.Client, c.Interact.Source]
-export const DragObserver = [c.Dragging, c.Interact.Client, c.Interact.Source]
-export const DropObserver = [c.Dropped, c.Interact.Client, c.Interact.Source]
+export const DragObserver = [c.Dragging, c.DragContext, c.Interact.Client, c.Interact.Source]
+export const DropObserver = [c.Dropped, c.DragContext, c.Interact.Client, c.Interact.Source]
 
 // layers
 export const Layers = {

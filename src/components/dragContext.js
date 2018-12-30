@@ -1,5 +1,5 @@
 import { defComponent } from 'core/scent'
 
 export const DragContext = defComponent(
-  'dragContext', 'startPos offsetFromClient'
+  'dragContext', 'startPos offset'
 )
