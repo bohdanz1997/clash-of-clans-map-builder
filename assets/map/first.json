@@ -1,5 +1,7 @@
 {
   "id": "map",
+  "width": 10,
+  "height": 10,
   "layers": [
     {
       "name": "building",
