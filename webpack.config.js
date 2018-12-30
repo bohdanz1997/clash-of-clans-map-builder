@@ -61,6 +61,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      '@app': withRootPath('src'),
       core: withRootPath('core'),
       assets: withRootPath('assets'),
     },
