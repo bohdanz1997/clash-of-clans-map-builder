@@ -24,8 +24,8 @@ export default class TileMap {
     this.checkLayer(name)
 
     const {
-      width = this.width,
-      height = this.height,
+      width = this.config.widthInCells,
+      height = this.config.heightInCells,
       objects = [],
     } = options
 
@@ -70,6 +70,10 @@ export default class TileMap {
     return entitiesData
   }
 
+  /**
+   * @param {string} name
+   * @returns {MapLayer}
+   */
   getLayer(name) {
     const layer = this.layers.get(name)
 

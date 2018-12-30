@@ -1,3 +1,4 @@
+import { Game } from '../boot'
 import { objectReduce, firstToLower } from '../util'
 
 const getLevelData = (definition, level) => (
@@ -9,15 +10,26 @@ const defaultBuilder = (factory, data, dataForInject) => (
 )
 
 export default class EntityManager {
-  constructor() {
+  /**
+   * @param {Game} game
+   */
+  constructor(game) {
     this.defs = {}
     this.factories = {}
     this.builder = defaultBuilder
+    this.engine = game.engine
   }
 
   create(id, data = {}, dataForInject = {}, builder) {
     const entityData = this.makeEntityData(id, data)
     return this.buildEntity(id, entityData, dataForInject, builder)
+  }
+
+  add(id, data = {}, dataForInject = {}, builder) {
+    const entity = this.create(id, data, dataForInject, builder)
+    this.engine.addEntity(entity)
+
+    return entity
   }
 
   buildEntity(id, data = {}, dataForInject = {}, builder) {

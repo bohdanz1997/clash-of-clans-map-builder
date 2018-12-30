@@ -1,5 +1,16 @@
 import { Point } from 'core/pixi'
 
+export default class Camera {
+  constructor({ stage, width, height, worldWidth, worldHeight }) {
+    this.position = Point.EMPTY
+
+    this.x = 0
+    this.y = 0
+    this.width = width
+    this.height = height
+  }
+}
+
 export const createCamera = ({ world, worldWidth, worldHeight, width, height }) => {
   const position = Point.EMPTY
   const hWidth = width / 2

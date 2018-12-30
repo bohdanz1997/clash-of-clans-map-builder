@@ -3,6 +3,7 @@ import { createStage } from 'core/renderLayers'
 import { createContainer, asValue } from 'awilix'
 import { EventEmitter, Loader, Application } from 'core/pixi'
 import { SystemManager, EntityManager, Engine } from 'core/scent'
+import { Align } from 'core/display'
 
 import { Config, Cache } from '.'
 import TextureManager from './TextureManager'
@@ -20,12 +21,16 @@ const configurePixiApp = (config) => {
     antialias,
     resolution,
     transparent,
+    width,
+    height,
   } = config
 
   const app = new Application({
     antialias,
     resolution,
     transparent,
+    width,
+    height,
   })
 
   app.stage = createStage(config.display.groups)
@@ -42,6 +47,7 @@ export default class Game {
 
     this.keyboard = new Keyboard(this.config.inputKeyboardEventTarget)
 
+    /** @type {Application} */
     this.app = configurePixiApp(this.config)
 
     /** @type {Engine} */
@@ -55,7 +61,10 @@ export default class Game {
 
     this.scenes = new SceneManager(this)
 
-    this.entities = new EntityManager()
+    this.entities = new EntityManager(this)
+
+    const bounds = this.app.screen
+    this.align = new Align(bounds.x, bounds.y, bounds.width, bounds.height)
 
     this.container = createContainer()
 

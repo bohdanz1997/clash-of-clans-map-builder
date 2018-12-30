@@ -1,4 +1,4 @@
-import { Point } from '..'
+import { Point } from 'pixi.js'
 
 Point.prototype.add = function add(point) {
   this.x += point.x

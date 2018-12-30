@@ -1,4 +1,5 @@
 import { Game } from '../boot'
+import { createSystem } from '.'
 
 export default class SystemManager {
   /**
@@ -13,7 +14,8 @@ export default class SystemManager {
   }
 
   build(Factory) {
-    return this.container.build(Factory)
+    const systemHandler = this.container.build(Factory)
+    return createSystem(this.engine)(systemHandler)
   }
 
   addToEngine(initializer) {

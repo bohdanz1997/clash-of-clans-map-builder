@@ -1,8 +1,8 @@
+import * as PIXI from 'pixi.js'
+
 import 'pixi-layers'
 import './mixins/point'
 import './mixins/rectangle'
-
-import * as PIXI from 'pixi.js'
 
 const {
   display: {
@@ -18,9 +18,18 @@ const {
     Loader,
     Resource,
   },
+  extras: {
+    AnimatedSprite,
+  },
+  Application,
+  Rectangle,
+  Point,
+  Matrix,
+  Container,
+  Sprite,
+  Text,
+  Graphics,
 } = PIXI
-
-export * from 'pixi.js'
 
 export {
   EventEmitter,
@@ -29,6 +38,15 @@ export {
   Stage,
   Loader,
   Resource,
+  AnimatedSprite,
+  Application,
+  Rectangle,
+  Point,
+  Matrix,
+  Container,
+  Sprite,
+  Text,
+  Graphics,
 }
 
 // helpers

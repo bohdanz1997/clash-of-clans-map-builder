@@ -1,4 +1,4 @@
-import { Point, Rectangle } from '..'
+import { Point, Rectangle } from 'pixi.js'
 
 Rectangle.prototype.setPosition = function setPosition(point) {
   this.x = point.x
