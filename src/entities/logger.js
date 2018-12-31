@@ -2,7 +2,7 @@ import { createEntity } from 'core/scent'
 import { withDisplay } from '../services'
 import * as c from '../components'
 
-export const Logger = ({
+export default ({
   data: { x, y },
 }) => createEntity(
   c.Log(),

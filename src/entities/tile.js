@@ -2,7 +2,7 @@ import * as c from '../components'
 import { withComponents, pipeHOCs } from '../components/hoc'
 import { withDisplay } from '../services'
 
-export const Tile = ({
+export default ({
   data: { x, y, isoWidth, isoHeight },
 }) => pipeHOCs(
   withComponents(

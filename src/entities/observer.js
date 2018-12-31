@@ -1,7 +1,7 @@
 import { createEntity } from 'core/scent'
 import * as c from '../components'
 
-export const Observer = ({
+export default ({
   data: { client, source },
 }) => (
   createEntity(

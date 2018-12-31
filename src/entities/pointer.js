@@ -1,7 +1,7 @@
 import { createEntity } from 'core/scent'
 import * as c from '../components'
 
-export const Pointer = ({ config }) => (
+export default ({ config }) => (
   createEntity(
     c.Identity(),
     c.Position(),

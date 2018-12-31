@@ -21,7 +21,7 @@ const withFSM = (entity) => {
   return entity.add(c.FSM({ fsm }))
 }
 
-export const Player = ({
+export default ({
   data: { x, y, width, height, speed, health, damage },
 }) => pipeHOCs(
   withComponents(

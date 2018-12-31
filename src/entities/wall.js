@@ -1,8 +1,7 @@
 import { createEntity } from 'core/scent'
-
 import * as c from '../components'
 
-export const Wall = ({
+export default ({
   data: { x, y, width, height, collisionRadius, health },
 }) => (
   createEntity(

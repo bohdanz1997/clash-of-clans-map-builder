@@ -2,7 +2,7 @@ import * as c from '../components'
 import { withComponents, pipeHOCs } from '../components/hoc'
 import { withDisplay } from '../services'
 
-export const Overlay = ({
+export default ({
   data: { width, height, target },
 }) => pipeHOCs(
   withComponents(

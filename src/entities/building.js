@@ -2,7 +2,7 @@ import * as c from '../components'
 import { withComponents, pipeHOCs } from '../components/hoc'
 import { withDisplay } from '../services'
 
-export const Building = ({
+export default ({
   data: { id, def, x, y, offsetX, offsetY, radius },
   map,
 }) => pipeHOCs(
