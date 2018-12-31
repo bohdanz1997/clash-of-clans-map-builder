@@ -27,15 +27,14 @@ if (!component) {
 
 const buildSource = (name, fields = []) => {
   const componentName = strUtils.capitalizeFirst(name)
-  const componentTypeName = `c${componentName}`
 
   const paramsSource = fields.length > 0
     ? `'${name}', '${fields.join(' ')}',`
     : `'${name}',`
 
-  return `import { createComponent } from '${paths.coreFactories}'
+  return `import { defComponent } from '${paths.coreFactories}'
 
-export const [${componentTypeName}, ${componentName}] = createComponent(
+export const ${componentName} = defComponent(
   ${paramsSource}
 )
 `
