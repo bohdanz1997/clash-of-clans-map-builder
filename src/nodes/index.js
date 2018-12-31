@@ -31,7 +31,6 @@ export const Hud = [c.HudLayer, c.Display]
 export const Deck = [c.Deck]
 export const DeckItem = [c.DeckItem, c.Interactive, c.EntityMeta]
 export const Animation = [c.Animatable, c.Display]
-export const Logger = [c.Log, c.Display]
 
 export const Pointer = [c.Pointer, c.Position, c.DragSource, c.Identity]
 export const Interactive = [c.Interactive, c.Collision, c.Identity]
