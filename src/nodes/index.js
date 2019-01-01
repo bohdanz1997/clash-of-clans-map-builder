@@ -18,12 +18,13 @@ export const Draggable = [
 ]
 
 export const Movement = [c.Position, c.Motion]
+export const Isometric = [c.Position, c.IsoPosition]
+
 export const Collision = [c.Position, c.Collision]
 export const Render = [c.Position, c.Display]
 export const Map = [c.Map]
 export const Building = [c.Building, c.Position, c.Identity]
 export const Keyboard = [c.Keyboard]
-export const Isometric = [c.Position, c.IsoPosition]
 export const IsoRender = [c.IsoPosition, c.Display]
 export const OverlayOwner = [c.OverlayOwner, c.Position]
 export const Overlay = [c.Overlay, c.Position]
@@ -32,10 +33,10 @@ export const Deck = [c.Deck]
 export const DeckItem = [c.DeckItem, c.Interactive, c.EntityMeta]
 export const Animation = [c.Animatable, c.Display]
 
-export const Pointer = [c.Pointer, c.Position, c.DragSource, c.Identity]
+export const Pointer = [c.PointerContext, c.Position, c.IsoPosition]
 export const Interactive = [c.Interactive, c.Collision, c.Identity]
 
-export const Client = [c.Pointer, c.Idle, c.Position, c.DragSource]
+export const Client = [c.PointerContext, c.Idle, c.Position, c.IsoPosition]
 export const Source = [c.Interactive, c.Idle, c.Collision]
 
 // observers

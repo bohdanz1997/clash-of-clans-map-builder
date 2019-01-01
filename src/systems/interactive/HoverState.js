@@ -5,12 +5,11 @@ import * as config from '@app/config'
 
 const { groups } = config.display
 
-export default () => ({
+export default ({ map }) => ({
   nodes: [n.HoverObserver],
 
-  init(nodes) {
-    nodes.onAdded(() => console.log('hover start'))
-    nodes.onRemoved(() => console.log('hover end'))
+  init() {
+    this.cellSize = map.config.cellWidth
   },
 
   update(node) {
@@ -27,11 +26,16 @@ export default () => ({
     }
 
     // -> DRAGGING
-    const pointer = client.entity.get(c.Pointer)
-    if (pointer.input.isDown) {
+    const pointerContext = client.entity.get(c.PointerContext)
+    if (pointerContext.isDown) {
+      const clientPosition = client.entity.get(c.IsoPosition)
       const sourcePosition = source.entity.get(c.Position)
       const startPos = sourcePosition.pos.clone()
-      const offset = pointer.input.cartPosition.sub(startPos)
+
+      const offset = {
+        x: this.normCoord(clientPosition.cartX - startPos.x),
+        y: this.normCoord(clientPosition.cartY - startPos.y),
+      }
 
       entity.remove(c.Hovered)
       entity.add(c.Dragging)
@@ -44,5 +48,9 @@ export default () => ({
       source.entity.remove(c.BuildingLayer)
       source.entity.add(c.DragLayer)
     }
+  },
+
+  normCoord(val) {
+    return Math.floor(val / this.cellSize) * this.cellSize
   },
 })

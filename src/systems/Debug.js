@@ -5,18 +5,16 @@ export default () => ({
 
   update(pointerNode, hudNode) {
     const { display } = hudNode.head
-    const { pointer } = pointerNode.head
-    const p = pointer.input
+    const { context, position, isoPosition } = pointerNode.head
 
     display.sprite.content = `
-        x: ${p.position.x}
-        y: ${p.position.y}
-        cartX: ${Math.floor(p.cartPosition.x)}
-        cartY: ${Math.floor(p.cartPosition.y)}
-        column: ${p.fieldPosition.x}
-        row: ${p.fieldPosition.y}
-        hover: ${p.hoverOver}
-        ${p.elapsedTime}
+        x: ${position.x}
+        y: ${position.y}
+        cartX: ${Math.floor(isoPosition.cartX)}
+        cartY: ${Math.floor(isoPosition.cartY)}
+        column: ${isoPosition.col}
+        row: ${isoPosition.row}
+        hover: ${context.hovered}
       `
   },
 })

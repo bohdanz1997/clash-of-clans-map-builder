@@ -7,11 +7,11 @@ export default () => ({
   init(nodes) {
     nodes.onAdded((node) => {
       const ePointer = node.client.entity
-      ePointer.get(c.Pointer).input.hoverOver = true
+      ePointer.get(c.PointerContext).hovered = true
     })
     nodes.onRemoved((node) => {
       const ePointer = node.client.entity
-      ePointer.get(c.Pointer).input.hoverOver = false
+      ePointer.get(c.PointerContext).hovered = false
     })
   },
 })
