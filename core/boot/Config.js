@@ -21,8 +21,13 @@ export default class Config {
 
     this.baseAssetsUrl = get('baseAssetsUrl', 'assets')
 
+    /** @type {HTMLBaseElement} */
     this.inputKeyboardEventTarget = get('input.keyboard.target', window)
+
+    /** @type {HTMLBaseElement} */
     this.inputMouseEventTarget = get('input.mouse.target', null) // canvas
+
+    /** @type {HTMLBaseElement} */
     this.inputTouchEventTarget = get('input.touch.target', document.body) // canvas
 
     this.preBoot = get('callbacks.preBoot', noop)
