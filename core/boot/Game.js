@@ -1,4 +1,4 @@
-import { Keyboard } from 'core/input'
+import { Keyboard, PointerManager } from 'core/input'
 import { createStage } from 'core/renderLayers'
 import { createContainer, asValue } from 'awilix'
 import { EventEmitter, Loader, Application } from 'core/pixi'
@@ -47,6 +47,8 @@ export default class Game {
 
     this.keyboard = new Keyboard(this.config.inputKeyboardEventTarget)
 
+    this.pointers = new PointerManager(this)
+
     /** @type {Application} */
     this.app = configurePixiApp(this.config)
 
@@ -78,6 +80,7 @@ export default class Game {
       textures: asValue(this.textures),
       keyboard: asValue(this.keyboard),
       entities: asValue(this.entities),
+      pointers: asValue(this.pointers),
     })
 
     this.systems = new SystemManager(this)
