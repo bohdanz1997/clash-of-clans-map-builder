@@ -9,5 +9,8 @@ export const makeIsoMatrix = (angle, scaleY) => {
   return m
 }
 
+/** @type {Matrix}  */
 export const isoMatrix = makeIsoMatrix(toRad(45), 0.75)
+
+/** @type {Matrix}  */
 export const invertIsoMatrix = isoMatrix.clone().invert()
