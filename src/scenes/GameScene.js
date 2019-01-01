@@ -32,11 +32,11 @@ export default class GameScene extends Scene {
       .add('goldStorage', 'image/goldStorage.png')
       .add('elixirCollector', 'image/elixirCollector.png')
       .add('myMap', 'map/first.json')
-      .add('entityDefinitions', 'entity/definitions.json')
+      .add('defs', 'entity/definitions.json')
   }
 
   create() {
-    this.entities.setDefinitions(this.cache.get('entityDefinitions'))
+    this.entities.setDefinitions(this.cache.get('defs'))
     this.entities.setFactories(entities)
     this.entities.setBuilder(containerBuilder(this.container))
 
@@ -50,7 +50,6 @@ export default class GameScene extends Scene {
 
     this.container.register({
       map: asValue(map),
-      entityFactory: asValue(this.entities),
       world: asValue(this.app.stage.getChildByName('world')),
       hud: asValue(this.app.stage.getChildByName('hud')),
       positioning: asValue(createPositioning(this.config, this.app)),
@@ -81,9 +80,13 @@ export default class GameScene extends Scene {
 
     register(s.StagePrepare, priorities.PRE_INIT)
     register(s.KeyboardManager, priorities.PRE_UPDATE)
+
     register(s.Movement, priorities.MOVEMENT)
+    register(s.IsoMovement, priorities.MOVEMENT)
+    register(s.PointerManager, priorities.MOVEMENT)
     register(s.CameraControl, priorities.MOVEMENT)
     // register(s.CameraTouchControl, priorities.MOVEMENT)
+
     register(s.CollisionUpdate, priorities.UPDATE_COLLISION)
     register(s.BoundsLimiter, priorities.RESOLVE_COLLISIONS)
     register(s.Debug)
@@ -99,8 +102,6 @@ export default class GameScene extends Scene {
 
     register(s.TileMapManager)
     register(s.OverlayManager)
-    register(s.PointerManager)
-    register(s.IsoMovement, priorities.PRE_RENDER)
     register(s.Render, priorities.RENDER)
     register(s.IsoRender, priorities.ISO_RENDER)
 
