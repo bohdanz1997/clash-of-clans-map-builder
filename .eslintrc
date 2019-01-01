@@ -58,7 +58,8 @@
     "no-unused-vars": 0,
     "require-yield": 0,
     "padded-blocks": 0,
-    "no-return-assign": 0
+    "no-return-assign": 0,
+    "lines-between-class-members": 0
   },
   "settings": {}
 }
