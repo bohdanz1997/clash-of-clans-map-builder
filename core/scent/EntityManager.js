@@ -1,5 +1,6 @@
 import { Game } from '../boot'
 import { objectReduce, firstToLower } from '../util'
+import { createEntity } from '.'
 
 const getLevelData = (definition, level) => (
   definition.levels ? definition.levels[level] : {}
@@ -20,16 +21,23 @@ export default class EntityManager {
     this.engine = game.engine
   }
 
-  create(id, data = {}, dataForInject = {}, builder) {
-    const entityData = this.makeEntityData(id, data)
-    return this.buildEntity(id, entityData, dataForInject, builder)
-  }
-
   add(id, data = {}, dataForInject = {}, builder) {
     const entity = this.create(id, data, dataForInject, builder)
     this.engine.addEntity(entity)
 
     return entity
+  }
+
+  make(...components) {
+    const entity = createEntity(...components)
+    this.engine.addEntity(entity)
+
+    return entity
+  }
+
+  create(id, data = {}, dataForInject = {}, builder) {
+    const entityData = this.makeEntityData(id, data)
+    return this.buildEntity(id, entityData, dataForInject, builder)
   }
 
   buildEntity(id, data = {}, dataForInject = {}, builder) {
