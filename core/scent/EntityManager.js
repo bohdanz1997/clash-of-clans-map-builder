@@ -1,5 +1,5 @@
 import { Game } from '../boot'
-import { objectReduce, firstToLower } from '../util'
+import { objectReduce, firstToLower, noop } from '../util'
 import { createEntity } from '.'
 
 const getLevelData = (definition, level) => (
@@ -19,20 +19,22 @@ export default class EntityManager {
     this.factories = {}
     this.builder = defaultBuilder
     this.engine = game.engine
+
+    // hooks
+    this.postBuild = noop
+  }
+
+  make(id, components) {
+    const entity = createEntity(...components)
+
+    this.postBuild(entity, id)
+
+    return this.engine.addEntity(entity)
   }
 
   add(id, data = {}, dataForInject = {}, builder) {
     const entity = this.create(id, data, dataForInject, builder)
-    this.engine.addEntity(entity)
-
-    return entity
-  }
-
-  make(...components) {
-    const entity = createEntity(...components)
-    this.engine.addEntity(entity)
-
-    return entity
+    return this.engine.addEntity(entity)
   }
 
   create(id, data = {}, dataForInject = {}, builder) {
@@ -48,7 +50,11 @@ export default class EntityManager {
     const entityBuilder = builder || this.builder
     const factory = this.getFactory(id)
 
-    return entityBuilder(factory, data, dataForInject)
+    const entity = entityBuilder(factory, data, dataForInject)
+
+    this.postBuild(entity, id)
+
+    return entity
   }
 
   makeEntityData(id, params) {
@@ -72,8 +78,7 @@ export default class EntityManager {
     const def = this.defs[id]
 
     if (!def) {
-      const keysStr = Object.keys(this.defs).join(', ')
-      throw new Error(`Could not find entity definition for '${id}', available: ${keysStr}`)
+      return { id }
     }
 
     return def
