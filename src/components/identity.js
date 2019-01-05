@@ -5,5 +5,5 @@ export const Player = defComponent('player')
 
 export const Identity = defComponent(
   'identity', 'id seed',
-  ({ id = null } = {}) => ({ seed: uuid(), id }),
+  (id = null) => ({ seed: uuid(), id }),
 )

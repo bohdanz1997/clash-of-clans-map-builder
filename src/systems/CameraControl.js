@@ -27,8 +27,8 @@ export default ({ world }) => ({
 
     motion.vel.mult(motion.damp)
 
-    camera.camera.x = position.pos.x
-    camera.camera.y = position.pos.y
+    camera.camera.x = position.x
+    camera.camera.y = position.y
 
     const scale = smoothZoom.applyForce(world.scale.x)
     world.scale.set(scale)

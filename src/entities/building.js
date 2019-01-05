@@ -7,7 +7,6 @@ export default ({
   map,
 }) => pipeHOCs(
   withComponents(
-    c.Identity({ id }),
     c.BuildingLayer(),
     c.Draggable(),
     c.Interactive(),

@@ -30,7 +30,8 @@ export default ({ map, engine, entities }) => ({
 
   update(overlayNode) {
     overlayNode.each(({ overlay, position }) => {
-      position.pos.copy(overlay.target.pos)
+      position.x = overlay.target.x
+      position.y = overlay.target.y
     })
   },
 })

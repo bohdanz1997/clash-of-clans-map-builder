@@ -1,31 +1,52 @@
+import * as c from '../components'
 import * as n from '../nodes'
 
 export default ({ world, hud }) => ({
   nodes: [n.Render],
 
-  init(node) {
-    const matchContainer = parentId => ({
-      world,
-      hud,
-    })[parentId]
+  init(nodes) {
+    const layersToContainers = [
+      [c.GroundLayer, world],
+      [c.BackGroundLayer, world],
+      [c.BuildingLayer, world],
+      [c.DragLayer, world],
+      [c.HudLayer, hud],
+    ]
 
-    const addRenderChild = ({ display }) => {
-      matchContainer(display.parentId).addChild(display.sprite)
+    const findContainerByLayerComponent = (node) => {
+      const res = layersToContainers.find(([ComponentLayer]) => (
+        node.entity.has(ComponentLayer)
+      ))
+
+      if (!res) {
+        const identity = node.entity.get(c.Identity)
+        throw new Error(`Found entity (${identity.id}) without layer component`)
+      }
+
+      return res[1]
     }
 
-    const removeRenderChild = ({ display }) => {
-      matchContainer(display.parentId).removeChild(display.sprite)
+    const addRenderChild = (node) => {
+      const container = findContainerByLayerComponent(node)
+      container.addChild(node.display.sprite)
     }
 
-    node.each(addRenderChild)
-    node.onAdded(addRenderChild)
-    node.onRemoved(removeRenderChild)
+    const removeRenderChild = (node) => {
+      const container = findContainerByLayerComponent(node)
+      container.removeChild(node.display.sprite)
+    }
+
+    nodes.each(addRenderChild)
+    nodes.onAdded(addRenderChild)
+    nodes.onRemoved(removeRenderChild)
   },
 
   update({ position, display }) {
     const { sprite, group } = display
 
     sprite.parentGroup = group
-    sprite.position.copy(position.pos)
+
+    sprite.x = position.x
+    sprite.y = position.y
   },
 })

@@ -22,8 +22,6 @@ export default ({ engine, map }) => ({
 
     sourcePosition.x = clientX - dragContext.offset.x
     sourcePosition.y = clientY - dragContext.offset.y
-
-    sourcePosition.pos.set(sourcePosition.x, sourcePosition.y)
   },
 
   update(node) {

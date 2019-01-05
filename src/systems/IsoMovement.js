@@ -10,10 +10,6 @@ export default () => ({
    */
   update(node) {
     const { position, isoPosition } = node
-    const isoPost = isoMatrix.apply(Point.sub(position.pos, position.offset))
-    isoPosition.pos.copy(isoPost)
-
-    /** *************** */
 
     // iso pos for entities
     const tempIsoPos = {

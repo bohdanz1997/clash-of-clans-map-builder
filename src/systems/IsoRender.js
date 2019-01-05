@@ -4,6 +4,7 @@ export default () => ({
   nodes: [n.IsoRender],
 
   update({ isoPosition, display }) {
-    display.sprite.position.copy(isoPosition.pos)
+    display.sprite.x = isoPosition.x
+    display.sprite.y = isoPosition.y
   },
 })

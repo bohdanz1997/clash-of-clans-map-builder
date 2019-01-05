@@ -15,8 +15,6 @@ export default ({ map }) => ({
       if (!layer.isEmptyInSize(position.col, position.row, collision.radius)) {
         position.x = dragContext.startPos.x
         position.y = dragContext.startPos.y
-
-        position.pos.set(position.x, position.y)
       }
     })
   },
