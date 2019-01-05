@@ -1,5 +1,4 @@
 import { nodeEachTwice } from 'core/scent'
-import { createDnD } from '../services'
 import * as n from '../nodes'
 
 /**
@@ -40,7 +39,7 @@ export default ({ engine, map, entities }) => ({
   }),
 
   init(nDeckItems, nPointers) {
-    this.dndManager = createDnD({ cellSize: map.config.cellWidth })
+    this.dndManager = {}
 
     this.addListeners(nPointers, nDeckItems)
   },
