@@ -45,6 +45,8 @@ export const HoverObserver = [c.Hovered, c.Interact.Client, c.Interact.Source]
 export const DragObserver = [c.Dragging, c.DragContext, c.Interact.Client, c.Interact.Source]
 export const DropObserver = [c.Dropped, c.DragContext, c.Interact.Client, c.Interact.Source]
 
+export const Tween = [c.Tween]
+
 // layers
 export const Layers = {
   Ground: [c.GroundLayer, c.Display],
