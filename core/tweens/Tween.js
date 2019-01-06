@@ -12,7 +12,7 @@ export class Tween {
   }) {
     this.obj = obj
     this.prop = prop
-    this.startVal = startVal || obj[prop]
+    this.startVal = startVal === null ? obj[prop] : startVal
     this.endVal = endVal
     this.totalFrames = totalFrames
     this.type = type
