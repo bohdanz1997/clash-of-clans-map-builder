@@ -7,8 +7,9 @@
       "name": "building",
       "data": [
         { "id": "building", "def": "clanCastle", "x": 9, "y": 9 },
-        { "id": "building", "def": "elixirCollector", "x": 0, "y": 8 },
-        { "id": "building", "def": "goldStorage", "x": 5, "y": 7 }
+        { "id": "wall", "x": 0, "y": 0 },
+        { "id": "wall", "x": 0, "y": 1 },
+        { "id": "wall", "x": 0, "y": 2 }
       ]
     },
     {
@@ -28,7 +29,8 @@
           "index": 0,
           "entityMeta": {
             "id": "building",
-            "def": "clanCastle"
+            "def": "clanCastle",
+            "count": 2
           }
         },
         {
@@ -36,7 +38,26 @@
           "index": 1,
           "entityMeta": {
             "id": "building",
-            "def": "goldStorage"
+            "def": "goldStorage",
+            "count": 2
+          }
+        },
+        {
+          "id": "deckItem",
+          "index": 2,
+          "entityMeta": {
+            "id": "building",
+            "def": "elixirStorage",
+            "count": 2
+          }
+        },
+        {
+          "id": "deckItem",
+          "index": 3,
+          "entityMeta": {
+            "id": "building",
+            "def": "darkStorage",
+            "count": 2
           }
         }
       ]

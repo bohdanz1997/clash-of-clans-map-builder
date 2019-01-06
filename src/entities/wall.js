@@ -1,16 +1,18 @@
-import { createEntity } from 'core/scent'
+import { pipeHOCs, withComponents } from '@app/components/hoc'
+import { withDisplay } from '@app/services'
 import * as c from '../components'
 
 export default ({
-  data: { x, y, width, height, collisionRadius, health },
-}) => (
-  createEntity(
-    c.Building(),
-    c.DefenceBuilding(),
-    c.Wall(),
-    c.Health({ health }),
+  data: { id, x, y, radius },
+  map,
+}) => pipeHOCs(
+  withComponents(
+    c.BuildingLayer(),
+    c.Interactive(),
+    c.Draggable(),
     c.Position({ x, y }),
-    c.Collision({ width, height, radius: collisionRadius }),
-    c.MotionControl(),
-  )
+    c.IsoPosition(),
+    c.Collision({ width: map.config.cellWidth, height: map.config.cellHeight, radius }),
+  ),
+  withDisplay.sprite({ asset: id }),
 )

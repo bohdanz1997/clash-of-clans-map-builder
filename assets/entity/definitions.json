@@ -33,6 +33,36 @@
       }
     }
   },
+  "darkStorage": {
+    "offsetX": 5,
+    "offsetY": 20,
+    "radius": 3,
+    "levels": {
+      "1": {
+        "health": 100
+      }
+    }
+  },
+  "elixirStorage": {
+    "offsetX": 0,
+    "offsetY": 12,
+    "radius": 3,
+    "levels": {
+      "1": {
+        "health": 100
+      }
+    }
+  },
+  "wall": {
+    "offsetX": 0,
+    "offsetY": 0,
+    "radius": 1,
+    "levels": {
+      "1": {
+        "health": 100
+      }
+    }
+  },
   "overlay": {
     "width": 66.5,
     "height": 66.5,
@@ -59,22 +89,6 @@
   "tile": {
     "isoWidth": 133,
     "isoHeight": 100
-  },
-  "wall": {
-    "width": 30,
-    "height": 30,
-    "collisionRadius": 15,
-    "levels": {
-      "1": {
-        "health": 100
-      },
-      "2": {
-        "health": 200
-      },
-      "3": {
-        "health": 500
-      }
-    }
   },
   "deck": {},
   "map": {},
