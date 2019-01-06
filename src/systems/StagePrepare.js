@@ -1,7 +1,4 @@
-import * as config from '../config'
 import * as n from '../nodes'
-
-const { groups } = config.display
 
 const setDisplayGroup = group => (layerNode) => {
   layerNode.display.group = group
@@ -12,7 +9,10 @@ const initLayerToGroup = (layerNode, group) => {
   layerNode.onAdded(setDisplayGroup(group))
 }
 
-export default () => ({
+/**
+ * @param {Config} config
+ */
+export default ({ config }) => ({
   nodes: [
     n.Layers.Ground,
     n.Layers.BackGround,
@@ -22,6 +22,8 @@ export default () => ({
   ],
 
   init(groundNode, backNode, buildingNode, dragNode, hudNode) {
+    const groups = config.displayGroups
+
     const layersToGroups = [
       [groundNode, groups.GROUND],
       [backNode, groups.OVERLAY],

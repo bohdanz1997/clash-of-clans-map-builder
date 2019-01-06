@@ -1,4 +1,3 @@
-import { Point } from 'core/pixi'
 import { isoMatrix } from 'core/math'
 import * as n from '../nodes'
 

@@ -8,13 +8,13 @@ export default () => ({
     const { context, position, isoPosition } = pointerNode.head
 
     display.sprite.content = `
-        x: ${position.x}
-        y: ${position.y}
-        cartX: ${Math.floor(isoPosition.cartX)}
-        cartY: ${Math.floor(isoPosition.cartY)}
-        column: ${isoPosition.col}
-        row: ${isoPosition.row}
-        hover: ${context.hovered}
-      `
+      x: ${position.x}
+      y: ${position.y}
+      cartX: ${Math.floor(isoPosition.cartX)}
+      cartY: ${Math.floor(isoPosition.cartY)}
+      column: ${isoPosition.col}
+      row: ${isoPosition.row}
+      hover: ${context.hovered}
+    `
   },
 })

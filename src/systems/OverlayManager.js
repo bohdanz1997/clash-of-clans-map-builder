@@ -14,10 +14,11 @@ export default ({ map, engine, entities }) => ({
     ownerNode.onRemoved(this.removeOverlay)
   },
 
-  createOverlay({ position }) {
+  createOverlay({ position, collision }) {
+    const sizeInPixels = collision.radius * map.config.cellWidth
     const overlay = entities.create('overlay', {
-      width: map.config.tileWidth,
-      height: map.config.tileHeight,
+      width: sizeInPixels,
+      height: sizeInPixels,
       target: position,
     })
 

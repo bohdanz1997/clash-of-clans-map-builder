@@ -35,10 +35,10 @@ export default () => ({
 
         const newTween = new Tween({
           obj: tween.obj,
-          prop: 'x',
-          endVal: 400,
-          type: easeMap[randomInt(0, easeMap.length - 1)],
-          yoyo: true,
+          prop: tween.prop,
+          endVal: tween.endVal,
+          type: tween.type,
+          yoyo: tween.yoyo,
         })
 
         node.entity.add(c.Tween(newTween))

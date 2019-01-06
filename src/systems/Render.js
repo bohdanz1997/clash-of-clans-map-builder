@@ -15,11 +15,11 @@ export default ({ world, hud }) => ({
 
     const findContainerByLayerComponent = (node) => {
       const res = layersToContainers.find(([ComponentLayer]) => (
-        node.entity.has(ComponentLayer)
+        node.entity.has(ComponentLayer, true)
       ))
 
       if (!res) {
-        const identity = node.entity.get(c.Identity)
+        const identity = node.entity.get(c.Identity, true)
         throw new Error(`Found entity (${identity.id}) without layer component`)
       }
 
