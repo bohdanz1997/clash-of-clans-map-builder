@@ -1,14 +1,11 @@
-import { Game } from 'core'
+import { Game, Stats } from 'core'
 
 import {
   GameScene,
   SandboxScene,
 } from './scenes'
 import { display } from './config'
-import { createStats } from './services'
 import { priorities } from './constants'
-
-const stats = createStats()
 
 const game = new Game({
   width: 600,
@@ -23,10 +20,11 @@ const game = new Game({
   },
 })
 
+const stats = new Stats([
+  [0, 0, Stats.types.FPS],
+  [0, 48, Stats.types.MB],
+])
+
 game.events
-  .on('preUpdate', () => {
-    stats.begin()
-  })
-  .on('postUpdate', () => {
-    stats.end()
-  })
+  .on('preUpdate', stats.begin)
+  .on('postUpdate', stats.end)
