@@ -2,12 +2,8 @@ import { detectHit } from '@app/services'
 import * as c from '@app/components'
 import * as n from '@app/nodes'
 
-/**
- * @param {Engine} engine
- * @param {EntityManager} entities
- */
-export default ({ engine, entities }) => ({
-  nodes: [n.Client, n.Source],
+export default () => ({
+  nodes: [n.InteractiveClient, n.InteractiveSource],
 
   update(clientNodes, sourceNodes) {
     clientNodes.each((nClient) => {
@@ -21,12 +17,10 @@ export default ({ engine, entities }) => ({
           eClient.remove(c.Idle)
           eSource.remove(c.Idle)
 
-          const eObserver = entities.add('observer', {
-            client: eClient,
-            source: eSource,
-          })
+          eSource.add(c.Interact.Client({ entity: eClient }))
+          eSource.add(c.Hovered)
 
-          eObserver.add(c.Hovered)
+          eClient.add(c.Interact.Source({ entity: eSource }))
         }
       })
     })

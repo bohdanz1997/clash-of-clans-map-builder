@@ -4,18 +4,34 @@ import * as n from '@app/nodes'
 /**
  * @param {Engine} engine
  * @param {TileMap} map
+ * @param {Config} config
  */
-export default ({ engine, map }) => ({
-  nodes: [n.DragObserver],
+export default ({ engine, map, config }) => ({
+  nodes: [n.SourceDragging],
 
-  init() {
+  init(node) {
+    node.onAdded(({ entity }) => {
+      // console.log('drag start')
+
+      const display = entity.get(c.Display)
+      display.oldGroup = display.group
+      display.group = config.displayGroups.DRAG
+
+      entity.remove(c.BuildingLayer)
+      entity.add(c.DragLayer)
+    })
+
+    node.onRemoved(() => {
+      // console.log('drag end')
+    })
+
     this.cellSize = map.config.cellWidth
   },
 
   updateDrag(node) {
-    const { client, source, dragContext } = node
+    const { client, dragContext, position } = node
     const clientPosition = client.entity.get(c.IsoPosition)
-    const sourcePosition = source.entity.get(c.Position)
+    const sourcePosition = position
 
     const clientX = clientPosition.col * this.cellSize
     const clientY = clientPosition.row * this.cellSize

@@ -2,19 +2,19 @@ import * as c from '@app/components'
 import * as n from '@app/nodes'
 
 export default () => ({
-  nodes: [n.DropObserver],
+  nodes: [n.SourceDropped],
 
   update(node) {
-    const { source, entity } = node
+    const { display, entity } = node
 
     // -> HOVER
     entity.remove(c.Dropped)
+    entity.remove(c.DragContext)
     entity.add(c.Hovered)
 
-    const display = source.entity.get(c.Display)
     display.group = display.oldGroup
 
-    source.entity.remove(c.DragLayer)
-    source.entity.add(c.BuildingLayer)
+    entity.remove(c.DragLayer)
+    entity.add(c.BuildingLayer)
   },
 })
