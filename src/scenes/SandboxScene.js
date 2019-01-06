@@ -30,26 +30,30 @@ export default class GameScene extends Scene {
 
   preload() {
     this.loader.add('man', 'atlas/man.json')
+    this.loader.add('defs', 'entity/definitions.json')
   }
 
   create() {
     this.entities.setBuilder(containerBuilder(this.container))
+    this.entities.setDefinitions(this.cache.get('defs'))
+    this.entities.setFactories(entities)
 
     const map = new TileMap({ width: 10, height: 10 })
 
-    const entity = createEntity(
+    this.entities.make('man', [
       c.Position(this.game.align.center(0, 0, 100, 100)),
       c.Display(withDisplay.animatedSprite({
         atlas: this.cache.getResource('man'),
         speed: 0.1,
       })),
       c.Animatable(),
-    )
-    this.engine.addEntity(entity)
+    ])
+
+    this.entities.add('pointer')
+    this.entities.add('hud')
 
     this.container.register({
       map: asValue(map),
-      entityFactory: asValue(this.entities),
       world: asValue(this.app.stage.getChildByName('world')),
       hud: asValue(this.app.stage.getChildByName('hud')),
       positioning: asValue(createPositioning(this.config, this.app)), // align
@@ -66,6 +70,14 @@ export default class GameScene extends Scene {
   registerSystems() {
     const { register, init } = this.systems
 
+    register(s.DragDrop)
+    register(s.InteractiveIdleState)
+    register(s.InteractiveHoverState)
+    register(s.InteractiveDragState)
+    register(s.InteractiveDropState)
+
+    register(s.PointerManager)
+    register(s.Debug)
     register(s.Movement)
     register(s.Animation)
     register(s.Render)

@@ -6,4 +6,5 @@ program
   .command('rm-component <name>', 'remove old component').alias('rmc')
   .command('entity <name>', 'add new entity').alias('e')
   .command('rm-entity <name>', 'remove old entity').alias('rme')
+  .command('system <name>', 'add new system').alias('s')
   .parse(process.argv)

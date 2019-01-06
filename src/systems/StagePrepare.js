@@ -1,9 +1,18 @@
-import * as config from '../config'
 import * as n from '../nodes'
 
-const { groups } = config.display
+const setDisplayGroup = group => (layerNode) => {
+  layerNode.display.group = group
+}
 
-export default () => ({
+const initLayerToGroup = (layerNode, group) => {
+  layerNode.each(setDisplayGroup(group))
+  layerNode.onAdded(setDisplayGroup(group))
+}
+
+/**
+ * @param {Config} config
+ */
+export default ({ config }) => ({
   nodes: [
     n.Layers.Ground,
     n.Layers.BackGround,
@@ -13,19 +22,18 @@ export default () => ({
   ],
 
   init(groundNode, backNode, buildingNode, dragNode, hudNode) {
-    const setDisplayGroup = group => ({ display }) => {
-      display.group = group
-    }
+    const groups = config.displayGroups
 
-    const initLayer = (node, group) => {
-      node.each(setDisplayGroup(group))
-      node.onAdded(setDisplayGroup(group))
-    }
+    const layersToGroups = [
+      [groundNode, groups.GROUND],
+      [backNode, groups.OVERLAY],
+      [buildingNode, groups.BUILDING],
+      [dragNode, groups.DRAG],
+      [hudNode, groups.HUD],
+    ]
 
-    initLayer(groundNode, groups.GROUND)
-    initLayer(backNode, groups.OVERLAY)
-    initLayer(buildingNode, groups.BUILDING)
-    initLayer(dragNode, groups.DRAG)
-    initLayer(hudNode, groups.HUD)
+    layersToGroups.forEach(([layerNode, displayGroup]) => {
+      initLayerToGroup(layerNode, displayGroup)
+    })
   },
 })

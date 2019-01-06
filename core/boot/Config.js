@@ -36,9 +36,11 @@ export default class Config {
     this.sceneConfig = get('scene')
 
     this.display = {
-      groups: get('display.groups', {}),
       containers: get('display.containers', []),
     }
+
+    /** @type {DisplayGroups} */
+    this.displayGroups = get('display.groups', {})
 
     this.systems = {
       defaultPriority: get('systems.defaultPriority', 0),

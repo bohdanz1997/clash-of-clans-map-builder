@@ -1,4 +1,3 @@
-import { Point } from 'core/pixi'
 import * as n from '../nodes'
 
 /**
@@ -12,13 +11,6 @@ export default ({ map }) => ({
   },
 
   update({ position, motion }, delta) {
-    position.pos.add(motion.vel.multNum(delta))
-
-    const fieldPos = Point.divNum(position.pos, this.cellSize).floor()
-    position.fieldPos.copy(fieldPos)
-
-    /** ***************** */
-
     position.x += motion.vel.x * delta
     position.y += motion.vel.y * delta
 

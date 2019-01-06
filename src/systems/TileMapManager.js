@@ -1,4 +1,3 @@
-import { Point } from 'core/pixi'
 import * as n from '../nodes'
 
 export default ({ map }) => ({
@@ -11,10 +10,9 @@ export default ({ map }) => ({
 
   updateNodeForLayer: layer => (node) => {
     const { position, identity, collision } = node
-    const normPos = Point.floor(Point.divNum(position.pos, map.config.cellWidth))
 
-    if (layer.isEmptyInSize(normPos.x, normPos.y, collision.radius)) {
-      layer.setInSize(normPos.x, normPos.y, identity.seed, collision.radius)
+    if (layer.isEmptyInSize(position.col, position.row, collision.radius)) {
+      layer.setInSize(position.col, position.row, identity.seed, collision.radius)
     }
   },
 

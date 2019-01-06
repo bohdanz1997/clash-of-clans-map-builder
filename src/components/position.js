@@ -7,8 +7,8 @@ export const Position = defComponent(
     pos: new Point(x, y),
     fieldPos: Point.EMPTY,
     offset: new Point(offsetX, offsetY),
-    x: 0,
-    y: 0,
+    x,
+    y,
     col: 0,
     row: 0,
   })
@@ -18,8 +18,8 @@ export const IsoPosition = defComponent(
   'isoPosition', 'pos x y cartX cartY col row',
   ({ x = 0, y = 0 } = {}) => ({
     pos: new Point(x, y),
-    x: 0,
-    y: 0,
+    x,
+    y,
     col: 0,
     row: 0,
     cartX: 0,

@@ -1,20 +1,21 @@
-import { noop } from 'core/util'
 import { defComponent } from 'core/scent'
-import { interactActions, interactStates } from '../constants'
 
 export const Interactive = defComponent(
-  'interactive', 'state action pressed hoverOver',
-  ({ press = noop, release = noop } = {}) => ({
-    state: interactStates.UP,
-    action: interactActions.NONE,
-    pressed: false,
-    hoverOver: false,
-    press,
-    release,
-  })
+  'interactive'
 )
 
 export const Interact = {
   Client: defComponent('client', 'entity'),
   Source: defComponent('source', 'entity'),
 }
+
+// states
+const IdleState = defComponent('idleState')
+const HoverState = defComponent('hoverState')
+const ClickState = defComponent('clickState')
+const DragState = defComponent('dragState')
+const DropState = defComponent('dropState')
+
+// ables
+const Interactable = defComponent('interactable')
+const Draggable = defComponent('draggable')

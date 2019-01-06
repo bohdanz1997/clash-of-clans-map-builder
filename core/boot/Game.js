@@ -1,6 +1,6 @@
 import { Keyboard, PointerManager } from 'core/input'
 import { createStage } from 'core/renderLayers'
-import { createContainer, asValue } from 'awilix'
+import { createContainer, asValue, AwilixContainer } from 'awilix'
 import { EventEmitter, Loader, Application } from 'core/pixi'
 import { SystemManager, EntityManager, Engine } from 'core/scent'
 import { Align } from 'core/display'
@@ -33,7 +33,7 @@ const configurePixiApp = (config) => {
     height,
   })
 
-  app.stage = createStage(config.display.groups)
+  app.stage = createStage(config.displayGroups)
   app.stage.addChild(...config.display.containers)
 
   return app
@@ -68,6 +68,7 @@ export default class Game {
     const bounds = this.app.screen
     this.align = new Align(bounds.x, bounds.y, bounds.width, bounds.height)
 
+    /** @type {AwilixContainer} */
     this.container = createContainer()
 
     this.container.register({
