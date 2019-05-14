@@ -3,16 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const {
-  HotModuleReplacementPlugin,
-} = require('webpack')
-
 const withRootPath = dir => path.resolve(__dirname, dir)
 
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/game',
+    app: './src',
   },
   optimization: {
     minimize: false,
@@ -20,7 +16,6 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
-    hot: true,
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -31,7 +26,6 @@ module.exports = {
       from: 'assets',
       to: 'assets',
     }]),
-    new HotModuleReplacementPlugin(),
   ],
   output: {
     filename: '[name].bundle.js',
@@ -61,9 +55,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@app': withRootPath('src'),
       core: withRootPath('core'),
       assets: withRootPath('assets'),
+      app: path.resolve(__dirname, 'src'),
     },
   },
 }
