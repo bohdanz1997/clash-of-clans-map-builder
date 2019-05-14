@@ -57,7 +57,7 @@ module.exports = {
     alias: {
       core: withRootPath('core'),
       assets: withRootPath('assets'),
-      app: path.resolve(__dirname, 'src'),
+      app: withRootPath('src'),
     },
   },
 }

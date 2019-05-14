@@ -1,6 +1,6 @@
 import { Ease, EasingFormulas, Tween } from 'core'
-import * as c from '@app/components'
-import * as n from '@app/nodes'
+import * as c from 'app/components'
+import * as n from 'app/nodes'
 import { randomInt } from 'core/util'
 
 const easeMap = Object.values(Ease)

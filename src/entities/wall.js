@@ -1,5 +1,5 @@
-import { pipeHOCs, withComponents } from '@app/components/hoc'
-import { withDisplay } from '@app/services'
+import { pipeHOCs, withComponents } from 'app/components/hoc'
+import { withDisplay } from 'app/services'
 import * as c from '../components'
 
 export default ({

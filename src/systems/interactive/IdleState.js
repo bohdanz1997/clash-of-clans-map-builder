@@ -1,6 +1,6 @@
-import { detectHit } from '@app/services'
-import * as c from '@app/components'
-import * as n from '@app/nodes'
+import { detectHit } from 'app/services'
+import * as c from 'app/components'
+import * as n from 'app/nodes'
 
 export default () => ({
   nodes: [n.InteractiveClient, n.InteractiveSource],

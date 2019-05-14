@@ -5,6 +5,7 @@
     "target": "es2015",
     "baseUrl": ".",
     "paths": {
+      "app": ["./src"],
       "core": ["./core"],
       "assets": ["./assets"]
     }

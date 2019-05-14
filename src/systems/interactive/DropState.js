@@ -1,5 +1,5 @@
-import * as c from '@app/components'
-import * as n from '@app/nodes'
+import * as c from 'app/components'
+import * as n from 'app/nodes'
 
 export default () => ({
   nodes: [n.SourceDropped],

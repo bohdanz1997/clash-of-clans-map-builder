@@ -1,6 +1,6 @@
 import { Tween, Ease } from 'core'
-import * as c from '@app/components'
-import * as n from '@app/nodes'
+import * as c from 'app/components'
+import * as n from 'app/nodes'
 
 /**
  * @param {Engine} engine

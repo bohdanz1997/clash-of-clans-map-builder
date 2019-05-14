@@ -23,8 +23,8 @@ if (!system) {
   process.exit(1)
 }
 
-const buildSource = () => `import * as c from '@app/components'
-import * as n from '@app/nodes'
+const buildSource = () => `import * as c from 'app/components'
+import * as n from 'app/nodes'
 
 export default () => ({
   nodes: [],
