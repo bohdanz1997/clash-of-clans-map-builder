@@ -26,19 +26,16 @@ export default () => ({
       motion,
     } = nCamera.head
 
-    const {
-      pointer,
-      dragSource,
-    } = nPointer.head
+    const pointer = nPointer.head
 
-    if (pointer.input.isDown && dragSource.target === null) {
+    if (pointer.context.isDown /*&& dragSource.target === null*/) {
       if (this.origDragPoint) {
-        const diff = Point.sub(this.origDragPoint, pointer.input.position)
+        const diff = Point.sub(this.origDragPoint, pointer.position)
         const corrected = this.pointInRange(diff)
         motion.vel.copy(corrected)
       }
 
-      this.origDragPoint = pointer.input.position.clone()
+      this.origDragPoint = Point.of(pointer.position.x, pointer.position.y)
     } else {
       this.origDragPoint = null
     }
