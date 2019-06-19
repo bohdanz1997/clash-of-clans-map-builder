@@ -9,8 +9,8 @@ import { priorities } from './constants'
 
 export const createGame = () => {
   const game = new Game({
-    width: 600,
-    height: 600,
+    width: 1000,
+    height: 800,
     scene: [GameScene],
     system: {
       defaultPriority: priorities.UPDATE,
