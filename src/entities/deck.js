@@ -17,7 +17,6 @@ export default ({ align }) => {
       width: bounds.width,
       height: bounds.height,
       color: 0xf44336,
-      parentId: 'hud',
     })
   )
 }

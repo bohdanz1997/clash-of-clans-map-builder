@@ -28,7 +28,6 @@ export default ({
       asset: entityMeta.def,
       width: bounds.width,
       height: bounds.height,
-      parentId: 'hud',
     }),
   )
 }

@@ -2,13 +2,11 @@ import { defComponent } from 'core/scent'
 
 class DisplayRaw {
   sprite
-  parentId
   group = null
   oldGroup = null
 
-  constructor({ sprite, parentId = 'world' }) {
+  constructor({ sprite }) {
     this.sprite = sprite
-    this.parentId = parentId
   }
 }
 

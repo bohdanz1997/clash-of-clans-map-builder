@@ -2,10 +2,9 @@ import { AnimatedSprite } from 'core/pixi'
 import { spriteFactory, textFactory } from 'core/display'
 import { Display as DisplayComponent } from '../components'
 
-const withDisplayComponent = ({ createSprite, parentId }) => entity => (
+const withDisplayComponent = ({ createSprite }) => entity => (
   entity.add(DisplayComponent({
     sprite: createSprite(),
-    parentId,
   }))
 )
 
@@ -19,33 +18,29 @@ export const withDisplay = ({
     return { sprite }
   },
 
-  sprite({ asset, width, height, parentId }) {
+  sprite({ asset, width, height }) {
     return withDisplayComponent({
       createSprite: () => spriteFactory.create(asset, null, null, width, height),
-      parentId,
     })
   },
 
-  rect({ width, height, color, parentId }) {
+  rect({ width, height, color }) {
     return withDisplayComponent({
       createSprite: () => spriteFactory.fromRect(width, height, color),
-      parentId,
     })
   },
 
-  isoRect({ width, height, color, parentId }) {
+  isoRect({ width, height, color }) {
     return withDisplayComponent({
       createSprite: () => spriteFactory.isoFromRect(width, height, color),
-      parentId,
     })
   },
 
-  text({ x, y, fontSize, fill, content, parentId }) {
+  text({ x, y, fontSize, fill, content }) {
     return withDisplayComponent({
       createSprite: () => textFactory.create({
         x, y, fontSize, fill, content,
       }),
-      parentId,
     })
   },
 

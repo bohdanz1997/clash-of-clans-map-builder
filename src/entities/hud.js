@@ -12,6 +12,5 @@ export default ({
   withDisplay.text({
     fontSize: 12,
     fill: 'white',
-    parentId: 'hud',
   }),
 )
