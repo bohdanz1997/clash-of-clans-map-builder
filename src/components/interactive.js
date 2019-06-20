@@ -1,21 +1,16 @@
 import { defComponent } from 'core/scent'
 
-export const Interactive = defComponent(
-  'interactive'
-)
-
 export const Interact = {
   Client: defComponent('client', 'entity'),
   Source: defComponent('source', 'entity'),
 }
 
 // states
-const IdleState = defComponent('idleState')
-const HoverState = defComponent('hoverState')
-const ClickState = defComponent('clickState')
-const DragState = defComponent('dragState')
-const DropState = defComponent('dropState')
+export const Idle = defComponent('idle')
+export const Hovered = defComponent('hovered')
+export const Clicked = defComponent('clicked')
+export const Dragging = defComponent('dragging')
+export const Dropped = defComponent('dropped')
 
-// ables
-const Interactable = defComponent('interactable')
-const Draggable = defComponent('draggable')
+// features
+export const Interactive = defComponent('interactive')

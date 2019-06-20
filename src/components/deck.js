@@ -7,3 +7,5 @@ class DeckRaw {
 
 /** @type {DeckRaw} */
 export const Deck = defComponent('deck', DeckRaw)
+
+export const DeckItem = defComponent('deckItem')
