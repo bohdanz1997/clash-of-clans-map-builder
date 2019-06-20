@@ -1,4 +1,4 @@
-import { asFunction, asValue } from 'awilix'
+import {asClass, asFunction, asValue} from 'awilix'
 
 import {
   Scene,
@@ -7,7 +7,7 @@ import {
   createEntity,
 } from 'core'
 
-import { createPositioning, ContainerBuilder, withDisplay } from '../services'
+import { Align, ContainerBuilder, withDisplay } from '../services'
 import { priorities } from '../constants'
 
 import * as s from '../systems'
@@ -47,7 +47,7 @@ export class SandboxScene extends Scene {
       map: asValue(map),
       world: asValue(this.app.stage.getChildByName('world')),
       hud: asValue(this.app.stage.getChildByName('hud')),
-      positioning: asValue(createPositioning(this.config, this.app)), // align
+      positioning: asClass(Align),
     })
 
     this.registerEntities(map)
