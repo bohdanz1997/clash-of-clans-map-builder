@@ -1,6 +1,6 @@
 import { Rectangle } from 'pixi.js'
-import { pipeHOCs, withComponents } from '../components/hoc'
-import { withDisplay } from '../services'
+import { displayFactory } from 'core/display'
+import { createEntity } from 'core/scent'
 import * as c from '../components'
 
 export default ({
@@ -15,19 +15,17 @@ export default ({
     y: bounds.height,
   })
 
-  return pipeHOCs(
-    withComponents(
-      c.DeckItem(),
-      c.EntityMeta(entityMeta),
-      c.HudLayer(),
-      c.Position(pos),
-      c.Interactive(),
-      c.Collision(bounds),
-    ),
-    withDisplay.sprite({
+  return createEntity(
+    c.DeckItem(),
+    c.EntityMeta(entityMeta),
+    c.HudLayer(),
+    c.Position(pos),
+    c.Interactive(),
+    c.Collision(bounds),
+    c.Display(displayFactory.sprite({
       asset: entityMeta.def,
       width: bounds.width,
       height: bounds.height,
-    }),
+    }))
   )
 }

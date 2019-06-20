@@ -1,16 +1,14 @@
+import { createEntity } from 'core/scent'
+import { displayFactory } from 'core/display'
 import * as c from '../components'
-import { withComponents, pipeHOCs } from '../components/hoc'
-import { withDisplay } from '../services'
 
 export default ({
   data: { id, x, y },
-}) => pipeHOCs(
-  withComponents(
-    c.HudLayer(),
-    c.Position({ x, y }),
-  ),
-  withDisplay.text({
+}) => createEntity(
+  c.HudLayer(),
+  c.Position({ x, y }),
+  c.Display(displayFactory.text({
     fontSize: 12,
     fill: 'white',
-  }),
+  }))
 )

@@ -5,7 +5,7 @@ class DisplayRaw {
   group = null
   oldGroup = null
 
-  constructor({ sprite }) {
+  constructor(sprite) {
     this.sprite = sprite
   }
 }

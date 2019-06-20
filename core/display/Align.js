@@ -1,6 +1,6 @@
 import { Point, Rectangle } from 'core/pixi'
 
-export default class Align {
+export class Align {
   constructor(x, y, width, height) {
     this.setBounds(x, y, width, height)
   }

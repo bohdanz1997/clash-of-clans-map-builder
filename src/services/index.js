@@ -1,5 +1,4 @@
 export { Align } from './Align'
-export { withDisplay } from './withDisplay'
 export { detectHit } from './detectHit'
 export { Helper } from './Helper'
 export { ContainerBuilder } from './ioc'

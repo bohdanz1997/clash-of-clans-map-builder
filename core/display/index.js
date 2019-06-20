@@ -1,9 +1,5 @@
-import Align from './Align'
-
-export * from './text'
-export * from './sprite'
-export * from './spriteUtils'
-
-export {
-  Align,
-}
+export { Align } from './Align'
+export { DisplayFactory, displayFactory } from './DisplayFactory'
+export { textFactory } from './text'
+export { spriteFactory } from './sprite'
+export { spriteUtils } from './spriteUtils'

@@ -1,11 +1,8 @@
 import StateMachine from 'javascript-state-machine'
 import { expolorer } from 'assets/atlas/treasureHunter'
+import { createEntity } from 'core/scent'
+import { displayFactory } from 'core/display'
 
-import {
-  pipeHOCs,
-  withComponents,
-} from '../components/hoc'
-import { withDisplay } from '../services'
 import * as c from '../components'
 
 const withFSM = (entity) => {
@@ -23,16 +20,13 @@ const withFSM = (entity) => {
 
 export default ({
   data: { x, y, width, height, speed, health, damage },
-}) => pipeHOCs(
-  withComponents(
-    c.Player(),
-    c.Position({ x, y }),
-    c.Motion(),
-    c.Collision({ width, height }),
-    c.MotionControl({ dx: speed, dy: speed }),
-    c.Damage({ damage }),
-    c.Health({ health }),
-  ),
-  withFSM,
-  withDisplay.sprite({ asset: expolorer }),
+}) => createEntity(
+  c.Player(),
+  c.Position({ x, y }),
+  c.Motion(),
+  c.Collision({ width, height }),
+  c.MotionControl({ dx: speed, dy: speed }),
+  c.Damage({ damage }),
+  c.Health({ health }),
+  c.Display(displayFactory.sprite({ asset: expolorer })),
 )

@@ -1,15 +1,13 @@
+import { createEntity } from 'core/scent'
+import { displayFactory } from 'core/display'
 import * as c from '../components'
-import { withComponents, pipeHOCs } from '../components/hoc'
-import { withDisplay } from '../services'
 
 export default ({
   data: { width, height, target },
-}) => pipeHOCs(
-  withComponents(
-    c.BackGroundLayer(),
-    c.Overlay({ target }),
-    c.Position(),
-    c.IsoPosition(),
-  ),
-  withDisplay.isoRect({ width, height, color: 0x8bc34a }),
+}) => createEntity(
+  c.BackGroundLayer(),
+  c.Overlay({ target }),
+  c.Position(),
+  c.IsoPosition(),
+  c.Display(displayFactory.isoRect({ width, height, color: 0x8bc34a })),
 )
