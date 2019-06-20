@@ -1,15 +1,19 @@
 import { defComponent } from 'core/scent'
 import { createCamera } from 'core/camera'
 
-export const Camera = defComponent(
-  'camera', 'camera',
-  ({ world, worldWidth, worldHeight, width, height }) => ({
-    camera: createCamera({
+class CameraRaw {
+  camera
+
+  constructor({ world, worldWidth, worldHeight, width, height }) {
+    this.camera = createCamera({
       world,
       worldWidth,
       worldHeight,
       width,
       height,
-    }),
-  })
-)
+    })
+  }
+}
+
+/** @type {CameraRaw} */
+export const Camera = defComponent('camera', CameraRaw)

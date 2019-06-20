@@ -1,5 +1,3 @@
 import { defComponent } from 'core/scent'
 
-export const Clicked = defComponent(
-  'clicked',
-)
+export const Clicked = defComponent('clicked')

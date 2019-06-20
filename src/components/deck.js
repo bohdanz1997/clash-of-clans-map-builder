@@ -1,9 +1,9 @@
 import { defComponent } from 'core/scent'
 
-export const Deck = defComponent(
-  'deck', 'items selected',
-  () => ({
-    items: [],
-    selected: null,
-  })
-)
+class DeckRaw {
+  items = []
+  selected = null
+}
+
+/** @type {DeckRaw} */
+export const Deck = defComponent('deck', DeckRaw)
