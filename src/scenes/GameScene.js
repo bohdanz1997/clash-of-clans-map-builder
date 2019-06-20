@@ -7,7 +7,7 @@ import * as c from '../components'
 import * as s from '../systems'
 import * as entities from '../entities'
 
-export default class GameScene extends Scene {
+export class GameScene extends Scene {
   constructor() {
     super('game')
   }

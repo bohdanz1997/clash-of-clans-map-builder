@@ -14,7 +14,7 @@ import * as s from '../systems'
 import * as c from '../components'
 import * as entities from '../entities'
 
-export default class GameScene extends Scene {
+export class SandboxScene extends Scene {
   constructor() {
     super('sandbox')
   }

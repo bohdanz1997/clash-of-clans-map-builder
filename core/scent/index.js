@@ -1,6 +1,6 @@
 import './mixins/entity'
 
-import EntityManager from './EntityManager'
+import { EntityBuilder, EntityManager } from './EntityManager'
 import SystemManager from './SystemManager'
 
 /**
@@ -41,5 +41,6 @@ export * from './node'
 
 export {
   EntityManager,
+  EntityBuilder,
   SystemManager,
 }

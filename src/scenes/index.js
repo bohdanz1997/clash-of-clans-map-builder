@@ -1,7 +1,2 @@
-import GameScene from './GameScene'
-import SandboxScene from './SandboxScene'
-
-export {
-  GameScene,
-  SandboxScene,
-}
+export { GameScene } from './GameScene'
+export { SandboxScene } from './SandboxScene'

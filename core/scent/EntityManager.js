@@ -6,18 +6,23 @@ const getLevelData = (definition, level) => (
   definition.levels ? definition.levels[level] : {}
 )
 
-const defaultBuilder = (factory, data, dataForInject) => (
-  factory({ data, ...dataForInject })
-)
+export class EntityBuilder {
+  build(Factory, data, dataForInject) {
+    return Factory({
+      data,
+      ...dataForInject,
+    })
+  }
+}
 
-export default class EntityManager {
+export class EntityManager {
   /**
    * @param {Game} game
    */
   constructor(game) {
     this.defs = {}
     this.factories = {}
-    this.builder = defaultBuilder
+    this.builder = new EntityBuilder()
     this.engine = game.engine
 
     // hooks
@@ -47,8 +52,8 @@ export default class EntityManager {
       throw new Error('Your must provide id param')
     }
 
-    const factory = this.getFactory(id)
-    const entity = this.builder(factory, data, dataForInject)
+    const Factory = this.getFactory(id)
+    const entity = this.builder.build(Factory, data, dataForInject)
 
     this.postBuild(entity, id)
 
