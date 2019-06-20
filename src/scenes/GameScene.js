@@ -1,25 +1,11 @@
-import { asFunction, asValue } from 'awilix'
-
-import {
-  Scene,
-  TileMapParser,
-} from 'core'
-
-import { createPositioning, Helper } from '../services'
+import { asValue } from 'awilix'
+import { Scene, TileMapParser } from 'core'
+import { createPositioning, ContainerBuilder, Helper } from '../services'
 import { priorities } from '../constants'
 
 import * as c from '../components'
 import * as s from '../systems'
 import * as entities from '../entities'
-
-const containerBuilder = container => (factory, data, dataForInject) => {
-  const injector = () => ({
-    data,
-    ...dataForInject,
-  })
-  const resolver = asFunction(factory).inject(injector)
-  return container.build(resolver)
-}
 
 export default class GameScene extends Scene {
   constructor() {
@@ -45,7 +31,7 @@ export default class GameScene extends Scene {
     this.entities.postBuild = (entity, id) => entity.add(c.Identity(id))
     this.entities.setDefinitions(this.cache.get('defs'))
     this.entities.setFactories(entities)
-    this.entities.setBuilder(containerBuilder(this.container))
+    this.entities.setBuilder(new ContainerBuilder(this.container))
 
     const mapParser = new TileMapParser(this.entities.getAllDefinitions())
     const map = mapParser.fromJSON(this.cache.get('myMap'))

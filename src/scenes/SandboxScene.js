@@ -7,21 +7,12 @@ import {
   createEntity,
 } from 'core'
 
-import { createPositioning, withDisplay } from '../services'
+import { createPositioning, ContainerBuilder, withDisplay } from '../services'
 import { priorities } from '../constants'
 
 import * as s from '../systems'
 import * as c from '../components'
 import * as entities from '../entities'
-
-const containerBuilder = container => (factory, data, dataForInject) => {
-  const injector = () => ({
-    data,
-    ...dataForInject,
-  })
-  const resolver = asFunction(factory).inject(injector)
-  return container.build(resolver)
-}
 
 export default class GameScene extends Scene {
   constructor() {
@@ -34,7 +25,7 @@ export default class GameScene extends Scene {
   }
 
   create() {
-    this.entities.setBuilder(containerBuilder(this.container))
+    this.entities.setBuilder(new ContainerBuilder(this.container))
     this.entities.setDefinitions(this.cache.get('defs'))
     this.entities.setFactories(entities)
 
