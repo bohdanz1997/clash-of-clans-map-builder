@@ -13,24 +13,26 @@ export default class SystemManager {
     this.instances = []
   }
 
-  build(Factory) {
-    const systemHandler = this.container.build(Factory)
-    return createSystem(this.engine)(systemHandler)
-  }
-
   addToEngine(initializer) {
     this.engine.addSystem(initializer)
   }
 
-  register = (Factory, priority = this.defaultPriority) => {
+  add(Factory, priority = this.defaultPriority) {
     const system = this.build(Factory)
     this.instances.push({
       initializer: () => system,
       priority,
     })
+
+    return this
   }
 
-  init = () => {
+  build(Factory) {
+    const systemHandler = this.container.build(Factory)
+    return createSystem(this.engine)(systemHandler)
+  }
+
+  init() {
     const byPriority = (a, b) => a.priority - b.priority
     const sorted = this.instances.sort(byPriority)
     sorted.forEach((instance) => {

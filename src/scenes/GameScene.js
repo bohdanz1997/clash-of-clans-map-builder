@@ -63,40 +63,39 @@ export class GameScene extends Scene {
   }
 
   registerSystems() {
-    const { register, init } = this.systems
+    this.systems
+      .add(s.StagePrepare, priorities.PRE_INIT)
+      .add(s.KeyboardManager, priorities.PRE_UPDATE)
 
-    register(s.StagePrepare, priorities.PRE_INIT)
-    register(s.KeyboardManager, priorities.PRE_UPDATE)
+      .add(s.Movement, priorities.MOVEMENT)
+      .add(s.IsoMovement, priorities.MOVEMENT)
+      .add(s.PointerManager, priorities.MOVEMENT)
+      .add(s.CameraControl, priorities.MOVEMENT)
+    // .add(s.CameraTouchControl, priorities.MOVEMENT)
 
-    register(s.Movement, priorities.MOVEMENT)
-    register(s.IsoMovement, priorities.MOVEMENT)
-    register(s.PointerManager, priorities.MOVEMENT)
-    register(s.CameraControl, priorities.MOVEMENT)
-    // register(s.CameraTouchControl, priorities.MOVEMENT)
+      .add(s.TweenManager)
 
-    register(s.TweenManager)
+      .add(s.CollisionUpdate, priorities.UPDATE_COLLISION)
+      .add(s.BoundsLimiter, priorities.RESOLVE_COLLISIONS)
+      .add(s.Debug)
+    // .add(s.DebugMapLayers)
+      .add(s.DeckItemInteract)
+      .add(s.DeckItemCount)
 
-    register(s.CollisionUpdate, priorities.UPDATE_COLLISION)
-    register(s.BoundsLimiter, priorities.RESOLVE_COLLISIONS)
-    register(s.Debug)
-    // register(s.DebugMapLayers)
-    register(s.DeckItemInteract)
-    register(s.DeckItemCount)
+      .add(s.DragDrop)
+      .add(s.InteractiveInitializer)
+      .add(s.InteractiveIdleState)
+      .add(s.InteractiveHoverState)
+      .add(s.InteractiveClickState)
+      .add(s.InteractiveDragState)
+      .add(s.InteractiveDropState)
+      .add(s.InteractiveDropStateListener)
 
-    register(s.DragDrop)
-    register(s.InteractiveInitializer)
-    register(s.InteractiveIdleState)
-    register(s.InteractiveHoverState)
-    register(s.InteractiveClickState)
-    register(s.InteractiveDragState)
-    register(s.InteractiveDropState)
-    register(s.InteractiveDropStateListener)
+      .add(s.TileMapManager)
+      .add(s.OverlayManager)
+      .add(s.Render, priorities.RENDER)
+      .add(s.IsoRender, priorities.ISO_RENDER)
 
-    register(s.TileMapManager)
-    register(s.OverlayManager)
-    register(s.Render, priorities.RENDER)
-    register(s.IsoRender, priorities.ISO_RENDER)
-
-    init()
+      .init()
   }
 }
