@@ -1,8 +1,8 @@
 import { Point } from 'core/pixi'
 
 export class Helper {
-  constructor(cellSize) {
-    this.cellSize = cellSize
+  constructor({ map }) {
+    this.cellSize = map.config.cellWidth
   }
 
   prepareDrag(clientPosition, sourcePosition) {

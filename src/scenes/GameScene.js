@@ -45,10 +45,10 @@ export class GameScene extends Scene {
 
     this.container.register({
       map: asValue(map),
-      helper: asValue(new Helper(map.config.cellWidth)),
+      helper: asClass(Helper),
+      align: asClass(Align),
       world: asValue(this.app.stage.getChildByName('world')),
       hud: asValue(this.app.stage.getChildByName('hud')),
-      align: asClass(Align),
     })
 
     const objects = mapParser.getObjects(map, entityDataMapper.map)
