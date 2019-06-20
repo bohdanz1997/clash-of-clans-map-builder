@@ -1,7 +1,7 @@
 import * as c from '../components'
 import * as n from '../nodes'
 
-export default () => ({
+export const DragDrop = () => ({
   nodes: [n.PointerInteracts],
 
   init(nodes) {

@@ -9,7 +9,7 @@ import * as n from '../nodes'
  * @param {Config} config
  * @param {PointerManager} pointers
  */
-export default ({ engine, world, map, config, pointers }) => ({
+export const ManagePointers = ({ engine, world, map, config, pointers }) => ({
   nodes: [n.Pointer],
 
   init(nodes) {

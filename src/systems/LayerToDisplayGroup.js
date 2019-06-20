@@ -12,7 +12,7 @@ const initLayerToGroup = (layerNode, group) => {
 /**
  * @param {Config} config
  */
-export default ({ config }) => ({
+export const LayerToDisplayGroup = ({ config }) => ({
   nodes: [
     n.Layers.Ground,
     n.Layers.BackGround,

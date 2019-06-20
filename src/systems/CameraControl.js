@@ -1,6 +1,6 @@
 import * as n from '../nodes'
 
-export default ({ world }) => ({
+export const CameraControl = ({ world }) => ({
   nodes: [n.CameraControl],
 
   update({ camera, position, motion, motionControl, zoomControl }) {

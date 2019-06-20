@@ -1,12 +1,12 @@
-import * as c from 'app/components'
-import * as n from 'app/nodes'
+import * as c from '../../components'
+import * as n from '../../nodes'
 
 /**
  * @param {Engine} engine
  * @param {TileMap} map
  * @param {Config} config
  */
-export default ({ engine, map, config }) => ({
+export const DragState = ({ engine, map, config }) => ({
   nodes: [n.SourceDragging],
 
   init(node) {

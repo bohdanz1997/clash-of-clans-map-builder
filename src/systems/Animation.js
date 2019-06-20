@@ -1,6 +1,6 @@
 import * as n from '../nodes'
 
-export default () => ({
+export const Animation = () => ({
   nodes: [n.Animation],
 
   update(node, delta) {

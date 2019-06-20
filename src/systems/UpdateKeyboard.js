@@ -3,7 +3,7 @@ import * as n from '../nodes'
 /**
  * @param {Keyboard} keyboard
  */
-export default ({ keyboard }) => ({
+export const UpdateKeyboard = ({ keyboard }) => ({
   nodes: [n.Keyboard],
 
   init() {

@@ -1,7 +1,7 @@
-import * as c from 'app/components'
-import * as n from 'app/nodes'
+import * as c from '../../components'
+import * as n from '../../nodes'
 
-export default () => ({
+export const DropState = () => ({
   nodes: [n.SourceDropped],
 
   update(node) {

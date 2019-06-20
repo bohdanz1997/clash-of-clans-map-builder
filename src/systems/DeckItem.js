@@ -1,6 +1,6 @@
 import { Tween, Ease } from 'core'
-import * as c from 'app/components'
-import * as n from 'app/nodes'
+import * as c from '../components'
+import * as n from '../nodes'
 
 /**
  * @param {Engine} engine
@@ -8,8 +8,8 @@ import * as n from 'app/nodes'
  * @param {EntityManager} entities
  * @param {Helper} helper
  */
-export default ({ engine, map, entities, helper }) => ({
-  nodes: [n.DeckClicked],
+export const InteractWithDeckItem = ({ engine, map, entities, helper }) => ({
+  nodes: [n.DeckItemClicked],
 
   init(nodes) {
     nodes.onAdded((node) => {
@@ -40,5 +40,17 @@ export default ({ engine, map, entities, helper }) => ({
       entity.add(c.DragContext({ startPos, offset }))
       entity.add(c.Interact.Client({ entity: client.entity }))
     })
+  },
+})
+
+export const TrackDeckItemCount = () => ({
+  nodes: [n.DeckItem],
+
+  update(node) {
+    const { entityMeta, entity } = node
+
+    if (entityMeta.count <= 0) {
+      entity.dispose()
+    }
   },
 })

@@ -1,7 +1,7 @@
 import { isoMatrix } from 'core/math'
 import * as n from '../nodes'
 
-export default () => ({
+export const IsometricMovement = () => ({
   nodes: [n.Isometric],
 
   /**

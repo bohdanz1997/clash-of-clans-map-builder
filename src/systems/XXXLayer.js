@@ -1,6 +1,6 @@
 import * as n from '../nodes'
 
-export default ({ map }) => ({
+export const XXXLayer = ({ map }) => ({
   nodes: [n.MapLayers.Building, n.MapLayers.Drag],
 
   init() {

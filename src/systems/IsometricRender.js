@@ -1,6 +1,6 @@
 import * as n from '../nodes'
 
-export default () => ({
+export const IsometricRender = () => ({
   nodes: [n.IsoRender],
 
   update({ isoPosition, display }) {

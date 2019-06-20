@@ -11,7 +11,7 @@ const pointIn = range => (point) => {
   return Point.of(x, y)
 }
 
-export default () => ({
+export const CameraTouchControl = () => ({
   nodes: [n.CameraControl, n.Pointer],
 
   init() {

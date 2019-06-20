@@ -1,6 +1,6 @@
 import * as n from '../nodes'
 
-export default () => ({
+export const UpdateCollision = () => ({
   nodes: [n.Collision],
 
   update({ position, collision }) {

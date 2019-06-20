@@ -64,37 +64,37 @@ export class GameScene extends Scene {
 
   registerSystems() {
     this.systems
-      .add(s.StagePrepare, priorities.PRE_INIT)
-      .add(s.KeyboardManager, priorities.PRE_UPDATE)
+      .add(s.LayerToDisplayGroup, priorities.PRE_INIT)
+      .add(s.UpdateKeyboard, priorities.PRE_UPDATE)
 
       .add(s.Movement, priorities.MOVEMENT)
-      .add(s.IsoMovement, priorities.MOVEMENT)
-      .add(s.PointerManager, priorities.MOVEMENT)
+      .add(s.IsometricMovement, priorities.MOVEMENT)
+      .add(s.ManagePointers, priorities.MOVEMENT)
       .add(s.CameraControl, priorities.MOVEMENT)
     // .add(s.CameraTouchControl, priorities.MOVEMENT)
 
-      .add(s.TweenManager)
+      .add(s.ManageTweens)
 
-      .add(s.CollisionUpdate, priorities.UPDATE_COLLISION)
-      .add(s.BoundsLimiter, priorities.RESOLVE_COLLISIONS)
+      .add(s.UpdateCollision, priorities.UPDATE_COLLISION)
+      .add(s.KeepInBounds, priorities.RESOLVE_COLLISIONS)
       .add(s.Debug)
     // .add(s.DebugMapLayers)
-      .add(s.DeckItemInteract)
-      .add(s.DeckItemCount)
+      .add(s.InteractWithDeckItem)
+      .add(s.TrackDeckItemCount)
 
       .add(s.DragDrop)
       .add(s.InteractiveInitializer)
-      .add(s.InteractiveIdleState)
-      .add(s.InteractiveHoverState)
-      .add(s.InteractiveClickState)
-      .add(s.InteractiveDragState)
-      .add(s.InteractiveDropState)
-      .add(s.InteractiveDropStateListener)
+      .add(s.IdleState)
+      .add(s.HoverState)
+      .add(s.ClickState)
+      .add(s.DragState)
+      .add(s.DropState)
+      .add(s.DropStateListener)
 
-      .add(s.TileMapManager)
-      .add(s.OverlayManager)
+      .add(s.XXXLayer)
+      .add(s.ManageOverlays)
       .add(s.Render, priorities.RENDER)
-      .add(s.IsoRender, priorities.ISO_RENDER)
+      .add(s.IsometricRender, priorities.ISO_RENDER)
 
       .init()
   }

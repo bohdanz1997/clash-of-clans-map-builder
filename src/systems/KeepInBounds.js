@@ -1,7 +1,7 @@
 import { Rectangle } from 'core/pixi'
 import * as n from '../nodes'
 
-export default ({ map }) => ({
+export const KeepInBounds = ({ map }) => ({
   nodes: [n.Collision],
 
   init() {

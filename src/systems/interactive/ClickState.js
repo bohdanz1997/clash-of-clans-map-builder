@@ -1,11 +1,11 @@
-import * as c from 'app/components'
-import * as n from 'app/nodes'
+import * as c from '../../components'
+import * as n from '../../nodes'
 
 /**
  * @param {TileMap} map
  * @param {Helper} helper
  */
-export default ({ map, helper }) => ({
+export const ClickState = ({ map, helper }) => ({
   nodes: [n.SourceClicked],
 
   update(node) {

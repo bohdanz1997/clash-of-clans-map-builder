@@ -29,7 +29,7 @@ export const Animation = [c.Animatable, c.Display]
 
 // deck
 export const DeckItem = [c.DeckItem, c.EntityMeta]
-export const DeckClicked = [c.DeckItem, c.Clicked, c.Interact.Client, c.EntityMeta]
+export const DeckItemClicked = [c.DeckItem, c.Clicked, c.Interact.Client, c.EntityMeta]
 
 export const Pointer = [c.PointerContext, c.Position, c.IsoPosition]
 

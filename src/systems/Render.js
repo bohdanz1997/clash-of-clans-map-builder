@@ -1,7 +1,7 @@
 import * as c from '../components'
 import * as n from '../nodes'
 
-export default ({ world, hud }) => ({
+export const Render = ({ world, hud }) => ({
   nodes: [n.Render],
 
   init(nodes) {

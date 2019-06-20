@@ -1,6 +1,6 @@
 import * as n from '../nodes'
 
-export default () => ({
+export const Debug = () => ({
   nodes: [n.Pointer, n.Hud],
 
   update(pointerNode, hudNode) {

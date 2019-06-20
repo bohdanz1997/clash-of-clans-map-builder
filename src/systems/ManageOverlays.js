@@ -5,7 +5,7 @@ import * as n from '../nodes'
  * @param {Engine} engine
  * @param {EntityManager} entities
  */
-export default ({ map, engine, entities }) => ({
+export const ManageOverlays = ({ map, engine, entities }) => ({
   nodes: [n.Overlay, n.OverlayOwner],
 
   init(overlayNode, ownerNode) {

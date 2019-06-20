@@ -1,8 +1,8 @@
-import { detectHit } from 'app/services'
-import * as c from 'app/components'
-import * as n from 'app/nodes'
+import { detectHit } from '../../services'
+import * as c from '../../components'
+import * as n from '../../nodes'
 
-export default () => ({
+export const IdleState = () => ({
   nodes: [n.InteractiveClient, n.InteractiveSource],
 
   update(clientNodes, sourceNodes) {

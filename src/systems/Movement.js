@@ -3,7 +3,7 @@ import * as n from '../nodes'
 /**
  * @param {TileMap} map
  */
-export default ({ map }) => ({
+export const Movement = ({ map }) => ({
   nodes: [n.Movement],
 
   init() {

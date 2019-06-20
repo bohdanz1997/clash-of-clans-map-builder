@@ -1,7 +1,6 @@
-import * as c from 'app/components'
-import * as n from 'app/nodes'
+import * as n from '../../nodes'
 
-export default ({ map }) => ({
+export const DropStateListener = ({ map }) => ({
   nodes: [n.SourceDroppedListener],
 
   init(nodes) {

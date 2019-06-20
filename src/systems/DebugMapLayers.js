@@ -1,7 +1,7 @@
 import { textFactory } from 'core/display'
 import * as n from '../nodes'
 
-export default ({ engine, config, app, map }) => ({
+export const DebugMapLayers = ({ engine, config, app, map }) => ({
   nodes: [n.Hud],
 
   init() {

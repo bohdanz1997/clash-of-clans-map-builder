@@ -5,7 +5,7 @@ import { randomInt } from 'core/util'
 
 const easeMap = Object.values(Ease)
 
-export default () => ({
+export const ManageTweens = () => ({
   nodes: [n.Tween],
 
   update(node) {
