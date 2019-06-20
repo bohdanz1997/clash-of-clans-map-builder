@@ -1,4 +1,4 @@
-import {asClass, asFunction, asValue} from 'awilix'
+import { asClass, asFunction, asValue } from 'awilix'
 
 import {
   Scene,
@@ -59,20 +59,19 @@ export class SandboxScene extends Scene {
   }
 
   registerSystems() {
-    const { register, init } = this.systems
+    this.systems
+      .add(s.DragDrop)
+      .add(s.InteractiveIdleState)
+      .add(s.InteractiveHoverState)
+      .add(s.InteractiveDragState)
+      .add(s.InteractiveDropState)
 
-    register(s.DragDrop)
-    register(s.InteractiveIdleState)
-    register(s.InteractiveHoverState)
-    register(s.InteractiveDragState)
-    register(s.InteractiveDropState)
+      .add(s.PointerManager)
+      .add(s.Debug)
+      .add(s.Movement)
+      .add(s.Animation)
+      .add(s.Render)
 
-    register(s.PointerManager)
-    register(s.Debug)
-    register(s.Movement)
-    register(s.Animation)
-    register(s.Render)
-
-    init()
+      .init()
   }
 }
