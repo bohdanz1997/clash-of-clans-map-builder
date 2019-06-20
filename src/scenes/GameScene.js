@@ -1,6 +1,6 @@
 import { asValue } from 'awilix'
 import { Scene, TileMapParser } from 'core'
-import { createPositioning, ContainerBuilder, Helper } from '../services'
+import { createPositioning, ContainerBuilder, Helper, EntityDataMapper } from '../services'
 import { priorities } from '../constants'
 
 import * as c from '../components'
@@ -35,8 +35,10 @@ export class GameScene extends Scene {
 
     const mapParser = new TileMapParser(this.entities.getAllDefinitions())
     const map = mapParser.fromJSON(this.cache.get('myMap'))
-    const tileData = this.entities.getDefinition('tile')
+    const entityDataMapper = new EntityDataMapper(map.config)
 
+    // create ground layer
+    const tileData = this.entities.getDefinition('tile')
     map.createLayer('ground', {
       objects: map.createEntitiesForLayer('tile', {}, tileData),
     })
@@ -49,23 +51,14 @@ export class GameScene extends Scene {
       positioning: asValue(createPositioning(this.config, this.app)),
     })
 
-    this.registerEntities(map)
+    const objects = mapParser.getObjects(map, entityDataMapper.map)
+    this.registerEntities(objects)
     this.registerSystems()
   }
 
-  registerEntities(map) {
-    const xy2World = (params) => {
-      if (params.x !== undefined && params.y !== undefined) {
-        params.x *= map.config.cellWidth
-        params.y *= map.config.cellHeight
-      }
-      return params
-    }
-
-    map.layers.forEach((layer) => {
-      layer.objects.forEach((entityData) => {
-        this.entities.add(entityData.id, xy2World(entityData))
-      })
+  registerEntities(objects) {
+    objects.forEach((object) => {
+      this.entities.add(object.id, object)
     })
   }
 

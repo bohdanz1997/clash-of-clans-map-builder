@@ -1,13 +1,15 @@
-import {
-  TileMap,
-  TileMapConfig,
-} from '.'
+import { identity } from 'core/util'
+import { TileMap } from '.'
 
 export default class Parser {
   constructor(definitions) {
     this.definitions = definitions
   }
 
+  /**
+   * @param data
+   * @returns {TileMap}
+   */
   fromJSON(data) {
     const {
       width,
@@ -31,6 +33,21 @@ export default class Parser {
     })
 
     return map
+  }
+
+  /**
+   * @param {TileMap} tileMap
+   * @param {Function} mapper
+   * @return {Array}
+   */
+  getObjects(tileMap, mapper = identity) {
+    const objects = []
+    tileMap.layers.forEach((layer) => {
+      layer.objects.forEach((object) => {
+        objects.push(mapper(object))
+      })
+    })
+    return objects
   }
 
   getDefinition(id) {

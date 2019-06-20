@@ -56,13 +56,13 @@ export default class TileMap {
     for (let i = 0; i < totalTilesCount; i++) {
       const column = i % width
       const row = Math.floor(i / height)
-      const x = column * this.config.cellsInTile
-      const y = row * this.config.cellsInTile
+      const cx = column * this.config.cellsInTile
+      const cy = row * this.config.cellsInTile
 
       entitiesData[i] = {
         id,
-        x,
-        y,
+        cx,
+        cy,
         ...entityMeta,
       }
     }
