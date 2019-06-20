@@ -9,6 +9,10 @@ export const CameraControl = [
   c.ZoomControl,
 ]
 
+/**
+ @typedef {Object} Movement
+ @property {PositionRaw} position
+ */
 export const Movement = [c.Position, c.Motion]
 export const Isometric = [c.Position, c.IsoPosition]
 

@@ -1,12 +1,12 @@
 import * as c from '../components'
-import { withComponents, pipeHOCs } from '../components/hoc'
 import { withDisplay } from '../services'
+import { createEntity } from '../../core/scent'
 
 export default ({
   data: { id, def, x, y, offsetX, offsetY, radius },
   map,
-}) => pipeHOCs(
-  withComponents(
+}) => {
+  const entity = createEntity(
     c.BuildingLayer(),
     c.Draggable(),
     c.Interactive(),
@@ -19,6 +19,7 @@ export default ({
       height: map.config.tileHeight,
       radius,
     }),
-  ),
-  withDisplay.sprite({ asset: def }),
-)
+  )
+
+  return withDisplay.sprite({ asset: def })(entity)
+}
