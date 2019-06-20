@@ -1,6 +1,6 @@
 import { Game } from '../boot'
 import { objectReduce, firstToLower, noop } from '../util'
-import { createEntity } from '.'
+import { createEntity } from './entity'
 
 const getLevelData = (definition, level) => (
   definition.levels ? definition.levels[level] : {}
@@ -32,25 +32,23 @@ export default class EntityManager {
     return this.engine.addEntity(entity)
   }
 
-  add(id, data = {}, dataForInject = {}, builder) {
-    const entity = this.create(id, data, dataForInject, builder)
+  add(id, data = {}, dataForInject = {}) {
+    const entity = this.create(id, data, dataForInject)
     return this.engine.addEntity(entity)
   }
 
-  create(id, data = {}, dataForInject = {}, builder) {
+  create(id, data = {}, dataForInject = {}) {
     const entityData = this.makeEntityData(id, data)
-    return this.buildEntity(id, entityData, dataForInject, builder)
+    return this.buildEntity(id, entityData, dataForInject)
   }
 
-  buildEntity(id, data = {}, dataForInject = {}, builder) {
+  buildEntity(id, data = {}, dataForInject = {}) {
     if (!id) {
       throw new Error('Your must provide id param')
     }
 
-    const entityBuilder = builder || this.builder
     const factory = this.getFactory(id)
-
-    const entity = entityBuilder(factory, data, dataForInject)
+    const entity = this.builder(factory, data, dataForInject)
 
     this.postBuild(entity, id)
 
