@@ -5,12 +5,12 @@ import * as c from '../components'
 
 export default ({
   data: { index, entityMeta },
-  positioning,
+  align,
 }) => {
   const bounds = new Rectangle(0, 0, 80, 80)
   const margin = 20
 
-  const pos = positioning.bottomLeft({
+  const pos = align.bottomLeft({
     x: index * bounds.width + margin,
     y: bounds.height,
   })

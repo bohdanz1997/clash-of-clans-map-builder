@@ -1,6 +1,6 @@
-import { asValue } from 'awilix'
+import { asClass, asValue } from 'awilix'
 import { Scene, TileMapParser } from 'core'
-import { createPositioning, ContainerBuilder, Helper, EntityDataMapper } from '../services'
+import { Align, ContainerBuilder, Helper, EntityDataMapper } from '../services'
 import { priorities } from '../constants'
 
 import * as c from '../components'
@@ -48,7 +48,7 @@ export class GameScene extends Scene {
       helper: asValue(new Helper(map.config.cellWidth)),
       world: asValue(this.app.stage.getChildByName('world')),
       hud: asValue(this.app.stage.getChildByName('hud')),
-      positioning: asValue(createPositioning(this.config, this.app)),
+      align: asClass(Align),
     })
 
     const objects = mapParser.getObjects(map, entityDataMapper.map)
