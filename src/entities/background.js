@@ -1,9 +1,8 @@
+import { isoMatrix } from 'core/math'
 import { createEntity } from 'core/scent'
-import { Container, Sprite } from 'core/pixi'
-import { spriteFactory } from 'core/display'
+import { DisplayFactory } from 'core/display'
+import { Point, Container, Sprite } from 'core/pixi'
 import * as c from '../components'
-import { isoMatrix } from '../../core/math'
-import { Point } from '../../core/pixi'
 
 /**
  * @param def
@@ -28,7 +27,7 @@ export default ({
   const sprites = objects.map((object) => {
     const isoPos = isoMatrix.apply(new Point(object.x, object.y))
 
-    return spriteFactory.create({
+    return DisplayFactory.sprite({
       asset,
       x: isoPos.x,
       y: isoPos.y,

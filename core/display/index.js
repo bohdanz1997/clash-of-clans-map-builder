@@ -1,5 +1,4 @@
 export { Align } from './Align'
-export { DisplayFactory, displayFactory } from './DisplayFactory'
+export { DisplayFactory } from './DisplayFactory'
 export { textFactory } from './text'
-export { spriteFactory } from './sprite'
 export { spriteUtils } from './spriteUtils'

@@ -1,10 +1,10 @@
-/* eslint-disable class-methods-use-this */
-import { AnimatedSprite } from 'core/pixi'
-import { spriteFactory } from './sprite'
+import { AnimatedSprite, getTextureFromCache, Sprite } from '../pixi'
 import { textFactory } from './text'
+import { rectangleFactory } from '../shape'
+import { isoMatrix } from '../math'
 
 export class DisplayFactory {
-  animatedSprite({ atlas, speed = 1 }) {
+  static animatedSprite({ atlas, speed = 1 }) {
     const textures = Object.values(atlas.textures)
     const sprite = new AnimatedSprite(textures, false)
     sprite.animationSpeed = speed
@@ -13,27 +13,42 @@ export class DisplayFactory {
     return sprite
   }
 
-  sprite({ asset, width, height }) {
-    return spriteFactory.create({ asset, width, height })
+  static sprite({ asset, x = 0, y = 0, width = undefined, height = undefined }) {
+    const texture = getTextureFromCache(asset)
+
+    const sprite = new Sprite(texture)
+    sprite.position.set(x, y)
+    sprite.width = width || sprite.width
+    sprite.height = height || sprite.height
+
+    return sprite
   }
 
-  rect({ width, height, color }) {
-    return spriteFactory.fromRect({ width, height, color })
+  static rect({ width, height, color }) {
+    const rect = rectangleFactory.create(width, height, color)
+    const texture = rect.generateCanvasTexture()
+
+    return new Sprite(texture)
   }
 
-  isoRect({ width, height, color }) {
-    return spriteFactory.isoFromRect({ width, height, color })
+  static isoRect({ width, height, color }) {
+    const rect = rectangleFactory.create(width, height, color)
+    const texture = rect.generateCanvasTexture()
+    const sprite = new Sprite(texture)
+
+    sprite.pivot.set(-(width / 2), height / 2)
+    sprite.transform.setFromMatrix(isoMatrix)
+
+    return sprite
   }
 
-  text({ x, y, fontSize, fill, content }) {
+  static text({ x, y, fontSize, fill, content }) {
     return textFactory.create({
       x, y, fontSize, fill, content,
     })
   }
 
-  textSprite({ fontSize, fill, content } = {}) {
+  static textSprite({ fontSize, fill, content } = {}) {
     return textFactory.create({ fontSize, fill, content })
   }
 }
-
-export const displayFactory = new DisplayFactory()

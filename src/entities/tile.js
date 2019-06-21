@@ -1,5 +1,5 @@
 import { createEntity } from 'core/scent'
-import { displayFactory } from 'core/display'
+import { DisplayFactory } from 'core/display'
 import * as c from '../components'
 
 export default ({
@@ -8,7 +8,7 @@ export default ({
   c.GroundLayer(),
   c.Position({ x, y }),
   c.IsoPosition(),
-  c.Display(displayFactory.sprite({
+  c.Display(DisplayFactory.sprite({
     asset: 'ground',
     width: isoWidth,
     height: isoHeight,

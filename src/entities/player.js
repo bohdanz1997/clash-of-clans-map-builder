@@ -1,7 +1,7 @@
 import StateMachine from 'javascript-state-machine'
 import { expolorer } from 'assets/atlas/treasureHunter'
 import { createEntity } from 'core/scent'
-import { displayFactory } from 'core/display'
+import { DisplayFactory } from 'core/display'
 
 import * as c from '../components'
 
@@ -28,5 +28,5 @@ export default ({
   c.MotionControl({ dx: speed, dy: speed }),
   c.Damage({ damage }),
   c.Health({ health }),
-  c.Display(displayFactory.sprite({ asset: expolorer })),
+  c.Display(DisplayFactory.sprite({ asset: expolorer })),
 )

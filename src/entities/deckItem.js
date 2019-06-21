@@ -1,5 +1,5 @@
 import { Rectangle } from 'pixi.js'
-import { displayFactory } from 'core/display'
+import { DisplayFactory } from 'core/display'
 import { createEntity } from 'core/scent'
 import * as c from '../components'
 
@@ -22,7 +22,7 @@ export default ({
     c.Position(pos),
     c.Interactive(),
     c.Collision(bounds),
-    c.Display(displayFactory.sprite({
+    c.Display(DisplayFactory.sprite({
       asset: entityMeta.def,
       width: bounds.width,
       height: bounds.height,

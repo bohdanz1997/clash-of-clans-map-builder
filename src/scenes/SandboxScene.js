@@ -5,7 +5,7 @@ import {
   TileMap,
   AnimatedSprite,
   createEntity,
-  displayFactory,
+  DisplayFactory,
 } from 'core'
 
 import { Align, ContainerBuilder } from '../services'
@@ -34,7 +34,7 @@ export class SandboxScene extends Scene {
 
     this.entities.make('man', [
       c.Position(this.game.align.center(0, 0, 100, 100)),
-      c.Display(displayFactory.animatedSprite({
+      c.Display(DisplayFactory.animatedSprite({
         atlas: this.cache.getResource('man'),
         speed: 0.1,
       })),

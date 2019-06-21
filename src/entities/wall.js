@@ -1,5 +1,5 @@
 import { createEntity } from 'core/scent'
-import { displayFactory } from 'core/display'
+import { DisplayFactory } from 'core/display'
 import * as c from '../components'
 
 export default ({
@@ -12,5 +12,5 @@ export default ({
   c.Position({ x, y }),
   c.IsoPosition(),
   c.Collision({ width: map.config.cellWidth, height: map.config.cellHeight, radius }),
-  c.Display(displayFactory.sprite({ asset: id }))
+  c.Display(DisplayFactory.sprite({ asset: id }))
 )

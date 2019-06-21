@@ -1,4 +1,4 @@
-import { createEntity, displayFactory } from 'core'
+import { createEntity, DisplayFactory } from 'core'
 import * as c from '../components'
 
 export default ({
@@ -17,5 +17,5 @@ export default ({
     height: map.config.tileHeight,
     radius,
   }),
-  c.Display(displayFactory.sprite({ asset: def }))
+  c.Display(DisplayFactory.sprite({ asset: def }))
 )

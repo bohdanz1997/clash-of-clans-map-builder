@@ -1,6 +1,5 @@
 import { asClass, asValue } from 'awilix'
-import { RenderTexture } from 'pixi.js'
-import {Container, displayFactory, Scene, Sprite, spriteFactory, TileMapParser} from 'core'
+import { Scene, TileMapParser } from 'core'
 import { Align, ContainerBuilder, Helper, EntityDataMapper } from '../services'
 import { priorities } from '../constants'
 

@@ -1,5 +1,5 @@
 import { createEntity } from 'core/scent'
-import { displayFactory } from 'core/display'
+import { DisplayFactory } from 'core/display'
 import * as c from '../components'
 
 export default ({
@@ -9,5 +9,5 @@ export default ({
   c.Overlay({ target }),
   c.Position(),
   c.IsoPosition(),
-  c.Display(displayFactory.isoRect({ width, height, color: 0x8bc34a })),
+  c.Display(DisplayFactory.isoRect({ width, height, color: 0x8bc34a })),
 )

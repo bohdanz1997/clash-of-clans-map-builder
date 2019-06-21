@@ -1,5 +1,5 @@
 import { Rectangle } from 'core/pixi'
-import { displayFactory } from 'core/display'
+import { DisplayFactory } from 'core/display'
 import { createEntity } from 'core/scent'
 import * as c from '../components'
 
@@ -11,7 +11,7 @@ export default ({ align }) => {
     c.HudLayer(),
     c.Deck(),
     c.Position(pos),
-    c.Display(displayFactory.rect({
+    c.Display(DisplayFactory.rect({
       width: bounds.width,
       height: bounds.height,
       color: 0xf44336,
