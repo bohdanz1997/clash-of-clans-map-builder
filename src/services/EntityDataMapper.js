@@ -1,7 +1,7 @@
 export class EntityDataMapper {
-  constructor(mapConfig) {
+  constructor({ map }) {
     /** @type {TileMapConfig} */
-    this.mapConfig = mapConfig
+    this.mapConfig = map.config
   }
 
   mapCellCoords(data) {

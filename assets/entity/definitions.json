@@ -97,5 +97,6 @@
   "keyboard": {},
   "deckItem": {},
   "observer": {},
-  "logger": {}
+  "logger": {},
+  "background": {}
 }

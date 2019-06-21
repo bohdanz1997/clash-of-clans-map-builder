@@ -14,15 +14,15 @@ export class DisplayFactory {
   }
 
   sprite({ asset, width, height }) {
-    return spriteFactory.create(asset, null, null, width, height)
+    return spriteFactory.create({ asset, width, height })
   }
 
   rect({ width, height, color }) {
-    return spriteFactory.fromRect(width, height, color)
+    return spriteFactory.fromRect({ width, height, color })
   }
 
   isoRect({ width, height, color }) {
-    return spriteFactory.isoFromRect(width, height, color)
+    return spriteFactory.isoFromRect({ width, height, color })
   }
 
   text({ x, y, fontSize, fill, content }) {

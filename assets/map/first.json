@@ -4,6 +4,16 @@
   "height": 10,
   "layers": [
     {
+      "name": "ground",
+      "data": [
+        {
+          "id": "background",
+          "def": "tile",
+          "asset": "ground"
+        }
+      ]
+    },
+    {
       "name": "building",
       "data": [
         { "id": "building", "def": "clanCastle", "cx": 9, "cy": 9 },

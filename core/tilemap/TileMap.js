@@ -1,4 +1,5 @@
 import { TileMapConfig, MapLayer } from '.'
+import { identity } from '../util'
 
 export default class TileMap {
   constructor(config) {
@@ -39,17 +40,10 @@ export default class TileMap {
 
   /**
    * @param {*} id
-   * @param {Object} options
-   * @param {Object} [options.width]
-   * @param {Object} [options.height]
    * @param {Object} entityMeta
    */
-  createEntitiesForLayer(id, options = {}, entityMeta = {}) {
-    const {
-      width = this.width,
-      height = this.height,
-    } = options
-
+  generateObjects(id, entityMeta = {}) {
+    const { width, height } = this
     const totalTilesCount = width * height
     const entitiesData = []
 
@@ -96,5 +90,28 @@ export default class TileMap {
     if (this.hasLayer(name)) {
       throw new Error(`Layer ${name} has been already added to current tilemap`)
     }
+  }
+
+  /**
+   * @param {string} layerName
+   * @param {Function} mapper
+   * @return {Array}
+   */
+  getLayerObjects(layerName, mapper = identity) {
+    return this.getLayer(layerName).objects.map(object => mapper(object))
+  }
+
+  /**
+   * @param {Function} mapper
+   * @return {Array}
+   */
+  getAllObjects(mapper = identity) {
+    const objects = []
+    this.layers.forEach((layer) => {
+      layer.objects.forEach((object) => {
+        objects.push(mapper(object))
+      })
+    })
+    return objects
   }
 }

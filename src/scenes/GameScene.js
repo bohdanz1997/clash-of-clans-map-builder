@@ -1,5 +1,6 @@
 import { asClass, asValue } from 'awilix'
-import { Scene, TileMapParser } from 'core'
+import { RenderTexture } from 'pixi.js'
+import {Container, displayFactory, Scene, Sprite, spriteFactory, TileMapParser} from 'core'
 import { Align, ContainerBuilder, Helper, EntityDataMapper } from '../services'
 import { priorities } from '../constants'
 
@@ -35,23 +36,18 @@ export class GameScene extends Scene {
 
     const mapParser = new TileMapParser(this.entities.getAllDefinitions())
     const map = mapParser.fromJSON(this.cache.get('myMap'))
-    const entityDataMapper = new EntityDataMapper(map.config)
-
-    // create ground layer
-    const tileData = this.entities.getDefinition('tile')
-    map.createLayer('ground', {
-      objects: map.createEntitiesForLayer('tile', {}, tileData),
-    })
 
     this.container.register({
       map: asValue(map),
       helper: asClass(Helper),
       align: asClass(Align),
+      entityDataMapper: asClass(EntityDataMapper),
       world: asValue(this.app.stage.getChildByName('world')),
       hud: asValue(this.app.stage.getChildByName('hud')),
     })
 
-    const objects = mapParser.getObjects(map, entityDataMapper.map)
+    const { entityDataMapper } = this.container.cradle
+    const objects = map.getAllObjects(entityDataMapper.map)
     this.registerEntities(objects)
     this.registerSystems()
   }
