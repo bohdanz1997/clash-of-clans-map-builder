@@ -22,14 +22,14 @@ export const InteractWithInventoryItem = ({ engine, map, entities, helper }) => 
         y: clientPosition.cartY,
       })
 
-      entity.add(c.Tween(new Tween({
-        obj: entity.get(c.Display).sprite,
-        prop: 'alpha',
-        startVal: 1,
-        endVal: 0.5,
-        type: Ease.SINE,
-        yoyo: true,
-      })))
+      // entity.add(c.Tween(new Tween({
+      //   obj: entity.get(c.Display).sprite,
+      //   prop: 'alpha',
+      //   startVal: 1,
+      //   endVal: 0.5,
+      //   type: Ease.SINE,
+      //   yoyo: true,
+      // })))
 
       entityMeta.count -= 1
 
