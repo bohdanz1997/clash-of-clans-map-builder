@@ -3,7 +3,7 @@ import * as c from '../../components'
 import * as n from '../../nodes'
 
 export const IdleState = () => ({
-  nodes: [n.ClientIdle, n.SourceIdle],
+  nodes: [n.InitiatorIdle, n.TargetIdle],
 
   update(clientNodes, sourceNodes) {
     clientNodes.each((nClient) => {
@@ -17,10 +17,10 @@ export const IdleState = () => ({
           eClient.remove(c.Idle)
           eSource.remove(c.Idle)
 
-          eSource.add(c.Interact.Client({ entity: eClient }))
+          eSource.add(c.Interact.Initiator({ entity: eClient }))
           eSource.add(c.Hovered)
 
-          eClient.add(c.Interact.Source({ entity: eSource }))
+          eClient.add(c.Interact.Target({ entity: eSource }))
         }
       })
     })

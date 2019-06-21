@@ -2,8 +2,8 @@ Interaction
 
 Two kinds:
 
-- Client - initiator, performs some action with Source, ex. Pointer
-- Source - target, with which some action are taken, ex. Building
+- Initiator - performs some action with Target, ex. Pointer
+- Target -  with which some action are taken, ex. Building
 
 Interaction States:
 
@@ -22,28 +22,28 @@ Transitions:
 
 1. OnAdd
 
-Client | +Idle
-Source | +Idle
+Initiator | +Idle
+Target | +Idle
 
 2. OnRemove
 
-Client | -Idle
-Source | -Idle
+Initiator | -Idle
+Target | -Idle
 
 adds `Idle` to nodes when its added to the system
 removes `Idle` to nodes when its removed from the system
 
 ###IdleState System
 
-Nodes: `InteractiveClient`, `InteractiveSource`
+Nodes: `InitiatorIdle`, `TargetIdle`
 
 Transitions:
 
 1. -> Hover
-Hit detected, client intersects source
+Hit detected, initiator intersects target
 
-Client | -Idle +Interact.Source
-Source | -Idle +Hovered +Interact.Client
+Initiator | -Idle +Interact.Target
+Target | -Idle +Hovered +Interact.Initiator
 
 ###HoverState System
 
@@ -52,15 +52,15 @@ Nodes: `SourceHovered`
 Transitions:
 
 1. -> Idle
-Hit lost, client doesn't intersect source
+Hit lost, initiator doesn't intersect target
 
-Client | -Interact.Source +Idle
-Source | -Interact.Client -Hovered +Idle
+Initiator | -Interact.Target +Idle
+Target | -Interact.Initiator -Hovered +Idle
 
 2. -> Click
-Click detected, client clicked on source
+Click detected, initiator clicked on target
 
-Source | -Hovered +Clicked
+Target | -Hovered +Clicked
 
 ###ClickState System
 
@@ -69,14 +69,14 @@ Nodes: `SourceClicked`
 Transitions:
 
 1. -> Dragging
-Source has `Draggable` component
+Target has `Draggable` component
 
-Source | -Clicked +Dragging +Drag
+Target | -Clicked +Dragging +Drag
 
 2. -> Hovered
-Click lost, client release click on source
+Click lost, initiator release click on target
 
-Source | -Clicked +Hovered
+Target | -Clicked +Hovered
 
 ###DragState System
 
@@ -86,12 +86,12 @@ Transitions:
 
 1. OnAdd
 
-Source | -BuildingLayer +DragLayer
+Target | -BuildingLayer +DragLayer
 
 2. -> Drop
-Source was dropped by client
+Target was dropped by initiator
 
-Source | -Dragging +Dropped
+Target | -Dragging +Dropped
 
 ###DropState System
 
@@ -101,4 +101,4 @@ Transitions:
 
 1. -> Hovered
 
-Source | -Dropped -Drag +Hovered | -DragLayer +BuildingLayer
+Target | -Dropped -Drag +Hovered | -DragLayer +BuildingLayer

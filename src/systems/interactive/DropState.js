@@ -2,7 +2,7 @@ import * as c from '../../components'
 import * as n from '../../nodes'
 
 export const DropState = () => ({
-  nodes: [n.SourceDropped],
+  nodes: [n.TargetDropped],
 
   update(node) {
     const { display, entity } = node

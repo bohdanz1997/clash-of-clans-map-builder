@@ -1,56 +1,42 @@
 import * as c from '../components'
 
-// control
-export const CameraControl = [
-  c.Camera,
-  c.Position,
-  c.Motion,
-  c.MotionControl,
-  c.ZoomControl,
-]
-
 /**
  @typedef {Object} Movement
  @property {PositionRaw} position
  */
+
+// movement
 export const Movement = [c.Position, c.Motion]
 export const Isometric = [c.Position, c.IsoPosition]
 
-export const Collision = [c.Position, c.Collision]
+// render
 export const Render = [c.Position, c.Display]
-export const Map = [c.Map]
-export const Building = [c.Building, c.Position, c.Identity]
-export const Keyboard = [c.Keyboard]
 export const IsoRender = [c.IsoPosition, c.Display]
+
+// overlay
 export const OverlayOwner = [c.OverlayOwner, c.Position, c.Collision]
 export const Overlay = [c.Overlay, c.Position]
-export const Hud = [c.HudLayer, c.Display]
-export const Animation = [c.Animatable, c.Display]
 
 // deck
 export const DeckItem = [c.DeckItem, c.EntityMeta]
-export const DeckItemClicked = [c.DeckItem, c.Clicked, c.Interact.Client, c.EntityMeta]
+export const DeckItemClicked = [c.DeckItem, c.Clicked, c.Interact.Initiator, c.EntityMeta]
 
+// pointer
 export const Pointer = [c.PointerContext, c.Position, c.IsoPosition]
-
 export const PointerContext = [c.PointerContext]
-export const Interactive = [c.Interactive]
-
-// client interaction
-export const PointerInteracts = [c.PointerContext, c.Interact.Source]
+export const PointerInteracts = [c.PointerContext, c.Interact.Target]
 
 // interaction
-export const ClientIdle = [c.Idle, c.PointerContext, c.Position, c.IsoPosition]
-export const SourceIdle = [c.Idle, c.Interactive, c.Collision]
-export const SourceHovered = [c.Hovered, c.Interact.Client]
-export const SourceClicked = [c.Clicked, c.Interact.Client, c.Position]
-export const SourceDragging = [c.Dragging, c.DragContext, c.Interact.Client, c.Position]
-export const SourceDropped = [c.Dropped, c.DragContext, c.Display]
+export const Interactive = [c.Interactive]
+export const InitiatorIdle = [c.Idle, c.PointerContext, c.Position, c.IsoPosition]
+export const TargetIdle = [c.Idle, c.Interactive, c.Collision]
+export const TargetHovered = [c.Hovered, c.Interact.Initiator]
+export const TargetClicked = [c.Clicked, c.Interact.Initiator, c.Position]
+export const TargetDragging = [c.Dragging, c.DragContext, c.Interact.Initiator, c.Position]
+export const TargetDropped = [c.Dropped, c.DragContext, c.Display]
 
-export const SourceDroppedListener = [c.Dropped, c.DragContext, c.Position, c.Collision]
-
-
-export const Tween = [c.Tween]
+// interaction listeners
+export const TargetDroppedListener = [c.Dropped, c.DragContext, c.Position, c.Collision]
 
 // layers
 export const Layers = {
@@ -66,3 +52,13 @@ export const MapLayers = {
   Building: [c.BuildingLayer, c.Identity, c.Position, c.Collision],
   Drag: [c.DragLayer, c.Identity, c.Position, c.Collision],
 }
+
+// other
+export const CameraControl = [c.Camera, c.Position, c.Motion, c.MotionControl, c.ZoomControl]
+export const Collision = [c.Position, c.Collision]
+export const Map = [c.Map]
+export const Building = [c.Building, c.Position, c.Identity]
+export const Keyboard = [c.Keyboard]
+export const Hud = [c.HudLayer, c.Display]
+export const Animation = [c.Animatable, c.Display]
+export const Tween = [c.Tween]

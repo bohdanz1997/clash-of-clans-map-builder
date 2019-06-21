@@ -7,7 +7,7 @@ import * as n from '../../nodes'
  * @param {Config} config
  */
 export const DragState = ({ engine, map, config }) => ({
-  nodes: [n.SourceDragging],
+  nodes: [n.TargetDragging],
 
   init(node) {
     node.onAdded(({ entity }) => {
@@ -29,8 +29,8 @@ export const DragState = ({ engine, map, config }) => ({
   },
 
   updateDrag(node) {
-    const { client, dragContext, position } = node
-    const clientPosition = client.entity.get(c.IsoPosition)
+    const { initiator, dragContext, position } = node
+    const clientPosition = initiator.entity.get(c.IsoPosition)
     const sourcePosition = position
 
     const clientX = clientPosition.col * this.cellSize
@@ -41,8 +41,8 @@ export const DragState = ({ engine, map, config }) => ({
   },
 
   update(node) {
-    const { client, entity } = node
-    const pointerContext = client.entity.get(c.PointerContext)
+    const { initiator, entity } = node
+    const pointerContext = initiator.entity.get(c.PointerContext)
 
     this.updateDrag(node)
 

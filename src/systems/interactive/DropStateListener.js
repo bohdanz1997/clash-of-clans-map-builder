@@ -1,7 +1,7 @@
 import * as n from '../../nodes'
 
 export const DropStateListener = ({ map }) => ({
-  nodes: [n.SourceDroppedListener],
+  nodes: [n.TargetDroppedListener],
 
   init(nodes) {
     nodes.onAdded((node) => {

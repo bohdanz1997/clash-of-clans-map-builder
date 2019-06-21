@@ -13,8 +13,8 @@ export const InteractWithDeckItem = ({ engine, map, entities, helper }) => ({
 
   init(nodes) {
     nodes.onAdded((node) => {
-      const { entityMeta, client } = node
-      const clientPosition = client.entity.get(c.IsoPosition)
+      const { entityMeta, initiator } = node
+      const clientPosition = initiator.entity.get(c.IsoPosition)
 
       const entity = entities.add(entityMeta.id, {
         def: entityMeta.def,
@@ -38,7 +38,7 @@ export const InteractWithDeckItem = ({ engine, map, entities, helper }) => ({
 
       entity.add(c.Dragging)
       entity.add(c.DragContext({ startPos, offset }))
-      entity.add(c.Interact.Client({ entity: client.entity }))
+      entity.add(c.Interact.Initiator({ entity: initiator.entity }))
     })
   },
 })

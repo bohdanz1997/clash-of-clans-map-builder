@@ -5,7 +5,7 @@ export default ({
   data: { client, source },
 }) => (
   createEntity(
-    c.Interact.Client({ entity: client }),
-    c.Interact.Source({ entity: source }),
+    c.Interact.Initiator({ entity: client }),
+    c.Interact.Target({ entity: source }),
   )
 )

@@ -1,8 +1,8 @@
 import { defComponent } from 'core/scent'
 
 export const Interact = {
-  Client: defComponent('client', 'entity'),
-  Source: defComponent('source', 'entity'),
+  Initiator: defComponent('initiator', 'entity'),
+  Target: defComponent('target', 'entity'),
 }
 
 // states

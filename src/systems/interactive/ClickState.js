@@ -6,14 +6,14 @@ import * as n from '../../nodes'
  * @param {Helper} helper
  */
 export const ClickState = ({ map, helper }) => ({
-  nodes: [n.SourceClicked],
+  nodes: [n.TargetClicked],
 
   update(node) {
-    const { client, entity, position } = node
+    const { initiator, entity, position } = node
 
     // -> DRAGGING
     if (entity.has(c.Draggable)) {
-      const clientPosition = client.entity.get(c.IsoPosition)
+      const clientPosition = initiator.entity.get(c.IsoPosition)
       const { startPos, offset } = helper.prepareDrag(clientPosition, position)
 
       entity.remove(c.Clicked)
@@ -23,7 +23,7 @@ export const ClickState = ({ map, helper }) => ({
       return
     }
 
-    const pointerContext = client.entity.get(c.PointerContext)
+    const pointerContext = initiator.entity.get(c.PointerContext)
 
     // -> HOVERED
     if (pointerContext.isUp) {
