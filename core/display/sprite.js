@@ -14,15 +14,15 @@ export const spriteFactory = {
     return sprite
   },
 
-  fromRect({ width, height, fillStyle }) {
-    const rect = rectangleFactory.create(width, height, fillStyle)
+  fromRect({ width, height, color }) {
+    const rect = rectangleFactory.create(width, height, color)
     const texture = rect.generateCanvasTexture()
 
     return new Sprite(texture)
   },
 
-  isoFromRect({ width, height, fillStyle }) {
-    const rect = rectangleFactory.create(width, height, fillStyle)
+  isoFromRect({ width, height, color }) {
+    const rect = rectangleFactory.create(width, height, color)
     const texture = rect.generateCanvasTexture()
     const sprite = new Sprite(texture)
 
