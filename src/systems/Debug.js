@@ -4,10 +4,12 @@ export const Debug = () => ({
   nodes: [n.Pointer, n.Hud],
 
   update(pointerNode, hudNode) {
-    const { display } = hudNode.head
+    if (!pointerNode.head) {
+      return
+    }
     const { context, position, isoPosition } = pointerNode.head
 
-    display.sprite.content = `
+    hudNode.head.display.sprite.content = `
       x: ${position.x}
       y: ${position.y}
       cartX: ${Math.floor(isoPosition.cartX)}
