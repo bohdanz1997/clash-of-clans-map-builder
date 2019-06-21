@@ -3,7 +3,7 @@ import { DisplayFactory } from 'core/display'
 import { createEntity } from 'core/scent'
 import * as c from '../components'
 
-export default ({
+export const InventoryItem = ({
   data: { index, entityMeta },
   align,
 }) => {
@@ -16,7 +16,7 @@ export default ({
   })
 
   return createEntity(
-    c.DeckItem(),
+    c.InventoryItem(),
     c.EntityMeta(entityMeta),
     c.HudLayer(),
     c.Position(pos),

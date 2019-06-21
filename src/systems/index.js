@@ -17,7 +17,7 @@ export { LayerToDisplayGroup } from './LayerToDisplayGroup'
 export { Animation } from './Animation'
 export { ManageTweens } from './ManageTweens'
 
-export { InteractWithDeckItem, TrackDeckItemCount } from './DeckItem'
+export { InteractWithInventoryItem, TrackDeckItemCount } from './InventoryItem'
 
 export { InteractiveInitializer } from './interactive/Initializer'
 export { IdleState } from './interactive/IdleState'

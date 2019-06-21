@@ -15,7 +15,7 @@ import * as c from '../components'
  * @param {Config} args.config
  * @param {TileMap} args.map
  */
-export default ({
+export const Camera = ({
   data: { speed, damp },
   keyboard,
   world,

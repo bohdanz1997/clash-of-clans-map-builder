@@ -74,7 +74,7 @@ export class GameScene extends Scene {
       .add(s.KeepInBounds, priorities.RESOLVE_COLLISIONS)
       .add(s.Debug)
     // .add(s.DebugMapLayers)
-      .add(s.InteractWithDeckItem)
+      .add(s.InteractWithInventoryItem)
       .add(s.TrackDeckItemCount)
 
       .add(s.DragDrop)

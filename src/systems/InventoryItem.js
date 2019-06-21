@@ -8,8 +8,8 @@ import * as n from '../nodes'
  * @param {EntityManager} entities
  * @param {Helper} helper
  */
-export const InteractWithDeckItem = ({ engine, map, entities, helper }) => ({
-  nodes: [n.DeckItemClicked],
+export const InteractWithInventoryItem = ({ engine, map, entities, helper }) => ({
+  nodes: [n.InventoryItemClicked],
 
   init(nodes) {
     nodes.onAdded((node) => {
@@ -44,7 +44,7 @@ export const InteractWithDeckItem = ({ engine, map, entities, helper }) => ({
 })
 
 export const TrackDeckItemCount = () => ({
-  nodes: [n.DeckItem],
+  nodes: [n.InventoryItem],
 
   update(node) {
     const { entityMeta, entity } = node

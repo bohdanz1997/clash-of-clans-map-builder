@@ -90,12 +90,12 @@
     "isoWidth": 133,
     "isoHeight": 100
   },
-  "deck": {},
+  "inventory": {},
+  "inventoryItem": {},
   "map": {},
   "hud": {},
   "pointer": {},
   "keyboard": {},
-  "deckItem": {},
   "observer": {},
   "logger": {},
   "background": {}

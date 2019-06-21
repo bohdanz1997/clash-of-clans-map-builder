@@ -13,7 +13,7 @@ import * as c from '../components'
  * @param {Application} app
  * @param {EntityDataMapper} entityDataMapper
  */
-export default ({
+export const Background = ({
   data: { def, asset },
   map,
   config,

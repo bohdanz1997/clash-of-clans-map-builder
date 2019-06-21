@@ -1,7 +1,7 @@
 import { createEntity, DisplayFactory } from 'core'
 import * as c from '../components'
 
-export default ({
+export const Building = ({
   data: { id, def, x, y, offsetX, offsetY, radius },
   map,
 }) => createEntity(

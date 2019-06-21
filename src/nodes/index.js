@@ -18,8 +18,8 @@ export const OverlayOwner = [c.OverlayOwner, c.Position, c.Collision]
 export const Overlay = [c.Overlay, c.Position]
 
 // deck
-export const DeckItem = [c.DeckItem, c.EntityMeta]
-export const DeckItemClicked = [c.DeckItem, c.Clicked, c.Interact.Initiator, c.EntityMeta]
+export const InventoryItem = [c.InventoryItem, c.EntityMeta]
+export const InventoryItemClicked = [c.InventoryItem, c.Clicked, c.Interact.Initiator, c.EntityMeta]
 
 // pointer
 export const Pointer = [c.PointerContext, c.Position, c.IsoPosition]

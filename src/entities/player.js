@@ -18,7 +18,7 @@ const withFSM = (entity) => {
   return entity.add(c.FSM({ fsm }))
 }
 
-export default ({
+export const Player = ({
   data: { x, y, width, height, speed, health, damage },
 }) => createEntity(
   c.Player(),

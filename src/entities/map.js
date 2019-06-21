@@ -1,7 +1,7 @@
 import { createEntity } from 'core/scent'
 import * as c from '../components'
 
-export default ({
+export const Map = ({
   data: { width, height, layers },
 }) => (
   createEntity(

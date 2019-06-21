@@ -33,9 +33,9 @@
         { "id": "camera" },
         { "id": "pointer" },
         { "id": "hud", "x": 0, "y": 0 },
-        { "id": "deck" },
+        { "id": "inventory" },
         {
-          "id": "deckItem",
+          "id": "inventoryItem",
           "index": 0,
           "entityMeta": {
             "id": "building",
@@ -44,7 +44,7 @@
           }
         },
         {
-          "id": "deckItem",
+          "id": "inventoryItem",
           "index": 1,
           "entityMeta": {
             "id": "building",
@@ -53,7 +53,7 @@
           }
         },
         {
-          "id": "deckItem",
+          "id": "inventoryItem",
           "index": 2,
           "entityMeta": {
             "id": "building",
@@ -62,7 +62,7 @@
           }
         },
         {
-          "id": "deckItem",
+          "id": "inventoryItem",
           "index": 3,
           "entityMeta": {
             "id": "building",
