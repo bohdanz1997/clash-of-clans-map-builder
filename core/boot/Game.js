@@ -91,8 +91,6 @@ export default class Game {
     })
 
     this.isRunning = false
-
-    this.boot()
   }
 
   boot() {
