@@ -1,4 +1,4 @@
-export * from './renderLayers'
+export * from './render-layers'
 export * from './scent'
 export * from './pixi'
 export * from './scenes'

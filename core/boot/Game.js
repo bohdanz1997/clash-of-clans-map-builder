@@ -1,5 +1,5 @@
 import { Keyboard, PointerManager } from 'core/input'
-import { createStage } from 'core/renderLayers'
+import { createStage } from 'core/render-layers'
 import { createContainer, asValue, AwilixContainer } from 'awilix'
 import { EventEmitter, Loader, Application } from 'core/pixi'
 import { SystemManager, EntityManager, Engine } from 'core/scent'
