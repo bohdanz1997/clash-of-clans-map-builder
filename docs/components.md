@@ -16,7 +16,7 @@ Interaction States:
 
 ###InteractiveInitializer System
 
-Nodes: `ClientInitializer`, `SourceInitializer`
+Nodes: `PointerContext`, `Interactive`
 
 Transitions:
 

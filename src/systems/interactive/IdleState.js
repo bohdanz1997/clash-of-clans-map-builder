@@ -3,7 +3,7 @@ import * as c from '../../components'
 import * as n from '../../nodes'
 
 export const IdleState = () => ({
-  nodes: [n.InteractiveClient, n.InteractiveSource],
+  nodes: [n.ClientIdle, n.SourceIdle],
 
   update(clientNodes, sourceNodes) {
     clientNodes.each((nClient) => {

@@ -2,7 +2,7 @@ import * as c from '../../components'
 import * as n from '../../nodes'
 
 export const InteractiveInitializer = () => ({
-  nodes: [n.ClientInitializer, n.SourceInitializer],
+  nodes: [n.PointerContext, n.Interactive],
 
   init(clients, sources) {
     const addState = (node) => {

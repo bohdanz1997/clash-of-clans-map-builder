@@ -33,16 +33,15 @@ export const DeckItemClicked = [c.DeckItem, c.Clicked, c.Interact.Client, c.Enti
 
 export const Pointer = [c.PointerContext, c.Position, c.IsoPosition]
 
-export const ClientInitializer = [c.PointerContext]
-export const SourceInitializer = [c.Interactive]
-
-export const InteractiveClient = [c.PointerContext, c.Idle, c.Position, c.IsoPosition]
-export const InteractiveSource = [c.Interactive, c.Idle, c.Collision]
+export const PointerContext = [c.PointerContext]
+export const Interactive = [c.Interactive]
 
 // client interaction
-export const PointerInteracts = [c.Interact.Source, c.PointerContext]
+export const PointerInteracts = [c.PointerContext, c.Interact.Source]
 
-// source interaction
+// interaction
+export const ClientIdle = [c.Idle, c.PointerContext, c.Position, c.IsoPosition]
+export const SourceIdle = [c.Idle, c.Interactive, c.Collision]
 export const SourceHovered = [c.Hovered, c.Interact.Client]
 export const SourceClicked = [c.Clicked, c.Interact.Client, c.Position]
 export const SourceDragging = [c.Dragging, c.DragContext, c.Interact.Client, c.Position]
