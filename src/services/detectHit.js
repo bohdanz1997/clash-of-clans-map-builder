@@ -1,4 +1,4 @@
-import { hitTest } from 'core/collision'
+import { CollisionChecker } from 'core/collision'
 import * as c from '../components'
 
 export const detectHit = (clientEntity, sourceEntity) => {
@@ -12,5 +12,5 @@ export const detectHit = (clientEntity, sourceEntity) => {
     ? { x: pointerIsoPosition.cartX, y: pointerIsoPosition.cartY }
     : { x: pointerPosition.x, y: pointerPosition.y }
 
-  return hitTest.rect(collision.bounds, pointerPos)
+  return CollisionChecker.rect(collision.bounds, pointerPos)
 }
