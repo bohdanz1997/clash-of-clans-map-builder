@@ -1,6 +1,6 @@
 import { AnimatedSprite, getTextureFromCache, Sprite } from '../pixi'
 import { textFactory } from './text'
-import { rectangleFactory } from '../shape'
+import { rectangleFactory } from './rectangle'
 import { MatrixHelper } from '../math'
 
 export class DisplayFactory {
@@ -25,14 +25,14 @@ export class DisplayFactory {
   }
 
   static rect({ width, height, color }) {
-    const rect = rectangleFactory.create(width, height, color)
+    const rect = rectangleFactory.create({ width, height, color })
     const texture = rect.generateCanvasTexture()
 
     return new Sprite(texture)
   }
 
   static isoRect({ width, height, color }) {
-    const rect = rectangleFactory.create(width, height, color)
+    const rect = rectangleFactory.create({ width, height, color })
     const texture = rect.generateCanvasTexture()
     const sprite = new Sprite(texture)
 

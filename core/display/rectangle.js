@@ -1,10 +1,10 @@
 import { Graphics } from 'core/pixi'
 
 export const rectangleFactory = {
-  create(width, height, fillStyle) {
+  create({ width, height, color }) {
     const rect = new Graphics()
 
-    rect.beginFill(fillStyle)
+    rect.beginFill(color)
     rect.moveTo(0, 0)
     rect.lineTo(width, 0)
     rect.lineTo(width, height)
