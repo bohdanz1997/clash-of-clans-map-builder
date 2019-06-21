@@ -1,7 +1,7 @@
 import { asClass, asValue } from 'awilix'
 import { Scene, TileMapParser } from 'core'
 import { Align, ContainerBuilder, Helper, EntityDataMapper } from '../services'
-import { priorities } from '../constants'
+import { priorities, levelRestrictions } from '../constants'
 
 import * as c from '../components'
 import * as s from '../systems'
@@ -23,7 +23,6 @@ export class GameScene extends Scene {
       .add('wall', 'image/wall.png')
       .add('townhall', 'image/th9.png')
       .add('cat', 'image/cat.png')
-      .add('myMap', 'map/first.json')
       .add('defs', 'entity/definitions.json')
   }
 
@@ -34,7 +33,7 @@ export class GameScene extends Scene {
     this.entities.setBuilder(new ContainerBuilder(this.container))
 
     const mapParser = new TileMapParser(this.entities.getAllDefinitions())
-    const map = mapParser.fromJSON(this.cache.get('myMap'))
+    const map = mapParser.fromJSON(this.container.resolve('layout'))
 
     this.container.register({
       map: asValue(map),
@@ -46,9 +45,28 @@ export class GameScene extends Scene {
     })
 
     const { entityDataMapper } = this.container.cradle
-    const objects = map.getAllObjects(entityDataMapper.map)
+
+    const objects = [
+      ...map.getAllObjects(entityDataMapper.map),
+      ...this.createInventorySlots(),
+    ]
+
     this.registerEntities(objects)
     this.registerSystems()
+  }
+
+  createInventorySlots(level = 9) {
+    const { conditions } = levelRestrictions.find(x => x.level === level)
+
+    return conditions.map((meta, index) => ({
+      id: 'inventoryItem',
+      index,
+      entityMeta: {
+        id: meta.id,
+        def: meta.def,
+        count: meta.count,
+      },
+    }))
   }
 
   registerEntities(objects) {

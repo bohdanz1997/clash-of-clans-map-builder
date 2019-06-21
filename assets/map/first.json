@@ -33,43 +33,7 @@
         { "id": "camera" },
         { "id": "pointer" },
         { "id": "hud", "x": 0, "y": 0 },
-        { "id": "inventory" },
-        {
-          "id": "inventoryItem",
-          "index": 0,
-          "entityMeta": {
-            "id": "building",
-            "def": "clanCastle",
-            "count": 2
-          }
-        },
-        {
-          "id": "inventoryItem",
-          "index": 1,
-          "entityMeta": {
-            "id": "building",
-            "def": "goldStorage",
-            "count": 2
-          }
-        },
-        {
-          "id": "inventoryItem",
-          "index": 2,
-          "entityMeta": {
-            "id": "building",
-            "def": "elixirStorage",
-            "count": 2
-          }
-        },
-        {
-          "id": "inventoryItem",
-          "index": 3,
-          "entityMeta": {
-            "id": "building",
-            "def": "darkStorage",
-            "count": 2
-          }
-        }
+        { "id": "inventory" }
       ]
     }
   ]
