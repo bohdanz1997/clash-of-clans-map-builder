@@ -1,6 +1,6 @@
-import layout from 'assets/map/first'
 import { createGame } from './game'
+import { testLayout } from './test-layout'
 
 createGame({
-  layout,
+  layout: testLayout,
 })

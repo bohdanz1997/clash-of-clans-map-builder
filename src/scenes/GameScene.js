@@ -1,7 +1,7 @@
 import { asClass, asValue } from 'awilix'
 import { Scene, TileMapParser } from 'core'
 import { Align, ContainerBuilder, Helper, EntityDataMapper } from '../services'
-import { priorities, levelRestrictions } from '../constants'
+import { priorities } from '../constants'
 
 import * as c from '../components'
 import * as s from '../systems'
@@ -46,27 +46,10 @@ export class GameScene extends Scene {
 
     const { entityDataMapper } = this.container.cradle
 
-    const objects = [
-      ...map.getAllObjects(entityDataMapper.map),
-      ...this.createInventorySlots(),
-    ]
+    const objects = map.getAllObjects(entityDataMapper.map)
 
     this.registerEntities(objects)
     this.registerSystems()
-  }
-
-  createInventorySlots(level = 9) {
-    const { conditions } = levelRestrictions.find(x => x.level === level)
-
-    return conditions.map((meta, index) => ({
-      id: 'inventoryItem',
-      index,
-      entityMeta: {
-        id: meta.id,
-        def: meta.def,
-        count: meta.count,
-      },
-    }))
   }
 
   registerEntities(objects) {
