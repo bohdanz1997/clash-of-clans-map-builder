@@ -1,4 +1,4 @@
-import { invertIsoMatrix } from 'core/math'
+import { MatrixHelper } from 'core/math'
 import { Point } from 'core/pixi'
 import * as n from '../nodes'
 
@@ -36,7 +36,7 @@ export const ManagePointers = ({ engine, world, map, config, pointers }) => ({
       y: position.y - world.y - this.cursorOffset.y,
     }
 
-    const cartPos = invertIsoMatrix.apply(tempCartPos)
+    const cartPos = MatrixHelper.ivertIsoMatrix.apply(tempCartPos)
     isoPosition.cartX = cartPos.x
     isoPosition.cartY = cartPos.y
 

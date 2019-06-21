@@ -1,7 +1,7 @@
 import { Matrix } from '../pixi'
 import { toRad } from './utils'
 
-export const makeIsoMatrix = (angle, scaleY) => {
+const makeIsoMatrix = (angle, scaleY) => {
   const m = new Matrix()
   m.rotate(angle)
   m.scale(1, scaleY)
@@ -9,8 +9,15 @@ export const makeIsoMatrix = (angle, scaleY) => {
   return m
 }
 
-/** @type {Matrix}  */
-export const isoMatrix = makeIsoMatrix(toRad(45), 0.75)
+const isoMatrix = makeIsoMatrix(toRad(45), 0.75)
+const invertIsoMatrix = isoMatrix.clone().invert()
 
-/** @type {Matrix}  */
-export const invertIsoMatrix = isoMatrix.clone().invert()
+export class MatrixHelper {
+  static get isoMatrix() {
+    return isoMatrix
+  }
+
+  static get ivertIsoMatrix() {
+    return invertIsoMatrix
+  }
+}

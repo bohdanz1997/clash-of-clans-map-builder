@@ -1,7 +1,7 @@
 import { AnimatedSprite, getTextureFromCache, Sprite } from '../pixi'
 import { textFactory } from './text'
 import { rectangleFactory } from '../shape'
-import { isoMatrix } from '../math'
+import { MatrixHelper } from '../math'
 
 export class DisplayFactory {
   static animatedSprite({ atlas, speed = 1 }) {
@@ -37,7 +37,7 @@ export class DisplayFactory {
     const sprite = new Sprite(texture)
 
     sprite.pivot.set(-(width / 2), height / 2)
-    sprite.transform.setFromMatrix(isoMatrix)
+    sprite.transform.setFromMatrix(MatrixHelper.isoMatrix)
 
     return sprite
   }

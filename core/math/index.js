@@ -1,2 +1,2 @@
-export * from './isoMatrix'
+export { MatrixHelper } from './isoMatrix'
 export * from './utils'

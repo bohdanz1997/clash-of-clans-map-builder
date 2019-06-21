@@ -1,4 +1,4 @@
-import { isoMatrix } from 'core/math'
+import { MatrixHelper } from 'core/math'
 import * as n from '../nodes'
 
 export const IsometricMovement = () => ({
@@ -16,7 +16,7 @@ export const IsometricMovement = () => ({
       y: position.y - position.offset.y,
     }
 
-    const isoPos = isoMatrix.apply(tempIsoPos)
+    const isoPos = MatrixHelper.isoMatrix.apply(tempIsoPos)
     isoPosition.x = isoPos.x
     isoPosition.y = isoPos.y
   },

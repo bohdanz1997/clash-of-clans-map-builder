@@ -1,4 +1,4 @@
-import { isoMatrix } from 'core/math'
+import { MatrixHelper } from 'core/math'
 import { createEntity } from 'core/scent'
 import { DisplayFactory } from 'core/display'
 import { Point, Container, Sprite } from 'core/pixi'
@@ -25,7 +25,7 @@ export default ({
   const objects = map.generateObjects(def, definition).map(entityDataMapper.map)
 
   const sprites = objects.map((object) => {
-    const isoPos = isoMatrix.apply(new Point(object.x, object.y))
+    const isoPos = MatrixHelper.isoMatrix.apply(new Point(object.x, object.y))
 
     return DisplayFactory.sprite({
       asset,
