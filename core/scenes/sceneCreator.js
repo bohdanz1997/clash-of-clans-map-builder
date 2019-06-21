@@ -13,5 +13,5 @@ export default function creator(sceneManager, sceneConfig) {
     sceneManager.add(scene.name, scene)
   })
 
-  sceneManager.start(scenes[0].name)
+  sceneManager.setActive(scenes[0].name)
 }

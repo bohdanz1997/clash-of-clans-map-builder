@@ -46,7 +46,7 @@ export default class SceneManager {
     })
   }
 
-  start(name) {
+  setActive(name) {
     if (this.scenesMap.has(name)) {
       this.activeScene = this.scenesMap.get(name)
     }
