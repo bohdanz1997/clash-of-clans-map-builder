@@ -1,5 +1,5 @@
 import { Game } from '../boot'
-import { objectReduce, firstToLower, noop, isFunction } from '../util'
+import { objectReduce, firstToLower, noop, isString } from '../util'
 import { createEntity } from './entity'
 
 const getLevelData = (definition, level) => (
@@ -42,21 +42,15 @@ export class EntityManager {
     return this.engine.addEntity(entity)
   }
 
-  create(id, data = {}, dataForInject = {}) {
+  create(idOrFactory, data = {}, dataForInject = {}) {
+    const Factory = this.getFactoryIfString(idOrFactory)
+    const id = firstToLower(Factory.name)
     const entityData = this.makeEntityData(id, data)
-    return this.buildEntity(id, entityData, dataForInject)
+
+    return this.buildEntity(id, Factory, entityData, dataForInject)
   }
 
-  buildEntity(id, data = {}, dataForInject = {}) {
-    if (!id) {
-      throw new Error('Your must provide id param')
-    }
-
-    if (isFunction(id)) {
-      id = id.name.toLowerCase()
-    }
-
-    const Factory = this.getFactory(id)
+  buildEntity(id, Factory, data = {}, dataForInject = {}) {
     const entity = this.builder.build(Factory, data, dataForInject)
 
     this.postBuild(entity, id)
@@ -79,6 +73,12 @@ export class EntityManager {
       ...levelData,
       ...data,
     }
+  }
+
+  getFactoryIfString(param) {
+    return isString(param)
+      ? this.getFactory(param)
+      : param
   }
 
   getDefinition(id) {
