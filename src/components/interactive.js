@@ -5,6 +5,11 @@ export const Interact = {
   Target: defComponent('target', 'entity'),
 }
 
+export const Relation = {
+  Parent: defComponent('parent', 'entity', entity => ({ entity })),
+  Child: defComponent('child', 'entity', entity => ({ entity })),
+}
+
 // states
 export const Idle = defComponent('idle')
 export const Hovered = defComponent('hovered')

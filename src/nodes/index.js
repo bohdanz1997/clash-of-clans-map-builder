@@ -13,13 +13,14 @@ export const Isometric = [c.Position, c.IsoPosition]
 export const Render = [c.Position, c.Display]
 export const IsoRender = [c.IsoPosition, c.Display]
 
-// overlay
-export const OverlayOwner = [c.OverlayOwner, c.Position, c.Collision]
-export const Overlay = [c.Overlay, c.Position]
+// relations
+export const Parent = [c.Relation.Child]
+export const Child = [c.Relation.Parent, c.Position]
 
-// deck
-export const InventoryItem = [c.InventoryItem, c.EntityMeta]
+// inventory
+export const InventoryItem = [c.InventoryItem, c.EntityMeta, c.Position]
 export const InventoryItemClicked = [c.InventoryItem, c.Clicked, c.Interact.Initiator, c.EntityMeta]
+export const InventoryItemCounter = [c.InventoryCounter, c.Relation.Parent, c.Display]
 
 // pointer
 export const Pointer = [c.PointerContext, c.Position, c.IsoPosition]

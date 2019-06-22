@@ -9,3 +9,5 @@ class InventoryRaw {
 export const Inventory = defComponent('inventory', InventoryRaw)
 
 export const InventoryItem = defComponent('inventoryItem')
+
+export const InventoryCounter = defComponent('inventoryCounter')

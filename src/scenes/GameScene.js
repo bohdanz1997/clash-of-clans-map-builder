@@ -65,6 +65,7 @@ export class GameScene extends Scene {
 
       .add(s.Movement, priorities.MOVEMENT)
       .add(s.IsometricMovement, priorities.MOVEMENT)
+      .add(s.ChildRelationMovement, priorities.MOVEMENT)
       .add(s.ManagePointers, priorities.MOVEMENT)
       .add(s.CameraControl, priorities.MOVEMENT)
     // .add(s.CameraTouchControl, priorities.MOVEMENT)
@@ -75,8 +76,8 @@ export class GameScene extends Scene {
       .add(s.KeepInBounds, priorities.RESOLVE_COLLISIONS)
       .add(s.Debug)
     // .add(s.DebugMapLayers)
-      .add(s.InteractWithInventoryItem)
-      .add(s.TrackDeckItemCount)
+      .add(s.AddEntityFromInventoryItem)
+      .add(s.DisposeInventoryItem)
 
       .add(s.DragDrop)
       .add(s.InteractiveInitializer)
@@ -88,7 +89,8 @@ export class GameScene extends Scene {
       .add(s.DropStateListener)
 
       .add(s.XXXLayer)
-      .add(s.ManageOverlays)
+      .add(s.ManageParentRelation)
+      .add(s.InventoryItemCounter)
       .add(s.Render, priorities.RENDER)
       .add(s.IsometricRender, priorities.ISO_RENDER)
 

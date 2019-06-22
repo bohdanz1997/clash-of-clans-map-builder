@@ -1,4 +1,3 @@
-import { Tween, Ease } from 'core'
 import * as c from '../components'
 import * as n from '../nodes'
 
@@ -8,7 +7,7 @@ import * as n from '../nodes'
  * @param {EntityManager} entities
  * @param {Helper} helper
  */
-export const InteractWithInventoryItem = ({ engine, map, entities, helper }) => ({
+export const AddEntityFromInventoryItem = ({ engine, map, entities, helper }) => ({
   nodes: [n.InventoryItemClicked],
 
   init(nodes) {
@@ -22,15 +21,6 @@ export const InteractWithInventoryItem = ({ engine, map, entities, helper }) => 
         y: clientPosition.cartY,
       })
 
-      // entity.add(c.Tween(new Tween({
-      //   obj: entity.get(c.Display).sprite,
-      //   prop: 'alpha',
-      //   startVal: 1,
-      //   endVal: 0.5,
-      //   type: Ease.SINE,
-      //   yoyo: true,
-      // })))
-
       entityMeta.count -= 1
 
       const entityPosition = entity.get(c.Position)
@@ -43,7 +33,7 @@ export const InteractWithInventoryItem = ({ engine, map, entities, helper }) => 
   },
 })
 
-export const TrackDeckItemCount = () => ({
+export const DisposeInventoryItem = () => ({
   nodes: [n.InventoryItem],
 
   update(node) {
@@ -52,5 +42,17 @@ export const TrackDeckItemCount = () => ({
     if (entityMeta.count <= 0) {
       entity.dispose()
     }
+  },
+})
+
+export const InventoryItemCounter = () => ({
+  nodes: [n.InventoryItemCounter],
+
+  update(node) {
+    const { parent, display } = node
+    // because parent entity can be disposed
+    const inventoryMeta = parent.entity.get(c.EntityMeta, true)
+
+    display.sprite.content = inventoryMeta.count
   },
 })
