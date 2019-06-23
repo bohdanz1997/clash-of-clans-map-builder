@@ -1,10 +1,13 @@
-import './mixins/entity'
-
 import { EntityBuilder, EntityManager } from './EntityManager'
 import SystemManager from './SystemManager'
 
 /**
  * @typedef Component
+ */
+
+/**
+ * @typedef ComponentType
+ * @property {number} size
  */
 
 /**
