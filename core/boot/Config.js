@@ -4,6 +4,8 @@ export default class Config {
   constructor(config) {
     const get = prop(config)
 
+    this.debug = get('debug', false)
+
     this.width = get('width', 1024)
     this.height = get('height', 768)
     this.hWidth = this.width / 2

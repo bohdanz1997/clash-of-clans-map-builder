@@ -9,6 +9,7 @@ export const createGame = ({ layout }) => {
   const game = new Game({
     width: 1000,
     height: 800,
+    debug: true,
     scene: [GameScene],
     system: {
       defaultPriority: priorities.UPDATE,
