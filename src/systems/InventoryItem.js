@@ -1,5 +1,6 @@
 import * as c from '../components'
 import * as n from '../nodes'
+import { states } from '../fsm/states'
 
 /**
  * @param {Engine} engine
@@ -26,9 +27,13 @@ export const AddEntityFromInventoryItem = ({ engine, map, entities, helper }) =>
       const entityPosition = entity.get(c.Position)
       const { startPos, offset } = helper.prepareDrag(clientPosition, entityPosition)
 
-      entity.add(c.Dragging)
-      entity.add(c.DragContext({ startPos, offset }))
-      entity.add(c.Interact.Initiator({ entity: initiator.entity }))
+      entity.get(c.FSM).setInitial = (fsm) => {
+        fsm.changeState(states.dragging, {
+          startPos,
+          offset,
+          entity: initiator.entity,
+        })
+      }
     })
   },
 })
@@ -52,7 +57,6 @@ export const InventoryItemCounter = () => ({
     const { parent, display } = node
     // because parent entity can be disposed
     const inventoryMeta = parent.entity.get(c.EntityMeta, true)
-
     display.sprite.content = inventoryMeta.count
   },
 })

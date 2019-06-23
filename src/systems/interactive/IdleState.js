@@ -1,5 +1,5 @@
 import { detectHit } from '../../services'
-import { states } from '../../fsm-states'
+import { states } from '../../fsm/states'
 import * as c from '../../components'
 import * as n from '../../nodes'
 
