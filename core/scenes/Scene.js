@@ -5,7 +5,8 @@ import {
   Engine,
   Loader,
   Config,
-  Application,
+  Stage,
+  Renderer,
   SystemManager,
   EntityManager,
 } from 'core'
@@ -28,8 +29,11 @@ export default class Scene {
   /** @type {Engine} */
   engine = null
 
-  /** @type {Application} */
-  app = null
+  /** @type {Renderer} */
+  renderer = null
+
+  /** @type {Stage} */
+  stage = null
 
   /** @type {Cache} */
   cache = null

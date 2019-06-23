@@ -1,7 +1,7 @@
 import { textFactory } from 'core/display'
 import * as n from '../nodes'
 
-export const DebugMapLayers = ({ engine, config, app, map }) => ({
+export const DebugMapLayers = ({ engine, config, stage, map }) => ({
   nodes: [n.Hud],
 
   init() {
@@ -22,8 +22,8 @@ export const DebugMapLayers = ({ engine, config, app, map }) => ({
       y: 20,
     })
 
-    app.stage.addChild(this.buildingLayerText)
-    app.stage.addChild(this.dragLayerText)
+    stage.addChild(this.buildingLayerText)
+    stage.addChild(this.dragLayerText)
   },
 
   update() {

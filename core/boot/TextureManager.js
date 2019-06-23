@@ -1,6 +1,6 @@
 import { utils, Texture } from 'pixi.js'
 
-export default class TextureManager {
+export class TextureManager {
   static cache = utils.TextureCache
 
   /**

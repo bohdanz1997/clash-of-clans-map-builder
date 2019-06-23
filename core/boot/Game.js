@@ -1,45 +1,16 @@
 import { Keyboard, PointerManager } from 'core/input'
-import { createStage } from 'core/render-layers'
-import { createContainer, asValue, AwilixContainer } from 'awilix'
-import { EventEmitter, Loader, Application } from 'core/pixi'
+import { createContainer, asValue, AwilixContainer, asClass } from 'awilix'
+import { EventEmitter, Loader, Ticker } from 'core/pixi'
 import { SystemManager, EntityManager, Engine } from 'core/scent'
-import { Align } from 'core/display'
+import { DisplayFactory } from 'core/display'
+import { SceneManager, sceneCreator } from 'core/scenes'
 
-import { Config, Cache } from '.'
-import TextureManager from './TextureManager'
-import { SceneManager, sceneCreator } from '../scenes'
+import { Config } from './Config'
+import { Cache } from './Cache'
+import { TextureManager } from './TextureManager'
+import { createRenderer, createStage } from './pixi-integration'
 
-const addToDOM = (app, domTarget) => {
-  domTarget.appendChild(app.view)
-}
-
-/**
- * @param {Config} config
- */
-const configurePixiApp = (config) => {
-  const {
-    antialias,
-    resolution,
-    transparent,
-    width,
-    height,
-  } = config
-
-  const app = new Application({
-    antialias,
-    resolution,
-    transparent,
-    width,
-    height,
-  })
-
-  app.stage = createStage(config.displayGroups)
-  app.stage.addChild(...config.display.containers)
-
-  return app
-}
-
-export default class Game {
+export class Game {
   constructor(config, callbacks) {
     this.config = new Config({ ...config, callbacks })
 
@@ -49,8 +20,11 @@ export default class Game {
 
     this.pointers = new PointerManager(this)
 
-    /** @type {Application} */
-    this.app = configurePixiApp(this.config)
+    this.stage = createStage(this.config)
+
+    this.renderer = createRenderer(this.config)
+
+    this.ticker = new Ticker()
 
     /** @type {Engine} */
     this.engine = new Engine()
@@ -65,15 +39,17 @@ export default class Game {
 
     this.entities = new EntityManager(this)
 
-    const bounds = this.app.screen
-    this.align = new Align(bounds.x, bounds.y, bounds.width, bounds.height)
+    // INFO: unused for now
+    // const bounds = this.renderer.screen
+    // this.align = new Align(bounds.x, bounds.y, bounds.width, bounds.height)
 
     /** @type {AwilixContainer} */
     this.container = createContainer()
 
     this.container.register({
-      app: asValue(this.app),
-      events: asValue(this.app),
+      renderer: asValue(this.renderer),
+      stage: asValue(this.stage),
+      events: asValue(this.events),
       cache: asValue(this.cache),
       engine: asValue(this.engine),
       config: asValue(this.config),
@@ -82,6 +58,7 @@ export default class Game {
       keyboard: asValue(this.keyboard),
       entities: asValue(this.entities),
       pointers: asValue(this.pointers),
+      displayFactory: asClass(DisplayFactory),
     })
 
     this.systems = new SystemManager(this)
@@ -96,7 +73,7 @@ export default class Game {
   boot() {
     this.config.preBoot(this)
 
-    addToDOM(this.app, this.config.parent)
+    this.config.parent.appendChild(this.renderer.view)
 
     this.create()
 
@@ -117,7 +94,8 @@ export default class Game {
 
     this.config.postBoot(this)
 
-    this.app.ticker.add(this.update)
+    this.ticker.add(this.update)
+    this.ticker.start()
   }
 
   update = (delta) => {
@@ -125,13 +103,20 @@ export default class Game {
 
     this.engine.update(delta)
     this.scenes.update(delta)
+    this.renderer.render(this.stage)
 
     this.events.emit('postUpdate')
   }
 
   destroy() {
-    this.app.destroy()
+    this.stage.destroy()
+    this.stage = null
+
+    this.renderer.destroy()
+    this.renderer = null
+
     this.scenes.destroy()
+
     this.engine = null
   }
 }

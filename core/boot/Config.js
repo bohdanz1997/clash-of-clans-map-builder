@@ -1,6 +1,6 @@
 import { prop, noop } from 'core/util'
 
-export default class Config {
+export class Config {
   constructor(config) {
     const get = prop(config)
 

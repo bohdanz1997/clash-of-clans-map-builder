@@ -1,6 +1,6 @@
-export * from './render-layers'
 export * from './scent'
 export * from './pixi'
+export * from './render-layers'
 export * from './scenes'
 export * from './boot'
 export * from './input'

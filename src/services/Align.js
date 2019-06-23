@@ -1,8 +1,8 @@
 import { Point } from 'core/pixi'
 
 export class Align {
-  constructor({ app }) {
-    this.bounds = app.screen.clone()
+  constructor({ renderer }) {
+    this.bounds = renderer.screen.clone()
   }
 
   topLeft = offset => Point.of(offset.x, offset.y)

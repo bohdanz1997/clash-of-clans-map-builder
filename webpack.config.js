@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { ProvidePlugin } = require('webpack')
 
 const withRootPath = dir => path.resolve(__dirname, dir)
 
@@ -26,6 +27,9 @@ module.exports = {
       from: 'assets',
       to: 'assets',
     }]),
+    new ProvidePlugin({
+      PIXI: 'pixi.js',
+    }),
   ],
   output: {
     filename: '[name].bundle.js',

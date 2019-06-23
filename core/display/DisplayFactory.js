@@ -4,6 +4,10 @@ import { rectangleFactory } from './rectangle'
 import { MatrixHelper } from '../math'
 
 export class DisplayFactory {
+  constructor({ renderer }) {
+    this.renderer = renderer
+  }
+
   static animatedSprite({ atlas, speed = 1 }) {
     const textures = Object.values(atlas.textures)
     const sprite = new AnimatedSprite(textures, false)
@@ -24,16 +28,16 @@ export class DisplayFactory {
     return sprite
   }
 
-  static rect({ width, height, color }) {
+  rect({ width, height, color }) {
     const rect = rectangleFactory.create({ width, height, color })
-    const texture = rect.generateCanvasTexture()
+    const texture = this.renderer.generateTexture(rect)
 
     return new Sprite(texture)
   }
 
-  static isoRect({ width, height, color }) {
+  isoRect({ width, height, color }) {
     const rect = rectangleFactory.create({ width, height, color })
-    const texture = rect.generateCanvasTexture()
+    const texture = this.renderer.generateTexture(rect)
     const sprite = new Sprite(texture)
 
     sprite.pivot.set(-(width / 2), height / 2)

@@ -14,13 +14,6 @@ const {
     TextureCache,
     EventEmitter,
   },
-  loaders: {
-    Loader,
-    Resource,
-  },
-  extras: {
-    AnimatedSprite,
-  },
   Application,
   Rectangle,
   Point,
@@ -29,6 +22,10 @@ const {
   Sprite,
   Text,
   Graphics,
+  Loader,
+  AnimatedSprite,
+  Renderer,
+  Ticker,
 } = PIXI
 
 export {
@@ -37,7 +34,6 @@ export {
   Layer,
   Stage,
   Loader,
-  Resource,
   AnimatedSprite,
   Application,
   Rectangle,
@@ -47,6 +43,8 @@ export {
   Sprite,
   Text,
   Graphics,
+  Renderer,
+  Ticker,
 }
 
 // helpers

@@ -10,7 +10,7 @@ import * as c from '../components'
  * @param {TileMap} map
  * @param {Config} config
  * @param {EntityManager} entities
- * @param {Application} app
+ * @param {Renderer} renderer
  * @param {EntityDataMapper} entityDataMapper
  */
 export const Background = ({
@@ -18,7 +18,7 @@ export const Background = ({
   map,
   config,
   entities,
-  app,
+  renderer,
   entityDataMapper,
 }) => {
   const definition = entities.getDefinition(def)
@@ -38,7 +38,7 @@ export const Background = ({
 
   const container = new Container()
   container.addChild(...sprites)
-  const texture = app.renderer.generateTexture(container)
+  const texture = renderer.generateTexture(container)
   const sprite = new Sprite(texture)
 
   return createEntity(

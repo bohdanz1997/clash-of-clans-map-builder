@@ -1,6 +1,6 @@
 import { Loader } from '../pixi'
 
-export default class Cache {
+export class Cache {
   /**
    * @param {Loader} loader
    */

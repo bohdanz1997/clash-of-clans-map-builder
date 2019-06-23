@@ -1,19 +1,10 @@
-import { asClass, asFunction, asValue } from 'awilix'
-
-import {
-  Scene,
-  TileMap,
-  AnimatedSprite,
-  createEntity,
-  DisplayFactory,
-} from 'core'
-
-import { Align, ContainerBuilder } from '../services'
-import { priorities } from '../constants'
+import { asClass, asValue } from 'awilix'
+import { Scene, TileMap, DisplayFactory } from 'core'
 
 import * as s from '../systems'
 import * as c from '../components'
 import * as entities from '../entities'
+import { Align, ContainerBuilder } from '../services'
 
 export class SandboxScene extends Scene {
   constructor() {
@@ -46,8 +37,8 @@ export class SandboxScene extends Scene {
 
     this.container.register({
       map: asValue(map),
-      world: asValue(this.app.stage.getChildByName('world')),
-      hud: asValue(this.app.stage.getChildByName('hud')),
+      world: asValue(this.stage.getChildByName('world')),
+      hud: asValue(this.stage.getChildByName('hud')),
       positioning: asClass(Align),
     })
 

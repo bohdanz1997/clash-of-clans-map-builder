@@ -1,6 +1,7 @@
 export default [
   'game',
-  'app',
+  'renderer',
+  'stage',
   'cache',
   'engine',
   'config',
