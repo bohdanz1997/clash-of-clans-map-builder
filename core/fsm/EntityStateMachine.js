@@ -50,24 +50,22 @@ export class EntityStateMachine {
    * @return {Map<ComponentType, ComponentProvider>}
    */
   getProvidersToAdd(newState) {
-    if (this.currentState) {
-      const toAdd = new Map()
-
-      newState.providers.forEach((provider, type) => {
-        toAdd.set(type, provider)
-      })
-
-      this.currentState.providers.forEach((provider, type) => {
-        const other = toAdd.get(type)
-
-        if (other && other.getIdentifier() === provider.getIdentifier()) {
-          toAdd.delete(type)
-        } else {
-          this.entity.remove(type)
-        }
-      })
+    if (!this.currentState) {
+      return newState.providers
     }
 
-    return newState.providers
+    const toAdd = new Map(newState.providers)
+
+    this.currentState.providers.forEach((provider, type) => {
+      const other = toAdd.get(type)
+
+      if (other && other.getIdentifier() === provider.getIdentifier()) {
+        toAdd.delete(type)
+      } else {
+        this.entity.remove(type)
+      }
+    })
+
+    return toAdd
   }
 }
