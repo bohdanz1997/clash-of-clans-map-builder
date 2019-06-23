@@ -7,6 +7,6 @@ export const Pointer = () => {
     c.IsoPosition,
     c.PointerContext,
   )
-  entity.add(c.FSM(entity))
+  entity.add(c.FSM({ entity }))
   return entity
 }

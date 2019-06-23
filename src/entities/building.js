@@ -30,7 +30,7 @@ export const Building = ({
     }),
     c.Display(DisplayFactory.sprite({ asset: def }))
   )
-  entity.add(c.FSM(entity))
+  entity.add(c.FSM({ entity }))
 
   return entity
 }

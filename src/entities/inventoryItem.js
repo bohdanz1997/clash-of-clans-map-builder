@@ -30,7 +30,7 @@ export const InventoryItem = ({
 
   const couter = entities.create(Counter, pos)
 
-  return createEntity(
+  const entity = createEntity(
     c.InventoryItem(),
     c.EntityMeta(entityMeta),
     c.HudLayer(),
@@ -44,4 +44,7 @@ export const InventoryItem = ({
       height: bounds.height,
     }))
   )
+  entity.add(c.FSM({ entity }))
+
+  return entity
 }

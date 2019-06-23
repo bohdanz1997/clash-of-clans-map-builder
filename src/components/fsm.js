@@ -3,8 +3,9 @@ import { EntityStateMachine } from 'core/fsm'
 
 class FSMRaw {
   fsm
+  setInitial = null
 
-  constructor(entity) {
+  constructor({ entity }) {
     this.fsm = new EntityStateMachine(entity)
   }
 }
