@@ -1,5 +1,4 @@
 import { EntityState } from './EntityState'
-import {Hovered, Idle} from '../../src/components'
 
 export class EntityStateMachine {
   /** @type {Map<string, EntityState>} */
