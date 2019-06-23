@@ -1,7 +1,7 @@
 import { StateComponentMapping } from './StateComponentMapping'
 
 export class EntityState {
-  /** @type {Map<ComponentType, ComponentInstanceProvider>} */
+  /** @type {Map<ComponentType, ComponentProvider>} */
   providers = new Map()
 
   add(type) {

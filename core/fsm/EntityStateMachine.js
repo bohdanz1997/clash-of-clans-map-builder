@@ -25,7 +25,7 @@ export class EntityStateMachine {
     return state
   }
 
-  changeState(name) {
+  changeState(name, params) {
     const newState = this.states.get(name)
 
     if (!newState) {
@@ -39,7 +39,7 @@ export class EntityStateMachine {
     const toAdd = this.getProvidersToAdd(newState)
 
     toAdd.forEach((componentProvider, type) => {
-      this.entity.add(componentProvider.getComponent(), type)
+      this.entity.add(componentProvider.getComponent(params), type)
     })
 
     this.currentState = newState
@@ -47,7 +47,7 @@ export class EntityStateMachine {
 
   /**
    * @param {EntityState} newState
-   * @return {Map<ComponentType, ComponentInstanceProvider>}
+   * @return {Map<ComponentType, ComponentProvider>}
    */
   getProvidersToAdd(newState) {
     if (this.currentState) {
