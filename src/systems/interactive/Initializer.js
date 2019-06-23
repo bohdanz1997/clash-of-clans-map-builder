@@ -2,6 +2,14 @@ import * as c from '../../components'
 import * as n from '../../nodes'
 import { states, initTargetFSM, initInitiatorFSM } from '../../fsm'
 
+const setInitialState = (cFsm) => {
+  if (cFsm.setInitial) {
+    cFsm.setInitial(cFsm.fsm)
+  } else {
+    cFsm.fsm.changeState(states.idle)
+  }
+}
+
 export const InteractiveInitializer = () => ({
   nodes: [n.Initiator, n.Target],
 
@@ -10,22 +18,14 @@ export const InteractiveInitializer = () => ({
       const { fsm } = node
 
       initInitiatorFSM(fsm.fsm)
-      if (fsm.setInitial) {
-        fsm.setInitial(fsm.fsm)
-      } else {
-        fsm.fsm.changeState(states.idle)
-      }
+      setInitialState(fsm)
     }
 
     const setupTarget = (node) => {
       const { fsm } = node
 
       initTargetFSM(node.fsm.fsm)
-      if (fsm.setInitial) {
-        fsm.setInitial(fsm.fsm)
-      } else {
-        fsm.fsm.changeState(states.idle)
-      }
+      setInitialState(fsm)
     }
 
     const removeState = (node) => {
