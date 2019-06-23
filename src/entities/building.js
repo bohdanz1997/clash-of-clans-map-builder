@@ -15,7 +15,7 @@ export const Building = ({
     height: sizePx,
   })
 
-  return createEntity(
+  const entity = createEntity(
     c.BuildingLayer(),
     c.Draggable(),
     c.Interactive(),
@@ -30,4 +30,7 @@ export const Building = ({
     }),
     c.Display(DisplayFactory.sprite({ asset: def }))
   )
+  entity.add(c.FSM(entity))
+
+  return entity
 }

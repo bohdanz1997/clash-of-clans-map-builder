@@ -1,31 +1,29 @@
 import { detectHit } from '../../services'
 import * as c from '../../components'
 import * as n from '../../nodes'
+import { states } from '../../fsm-states'
 
-export const HoverState = () => ({
+export const HoverState = ({ logger }) => ({
   nodes: [n.TargetHovered],
 
+  init(nodes) {
+    nodes.onAdded(() => {
+      logger.write('hover')
+    })
+  },
+
   update(node) {
-    const { initiator, entity } = node
+    const { initiator, fsm, entity } = node
 
-    // -> IDLE
-    const out = !detectHit(initiator.entity, entity)
-    if (out) {
-      initiator.entity.remove(c.Interact.Target)
-      entity.remove(c.Interact.Initiator)
-      entity.remove(c.Hovered)
-
-      initiator.entity.add(c.Idle)
-      entity.add(c.Idle)
-
+    if (!detectHit(initiator.entity, entity)) {
+      initiator.entity.get(c.FSM).fsm.changeState(states.idle)
+      fsm.fsm.changeState(states.idle)
       return
     }
 
-    // -> CLICKED
     const pointerContext = initiator.entity.get(c.PointerContext)
     if (pointerContext.isDown) {
-      entity.remove(c.Hovered)
-      entity.add(c.Clicked)
+      fsm.fsm.changeState(states.clicked)
     }
   },
 })

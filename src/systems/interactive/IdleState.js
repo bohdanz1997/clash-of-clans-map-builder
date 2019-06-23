@@ -1,26 +1,25 @@
 import { detectHit } from '../../services'
-import * as c from '../../components'
+import { states } from '../../fsm-states'
 import * as n from '../../nodes'
 
-export const IdleState = () => ({
+export const IdleState = ({ logger }) => ({
   nodes: [n.InitiatorIdle, n.TargetIdle],
 
-  update(clientNodes, sourceNodes) {
-    clientNodes.each((nClient) => {
-      sourceNodes.each((nSource) => {
-        const eClient = nClient.entity
-        const eSource = nSource.entity
+  init(initiators, targets) {
+    targets.onAdded(() => {
+      logger.write('idle')
+    })
+  },
 
-        // -> HOVER
-        const hit = detectHit(eClient, eSource)
-        if (hit) {
-          eClient.remove(c.Idle)
-          eSource.remove(c.Idle)
+  update(initiatorNode, targetNode) {
+    initiatorNode.each((nInitiator) => {
+      targetNode.each((nTarget) => {
+        const eInitiator = nInitiator.entity
+        const eTarget = nTarget.entity
 
-          eSource.add(c.Interact.Initiator({ entity: eClient }))
-          eSource.add(c.Hovered)
-
-          eClient.add(c.Interact.Target({ entity: eSource }))
+        if (detectHit(eInitiator, eTarget)) {
+          nInitiator.fsm.fsm.changeState(states.interacts, { entity: eTarget })
+          nTarget.fsm.fsm.changeState(states.hovered, { entity: eInitiator })
         }
       })
     })

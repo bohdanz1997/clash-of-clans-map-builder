@@ -1,16 +1,14 @@
 import * as c from '../../components'
 import * as n from '../../nodes'
+import { states } from '../../fsm-states'
 
 export const DropState = () => ({
   nodes: [n.TargetDropped],
 
   update(node) {
-    const { display, entity } = node
+    const { display, fsm, entity } = node
 
-    // -> HOVER
-    entity.remove(c.Dropped)
-    entity.remove(c.DragContext)
-    entity.add(c.Hovered)
+    fsm.fsm.changeState(states.hovered)
 
     display.group = display.oldGroup
 

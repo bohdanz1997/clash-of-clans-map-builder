@@ -1,17 +1,19 @@
 import * as c from '../../components'
 import * as n from '../../nodes'
+import { states } from '../../fsm-states'
 
 /**
  * @param {Engine} engine
  * @param {TileMap} map
  * @param {Config} config
+ * @param logger
  */
-export const DragState = ({ engine, map, config }) => ({
+export const DragState = ({ engine, map, config, logger }) => ({
   nodes: [n.TargetDragging],
 
   init(node) {
     node.onAdded(({ entity }) => {
-      // console.log('drag start')
+      logger.write('drag')
 
       const display = entity.get(c.Display)
       display.oldGroup = display.group
@@ -19,10 +21,6 @@ export const DragState = ({ engine, map, config }) => ({
 
       entity.remove(c.BuildingLayer)
       entity.add(c.DragLayer)
-    })
-
-    node.onRemoved(() => {
-      // console.log('drag end')
     })
 
     this.cellSize = map.config.cellWidth
@@ -41,15 +39,13 @@ export const DragState = ({ engine, map, config }) => ({
   },
 
   update(node) {
-    const { initiator, entity } = node
+    const { initiator, fsm } = node
     const pointerContext = initiator.entity.get(c.PointerContext)
 
     this.updateDrag(node)
 
-    // -> DROP
     if (pointerContext.isUp) {
-      entity.remove(c.Dragging)
-      entity.add(c.Dropped)
+      fsm.fsm.changeState(states.dropped)
     }
   },
 })

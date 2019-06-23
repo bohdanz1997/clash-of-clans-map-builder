@@ -28,16 +28,17 @@ export const PointerContext = [c.PointerContext]
 export const PointerInteracts = [c.PointerContext, c.Interact.Target]
 
 // interaction
-export const Interactive = [c.Interactive]
-export const InitiatorIdle = [c.Idle, c.PointerContext, c.Position, c.IsoPosition]
-export const TargetIdle = [c.Idle, c.Interactive, c.Collision]
-export const TargetHovered = [c.Hovered, c.Interact.Initiator]
-export const TargetClicked = [c.Clicked, c.Interact.Initiator, c.Position]
-export const TargetDragging = [c.Dragging, c.DragContext, c.Interact.Initiator, c.Position]
-export const TargetDropped = [c.Dropped, c.DragContext, c.Display]
+export const Initiator = [c.PointerContext, c.FSM]
+export const Target = [c.Interactive, c.FSM]
+export const InitiatorIdle = [c.Idle, c.FSM, c.PointerContext, c.Position, c.IsoPosition]
+export const TargetIdle = [c.Idle, c.FSM, c.Interactive, c.Collision]
+export const TargetHovered = [c.Hovered, c.FSM, c.Interact.Initiator]
+export const TargetClicked = [c.Clicked, c.FSM, c.Interact.Initiator, c.Position]
+export const TargetDragging = [c.Dragging, c.FSM, c.DragContext, c.Interact.Initiator, c.Position]
+export const TargetDropped = [c.Dropped, c.FSM, c.DragContext, c.Display]
 
 // interaction listeners
-export const TargetDroppedListener = [c.Dropped, c.DragContext, c.Position, c.Collision]
+export const TargetDroppedListener = [c.Dropped, c.FSM, c.DragContext, c.Position, c.Collision]
 
 // layers
 export const Layers = {

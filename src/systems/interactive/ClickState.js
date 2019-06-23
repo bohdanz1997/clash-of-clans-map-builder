@@ -1,34 +1,39 @@
 import * as c from '../../components'
 import * as n from '../../nodes'
+import { states } from '../../fsm-states'
 
 /**
  * @param {TileMap} map
  * @param {Helper} helper
+ * @param logger
  */
-export const ClickState = ({ map, helper }) => ({
+export const ClickState = ({ map, helper, logger }) => ({
   nodes: [n.TargetClicked],
 
-  update(node) {
-    const { initiator, entity, position } = node
+  init(nodes) {
+    nodes.onAdded(() => {
+      logger.write('click')
+    })
+  },
 
-    // -> DRAGGING
+  update(node) {
+    const { initiator, fsm, entity, position } = node
+
     if (entity.has(c.Draggable)) {
       const clientPosition = initiator.entity.get(c.IsoPosition)
       const { startPos, offset } = helper.prepareDrag(clientPosition, position)
 
-      entity.remove(c.Clicked)
-      entity.add(c.Dragging)
-      entity.add(c.DragContext({ startPos, offset }))
+      fsm.fsm.changeState(states.dragging, {
+        startPos,
+        offset,
+      })
 
       return
     }
 
     const pointerContext = initiator.entity.get(c.PointerContext)
-
-    // -> HOVERED
     if (pointerContext.isUp) {
-      entity.remove(c.Clicked)
-      entity.add(c.Hovered)
+      fsm.fsm.changeState(states.hovered)
     }
   },
 })
