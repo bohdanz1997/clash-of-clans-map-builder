@@ -29,7 +29,7 @@ export class EntityStateMachine {
     const newState = this.states.get(name)
 
     if (!newState) {
-      throw new Error(`Entity state ${name} doesn't exist`)
+      throw new Error(`Entity state ${name.toString()} doesn't exist`)
     }
 
     if (newState === this.currentState) {
