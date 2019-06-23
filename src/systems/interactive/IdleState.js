@@ -1,13 +1,14 @@
 import { detectHit } from '../../services'
 import { states } from '../../fsm-states'
+import * as c from '../../components'
 import * as n from '../../nodes'
 
-export const IdleState = ({ logger }) => ({
+export const IdleState = ({ log }) => ({
   nodes: [n.InitiatorIdle, n.TargetIdle],
 
   init(initiators, targets) {
     targets.onAdded(() => {
-      logger.write('idle')
+      log('idle')
     })
   },
 

@@ -7,3 +7,11 @@ export class Logger {
     this.handler(...args)
   }
 }
+
+export const Log = ({ config }) => {
+  const handler = config.debug ? console.log : () => {}
+
+  return (...args) => {
+    handler(...args)
+  }
+}

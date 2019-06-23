@@ -3,12 +3,12 @@ import * as c from '../../components'
 import * as n from '../../nodes'
 import { states } from '../../fsm-states'
 
-export const HoverState = ({ logger }) => ({
+export const HoverState = ({ log }) => ({
   nodes: [n.TargetHovered],
 
   init(nodes) {
     nodes.onAdded(() => {
-      logger.write('hover')
+      log('hover')
     })
   },
 

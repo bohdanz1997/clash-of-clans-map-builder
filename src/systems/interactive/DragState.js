@@ -6,14 +6,15 @@ import { states } from '../../fsm-states'
  * @param {Engine} engine
  * @param {TileMap} map
  * @param {Config} config
- * @param logger
+ * @param log
  */
-export const DragState = ({ engine, map, config, logger }) => ({
+export const DragState = ({ engine, map, config, log }) => ({
   nodes: [n.TargetDragging],
 
-  init(node) {
-    node.onAdded(({ entity }) => {
-      logger.write('drag')
+  init(nodes) {
+    nodes.onAdded((node) => {
+      const { entity } = node
+      log('drag')
 
       const display = entity.get(c.Display)
       display.oldGroup = display.group

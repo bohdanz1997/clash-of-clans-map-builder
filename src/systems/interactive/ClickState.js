@@ -5,14 +5,14 @@ import { states } from '../../fsm-states'
 /**
  * @param {TileMap} map
  * @param {Helper} helper
- * @param logger
+ * @param log
  */
-export const ClickState = ({ map, helper, logger }) => ({
+export const ClickState = ({ map, helper, log }) => ({
   nodes: [n.TargetClicked],
 
   init(nodes) {
     nodes.onAdded(() => {
-      logger.write('click')
+      log('click')
     })
   },
 

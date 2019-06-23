@@ -1,6 +1,6 @@
-import { asClass, asValue } from 'awilix'
+import { asClass, asFunction, asValue } from 'awilix'
 import { Scene, TileMapParser } from 'core'
-import { Align, ContainerBuilder, Helper, EntityDataMapper, Logger } from '../services'
+import { Align, ContainerBuilder, Helper, EntityDataMapper, Logger, Log } from '../services'
 import { priorities } from '../constants'
 
 import * as c from '../components'
@@ -43,6 +43,7 @@ export class GameScene extends Scene {
       world: asValue(this.app.stage.getChildByName('world')),
       hud: asValue(this.app.stage.getChildByName('hud')),
       logger: asClass(Logger),
+      log: asFunction(Log),
     })
 
     const { entityDataMapper } = this.container.cradle
