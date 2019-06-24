@@ -8,6 +8,7 @@ export const initInitiatorFSM = (fsm) => {
     .add(c.Idle)
   fsm.createState(states.interacts)
     .add(c.Interact.Target).withCallback(interactTargetCallback)
+    .add(c.Hovered)
 }
 
 export const initTargetFSM = (fsm) => {

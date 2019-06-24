@@ -52,7 +52,6 @@ export class SandboxScene extends Scene {
 
   registerSystems() {
     this.systems
-      .add(s.DragDrop)
       .add(s.IdleState)
       .add(s.HoverState)
       .add(s.DragState)

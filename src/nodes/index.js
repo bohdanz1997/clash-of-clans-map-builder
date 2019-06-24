@@ -24,8 +24,7 @@ export const InventoryItemCounter = [c.InventoryCounter, c.Relation.Parent, c.Di
 
 // pointer
 export const Pointer = [c.PointerContext, c.Position, c.IsoPosition]
-export const PointerContext = [c.PointerContext]
-export const PointerInteracts = [c.PointerContext, c.Interact.Target]
+export const PointerHovered = [c.PointerContext, c.Hovered]
 
 // interaction
 export const Initiator = [c.PointerContext, c.FSM]

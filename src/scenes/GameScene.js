@@ -80,8 +80,8 @@ export class GameScene extends Scene {
     // .add(s.DebugMapLayers)
       .add(s.AddEntityFromInventoryItem)
       .add(s.DisposeInventoryItem)
+      .add(s.UpdateCursorStyle)
 
-      .add(s.DragDrop)
       .add(s.InteractiveInitializer)
       .add(s.IdleState)
       .add(s.HoverState)

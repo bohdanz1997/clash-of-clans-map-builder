@@ -43,8 +43,18 @@ export const ManagePointers = ({ engine, world, map, config, pointers }) => ({
     // update tilemap position
     isoPosition.col = Math.floor(isoPosition.cartX / this.cellSize)
     isoPosition.row = Math.floor(isoPosition.cartY / this.cellSize)
+  },
+})
 
-    const cursorStyle = context.hovered && context.visible ? 'pointer' : 'auto'
-    pointers.setCursorStyle(cursorStyle)
+export const UpdateCursorStyle = ({ pointers }) => ({
+  nodes: [n.PointerHovered],
+
+  init(nodes) {
+    nodes.onAdded(() => {
+      pointers.setCursorStyle('pointer')
+    })
+    nodes.onRemoved(() => {
+      pointers.setCursorStyle('auto')
+    })
   },
 })
