@@ -14,11 +14,11 @@ export const ManagePointers = ({ engine, world, map, config, pointers }) => ({
 
   init(nodes) {
     const subscribeProcessor = (node) => {
-      node.context.processor = pointers.subscribe(node)
+      node.context.processor = pointers.add(node)
     }
 
     const unsubscribeProcessor = (node) => {
-      pointers.unsubscribe(node.context.processor)
+      pointers.remove(node.context.processor)
     }
 
     nodes.each(subscribeProcessor)

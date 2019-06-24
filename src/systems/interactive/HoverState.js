@@ -22,7 +22,7 @@ export const HoverState = ({ log }) => ({
     }
 
     const pointerContext = initiator.entity.get(c.PointerContext)
-    if (pointerContext.isDown) {
+    if (pointerContext.justDown) {
       fsm.fsm.changeState(states.clicked)
     }
   },

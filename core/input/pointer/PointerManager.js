@@ -21,7 +21,7 @@ export class PointerManager {
     this.processors = []
   }
 
-  init() {
+  start() {
     // Bind the events to the handlers
     // Mouse events
     this.target.addEventListener('mousemove', this.addToQueue, false)

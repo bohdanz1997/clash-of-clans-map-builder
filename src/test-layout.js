@@ -37,7 +37,7 @@ export const testLayout = {
     {
       name: 'other',
       data: [
-        { id: 'keyboard' },
+        { id: 'input' },
         { id: 'camera' },
         { id: 'pointer' },
         { id: 'hud', x: 0, y: 0 },

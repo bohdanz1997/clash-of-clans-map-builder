@@ -15,7 +15,9 @@ export const Idle = defComponent('idle')
 export const Hovered = defComponent('hovered')
 export const Clicked = defComponent('clicked')
 export const Dragging = defComponent('dragging')
+export const Selected = defComponent('selected')
 export const Dropped = defComponent('dropped')
 
 // features
 export const Interactive = defComponent('interactive')
+export const Selectable = defComponent('selectable')

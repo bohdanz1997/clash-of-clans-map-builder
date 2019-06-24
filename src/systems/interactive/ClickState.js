@@ -27,13 +27,13 @@ export const ClickState = ({ map, helper, log }) => ({
         startPos,
         offset,
       })
-
-      return
-    }
-
-    const pointerContext = initiator.entity.get(c.PointerContext)
-    if (pointerContext.isUp) {
-      fsm.fsm.changeState(states.hovered)
+    } else if (entity.has(c.Selectable)) {
+      fsm.fsm.changeState(states.selected)
+    } else {
+      const pointerContext = initiator.entity.get(c.PointerContext)
+      if (pointerContext.isUp) {
+        fsm.fsm.changeState(states.hovered)
+      }
     }
   },
 })

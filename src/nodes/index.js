@@ -21,6 +21,7 @@ export const Child = [c.Relation.Parent, c.Position]
 export const InventoryItem = [c.InventoryItem, c.EntityMeta, c.Position]
 export const InventoryItemClicked = [c.InventoryItem, c.Clicked, c.Interact.Initiator, c.EntityMeta]
 export const InventoryItemCounter = [c.InventoryCounter, c.Relation.Parent, c.Display]
+export const InventoryItemSelected = [c.InventoryItem, c.Selected, c.EntityMeta]
 
 // pointer
 export const Pointer = [c.PointerContext, c.Position, c.IsoPosition]
@@ -34,6 +35,7 @@ export const TargetIdle = [c.Idle, c.FSM, c.Interactive, c.Collision]
 export const TargetHovered = [c.Hovered, c.FSM, c.Interact.Initiator]
 export const TargetClicked = [c.Clicked, c.FSM, c.Interact.Initiator, c.Position]
 export const TargetDragging = [c.Dragging, c.FSM, c.DragContext, c.Interact.Initiator, c.Position]
+export const TargetSelected = [c.Selected, c.FSM, c.Interact.Initiator]
 export const TargetDropped = [c.Dropped, c.FSM, c.DragContext, c.Display]
 
 // interaction listeners
@@ -59,7 +61,7 @@ export const CameraControl = [c.Camera, c.Position, c.Motion, c.MotionControl, c
 export const Collision = [c.Position, c.Collision]
 export const Map = [c.Map]
 export const Building = [c.Building, c.Position, c.Identity]
-export const Keyboard = [c.Keyboard]
+export const Input = [c.Input]
 export const Hud = [c.HudLayer, c.Display]
 export const Animation = [c.Animatable, c.Display]
 export const Tween = [c.Tween]

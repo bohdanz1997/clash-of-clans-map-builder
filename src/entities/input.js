@@ -1,8 +1,8 @@
 import { createEntity } from 'core/scent'
 import * as c from '../components'
 
-export const Keyboard = () => (
+export const Input = () => (
   createEntity(
-    c.Keyboard(),
+    c.Input(),
   )
 )

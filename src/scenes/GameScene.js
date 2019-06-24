@@ -63,7 +63,7 @@ export class GameScene extends Scene {
   registerSystems() {
     this.systems
       .add(s.LayerToDisplayGroup, priorities.PRE_INIT)
-      .add(s.UpdateKeyboard, priorities.PRE_UPDATE)
+      .add(s.Input, priorities.PRE_UPDATE)
 
       .add(s.Movement, priorities.MOVEMENT)
       .add(s.IsometricMovement, priorities.MOVEMENT)
@@ -78,7 +78,7 @@ export class GameScene extends Scene {
       .add(s.KeepInBounds, priorities.RESOLVE_COLLISIONS)
       .add(s.Debug)
     // .add(s.DebugMapLayers)
-      .add(s.AddEntityFromInventoryItem)
+    //   .add(s.AddEntityFromInventoryItem)
       .add(s.DisposeInventoryItem)
       .add(s.UpdateCursorStyle)
 
@@ -87,6 +87,7 @@ export class GameScene extends Scene {
       .add(s.HoverState)
       .add(s.ClickState)
       .add(s.DragState)
+      .add(s.SelectState)
       .add(s.DropState)
       .add(s.DropStateListener)
 

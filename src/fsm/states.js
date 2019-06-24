@@ -4,6 +4,7 @@ export const states = {
   hovered: Symbol('hovered'),
   clicked: Symbol('clicked'),
   dragging: Symbol('dragging'),
+  selected: Symbol('selected'),
   dropped: Symbol('dropped'),
   interacts: Symbol('interacts'),
 }

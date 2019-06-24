@@ -1,13 +1,20 @@
+import * as c from '../components'
 import * as n from '../nodes'
 
 export const Debug = () => ({
-  nodes: [n.Pointer, n.Hud],
+  nodes: [n.Pointer, n.Hud, n.InventoryItemSelected],
 
-  update(pointerNode, hudNode) {
+  update(pointerNode, hudNode, selectedNode) {
     if (!pointerNode.head) {
       return
     }
-    const { context, position, isoPosition } = pointerNode.head
+    const { position, isoPosition, entity } = pointerNode.head
+
+    let selectedInfo = 'none'
+    if (selectedNode.head) {
+      const { entityMeta } = selectedNode.head
+      selectedInfo = `${entityMeta.id} (${entityMeta.def})`
+    }
 
     hudNode.head.display.sprite.content = `
       x: ${position.x}
@@ -16,7 +23,8 @@ export const Debug = () => ({
       cartY: ${Math.floor(isoPosition.cartY)}
       column: ${isoPosition.col}
       row: ${isoPosition.row}
-      hover: ${context.hovered}
+      hover: ${entity.has(c.Hovered)}
+      selected: ${selectedInfo}
     `
   },
 })

@@ -35,8 +35,9 @@ export const InventoryItem = ({
     c.EntityMeta(entityMeta),
     c.HudLayer(),
     c.Relation.Child(couter),
-    c.Position(pos),
     c.Interactive(),
+    c.Selectable(),
+    c.Position(pos),
     c.Collision(bounds),
     c.Display(DisplayFactory.sprite({
       asset: entityMeta.def,
