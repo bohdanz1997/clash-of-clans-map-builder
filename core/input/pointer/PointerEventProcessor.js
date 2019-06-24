@@ -73,4 +73,9 @@ export class PointerEventProcessor {
     this.context.isUp = true
     this.context.isDown = false
   }
+
+  update() {
+    this.context.prevDown = this.context.isDown
+    this.context.prevUp = this.context.isUp
+  }
 }

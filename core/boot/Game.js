@@ -84,6 +84,7 @@ export class Game {
 
   create() {
     sceneCreator(this.scenes, this.config.sceneConfig)
+    this.pointers.init()
   }
 
   start = () => {
@@ -116,6 +117,8 @@ export class Game {
     this.renderer = null
 
     this.scenes.destroy()
+
+    this.pointers.destroy()
 
     this.engine = null
   }
