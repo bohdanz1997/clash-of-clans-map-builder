@@ -15,7 +15,7 @@ export const Building = ({
     height: sizePx,
   })
 
-  const entity = createEntity(
+  return createEntity(
     c.BuildingLayer(),
     c.Draggable(),
     c.Interactive(),
@@ -28,9 +28,7 @@ export const Building = ({
       height: map.config.tileHeight,
       radius,
     }),
-    c.Display(DisplayFactory.sprite({ asset: def }))
+    c.Display(DisplayFactory.sprite({ asset: def })),
+    ({ entity }) => c.FSM({ entity }),
   )
-  entity.add(c.FSM({ entity }))
-
-  return entity
 }
