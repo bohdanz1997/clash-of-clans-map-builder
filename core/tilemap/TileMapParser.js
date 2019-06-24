@@ -34,19 +34,11 @@ export default class Parser {
     return map
   }
 
-  getDefinition(id) {
-    const definition = this.definitions[id]
-    if (!definition) {
-      throw new Error(`Could not find entity definition for '${id}'`)
-    }
-    return definition
-  }
-
   makeEntityParams = (data) => {
     const { level, id } = data
     const def = data.def || id
 
-    const entityDefinition = this.getDefinition(def)
+    const entityDefinition = this.definitions[def] || {}
     const levelDefinition = entityDefinition.levels ? entityDefinition.levels[level] : {}
 
     return {

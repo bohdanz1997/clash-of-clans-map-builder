@@ -89,14 +89,5 @@
   "tile": {
     "isoWidth": 133,
     "isoHeight": 100
-  },
-  "inventory": {},
-  "inventoryItem": {},
-  "map": {},
-  "hud": {},
-  "pointer": {},
-  "keyboard": {},
-  "observer": {},
-  "logger": {},
-  "background": {}
+  }
 }
