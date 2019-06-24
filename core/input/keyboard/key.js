@@ -1,4 +1,4 @@
-export default class Key {
+export class Key {
   constructor(keyCode) {
     this.code = keyCode
     this.isDown = false

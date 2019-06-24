@@ -1,4 +1,4 @@
-import { keys } from '..'
+import { keys } from './keyCodes'
 
 export const makeWASDKeys = (keyboard) => {
   const [up, down, left, right] = keyboard.addKeys(keys.W, keys.S, keys.A, keys.D)

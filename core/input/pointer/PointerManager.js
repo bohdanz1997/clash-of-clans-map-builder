@@ -1,4 +1,4 @@
-import { PointerEventProcessor } from '.'
+import { PointerEventProcessor } from './PointerEventProcessor'
 
 export class PointerManager {
   /**

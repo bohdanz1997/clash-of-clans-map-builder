@@ -1,7 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-import { Key, keys } from '.'
+import { Key } from './key'
+import { keys } from './keyCodes'
 
-export default class Keyboard {
+export class Keyboard {
   constructor(target) {
     this._target = target
     this._keys = {}
