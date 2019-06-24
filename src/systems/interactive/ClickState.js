@@ -1,6 +1,6 @@
 import * as c from '../../components'
 import * as n from '../../nodes'
-import { states } from '../../fsm/states'
+import { states } from '../../fsm'
 
 /**
  * @param {TileMap} map
