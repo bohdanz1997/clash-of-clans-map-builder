@@ -3,6 +3,12 @@ import { textFactory } from './text'
 import { rectangleFactory } from './rectangle'
 import { MatrixHelper } from '../math'
 
+const createSprite = (texture, filters = []) => {
+  const sprite = new Sprite(texture)
+  sprite.filters = filters
+  return sprite
+}
+
 export class DisplayFactory {
   constructor({ renderer }) {
     this.renderer = renderer
@@ -17,10 +23,10 @@ export class DisplayFactory {
     return sprite
   }
 
-  static sprite(asset, { x = 0, y = 0, width = undefined, height = undefined } = {}) {
+  static sprite(asset, { x = 0, y = 0, width = undefined, height = undefined, filters } = {}) {
     const texture = getTextureFromCache(asset)
 
-    const sprite = new Sprite(texture)
+    const sprite = createSprite(texture, filters)
     sprite.position.set(x, y)
     sprite.width = width || sprite.width
     sprite.height = height || sprite.height
@@ -28,17 +34,17 @@ export class DisplayFactory {
     return sprite
   }
 
-  rect({ width, height, color }) {
+  rect({ width, height, color, filters }) {
     const rect = rectangleFactory.create({ width, height, color })
     const texture = this.renderer.generateTexture(rect)
 
-    return new Sprite(texture)
+    return createSprite(texture, filters)
   }
 
-  isoRect({ width, height, color }) {
+  isoRect({ width, height, color, filters }) {
     const rect = rectangleFactory.create({ width, height, color })
     const texture = this.renderer.generateTexture(rect)
-    const sprite = new Sprite(texture)
+    const sprite = createSprite(texture, filters)
 
     sprite.pivot.set(-(width / 2), height / 2)
     sprite.transform.setFromMatrix(MatrixHelper.isoMatrix)
