@@ -1,13 +1,27 @@
 import { defComponent } from 'core/scent'
+import { Point } from 'core/pixi'
+
+class InteractData {
+  constructor({ entity }) {
+    this.entity = entity
+  }
+}
 
 export const Interact = {
-  Initiator: defComponent('initiator', 'entity'),
-  Target: defComponent('target', 'entity'),
+  Initiator: defComponent('initiator', InteractData),
+  Target: defComponent('target', InteractData),
+}
+
+class RelationData {
+  constructor({ entity, offset = Point.EMPTY }) {
+    this.entity = entity
+    this.offset = offset
+  }
 }
 
 export const Relation = {
-  Parent: defComponent('parent', 'entity', entity => ({ entity })),
-  Child: defComponent('child', 'entity', entity => ({ entity })),
+  Parent: defComponent('parent', RelationData),
+  Child: defComponent('child', RelationData),
 }
 
 // states
