@@ -19,9 +19,10 @@ export const LayerToDisplayGroup = ({ config }) => ({
     n.Layers.Building,
     n.Layers.Drag,
     n.Layers.Hud,
+    n.Layers.Debug,
   ],
 
-  init(groundNode, backNode, buildingNode, dragNode, hudNode) {
+  init(groundNode, backNode, buildingNode, dragNode, hudNode, debugNode) {
     const groups = config.displayGroups
 
     const layersToGroups = [
@@ -30,6 +31,7 @@ export const LayerToDisplayGroup = ({ config }) => ({
       [buildingNode, groups.BUILDING],
       [dragNode, groups.DRAG],
       [hudNode, groups.HUD],
+      [debugNode, groups.DEBUG],
     ]
 
     layersToGroups.forEach(([layerNode, displayGroup]) => {

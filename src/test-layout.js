@@ -40,7 +40,6 @@ export const testLayout = {
         { id: 'input' },
         { id: 'camera' },
         { id: 'pointer' },
-        { id: 'hud', x: 0, y: 0 },
         { id: 'inventory' },
         ...createInventorySlots(9),
       ],

@@ -11,6 +11,7 @@ export const Render = ({ world, hud }) => ({
       [c.Layer.Building, world],
       [c.Layer.Drag, world],
       [c.Layer.Hud, hud],
+      [c.Layer.Debug, hud],
     ]
 
     const findContainerByLayerComponent = (node) => {

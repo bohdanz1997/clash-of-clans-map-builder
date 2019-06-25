@@ -2,7 +2,7 @@ import { TextFactory } from 'core/display'
 import * as n from '../nodes'
 
 export const DebugMapLayers = ({ engine, config, stage, map }) => ({
-  nodes: [n.Hud],
+  nodes: [n.Debug],
 
   init() {
     this.buildingLayer = map.getLayer('building')

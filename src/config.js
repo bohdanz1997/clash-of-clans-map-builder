@@ -9,6 +9,7 @@ class DisplayGroups {
   BUILDING = new Group(5, sortingStrategy.forward)
   HUD = new Group(10, false)
   DRAG = new Group(20, false)
+  DEBUG = new Group(25, false)
 }
 
 export const display = {

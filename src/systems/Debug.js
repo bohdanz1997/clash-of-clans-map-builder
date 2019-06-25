@@ -1,10 +1,15 @@
 import * as c from '../components'
 import * as n from '../nodes'
+import * as e from '../entities'
 
-export const Debug = () => ({
-  nodes: [n.Pointer, n.Hud, n.InventoryItemSelected],
+export const Debug = ({ entities }) => ({
+  nodes: [n.Pointer, n.Debug, n.InventoryItemSelected],
 
-  update(pointerNode, hudNode, selectedNode) {
+  init() {
+    entities.add(e.Debug)
+  },
+
+  update(pointerNode, debugNode, selectedNode) {
     const pointer = pointerNode.head
     if (!pointer) {
       return
@@ -29,7 +34,7 @@ export const Debug = () => ({
       `
     }
 
-    hudNode.head.display.sprite.content = `
+    debugNode.head.display.sprite.content = `
       x: ${position.x}
       y: ${position.y}
       cartX: ${Math.floor(isoPosition.cartX)}

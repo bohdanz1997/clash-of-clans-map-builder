@@ -78,8 +78,6 @@ export class GameScene extends Scene {
 
       .add(s.UpdateCollision, priorities.UPDATE_COLLISION)
       .add(s.KeepInBounds, priorities.RESOLVE_COLLISIONS)
-      .add(s.Debug)
-    // .add(s.DebugMapLayers)
       .add(s.PutEntityToMap)
       .add(s.SelectInventoryItem)
       .add(s.UpdateCursorStyle)
@@ -93,14 +91,21 @@ export class GameScene extends Scene {
       .add(s.DropState)
       .add(s.DropStateListener)
 
-      .add(s.DisposeInventoryItem)
+      .add(s.DisposeInventoryItemAndPreview, priorities.DISPOSING)
+      .add(s.ParentRelationListener, priorities.DISPOSING)
+      .add(s.ChildRelationListener, priorities.DISPOSING)
 
       .add(s.XXXLayer)
-      .add(s.ManageParentRelation)
       .add(s.InventoryItemCounter)
       .add(s.Render, priorities.RENDER)
       .add(s.IsometricRender, priorities.ISO_RENDER)
 
-      .init()
+    if (this.config.debug) {
+      this.systems
+        .add(s.Debug)
+      // .add(s.DebugMapLayers)
+    }
+
+    this.systems.init()
   }
 }

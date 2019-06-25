@@ -53,6 +53,7 @@ export const Layers = {
   Building: [c.Layer.Building, c.Display],
   Drag: [c.Layer.Drag, c.Display],
   Hud: [c.Layer.Hud, c.Display],
+  Debug: [c.Layer.Debug, c.Display],
 }
 
 // map layers
@@ -68,6 +69,6 @@ export const InBounds = [c.Layer.Building, c.Position, c.Collision]
 export const Map = [c.Map]
 export const Building = [c.Building, c.Position, c.Identity]
 export const Input = [c.Input]
-export const Hud = [c.Layer.Hud, c.Display]
+export const Debug = [c.Layer.Debug, c.Display]
 export const Animation = [c.Animatable, c.Display]
 export const Tween = [c.Tween]

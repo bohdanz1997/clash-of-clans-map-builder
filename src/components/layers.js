@@ -6,4 +6,5 @@ export const Layer = {
   Building: component('buildingLayer'),
   Drag: component('dragLayer'),
   Hud: component('hudLayer'),
+  Debug: component('debugLayer'),
 }
