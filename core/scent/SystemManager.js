@@ -34,7 +34,7 @@ export class SystemManager {
 
   build(Factory) {
     const systemHandler = this.container.build(Factory)
-    return createSystem(this.engine)(systemHandler)
+    return createSystem(systemHandler, this.engine)
   }
 
   init() {

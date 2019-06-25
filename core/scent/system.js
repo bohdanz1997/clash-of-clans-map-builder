@@ -8,15 +8,7 @@ const defaultHandler = {
   update: noop,
 }
 
-const baseCreateSystem = systemFactory => (handler) => {
-  const systemHandler = {
-    ...defaultHandler,
-    ...handler,
-  }
-  return systemFactory(systemHandler)
-}
-
-const makeSystem = handler => (engine) => {
+const makeSystem = (handler, engine) => {
   const nodes = engine.getNodeType(handler.nodes[0])
   engine.onUpdate((delta) => {
     handler.before(delta)
@@ -26,13 +18,13 @@ const makeSystem = handler => (engine) => {
   handler.init(nodes)
 }
 
-const makeEnhancedSystem = handler => (engine) => {
+const makeEnhancedSystem = (handler, engine) => {
   const arrayOfNodes = handler.nodes.map(engine.getNodeType)
   engine.onUpdate(delta => handler.update(...arrayOfNodes, delta, engine))
   handler.init(...arrayOfNodes)
 }
 
-export const createSystem = engine => (handler) => {
+export const createSystem = (handler, engine) => {
   const sysHandler = {
     ...defaultHandler,
     ...handler,
@@ -44,6 +36,6 @@ export const createSystem = engine => (handler) => {
   }
 
   return nodeTypesAmount === 1
-    ? baseCreateSystem(makeSystem)(sysHandler)(engine)
-    : baseCreateSystem(makeEnhancedSystem)(sysHandler)(engine)
+    ? makeSystem(sysHandler, engine)
+    : makeEnhancedSystem(sysHandler, engine)
 }
