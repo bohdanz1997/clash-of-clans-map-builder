@@ -7,8 +7,8 @@ import { priorities } from './constants'
 
 export const createGame = ({ layout }) => {
   const game = new Game({
-    width: 1000,
-    height: 800,
+    width: 1100,
+    height: 960,
     debug: true,
     scene: [GameScene],
     system: {
