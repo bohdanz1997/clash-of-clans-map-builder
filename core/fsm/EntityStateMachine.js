@@ -68,4 +68,8 @@ export class EntityStateMachine {
 
     return toAdd
   }
+
+  get currentStateName() {
+    return this.currentState.name.description
+  }
 }

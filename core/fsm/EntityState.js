@@ -26,8 +26,4 @@ export class EntityState {
   set(type, provider) {
     this.providers.set(type, provider)
   }
-
-  get stringName() {
-    return this.name.description
-  }
 }
