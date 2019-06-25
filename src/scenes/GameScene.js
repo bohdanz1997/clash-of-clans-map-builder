@@ -67,7 +67,8 @@ export class GameScene extends Scene {
 
       .add(s.Movement, priorities.MOVEMENT)
       .add(s.IsometricMovement, priorities.MOVEMENT)
-      .add(s.ChildRelationMovement, priorities.MOVEMENT)
+      .add(s.BuildingChildMovement, priorities.MOVEMENT)
+      .add(s.PointerChildMovement, priorities.MOVEMENT)
       .add(s.ManagePointers, priorities.MOVEMENT)
       .add(s.CameraControl, priorities.MOVEMENT)
     // .add(s.CameraTouchControl, priorities.MOVEMENT)
@@ -78,8 +79,8 @@ export class GameScene extends Scene {
       .add(s.KeepInBounds, priorities.RESOLVE_COLLISIONS)
       .add(s.Debug)
     // .add(s.DebugMapLayers)
-    //   .add(s.AddEntityFromInventoryItem)
-      .add(s.DisposeInventoryItem)
+      .add(s.PutEntityToMap)
+      .add(s.SelectInventoryItem)
       .add(s.UpdateCursorStyle)
 
       .add(s.InteractiveInitializer)
@@ -87,9 +88,11 @@ export class GameScene extends Scene {
       .add(s.HoverState)
       .add(s.ClickState)
       .add(s.DragState)
-      .add(s.SelectState)
+      // .add(s.SelectState)
       .add(s.DropState)
       .add(s.DropStateListener)
+
+      .add(s.DisposeInventoryItem)
 
       .add(s.XXXLayer)
       .add(s.ManageParentRelation)

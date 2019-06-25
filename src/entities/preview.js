@@ -1,18 +1,22 @@
+import { filters } from 'pixi.js'
 import { createEntity, DisplayFactory } from 'core'
 import * as c from '../components'
 import { Overlay } from './overlay'
 
-export const Building = ({
+export const Preview = ({
   data: { id, def, x, y, offsetX, offsetY, radius },
   map,
   entities,
 }) => {
-  const overlay = entities.create(Overlay, { x, y, radius })
+  const alpha = 0.5
+  const overlay = entities.create(Overlay, { x, y, radius, alpha })
+  const sprite = DisplayFactory.sprite(def, {
+    filters: [new filters.AlphaFilter(alpha)],
+  })
+
   return createEntity(
-    c.Layer.Building(),
+    c.Layer.Drag(),
     c.Building(),
-    c.Draggable(),
-    c.Interactive(),
     c.Relation.Child({ entity: overlay }),
     c.Position({ x, y, offsetX, offsetY }),
     c.IsoPosition(),
@@ -21,7 +25,6 @@ export const Building = ({
       height: map.config.tileHeight,
       radius,
     }),
-    c.Display(DisplayFactory.sprite(def)),
-    ({ entity }) => c.FSM({ entity }),
+    c.Display(sprite),
   )
 }

@@ -5,14 +5,28 @@ export class Helper {
     this.cellSize = map.config.cellWidth
   }
 
-  prepareDrag(clientPosition, sourcePosition) {
-    const startPos = new Point(sourcePosition.x, sourcePosition.y)
+  prepareDrag(initiatorIsoPosition, targetPosition) {
+    const startPos = new Point(targetPosition.x, targetPosition.y)
     const offset = new Point(
-      this.normCoord(clientPosition.cartX - sourcePosition.x),
-      this.normCoord(clientPosition.cartY - sourcePosition.y),
+      this.normCoord(initiatorIsoPosition.cartX - targetPosition.x),
+      this.normCoord(initiatorIsoPosition.cartY - targetPosition.y),
     )
 
     return { startPos, offset }
+  }
+
+  prepareFollow(x, y) {
+    const startPos = this.normToCenter(x, y)
+    const offset = new Point(this.cellSize, this.cellSize)
+
+    return { startPos, offset }
+  }
+
+  normToCenter(x, y) {
+    return new Point(
+      this.normCoord(x) - this.cellSize,
+      this.normCoord(y) - this.cellSize,
+    )
   }
 
   normCoord(val) {

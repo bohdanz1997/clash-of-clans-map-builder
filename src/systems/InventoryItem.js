@@ -1,40 +1,69 @@
 import * as c from '../components'
 import * as n from '../nodes'
-import { states } from '../fsm'
+import { Preview } from '../entities'
 
 /**
- * @param {Engine} engine
- * @param {TileMap} map
  * @param {EntityManager} entities
  * @param {Helper} helper
  */
-export const AddEntityFromInventoryItem = ({ engine, map, entities, helper }) => ({
-  nodes: [n.InventoryItemClicked],
+export const SelectInventoryItem = ({ entities, helper }) => ({
+  nodes: [n.InventoryItemClicked, n.InventoryItemSelected, n.Pointer],
 
-  init(nodes) {
-    nodes.onAdded((node) => {
-      const { entityMeta, initiator } = node
-      const clientPosition = initiator.entity.get(c.IsoPosition)
+  update(clickedNodes, selectedNodes, pointerNodes) {
+    const pointerNode = pointerNodes.head
 
-      const entity = entities.add(entityMeta.id, {
-        def: entityMeta.def,
-        x: clientPosition.cartX,
-        y: clientPosition.cartY,
+    clickedNodes.each((clickedNode) => {
+      selectedNodes.each((selectedNode) => {
+        selectedNode.entity.remove(c.Selected)
       })
 
-      entityMeta.count -= 1
+      const { initiator, entityMeta, entity } = clickedNode
+      const initiatorIsoPosition = initiator.entity.get(c.IsoPosition)
+      const { startPos, offset } = helper.prepareFollow(initiatorIsoPosition.cartX, initiatorIsoPosition.cartY)
 
-      const entityPosition = entity.get(c.Position)
-      const { startPos, offset } = helper.prepareDrag(clientPosition, entityPosition)
+      entity.add(c.Selected)
 
-      entity.get(c.FSM).setInitial = (fsm) => {
-        fsm.changeState(states.dragging, {
-          startPos,
-          offset,
-          entity: initiator.entity,
+      const ePreview = entities.add(Preview, {
+        def: entityMeta.def,
+        x: startPos.x,
+        y: startPos.y,
+      })
+
+      pointerNode.entity.add(c.Relation.Child({
+        entity: ePreview,
+        offset,
+      }))
+    })
+  },
+})
+
+/**
+ * @param {EntityManager} entities
+ * @param {Helper} helper
+ */
+export const PutEntityToMap = ({ entities, helper }) => ({
+  nodes: [n.Pointer, n.InventoryItemSelected],
+
+  update(pointerNodes, itemNodes) {
+    pointerNodes.each((pointerNode) => {
+      if (pointerNode.context.justDown) {
+        itemNodes.each((itemNode) => {
+          this.createEntity(pointerNode.isoPosition, itemNode.entityMeta)
         })
       }
     })
+  },
+
+  createEntity(isoPosition, entityMeta) {
+    const startPos = helper.normToCenter(isoPosition.cartX, isoPosition.cartY)
+
+    entities.add(entityMeta.id, {
+      def: entityMeta.def,
+      x: startPos.x,
+      y: startPos.y,
+    })
+
+    entityMeta.count -= 1
   },
 })
 
