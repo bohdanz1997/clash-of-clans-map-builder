@@ -1,29 +1,6 @@
 import * as c from '../components'
 import * as n from '../nodes'
 
-export const ManageParentRelation = ({ engine }) => ({
-  nodes: [n.Parent],
-
-  init(nodes) {
-    const addChild = (node) => {
-      const { child, entity } = node
-      child.entity.add(c.Relation.Parent({
-        entity,
-        offset: child.offset,
-      }))
-      engine.addEntity(child.entity)
-    }
-
-    const removeChild = (node) => {
-      node.child.entity.dispose()
-    }
-
-    nodes.each(addChild)
-    nodes.onAdded(addChild)
-    nodes.onRemoved(removeChild)
-  },
-})
-
 export const BuildingChildMovement = () => ({
   nodes: [n.BuildingChildMovement],
 

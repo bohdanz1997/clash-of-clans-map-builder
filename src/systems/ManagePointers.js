@@ -31,10 +31,10 @@ export const ManagePointers = ({ engine, world, map, config, pointers }) => ({
 
   update({ context, position, isoPosition }) {
     // update cartesian position
-    const tempCartPos = {
-      x: position.x - world.x - this.cursorOffset.x,
-      y: position.y - world.y - this.cursorOffset.y,
-    }
+    const tempCartPos = new Point(
+      position.x - world.x - this.cursorOffset.x,
+      position.y - world.y - this.cursorOffset.y,
+    )
 
     const cartPos = MatrixHelper.invertIsoMatrix.apply(tempCartPos)
     isoPosition.cartX = cartPos.x

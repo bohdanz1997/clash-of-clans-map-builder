@@ -67,15 +67,22 @@ export const PutEntityToMap = ({ entities, helper }) => ({
   },
 })
 
-export const DisposeInventoryItem = () => ({
-  nodes: [n.InventoryItem],
+export const DisposeInventoryItemAndPreview = () => ({
+  nodes: [n.InventoryItem, n.Preview],
 
-  update(node) {
-    const { entityMeta, entity } = node
+  removePreviews(nodes) {
+    nodes.each((node) => {
+      node.entity.dispose()
+    })
+  },
 
-    if (entityMeta.count <= 0) {
-      entity.dispose()
-    }
+  update(itemNodes, previewNodes) {
+    itemNodes.each(({ entityMeta, entity }) => {
+      if (entityMeta.count <= 0) {
+        entity.dispose()
+        this.removePreviews(previewNodes)
+      }
+    })
   },
 })
 
