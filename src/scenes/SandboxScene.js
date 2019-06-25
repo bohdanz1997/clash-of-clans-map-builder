@@ -1,5 +1,7 @@
 import { asClass, asValue } from 'awilix'
-import { Scene, TileMap, DisplayFactory } from 'core'
+import { Scene } from 'core/scenes'
+import { TileMap } from 'core/tilemap'
+import { DisplayFactory } from 'core/display'
 
 import * as s from '../systems'
 import * as c from '../components'

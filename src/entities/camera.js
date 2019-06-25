@@ -1,19 +1,17 @@
-import {
-  createEntity,
-  createSmoothStep,
-  keys,
-  Keyboard,
-  Config,
-  TileMap,
-} from 'core'
-
+import { createSmoothStep } from 'core/animation'
+import { createEntity } from 'core/scent'
+import { keys, Keyboard } from 'core/input'
+import { Config } from 'core/boot'
+import { TileMap } from 'core/tilemap'
 import * as c from '../components'
 
 /**
- * @param {Object} args
- * @param {Keyboard} args.keyboard
- * @param {Config} args.config
- * @param {TileMap} args.map
+ * @param speed
+ * @param damp
+ * @param {Keyboard} keyboard
+ * @param world
+ * @param {Config} config
+ * @param {TileMap} map
  */
 export const Camera = ({
   data: { speed, damp },

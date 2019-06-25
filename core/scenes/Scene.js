@@ -1,15 +1,6 @@
 /* eslint-disable class-methods-use-this */
-import {
-  Game,
-  Cache,
-  Engine,
-  Loader,
-  Config,
-  Stage,
-  Renderer,
-  SystemManager,
-  EntityManager,
-} from 'core'
+import { Game, Cache, Config } from 'core/boot'
+import { Engine, SystemManager, EntityManager } from 'core/scent'
 import { AwilixContainer } from 'awilix'
 
 import { isString } from '../util'
@@ -26,7 +17,7 @@ export default class Scene {
   /** @type {Config} */
   config = null
 
-  /** @type {Engine} */
+  /** @type {Engine|null} */
   engine = null
 
   /** @type {PIXI.Renderer} */

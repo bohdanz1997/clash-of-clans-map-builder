@@ -1,5 +1,6 @@
 import { asClass, asFunction, asValue } from 'awilix'
-import { Scene, TileMapParser } from 'core'
+import { Scene } from 'core/scenes'
+import { TileMapParser } from 'core/tilemap'
 import { Align, ContainerBuilder, Helper, EntityDataMapper, Logger, Log } from '../services'
 import { priorities } from '../constants'
 

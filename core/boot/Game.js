@@ -27,7 +27,7 @@ export class Game {
 
     this.ticker = new Ticker()
 
-    /** @type {Engine} */
+    /** @type {Engine|null} */
     this.engine = new Engine()
 
     this.textures = new TextureManager()

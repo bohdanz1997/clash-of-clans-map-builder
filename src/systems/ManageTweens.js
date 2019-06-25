@@ -1,16 +1,13 @@
-import { Ease, EasingFormulas, Tween } from 'core'
-import * as c from 'app/components'
-import * as n from 'app/nodes'
-import { randomInt } from 'core/util'
-
-const easeMap = Object.values(Ease)
+import { EasingFormulas, Tween } from 'core/tweens'
+import * as c from '../components'
+import * as n from '../nodes'
 
 export const ManageTweens = () => ({
   nodes: [n.Tween],
 
   update(node) {
     /** @type {Tween} */
-    const tween = node.tween.tween
+    const { tween } = node.tween
 
     // If the elapsed frames are less than the total frames,
     // use the tweening formulas to move the sprite

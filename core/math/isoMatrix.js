@@ -1,5 +1,5 @@
 import { Matrix } from 'pixi.js'
-import { toRad } from './utils'
+import { toRad } from '../util'
 
 /**
  * @return {PIXI.Matrix}

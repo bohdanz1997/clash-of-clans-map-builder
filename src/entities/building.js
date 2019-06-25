@@ -1,4 +1,5 @@
-import { createEntity, DisplayFactory } from 'core'
+import { createEntity } from 'core/scent'
+import { DisplayFactory } from 'core/display'
 import * as c from '../components'
 import { Overlay } from './overlay'
 

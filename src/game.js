@@ -1,4 +1,5 @@
-import { Game, Stats } from 'core'
+import { Game } from 'core/boot'
+import { Stats } from 'core/stats'
 
 import { asValue } from 'awilix'
 import { GameScene } from './scenes'
