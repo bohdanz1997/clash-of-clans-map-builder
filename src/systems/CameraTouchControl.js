@@ -1,43 +1,37 @@
 import { Point } from 'pixi.js'
 import * as n from '../nodes'
 
-const pointIn = range => (point) => {
-  let x = Math.min(point.x, range)
-  x = Math.max(x, -range)
-
-  let y = Math.min(point.y, range)
-  y = Math.max(y, -range)
-
-  return Point.of(x, y)
-}
-
 export const CameraTouchControl = () => ({
-  nodes: [n.CameraControl, n.Pointer],
+  nodes: [n.CameraControl, n.PointerIdle],
 
-  init() {
-    const maxScrollSpeed = 30
+  limitScrollSpeed(point, maxValue) {
+    const x = Math.min(point.x, maxValue)
+    const y = Math.min(point.y, maxValue)
 
-    this.origDragPoint = null
-    this.pointInRange = pointIn(maxScrollSpeed)
+    point.x = Math.max(x, -maxValue)
+    point.y = Math.max(y, -maxValue)
   },
 
-  update(nCamera, nPointer) {
-    const {
-      motion,
-    } = nCamera.head
-
-    const pointer = nPointer.head
-
-    if (pointer.context.isDown /*&& dragSource.target === null*/) {
-      if (this.origDragPoint) {
-        const diff = Point.sub(this.origDragPoint, pointer.position)
-        const corrected = this.pointInRange(diff)
-        motion.vel.copy(corrected)
-      }
-
-      this.origDragPoint = Point.of(pointer.position.x, pointer.position.y)
-    } else {
-      this.origDragPoint = null
+  update(cameraNodes, pointerNodes) {
+    if (!cameraNodes.head) {
+      return
     }
+    const { motion, camera } = cameraNodes.head
+
+    pointerNodes.each((pointer) => {
+      const { context, position } = pointer
+      if (context.isDown) {
+        if (camera.origin) {
+          const newVel = new Point(camera.origin.x - position.x, camera.origin.y - position.y)
+          this.limitScrollSpeed(newVel, motion.maxVel)
+
+          motion.vel.x = newVel.x
+          motion.vel.y = newVel.y
+        }
+        camera.origin = new Point(position.x, position.y)
+      } else {
+        camera.origin = null
+      }
+    })
   },
 })

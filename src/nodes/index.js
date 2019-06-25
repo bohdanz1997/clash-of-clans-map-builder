@@ -29,6 +29,7 @@ export const InventoryItemSelected = [c.InventoryItem, c.Selected, c.EntityMeta]
 
 // pointer
 export const Pointer = [c.PointerContext, c.Position, c.IsoPosition]
+export const PointerIdle = [c.PointerContext, c.Idle, c.Position]
 export const PointerHovered = [c.PointerContext, c.Hovered]
 
 // interaction

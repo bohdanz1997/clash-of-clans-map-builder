@@ -72,7 +72,7 @@ export class GameScene extends Scene {
       .add(s.PointerChildMovement, priorities.MOVEMENT)
       .add(s.ManagePointers, priorities.MOVEMENT)
       .add(s.CameraControl, priorities.MOVEMENT)
-    // .add(s.CameraTouchControl, priorities.MOVEMENT)
+      .add(s.CameraTouchControl, priorities.MOVEMENT)
 
       .add(s.ManageTweens)
 

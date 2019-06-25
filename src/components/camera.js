@@ -3,6 +3,7 @@ import { createCamera } from 'core/camera'
 
 class CameraRaw {
   camera
+  origin = null
 
   constructor({ world, worldWidth, worldHeight, width, height }) {
     this.camera = createCamera({

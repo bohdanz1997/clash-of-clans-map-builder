@@ -20,11 +20,7 @@ export const Camera = ({
   config,
   map,
 }) => {
-  const [
-    keyZoomPlus,
-    keyZoomMinus,
-  ] = keyboard.addKeys(keys.ZERO, keys.NINE)
-
+  const [plusZoom, minusZoom] = keyboard.addKeys(keys.ZERO, keys.NINE)
   return createEntity(
     c.Camera({
       world,
@@ -40,6 +36,7 @@ export const Camera = ({
     c.Motion({
       dampX: damp,
       dampY: damp,
+      maxVel: 30,
     }),
     c.MotionControl({
       dx: speed,
@@ -47,8 +44,8 @@ export const Camera = ({
       ...keyboard.makeWASDKeys(),
     }),
     c.ZoomControl({
-      plus: keyZoomPlus,
-      minus: keyZoomMinus,
+      plus: plusZoom,
+      minus: minusZoom,
       smoothZoom: createSmoothStep({
         damping: damp,
         step: 0.002,
