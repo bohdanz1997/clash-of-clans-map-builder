@@ -5,6 +5,7 @@ export const priorities = {
   UPDATE_COLLISION: 12,
   RESOLVE_COLLISIONS: 13,
   UPDATE: 15,
+  DISPOSING: 17,
   PRE_RENDER: 18,
   RENDER: 19,
   ISO_RENDER: 20,
