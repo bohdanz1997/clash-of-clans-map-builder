@@ -43,7 +43,8 @@ export const Background = ({
   return createEntity(
     c.Layer.Ground(),
     c.Position({
-      x: -config.hWidth - map.config.isoTileHeight,
+      // set x to center screen
+      x: -config.hWidth - map.config.hIsoTileHeight,
       y: 0,
     }),
     c.Display(sprite),
