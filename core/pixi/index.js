@@ -6,46 +6,17 @@ import './mixins/rectangle'
 
 const {
   display: {
+    /** @type {PIXI.display.Group} */
     Group,
+    /** @type {PIXI.display.Layer} */
     Layer,
+    /** @type {PIXI.display.Stage} */
     Stage,
   },
-  utils: {
-    TextureCache,
-    EventEmitter,
-  },
-  Application,
-  Rectangle,
-  Point,
-  Matrix,
-  Container,
-  Sprite,
-  Text,
-  Graphics,
-  Loader,
-  AnimatedSprite,
-  Renderer,
-  Ticker,
 } = PIXI
 
 export {
-  EventEmitter,
   Group,
   Layer,
   Stage,
-  Loader,
-  AnimatedSprite,
-  Application,
-  Rectangle,
-  Point,
-  Matrix,
-  Container,
-  Sprite,
-  Text,
-  Graphics,
-  Renderer,
-  Ticker,
 }
-
-// helpers
-export const getTextureFromCache = asset => TextureCache[asset]

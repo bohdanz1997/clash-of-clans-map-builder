@@ -1,4 +1,4 @@
-import { Point } from 'core/pixi'
+import { Point } from 'pixi.js'
 
 export class Helper {
   constructor({ map }) {

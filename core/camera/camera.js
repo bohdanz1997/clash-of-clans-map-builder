@@ -1,6 +1,6 @@
-import { Point } from 'core/pixi'
+import { Point } from 'pixi.js'
 
-export default class Camera {
+export class Camera {
   constructor({ stage, width, height, worldWidth, worldHeight }) {
     this.position = Point.EMPTY
 

@@ -1,6 +1,6 @@
 import { Keyboard, PointerManager } from 'core/input'
 import { createContainer, asValue, AwilixContainer, asClass } from 'awilix'
-import { EventEmitter, Loader, Ticker } from 'core/pixi'
+import { Loader, Ticker, utils } from 'pixi.js'
 import { SystemManager, EntityManager, Engine } from 'core/scent'
 import { DisplayFactory } from 'core/display'
 import { SceneManager, sceneCreator } from 'core/scenes'
@@ -14,7 +14,7 @@ export class Game {
   constructor(config, callbacks) {
     this.config = new Config({ ...config, callbacks })
 
-    this.events = new EventEmitter()
+    this.events = new utils.EventEmitter()
 
     this.keyboard = new Keyboard(this.config.inputKeyboardEventTarget)
 
@@ -22,6 +22,7 @@ export class Game {
 
     this.stage = createStage(this.config)
 
+    utils.skipHello()
     this.renderer = createRenderer(this.config)
 
     this.ticker = new Ticker()

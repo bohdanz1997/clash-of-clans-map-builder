@@ -1,5 +1,5 @@
 import { defComponent } from 'core/scent'
-import { Point } from 'core/pixi'
+import { Point } from 'pixi.js'
 
 class InteractData {
   constructor({ entity }) {

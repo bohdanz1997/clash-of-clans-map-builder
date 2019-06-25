@@ -1,7 +1,12 @@
-import { Container } from 'core/pixi'
+import { Container } from 'pixi.js'
 
-export const spriteUtils = {
-  group(name, sprites = []) {
+export class SpriteUtils {
+  /**
+   * @param {string} name
+   * @param {PIXI.Sprite[]} sprites
+   * @return {PIXI.Container}
+   */
+  static group(name, sprites = []) {
     const container = new Container()
     const spritesList = Array.isArray(sprites)
       ? sprites : [sprites]
@@ -12,5 +17,5 @@ export const spriteUtils = {
 
     container.name = name
     return container
-  },
+  }
 }

@@ -1,10 +1,6 @@
-import { Loader } from '../pixi'
-
 export class Cache {
-  /**
-   * @param {Loader} loader
-   */
   constructor(loader) {
+    /** @type {PIXI.Loader} */
     this.loader = loader
   }
 

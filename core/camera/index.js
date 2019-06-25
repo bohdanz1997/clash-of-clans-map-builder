@@ -1,1 +1,1 @@
-export * from './camera'
+export { createCamera, Camera } from './camera'

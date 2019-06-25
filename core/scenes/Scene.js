@@ -29,16 +29,16 @@ export default class Scene {
   /** @type {Engine} */
   engine = null
 
-  /** @type {Renderer} */
+  /** @type {PIXI.Renderer} */
   renderer = null
 
-  /** @type {Stage} */
+  /** @type {PIXI.display.Stage} */
   stage = null
 
   /** @type {Cache} */
   cache = null
 
-  /** @type {Loader} */
+  /** @type {PIXI.Loader} */
   loader = null
 
   /** @type {SystemManager} */

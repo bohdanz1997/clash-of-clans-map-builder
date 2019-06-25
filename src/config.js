@@ -1,6 +1,6 @@
 import { Group } from 'core/pixi'
-import { sortingStrategy } from 'core'
-import { spriteUtils } from 'core/display'
+import { sortingStrategy } from 'core/render-layers'
+import { SpriteUtils } from 'core/display'
 
 class DisplayGroups {
   GROUND = new Group(0, false)
@@ -15,7 +15,7 @@ export const display = {
   groups: new DisplayGroups(),
 
   containers: [
-    spriteUtils.group('world'),
-    spriteUtils.group('hud'),
+    SpriteUtils.group('world'),
+    SpriteUtils.group('hud'),
   ],
 }

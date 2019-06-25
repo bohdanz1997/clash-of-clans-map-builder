@@ -1,4 +1,4 @@
-import { Point } from 'core/pixi'
+import { Point } from 'pixi.js'
 import * as n from '../nodes'
 
 const pointIn = range => (point) => {

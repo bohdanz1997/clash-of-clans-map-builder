@@ -1,4 +1,4 @@
-import { Rectangle } from 'core/pixi'
+import { Rectangle } from 'pixi.js'
 import { createEntity } from 'core/scent'
 import * as c from '../components'
 

@@ -1,4 +1,4 @@
-import { Point, Rectangle } from 'core/pixi'
+import { Point, Rectangle } from 'pixi.js'
 
 export class Align {
   constructor(x, y, width, height) {

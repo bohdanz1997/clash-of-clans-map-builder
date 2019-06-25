@@ -1,5 +1,5 @@
 import { defComponent } from 'core/scent'
-import { Rectangle } from 'core/pixi'
+import { Rectangle } from 'pixi.js'
 
 class CollisionRaw {
   bounds = new Rectangle()

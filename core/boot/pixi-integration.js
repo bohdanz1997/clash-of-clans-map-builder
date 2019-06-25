@@ -1,8 +1,9 @@
-import { Renderer, Stage, Layer } from '../pixi'
+import { Renderer } from 'pixi.js'
+import { Stage, Layer } from 'core/pixi'
 
 /**
  * @param {Config} config
- * @return {Renderer}
+ * @return {PIXI.Renderer}
  */
 export const createRenderer = (config) => {
   const {
@@ -26,7 +27,7 @@ const wrapWithLayers = groups => groups.map(group => new Layer(group))
 
 /**
  * @param {Config} config
- * @return {Stage}
+ * @return {PIXI.display.Stage}
  */
 export const createStage = (config) => {
   const stage = new Stage()

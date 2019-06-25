@@ -1,7 +1,7 @@
 import { MatrixHelper } from 'core/math'
 import { createEntity } from 'core/scent'
 import { DisplayFactory } from 'core/display'
-import { Point, Container, Sprite } from 'core/pixi'
+import { Point, Container, Sprite } from 'pixi.js'
 import * as c from '../components'
 
 /**

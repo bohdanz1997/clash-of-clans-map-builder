@@ -1,5 +1,5 @@
 import { defComponent } from 'core/scent'
-import { Point } from 'core/pixi'
+import { Point } from 'pixi.js'
 
 export const Motion = defComponent(
   'motion', 'vel damp vx vy dampX dampY',

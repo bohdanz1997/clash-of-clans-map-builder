@@ -1,4 +1,4 @@
-import { Rectangle } from 'core/pixi'
+import { Rectangle } from 'pixi.js'
 import * as n from '../nodes'
 
 export const KeepInBounds = ({ map }) => ({

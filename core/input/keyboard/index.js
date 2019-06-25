@@ -1,4 +1,3 @@
-export { keys } from './keyCodes'
-export { Key } from './key'
-export { Keyboard } from './keyboard'
-export { makeArrowKeys, makeWASDKeys } from './utils'
+export { keys } from './keys'
+export { Key } from './Key'
+export { Keyboard } from './Keyboard'
