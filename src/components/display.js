@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
 class DisplayRaw {
   sprite
@@ -11,4 +11,4 @@ class DisplayRaw {
 }
 
 /** @type {DisplayRaw} */
-export const Display = defComponent('display', DisplayRaw)
+export const Display = component('display', DisplayRaw)

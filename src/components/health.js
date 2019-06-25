@@ -1,6 +1,6 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
-export const Health = defComponent(
+export const Health = component(
   'health', 'current max',
   ({ health }) => ({
     current: health,

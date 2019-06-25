@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 import { Point } from 'pixi.js'
 
 class MotionData {
@@ -8,4 +8,4 @@ class MotionData {
   }
 }
 
-export const Motion = defComponent('motion', MotionData)
+export const Motion = component('motion', MotionData)

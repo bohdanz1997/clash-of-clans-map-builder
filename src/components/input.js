@@ -1,3 +1,3 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
-export const Input = defComponent('input')
+export const Input = component('input')

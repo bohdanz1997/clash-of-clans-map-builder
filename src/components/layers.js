@@ -1,9 +1,9 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
 export const Layer = {
-  Ground: defComponent('groundLayer'),
-  BackGround: defComponent('backgroundLayer'),
-  Building: defComponent('buildingLayer'),
-  Drag: defComponent('dragLayer'),
-  Hud: defComponent('hudLayer'),
+  Ground: component('groundLayer'),
+  BackGround: component('backgroundLayer'),
+  Building: component('buildingLayer'),
+  Drag: component('dragLayer'),
+  Hud: component('hudLayer'),
 }

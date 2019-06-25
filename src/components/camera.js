@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 import { createCamera } from 'core/camera'
 
 class CameraRaw {
@@ -16,4 +16,4 @@ class CameraRaw {
 }
 
 /** @type {CameraRaw} */
-export const Camera = defComponent('camera', CameraRaw)
+export const Camera = component('camera', CameraRaw)

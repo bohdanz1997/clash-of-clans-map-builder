@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
 class MotionControlData {
   constructor({ dx = 0, dy = 0, up, down, left, right }) {
@@ -11,4 +11,4 @@ class MotionControlData {
   }
 }
 
-export const MotionControl = defComponent('motionControl', MotionControlData)
+export const MotionControl = component('motionControl', MotionControlData)

@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 import { Point } from 'pixi.js'
 
 class PositionRaw {
@@ -30,7 +30,7 @@ class IsoPositionRaw {
 }
 
 /** @type {PositionRaw} */
-export const Position = defComponent('position', PositionRaw)
+export const Position = component('position', PositionRaw)
 
 /** @type {IsoPositionRaw} */
-export const IsoPosition = defComponent('isoPosition', IsoPositionRaw)
+export const IsoPosition = component('isoPosition', IsoPositionRaw)

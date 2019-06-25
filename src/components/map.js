@@ -1,7 +1,7 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 import { TileMap } from 'core/tilemap'
 
-export const Map = defComponent(
+export const Map = component(
   'map', 'gameField',
   ({ width, height, layers }) => ({
     gameField: new TileMap(width, height, layers),

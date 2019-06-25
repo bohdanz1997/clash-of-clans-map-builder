@@ -1,6 +1,6 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
-export const Tween = defComponent(
+export const Tween = component(
   'tween', 'tween',
   tween => ({ tween })
 )

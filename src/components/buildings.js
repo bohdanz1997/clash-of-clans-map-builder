@@ -1,7 +1,7 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
-export const Building = defComponent('building')
-export const DefenceBuilding = defComponent('defenceBuilding')
-export const ServiceBuilding = defComponent('serviceBuilding')
-export const ResourceBuilding = defComponent('resourceBuilding')
-export const Wall = defComponent('wall')
+export const Building = component('building')
+export const DefenceBuilding = component('defenceBuilding')
+export const ServiceBuilding = component('serviceBuilding')
+export const ResourceBuilding = component('resourceBuilding')
+export const Wall = component('wall')

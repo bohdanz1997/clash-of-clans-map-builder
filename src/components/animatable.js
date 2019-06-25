@@ -1,3 +1,3 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
-export const Animatable = defComponent('animatable')
+export const Animatable = component('animatable')

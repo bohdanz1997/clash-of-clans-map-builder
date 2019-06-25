@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 import { Point } from 'pixi.js'
 
 class InteractData {
@@ -8,8 +8,8 @@ class InteractData {
 }
 
 export const Interact = {
-  Initiator: defComponent('initiator', InteractData),
-  Target: defComponent('target', InteractData),
+  Initiator: component('initiator', InteractData),
+  Target: component('target', InteractData),
 }
 
 class RelationData {
@@ -20,18 +20,18 @@ class RelationData {
 }
 
 export const Relation = {
-  Parent: defComponent('parent', RelationData),
-  Child: defComponent('child', RelationData),
+  Parent: component('parent', RelationData),
+  Child: component('child', RelationData),
 }
 
 // states
-export const Idle = defComponent('idle')
-export const Hovered = defComponent('hovered')
-export const Clicked = defComponent('clicked')
-export const Dragging = defComponent('dragging')
-export const Selected = defComponent('selected')
-export const Dropped = defComponent('dropped')
+export const Idle = component('idle')
+export const Hovered = component('hovered')
+export const Clicked = component('clicked')
+export const Dragging = component('dragging')
+export const Selected = component('selected')
+export const Dropped = component('dropped')
 
 // features
-export const Interactive = defComponent('interactive')
-export const Selectable = defComponent('selectable')
+export const Interactive = component('interactive')
+export const Selectable = component('selectable')

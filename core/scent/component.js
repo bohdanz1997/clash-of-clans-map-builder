@@ -7,7 +7,7 @@ class DefaultComponentFactory {
   constructor(param) {}
 }
 
-export const defComponent = (name, ComponentFactory = DefaultComponentFactory, dataResolver = identity) => {
+export const component = (name, ComponentFactory = DefaultComponentFactory, dataResolver = identity) => {
   if (typeof ComponentFactory === 'string') {
     return new Component(name, ComponentFactory, dataResolver)
   }

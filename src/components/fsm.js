@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 import { EntityStateMachine } from 'core/fsm'
 
 class FSMRaw {
@@ -10,4 +10,4 @@ class FSMRaw {
   }
 }
 
-export const FSM = defComponent('fsm', FSMRaw)
+export const FSM = component('fsm', FSMRaw)

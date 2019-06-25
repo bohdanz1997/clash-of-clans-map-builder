@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
 class InventoryRaw {
   items = []
@@ -6,8 +6,8 @@ class InventoryRaw {
 }
 
 /** @type {InventoryRaw} */
-export const Inventory = defComponent('inventory', InventoryRaw)
+export const Inventory = component('inventory', InventoryRaw)
 
-export const InventoryItem = defComponent('inventoryItem')
+export const InventoryItem = component('inventoryItem')
 
-export const InventoryCounter = defComponent('inventoryCounter')
+export const InventoryCounter = component('inventoryCounter')

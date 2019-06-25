@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
 class EntityMetaData {
   constructor({ id, def = null, level = 1, count = 1 }) {
@@ -9,4 +9,4 @@ class EntityMetaData {
   }
 }
 
-export const EntityMeta = defComponent('entityMeta', EntityMetaData)
+export const EntityMeta = component('entityMeta', EntityMetaData)

@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 import { Rectangle } from 'pixi.js'
 
 class CollisionRaw {
@@ -16,4 +16,4 @@ class CollisionRaw {
 }
 
 /** @type {CollisionRaw} */
-export const Collision = defComponent('collision', CollisionRaw)
+export const Collision = component('collision', CollisionRaw)

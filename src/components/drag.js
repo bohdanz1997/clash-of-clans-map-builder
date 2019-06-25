@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
-export const Draggable = defComponent('draggable')
-export const DragContext = defComponent('dragContext', 'startPos offset')
+export const Draggable = component('draggable')
+export const DragContext = component('dragContext', 'startPos offset')

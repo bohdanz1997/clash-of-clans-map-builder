@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
 class DamageRaw {
   damage = 0
@@ -9,4 +9,4 @@ class DamageRaw {
 }
 
 /** @type {DamageRaw} */
-export const Damage = defComponent('damage', DamageRaw)
+export const Damage = component('damage', DamageRaw)

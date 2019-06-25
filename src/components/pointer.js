@@ -1,4 +1,4 @@
-import { defComponent } from 'core/scent'
+import { component } from 'core/scent'
 
 class PointerContextData {
   processor = null
@@ -12,7 +12,7 @@ class PointerContextData {
   elapsedTime = 0
 }
 
-export const PointerContext = defComponent('context', PointerContextData)
+export const PointerContext = component('context', PointerContextData)
 
 Object.defineProperties(PointerContext.prototype, {
   justDown: {
