@@ -1,8 +1,14 @@
 import { defComponent } from 'core/scent'
 
-export const MotionControl = defComponent(
-  'motionControl', 'dx dy up down left right',
-  ({ dx = 0, dy = 0, ...rest } = {}) => ({
-    dx, dy, ...rest,
-  })
-)
+class MotionControlData {
+  constructor({ dx = 0, dy = 0, up, down, left, right }) {
+    this.dx = dx
+    this.dy = dy
+    this.up = up
+    this.down = down
+    this.left = left
+    this.right = right
+  }
+}
+
+export const MotionControl = defComponent('motionControl', MotionControlData)
