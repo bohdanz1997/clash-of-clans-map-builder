@@ -14,5 +14,5 @@ export const Player = ({
   c.MotionControl({ dx: speed, dy: speed }),
   c.Damage({ damage }),
   c.Health({ health }),
-  c.Display(DisplayFactory.sprite({ asset: expolorer })),
+  c.Display(DisplayFactory.sprite(expolorer)),
 )

@@ -22,13 +22,12 @@ export const Building = ({
     c.Relation.Child(overlay),
     c.Position({ x, y, offsetX, offsetY }),
     c.IsoPosition(),
-    c.Motion(),
     c.Collision({
       width: map.config.tileWidth,
       height: map.config.tileHeight,
       radius,
     }),
-    c.Display(DisplayFactory.sprite({ asset: def })),
+    c.Display(DisplayFactory.sprite(def)),
     ({ entity }) => c.FSM({ entity }),
   )
 }

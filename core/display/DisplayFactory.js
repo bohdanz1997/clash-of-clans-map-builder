@@ -17,7 +17,7 @@ export class DisplayFactory {
     return sprite
   }
 
-  static sprite({ asset, x = 0, y = 0, width = undefined, height = undefined }) {
+  static sprite(asset, { x = 0, y = 0, width = undefined, height = undefined } = {}) {
     const texture = getTextureFromCache(asset)
 
     const sprite = new Sprite(texture)

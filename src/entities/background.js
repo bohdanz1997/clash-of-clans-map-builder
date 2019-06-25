@@ -27,8 +27,7 @@ export const Background = ({
   const sprites = objects.map((object) => {
     const isoPos = MatrixHelper.isoMatrix.apply(new Point(object.x, object.y))
 
-    return DisplayFactory.sprite({
-      asset,
+    return DisplayFactory.sprite(asset, {
       x: isoPos.x,
       y: isoPos.y,
       width: definition.isoWidth,

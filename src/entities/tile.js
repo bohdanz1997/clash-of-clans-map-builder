@@ -8,8 +8,7 @@ export const Tile = ({
   c.GroundLayer(),
   c.Position({ x, y }),
   c.IsoPosition(),
-  c.Display(DisplayFactory.sprite({
-    asset: 'ground',
+  c.Display(DisplayFactory.sprite('ground', {
     width: isoWidth,
     height: isoHeight,
   })),

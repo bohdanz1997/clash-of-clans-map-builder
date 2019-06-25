@@ -39,8 +39,7 @@ export const InventoryItem = ({
     c.Selectable(),
     c.Position(pos),
     c.Collision(bounds),
-    c.Display(DisplayFactory.sprite({
-      asset: entityMeta.def,
+    c.Display(DisplayFactory.sprite(entityMeta.def, {
       width: bounds.width,
       height: bounds.height,
     })),
