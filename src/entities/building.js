@@ -16,6 +16,7 @@ export const Building = ({
     c.Interactive(),
     c.Relation.Child({ entity: overlay }),
     c.Position({ x, y, offsetX, offsetY }),
+    c.Motion(), // to update col, row
     c.IsoPosition(),
     c.Collision({
       width: map.config.tileWidth,
