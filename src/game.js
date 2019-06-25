@@ -1,7 +1,6 @@
-import { Game } from 'core/boot'
-import { Stats } from 'core/stats'
-
+import { Game, Stats } from 'core/boot'
 import { asValue } from 'awilix'
+
 import { GameScene } from './scenes'
 import { display } from './config'
 import { priorities } from './constants'
