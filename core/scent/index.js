@@ -1,6 +1,3 @@
-import { EntityBuilder, EntityManager } from './EntityManager'
-import SystemManager from './SystemManager'
-
 /**
  * @typedef Component
  */
@@ -13,37 +10,34 @@ import SystemManager from './SystemManager'
 /**
  * @typedef Entity
  * @property {number} size
- * @property {Function} get
- * @property {Function} has
+ * @property {function(ComponentType|Component)} add
+ * @property {function(ComponentType|Component)} remove
+ * @property {function(ComponentType): Component} get
+ * @property {function(): boolean} has
  */
 
 /**
  * @typedef Node
  * @property {number} size
- * @property {Function} each
+ * @property {function} each
  */
 
 /**
  * @typedef Engine
- * @property {Function} addEntity
- * @property {Function} addSystem
- * @property {Function} addSystems
- * @property {Function} destroyEntity
- * @property {Function} start
- * @property {Function} onUpdate
- * @property {Function} update
- * @property {Function} getNodeType
+ * @property {function(Entity)} addEntity
+ * @property {function} addSystem
+ * @property {function} addSystems
+ * @property {function} destroyEntity
+ * @property {function} start
+ * @property {function} onUpdate
+ * @property {function} update
+ * @property {function} getNodeType
  */
 
 export { Engine } from 'scent2'
-
-export * from './entity'
-export * from './system'
-export * from './component'
-export * from './node'
-
-export {
-  EntityManager,
-  EntityBuilder,
-  SystemManager,
-}
+export { EntityBuilder, EntityManager } from './EntityManager'
+export { SystemManager } from './SystemManager'
+export { createEntity } from './entity'
+export { createSystem } from './system'
+export { defComponent } from './component'
+export { nodeEachTwice } from './node'

@@ -1,7 +1,7 @@
 import { Game } from '../boot'
-import { createSystem } from '.'
+import { createSystem } from './system'
 
-export default class SystemManager {
+export class SystemManager {
   /**
    * @param {Game} game
    */
