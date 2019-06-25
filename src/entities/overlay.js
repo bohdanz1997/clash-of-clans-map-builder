@@ -5,7 +5,7 @@ export const Overlay = ({
   data: { x, y, width, height },
   displayFactory,
 }) => createEntity(
-  c.BackGroundLayer(),
+  c.Layer.BackGround(),
   c.Position({ x, y }),
   c.IsoPosition(),
   c.Display(displayFactory.isoRect({ width, height, color: 0x8bc34a })),

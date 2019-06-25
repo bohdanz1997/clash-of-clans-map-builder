@@ -12,7 +12,7 @@ export const DropState = () => ({
 
     display.group = display.oldGroup
 
-    entity.remove(c.DragLayer)
-    entity.add(c.BuildingLayer)
+    entity.remove(c.Layer.Drag)
+    entity.add(c.Layer.Building)
   },
 })

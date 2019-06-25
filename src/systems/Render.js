@@ -6,11 +6,11 @@ export const Render = ({ world, hud }) => ({
 
   init(nodes) {
     const layersToContainers = [
-      [c.GroundLayer, world],
-      [c.BackGroundLayer, world],
-      [c.BuildingLayer, world],
-      [c.DragLayer, world],
-      [c.HudLayer, hud],
+      [c.Layer.Ground, world],
+      [c.Layer.BackGround, world],
+      [c.Layer.Building, world],
+      [c.Layer.Drag, world],
+      [c.Layer.Hud, hud],
     ]
 
     const findContainerByLayerComponent = (node) => {

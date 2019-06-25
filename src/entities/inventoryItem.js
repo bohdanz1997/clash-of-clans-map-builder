@@ -7,7 +7,7 @@ const Counter = ({
   data: { x, y },
 }) => createEntity(
   c.InventoryCounter(),
-  c.HudLayer(),
+  c.Layer.Hud(),
   c.Position({ x, y }),
   c.Display(DisplayFactory.text({
     fontSize: 14,
@@ -33,8 +33,8 @@ export const InventoryItem = ({
   return createEntity(
     c.InventoryItem(),
     c.EntityMeta(entityMeta),
-    c.HudLayer(),
-    c.Relation.Child(couter),
+    c.Layer.Hud(),
+    c.Relation.Child({ entity: couter }),
     c.Interactive(),
     c.Selectable(),
     c.Position(pos),

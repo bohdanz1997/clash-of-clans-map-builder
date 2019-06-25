@@ -5,7 +5,7 @@ import * as c from '../components'
 export const Hud = ({
   data: { id, x, y },
 }) => createEntity(
-  c.HudLayer(),
+  c.Layer.Hud(),
   c.Position({ x, y }),
   c.Display(DisplayFactory.text({
     fontSize: 12,

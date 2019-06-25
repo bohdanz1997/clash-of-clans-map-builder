@@ -41,7 +41,7 @@ export const Background = ({
   const sprite = new Sprite(texture)
 
   return createEntity(
-    c.GroundLayer(),
+    c.Layer.Ground(),
     c.Position({
       x: -config.hWidth - map.config.isoTileHeight,
       y: 0,

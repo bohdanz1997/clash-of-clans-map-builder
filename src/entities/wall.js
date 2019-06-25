@@ -6,7 +6,7 @@ export const Wall = ({
   data: { id, x, y, radius },
   map,
 }) => createEntity(
-  c.BuildingLayer(),
+  c.Layer.Building(),
   c.Interactive(),
   c.Draggable(),
   c.Position({ x, y }),

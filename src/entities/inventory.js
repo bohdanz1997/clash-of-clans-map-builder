@@ -7,7 +7,7 @@ export const Inventory = ({ align, displayFactory }) => {
   const pos = align.bottomLeft({ x: 0, y: bounds.height })
 
   return createEntity(
-    c.HudLayer(),
+    c.Layer.Hud(),
     c.Inventory(),
     c.Position(pos),
     c.Display(displayFactory.rect({

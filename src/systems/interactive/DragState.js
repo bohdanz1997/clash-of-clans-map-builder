@@ -20,8 +20,8 @@ export const DragState = ({ engine, map, config, log }) => ({
       display.oldGroup = display.group
       display.group = config.displayGroups.DRAG
 
-      entity.remove(c.BuildingLayer)
-      entity.add(c.DragLayer)
+      entity.remove(c.Layer.Building)
+      entity.add(c.Layer.Drag)
     })
 
     this.cellSize = map.config.cellWidth
