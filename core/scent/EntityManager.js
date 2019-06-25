@@ -37,8 +37,8 @@ export class EntityManager {
     return this.engine.addEntity(entity)
   }
 
-  add(id, data = {}, dataForInject = {}) {
-    const entity = this.create(id, data, dataForInject)
+  add(idOrFactory, data = {}, dataForInject = {}) {
+    const entity = this.create(idOrFactory, data, dataForInject)
     return this.engine.addEntity(entity)
   }
 

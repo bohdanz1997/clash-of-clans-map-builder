@@ -17,6 +17,11 @@ export default class SystemManager {
     this.engine.addSystem(initializer)
   }
 
+  /**
+   * @param Factory
+   * @param priority
+   * @return {SystemManager}
+   */
   add(Factory, priority = this.defaultPriority) {
     const system = this.build(Factory)
     this.instances.push({
