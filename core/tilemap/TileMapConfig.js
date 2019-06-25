@@ -54,6 +54,14 @@ export default class TileMapConfig {
     return this.tileWidth / this.cellsInTile
   }
 
+  get hTileWidth() {
+    return this.tileWidth / 2
+  }
+
+  get hTileHeight() {
+    return this.tileHeight / 2
+  }
+
   // map width in cells
   get widthInCells() {
     return this.cellsInTile * this.width
