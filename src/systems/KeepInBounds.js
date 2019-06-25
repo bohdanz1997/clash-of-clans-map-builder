@@ -2,7 +2,7 @@ import { Rectangle } from 'core/pixi'
 import * as n from '../nodes'
 
 export const KeepInBounds = ({ map }) => ({
-  nodes: [n.Collision],
+  nodes: [n.InBounds],
 
   init() {
     this.worldBounds = new Rectangle(0, 0, map.config.widthInPixels, map.config.heightInPixels)

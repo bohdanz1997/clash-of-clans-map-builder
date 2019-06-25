@@ -59,6 +59,7 @@ export const MapLayers = {
 // other
 export const CameraControl = [c.Camera, c.Position, c.Motion, c.MotionControl, c.ZoomControl]
 export const Collision = [c.Position, c.Collision]
+export const InBounds = [c.Layer.Building, c.Position, c.Collision]
 export const Map = [c.Map]
 export const Building = [c.Building, c.Position, c.Identity]
 export const Input = [c.Input]
