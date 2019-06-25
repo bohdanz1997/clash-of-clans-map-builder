@@ -31,6 +31,7 @@ export const Debug = ({ entities }) => ({
         y: ${Math.floor(targetPos.y)}
         col: ${targetPos.col}
         row: ${targetPos.row}
+        state: ${target.get(c.FSM).fsm.currentState.stringName}
       `
     }
 
@@ -41,7 +42,7 @@ export const Debug = ({ entities }) => ({
       cartY: ${Math.floor(isoPosition.cartY)}
       column: ${isoPosition.col}
       row: ${isoPosition.row}
-      hover: ${entity.has(c.Hovered)}
+      state: ${entity.get(c.FSM).fsm.currentState.stringName}
       selected: ${selectedInfo}
       target: ${targetInfo}
     `

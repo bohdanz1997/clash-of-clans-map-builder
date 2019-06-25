@@ -4,6 +4,13 @@ export class EntityState {
   /** @type {Map<ComponentType, ComponentProvider>} */
   providers = new Map()
 
+  /** @type {Symbol} */
+  name
+
+  constructor(name) {
+    this.name = name
+  }
+
   add(type) {
     return new StateComponentMapping(this, type)
   }
@@ -18,5 +25,9 @@ export class EntityState {
 
   set(type, provider) {
     this.providers.set(type, provider)
+  }
+
+  get stringName() {
+    return this.name.description
   }
 }
