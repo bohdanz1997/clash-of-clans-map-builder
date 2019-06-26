@@ -65,48 +65,29 @@ export class GameScene extends Scene {
     this.systems
       .add(s.UpdateDisplayGroup, priorities.PRE_INIT)
       .add(s.Input, priorities.PRE_UPDATE)
-
       .add(s.Movement, priorities.MOVEMENT)
       .add(s.IsometricMovement, priorities.MOVEMENT)
-      .add(s.ChildOverlayMovement, priorities.MOVEMENT)
-      .add(s.ChildPreviewMovement, priorities.MOVEMENT)
-      .add(s.ChildDebugMovement, priorities.MOVEMENT)
+      .add(s.ChildMovement, priorities.MOVEMENT)
       .add(s.ManagePointers, priorities.MOVEMENT)
       .add(s.CameraControl, priorities.MOVEMENT)
       .add(s.CameraTouchControl, priorities.MOVEMENT)
-
       .add(s.ManageTweens)
-
       .add(s.UpdateCollision, priorities.UPDATE_COLLISION)
       .add(s.KeepInBounds, priorities.RESOLVE_COLLISIONS)
       .add(s.PutEntityToMap)
       .add(s.SelectInventoryItem)
       .add(s.UpdateCursorStyle)
-
-      .add(s.InteractiveInitializer)
-      .add(s.IdleState)
-      .add(s.HoverState)
-      .add(s.ClickState)
-      .add(s.DragState)
-      // .add(s.SelectState)
-      .add(s.DropState)
-      .add(s.DropStateListener)
-
+      .add(s.Interactive)
       .add(s.DisposeInventoryItemAndPreview, priorities.DISPOSING)
       .add(s.ParentRelationListener, priorities.DISPOSING)
       .add(s.ChildRelationListener, priorities.DISPOSING)
-
       .add(s.XXXLayer)
       .add(s.InventoryItemCounter)
       .add(s.Render, priorities.RENDER)
       .add(s.IsometricRender, priorities.ISO_RENDER)
 
     if (this.config.debug) {
-      this.systems
-        // .add(s.Debug)
-        .add(s.AddDebugToEntity)
-        .add(s.DebugBuilding)
-      // .add(s.DebugMapLayers)
+      this.systems.add(s.Debug)
     }
 
     this.systems.init()

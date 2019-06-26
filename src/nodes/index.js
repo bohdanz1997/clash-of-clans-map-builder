@@ -70,6 +70,8 @@ export const MapLayers = {
   Drag: [c.Layer.Drag, c.Identity, c.Position, c.Collision],
 }
 
+export const Debug = [c.Layer.Debug, c.Display]
+
 // other
 export const CameraControl = [c.Camera, c.Position, c.Motion, c.MotionControl, c.ZoomControl]
 export const Camera = [c.Camera, c.Position]
@@ -78,7 +80,6 @@ export const InBounds = [c.Layer.Building, c.Position, c.Collision]
 export const Map = [c.Map]
 export const Building = [c.Building, c.Position, c.Identity]
 export const Input = [c.Input]
-export const Debug = [c.Layer.Debug, c.Display]
 export const Animation = [c.Animatable, c.Display]
 export const Tween = [c.Tween]
 export const Preview = [c.Preview]

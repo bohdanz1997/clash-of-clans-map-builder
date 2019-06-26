@@ -1,7 +1,7 @@
 import * as c from '../components'
 import * as n from '../nodes'
 
-export const ChildOverlayMovement = () => ({
+const ChildOverlayMovement = () => ({
   nodes: [n.ParentWithOverlay],
 
   update(node) {
@@ -13,7 +13,7 @@ export const ChildOverlayMovement = () => ({
   },
 })
 
-export const ChildPreviewMovement = ({ map }) => ({
+const ChildPreviewMovement = ({ map }) => ({
   nodes: [n.ParentWithPreview],
 
   update(node) {
@@ -25,7 +25,7 @@ export const ChildPreviewMovement = ({ map }) => ({
   },
 })
 
-export const ChildDebugMovement = () => ({
+const ChildDebugMovement = () => ({
   nodes: [n.ParentWithDebug, n.Camera],
 
   update(nodes, cameraNode) {
@@ -40,3 +40,5 @@ export const ChildDebugMovement = () => ({
     })
   },
 })
+
+export const ChildMovement = [ChildOverlayMovement, ChildPreviewMovement, ChildDebugMovement]

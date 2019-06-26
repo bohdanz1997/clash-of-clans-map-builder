@@ -54,17 +54,12 @@ export class SandboxScene extends Scene {
 
   registerSystems() {
     this.systems
-      .add(s.IdleState)
-      .add(s.HoverState)
-      .add(s.DragState)
-      .add(s.DropState)
-
+      .add(s.Interactive)
       .add(s.ManagePointers)
       .add(s.Debug)
       .add(s.Movement)
       .add(s.Animation)
       .add(s.Render)
-
       .init()
   }
 }

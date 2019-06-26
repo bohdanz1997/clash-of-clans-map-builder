@@ -3,7 +3,7 @@ import * as c from '../components'
 import * as n from '../nodes'
 import * as e from '../entities'
 
-export const Debug = () => ({
+const DebugCommon = () => ({
   nodes: [n.Pointer, n.Debug, n.InventoryItemSelected, n.Camera],
 
   update(pointerNode, debugNode, selectedNode, cameraNode) {
@@ -53,28 +53,30 @@ export const Debug = () => ({
   },
 })
 
-export const AddDebugToEntity = ({ entities }) => ({
+const AddDebugToEntity = ({ entities }) => ({
   nodes: [n.Building],
 
-  init(buildingNodes) {
-    const addDebug = (node) => {
+  init(buildings) {
+    const addDebug = params => (node) => {
       const debug = entities.add(e.Debug)
       node.entity.add(c.Child.Debug({
         entity: debug,
-        offset: new Point(-110, 0),
+        offset: params.offset,
       }))
     }
 
-    const subscribe = (nodes) => {
-      nodes.each(addDebug)
-      nodes.onAdded(addDebug)
+    const subscribe = (nodes, params) => {
+      nodes.each(addDebug(params))
+      nodes.onAdded(addDebug(params))
     }
 
-    subscribe(buildingNodes)
+    subscribe(buildings, {
+      offset: new Point(-110, 0),
+    })
   },
 })
 
-export const DebugBuilding = () => ({
+const DebugBuilding = () => ({
   nodes: [n.BuildingWithDebug],
 
   update(node) {
@@ -89,3 +91,5 @@ map: [${position.col}, ${position.row}]
     `
   },
 })
+
+export const Debug = [DebugCommon, AddDebugToEntity, DebugBuilding]
