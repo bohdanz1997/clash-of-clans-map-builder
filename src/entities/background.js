@@ -10,7 +10,7 @@ import * as c from '../components'
  * @param {TileMap} map
  * @param {Config} config
  * @param {EntityManager} entities
- * @param {Renderer} renderer
+ * @param {PIXI.Renderer} renderer
  * @param {EntityDataMapper} entityDataMapper
  */
 export const Background = ({
@@ -43,8 +43,8 @@ export const Background = ({
   return createEntity(
     c.Layer.Ground(),
     c.Position({
-      // set x to center screen
-      x: -config.hWidth - map.config.hIsoTileHeight,
+      // set x to top left tilema[ corner
+      x: -(map.config.width - 1) * map.config.tileWidth,
       y: 0,
     }),
     c.Display(sprite),
