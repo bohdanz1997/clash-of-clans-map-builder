@@ -1,10 +1,17 @@
 import { component } from 'core/scent'
+import { display } from '../config'
+
+const { groups } = display
+
+const layerComponent = (name, group) => (
+  component(name, 'group', () => ({ group }))
+)
 
 export const Layer = {
-  Ground: component('groundLayer'),
-  BackGround: component('backgroundLayer'),
-  Building: component('buildingLayer'),
-  Drag: component('dragLayer'),
-  Hud: component('hudLayer'),
-  Debug: component('debugLayer'),
+  Ground: layerComponent('layer', groups.GROUND),
+  BackGround: layerComponent('layer', groups.OVERLAY),
+  Building: layerComponent('layer', groups.BUILDING),
+  Hud: layerComponent('layer', groups.HUD),
+  Drag: layerComponent('layer', groups.DRAG),
+  Debug: layerComponent('layer', groups.DEBUG),
 }

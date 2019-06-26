@@ -63,7 +63,7 @@ export class GameScene extends Scene {
 
   registerSystems() {
     this.systems
-      .add(s.LayerToDisplayGroup, priorities.PRE_INIT)
+      .add(s.UpdateDisplayGroup, priorities.PRE_INIT)
       .add(s.Input, priorities.PRE_UPDATE)
 
       .add(s.Movement, priorities.MOVEMENT)

@@ -16,10 +16,6 @@ export const DragState = ({ engine, map, config, log }) => ({
       const { entity } = node
       log('drag')
 
-      const display = entity.get(c.Display)
-      display.oldGroup = display.group
-      display.group = config.displayGroups.DRAG
-
       entity.remove(c.Layer.Building)
       entity.add(c.Layer.Drag)
     })

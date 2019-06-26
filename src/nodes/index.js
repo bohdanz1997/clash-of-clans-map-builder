@@ -41,7 +41,7 @@ export const TargetHovered = [c.Hovered, c.FSM, c.Interact.Initiator]
 export const TargetClicked = [c.Clicked, c.FSM, c.Interact.Initiator, c.Position]
 export const TargetDragging = [c.Dragging, c.FSM, c.DragContext, c.Interact.Initiator, c.Position]
 export const TargetSelected = [c.Selected, c.FSM, c.Interact.Initiator]
-export const TargetDropped = [c.Dropped, c.FSM, c.DragContext, c.Display]
+export const TargetDropped = [c.Dropped, c.FSM, c.DragContext]
 
 // interaction listeners
 export const TargetDroppedListener = [c.Dropped, c.FSM, c.DragContext, c.Position, c.Collision]

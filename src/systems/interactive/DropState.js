@@ -6,11 +6,9 @@ export const DropState = () => ({
   nodes: [n.TargetDropped],
 
   update(node) {
-    const { display, fsm, entity } = node
+    const { fsm, entity } = node
 
     fsm.fsm.changeState(states.hovered)
-
-    display.group = display.oldGroup
 
     entity.remove(c.Layer.Drag)
     entity.add(c.Layer.Building)

@@ -13,7 +13,7 @@ export * from './RelationListeners'
 export * from './RelationMovement'
 export * from './ManagePointers'
 export * from './Render'
-export * from './LayerToDisplayGroup'
+export * from './UpdateDisplayGroup'
 export * from './Animation'
 export * from './ManageTweens'
 
