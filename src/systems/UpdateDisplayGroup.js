@@ -5,7 +5,7 @@ export const UpdateDisplayGroup = () => ({
 
   init(...layerNodes) {
     const setDisplayGroup = (node) => {
-      node.display.group = node.layer.group
+      node.display.sprite.parentGroup = node.layer.group
     }
 
     const subscribe = (nodes) => {

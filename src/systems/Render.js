@@ -43,11 +43,7 @@ export const Render = ({ world, hud }) => ({
   },
 
   update({ position, display }) {
-    const { sprite, group } = display
-
-    sprite.parentGroup = group
-
-    sprite.x = position.x
-    sprite.y = position.y
+    display.sprite.x = position.x
+    display.sprite.y = position.y
   },
 })
