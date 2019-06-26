@@ -12,16 +12,27 @@ export const Interact = {
   Target: component('target', InteractData),
 }
 
-class RelationData {
-  constructor({ entity, offset = Point.EMPTY }) {
-    this.entity = entity
-    this.offset = offset
+class ChildData {
+  constructor(params) {
+    this.entity = params.entity || params
+    this.offset = params.offset || Point.EMPTY
   }
 }
 
-export const Relation = {
-  Parent: component('parent', RelationData),
-  Child: component('child', RelationData),
+class ParentData {
+  constructor(params) {
+    this.entity = params.entity || params
+    this.offset = params.offset || Point.EMPTY
+    this.childType = params.childType
+  }
+}
+
+export const Parent = component('parent', ParentData)
+
+export const Child = {
+  Default: component('child', ChildData),
+  Overlay: component('child', ChildData),
+  Preview: component('child', ChildData),
 }
 
 // states

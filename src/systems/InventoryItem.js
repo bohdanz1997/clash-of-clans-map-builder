@@ -29,7 +29,7 @@ export const SelectInventoryItem = ({ entities, helper }) => ({
         y: startPos.y,
       })
 
-      pointerNode.entity.add(c.Relation.Child({
+      pointerNode.entity.add(c.Child.Preview({
         entity: ePreview,
         offset,
       }))

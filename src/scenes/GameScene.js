@@ -68,8 +68,8 @@ export class GameScene extends Scene {
 
       .add(s.Movement, priorities.MOVEMENT)
       .add(s.IsometricMovement, priorities.MOVEMENT)
-      .add(s.BuildingChildMovement, priorities.MOVEMENT)
-      .add(s.PointerChildMovement, priorities.MOVEMENT)
+      .add(s.ChildOverlayMovement, priorities.MOVEMENT)
+      .add(s.ChildPreviewMovement, priorities.MOVEMENT)
       .add(s.ManagePointers, priorities.MOVEMENT)
       .add(s.CameraControl, priorities.MOVEMENT)
       .add(s.CameraTouchControl, priorities.MOVEMENT)

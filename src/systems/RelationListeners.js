@@ -1,15 +1,18 @@
+import { Symbols } from 'core/scent'
 import * as c from '../components'
 import * as n from '../nodes'
 
 export const ParentRelationListener = ({ engine }) => ({
-  nodes: [n.Parent],
+  nodes: Object.values(n.ParentRelations),
 
-  init(nodes) {
+  init(...nodeGroups) {
     const addToChild = (node) => {
       const { child, entity } = node
-      child.entity.add(c.Relation.Parent({
+
+      child.entity.add(c.Parent({
         entity,
         offset: child.offset,
+        childType: child[Symbols.bType],
       }))
       engine.addEntity(child.entity)
     }
@@ -18,9 +21,13 @@ export const ParentRelationListener = ({ engine }) => ({
       node.child.entity.dispose()
     }
 
-    nodes.each(addToChild)
-    nodes.onAdded(addToChild)
-    nodes.onRemoved(removeFromChild)
+    const subscribe = (nodes) => {
+      nodes.each(addToChild)
+      nodes.onAdded(addToChild)
+      nodes.onRemoved(removeFromChild)
+    }
+
+    nodeGroups.forEach(subscribe)
   },
 })
 
@@ -29,7 +36,8 @@ export const ChildRelationListener = () => ({
 
   init(nodes) {
     const removeFromParent = (node) => {
-      node.parent.entity.remove(c.Relation.Child)
+      const { parent } = node
+      parent.entity.remove(parent.childType)
     }
 
     nodes.onRemoved(removeFromParent)

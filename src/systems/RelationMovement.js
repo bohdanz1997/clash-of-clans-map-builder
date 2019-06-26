@@ -1,8 +1,8 @@
 import * as c from '../components'
 import * as n from '../nodes'
 
-export const BuildingChildMovement = () => ({
-  nodes: [n.BuildingChildMovement],
+export const ChildOverlayMovement = () => ({
+  nodes: [n.ChildOverlayMovement],
 
   update(node) {
     const { child, position } = node
@@ -13,8 +13,8 @@ export const BuildingChildMovement = () => ({
   },
 })
 
-export const PointerChildMovement = ({ map }) => ({
-  nodes: [n.PointerChildMovement],
+export const ChildPreviewMovement = ({ map }) => ({
+  nodes: [n.ChildPreviewMovement],
 
   init() {
     this.cellSize = map.config.cellWidth

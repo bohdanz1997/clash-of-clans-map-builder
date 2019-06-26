@@ -19,7 +19,7 @@ export const Preview = ({
     c.Layer.Drag(),
     c.Building(),
     c.Preview(),
-    c.Relation.Child({ entity: overlay }),
+    c.Child.Overlay(overlay),
     c.Position({ x, y, offsetX, offsetY }),
     c.IsoPosition(),
     c.Collision({

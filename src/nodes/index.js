@@ -14,17 +14,21 @@ export const Render = [c.Position, c.Display]
 export const IsoRender = [c.IsoPosition, c.Display]
 
 // relations
-export const Parent = [c.Relation.Child]
-export const Child = [c.Relation.Parent, c.Position]
+export const Child = [c.Parent]
+export const ParentRelations = {
+  Default: [c.Child.Default],
+  Overlay: [c.Child.Overlay],
+  Preview: [c.Child.Preview],
+}
 
-export const BuildingChildMovement = [c.Relation.Child, c.Building, c.Position]
-export const PointerChildMovement = [c.Relation.Child, c.PointerContext, c.IsoPosition]
+export const ChildOverlayMovement = [c.Child.Overlay, c.Building, c.Position]
+export const ChildPreviewMovement = [c.Child.Preview, c.PointerContext, c.IsoPosition]
 
 // inventory
 export const Inventory = [c.Inventory]
 export const InventoryItem = [c.InventoryItem, c.EntityMeta, c.Position]
 export const InventoryItemClicked = [c.InventoryItem, c.Clicked, c.Interact.Initiator, c.EntityMeta]
-export const InventoryItemCounter = [c.InventoryCounter, c.Relation.Parent, c.Display]
+export const InventoryItemCounter = [c.InventoryCounter, c.Parent, c.Display]
 export const InventoryItemSelected = [c.InventoryItem, c.Selected, c.EntityMeta]
 
 // pointer

@@ -28,7 +28,7 @@ export const InventoryItem = ({
     c.InventoryItem(),
     c.EntityMeta(entityMeta),
     c.Layer.Hud(),
-    c.Relation.Child({ entity: couter }),
+    c.Child.Default(couter),
     c.Interactive(),
     c.Selectable(),
     c.Position(pos),

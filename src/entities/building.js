@@ -14,7 +14,7 @@ export const Building = ({
     c.Building(),
     c.Draggable(),
     c.Interactive(),
-    c.Relation.Child({ entity: overlay }),
+    c.Child.Overlay(overlay),
     c.Position({ x, y, offsetX, offsetY }),
     c.Motion(), // to update col, row
     c.IsoPosition(),
