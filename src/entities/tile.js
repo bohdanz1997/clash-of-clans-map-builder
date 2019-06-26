@@ -1,5 +1,5 @@
 import { createEntity } from 'core/scent'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import * as c from '../components'
 
 export const Tile = ({
@@ -8,7 +8,7 @@ export const Tile = ({
   c.Layer.Ground(),
   c.Position({ x, y }),
   c.IsoPosition(),
-  c.Display(DisplayFactory.sprite('ground', {
+  c.Display(View.sprite('ground', {
     width: isoWidth,
     height: isoHeight,
   })),

@@ -2,7 +2,7 @@ import { Keyboard, PointerManager } from 'core/input'
 import { createContainer, asValue, AwilixContainer, asClass } from 'awilix'
 import { Loader, Ticker, utils } from 'pixi.js'
 import { SystemManager, EntityManager, Engine } from 'core/scent'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import { SceneManager, sceneCreator } from 'core/scenes'
 
 import { Config } from './Config'
@@ -59,7 +59,7 @@ export class Game {
       keyboard: asValue(this.keyboard),
       entities: asValue(this.entities),
       pointers: asValue(this.pointers),
-      displayFactory: asClass(DisplayFactory),
+      displayFactory: asClass(View),
     })
 
     this.systems = new SystemManager(this)

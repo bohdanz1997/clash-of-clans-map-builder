@@ -1,5 +1,5 @@
 import { createEntity } from 'core/scent'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import * as c from '../components'
 
 export const Wall = ({
@@ -13,5 +13,5 @@ export const Wall = ({
   c.Position({ x, y }),
   c.IsoPosition(),
   c.Collision({ width: map.config.cellWidth, height: map.config.cellHeight, radius }),
-  c.Display(DisplayFactory.sprite(id))
+  c.Display(View.sprite(id))
 )

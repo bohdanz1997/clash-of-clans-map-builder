@@ -1,4 +1,4 @@
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import { createEntity } from 'core/scent'
 import * as c from '../components'
 
@@ -9,7 +9,7 @@ const Counter = ({
   c.Layer.Hud(),
   c.Position({ x, y }),
   c.Display(
-    DisplayFactory.text({
+    View.text({
       fontSize: 14,
       dropShadow: true,
       dropShadowDistance: 1,
@@ -39,7 +39,7 @@ export const InventoryItem = ({
       width: size,
       height: size,
     }),
-    c.Display(DisplayFactory.sprite(entityMeta.def, {
+    c.Display(View.sprite(entityMeta.def, {
       width: size,
       height: size,
     })),

@@ -1,6 +1,6 @@
 import { expolorer } from 'assets/atlas/treasureHunter'
 import { createEntity } from 'core/scent'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 
 import * as c from '../components'
 
@@ -14,5 +14,5 @@ export const Player = ({
   c.MotionControl({ dx: speed, dy: speed }),
   c.Damage({ damage }),
   c.Health({ health }),
-  c.Display(DisplayFactory.sprite(expolorer)),
+  c.Display(View.sprite(expolorer)),
 )

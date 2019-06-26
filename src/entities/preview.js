@@ -1,6 +1,6 @@
 import { filters } from 'pixi.js'
 import { createEntity } from 'core/scent'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import * as c from '../components'
 import { Overlay } from './overlay'
 
@@ -11,7 +11,7 @@ export const Preview = ({
 }) => {
   const alpha = 0.5
   const overlay = entities.create(Overlay, { x, y, radius, alpha })
-  const sprite = DisplayFactory.sprite(def, {
+  const sprite = View.sprite(def, {
     filters: [new filters.AlphaFilter(alpha)],
   })
 

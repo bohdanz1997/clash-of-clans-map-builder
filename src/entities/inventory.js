@@ -1,5 +1,5 @@
 import { createEntity } from 'core/scent'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import * as c from '../components'
 
 /**
@@ -13,7 +13,7 @@ export const Inventory = ({ align }) => {
     c.Layer.Hud(),
     c.Inventory(),
     c.Position(pos),
-    c.Display(DisplayFactory.rect({
+    c.Display(View.rect({
       width: align.bounds.width,
       height,
       color: 0xf44336,

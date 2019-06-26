@@ -1,4 +1,4 @@
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import * as n from '../nodes'
 
 export const DebugMapLayers = ({ engine, config, stage, map }) => ({
@@ -8,14 +8,14 @@ export const DebugMapLayers = ({ engine, config, stage, map }) => ({
     this.buildingLayer = map.getLayer('building')
     this.dragLayer = map.getLayer('drag')
 
-    this.buildingLayerText = DisplayFactory.text({
+    this.buildingLayerText = View.text({
       fontSize: '12px',
       fontFamily: 'mono',
       x: 1000,
       y: 20,
     })
 
-    this.dragLayerText = DisplayFactory.text({
+    this.dragLayerText = View.text({
       fontSize: '12px',
       fontFamily: 'mono',
       x: 1150,

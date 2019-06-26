@@ -1,7 +1,7 @@
 import { asClass, asValue } from 'awilix'
 import { Scene } from 'core/scenes'
 import { TileMap } from 'core/tilemap'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 
 import * as s from '../systems'
 import * as c from '../components'
@@ -27,7 +27,7 @@ export class SandboxScene extends Scene {
 
     this.entities.make('man', [
       c.Position(this.game.align.center(0, 0, 100, 100)),
-      c.Display(DisplayFactory.animatedSprite({
+      c.Display(View.animatedSprite({
         atlas: this.cache.getResource('man'),
         speed: 0.1,
       })),

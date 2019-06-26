@@ -1,5 +1,5 @@
 import { createEntity } from 'core/scent'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import * as c from '../components'
 
 export const Debug = ({
@@ -8,7 +8,7 @@ export const Debug = ({
   c.Layer.Debug(),
   c.Position({ x, y }),
   c.Display(
-    DisplayFactory.text({
+    View.text({
       dropShadow: true,
       dropShadowDistance: 1,
     })

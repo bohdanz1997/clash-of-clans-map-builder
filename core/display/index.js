@@ -1,3 +1,3 @@
 export { AlignPosition } from './AlignPosition'
-export { DisplayFactory } from './DisplayFactory'
+export { View } from './View'
 export { SpriteUtils } from './SpriteUtils'

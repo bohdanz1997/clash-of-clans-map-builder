@@ -1,6 +1,6 @@
 import { MatrixHelper } from 'core/math'
 import { createEntity } from 'core/scent'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import { Point, Container, Sprite } from 'pixi.js'
 import * as c from '../components'
 
@@ -27,7 +27,7 @@ export const Background = ({
   const sprites = objects.map((object) => {
     const isoPos = MatrixHelper.isoMatrix.apply(new Point(object.x, object.y))
 
-    return DisplayFactory.sprite(asset, {
+    return View.sprite(asset, {
       x: isoPos.x,
       y: isoPos.y,
       width: definition.isoWidth,

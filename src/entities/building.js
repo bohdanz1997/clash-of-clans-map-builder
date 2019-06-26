@@ -1,5 +1,5 @@
 import { createEntity } from 'core/scent'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import * as c from '../components'
 import { Overlay } from './overlay'
 
@@ -23,7 +23,7 @@ export const Building = ({
       height: map.config.tileHeight,
       radius,
     }),
-    c.Display(DisplayFactory.sprite(def)),
+    c.Display(View.sprite(def)),
     ({ entity }) => c.FSM({ entity }),
   )
 }

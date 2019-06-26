@@ -8,7 +8,7 @@ const createSprite = (texture, filters = []) => {
   return sprite
 }
 
-export class DisplayFactory {
+export class View {
   constructor({ renderer }) {
     this.renderer = renderer
   }

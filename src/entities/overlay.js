@@ -1,6 +1,6 @@
 import { filters } from 'pixi.js'
 import { createEntity } from 'core/scent'
-import { DisplayFactory } from 'core/display'
+import { View } from 'core/display'
 import * as c from '../components'
 
 export const Overlay = ({
@@ -13,7 +13,7 @@ export const Overlay = ({
     c.Layer.BackGround(),
     c.Position({ x, y }),
     c.IsoPosition(),
-    c.Display(DisplayFactory.isoRect({
+    c.Display(View.isoRect({
       width: size,
       height: size,
       color: 0x8bc34a,
