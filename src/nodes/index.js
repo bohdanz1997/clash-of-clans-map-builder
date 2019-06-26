@@ -19,10 +19,14 @@ export const ParentRelations = {
   Default: [c.Child.Default],
   Overlay: [c.Child.Overlay],
   Preview: [c.Child.Preview],
+  Debug: [c.Child.Debug],
 }
 
-export const ChildOverlayMovement = [c.Child.Overlay, c.Building, c.Position]
-export const ChildPreviewMovement = [c.Child.Preview, c.PointerContext, c.IsoPosition]
+export const ParentWithOverlay = [c.Child.Overlay, c.Position]
+export const ParentWithPreview = [c.Child.Preview, c.IsoPosition]
+export const ParentWithDebug = [c.Child.Debug, c.IsoPosition]
+
+export const BuildingWithDebug = [c.Child.Debug, c.Building, c.Position, c.IsoPosition, c.FSM, c.Identity]
 
 // inventory
 export const Inventory = [c.Inventory]
@@ -68,6 +72,7 @@ export const MapLayers = {
 
 // other
 export const CameraControl = [c.Camera, c.Position, c.Motion, c.MotionControl, c.ZoomControl]
+export const Camera = [c.Camera, c.Position]
 export const Collision = [c.Position, c.Collision]
 export const InBounds = [c.Layer.Building, c.Position, c.Collision]
 export const Map = [c.Map]

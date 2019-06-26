@@ -93,6 +93,6 @@ export const InventoryItemCounter = () => ({
     const { parent, display } = node
     // because parent entity can be disposed
     const inventoryMeta = parent.entity.get(c.EntityMeta, true)
-    display.sprite.content = inventoryMeta.count
+    display.sprite.text = inventoryMeta.count
   },
 })

@@ -27,12 +27,15 @@ class ParentData {
   }
 }
 
+const childComponent = () => component('child', ChildData)
+
 export const Parent = component('parent', ParentData)
 
 export const Child = {
-  Default: component('child', ChildData),
-  Overlay: component('child', ChildData),
-  Preview: component('child', ChildData),
+  Default: childComponent(),
+  Overlay: childComponent(),
+  Preview: childComponent(),
+  Debug: childComponent(),
 }
 
 // states

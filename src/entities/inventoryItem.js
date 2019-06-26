@@ -8,10 +8,13 @@ const Counter = ({
   c.InventoryCounter(),
   c.Layer.Hud(),
   c.Position({ x, y }),
-  c.Display(DisplayFactory.text({
-    fontSize: 14,
-    fill: 'white',
-  }))
+  c.Display(
+    DisplayFactory.text({
+      fontSize: 14,
+      dropShadow: true,
+      dropShadowDistance: 1,
+    })
+  )
 )
 
 export const InventoryItem = ({

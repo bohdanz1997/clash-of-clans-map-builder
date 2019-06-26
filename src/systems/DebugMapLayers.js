@@ -1,4 +1,4 @@
-import { TextFactory } from 'core/display'
+import { DisplayFactory } from 'core/display'
 import * as n from '../nodes'
 
 export const DebugMapLayers = ({ engine, config, stage, map }) => ({
@@ -8,16 +8,16 @@ export const DebugMapLayers = ({ engine, config, stage, map }) => ({
     this.buildingLayer = map.getLayer('building')
     this.dragLayer = map.getLayer('drag')
 
-    this.buildingLayerText = TextFactory.create({
-      font: '12px mono',
-      fillStyle: 'white',
+    this.buildingLayerText = DisplayFactory.text({
+      fontSize: '12px',
+      fontFamily: 'mono',
       x: 1000,
       y: 20,
     })
 
-    this.dragLayerText = TextFactory.create({
-      font: '12px mono',
-      fillStyle: 'white',
+    this.dragLayerText = DisplayFactory.text({
+      fontSize: '12px',
+      fontFamily: 'mono',
       x: 1150,
       y: 20,
     })

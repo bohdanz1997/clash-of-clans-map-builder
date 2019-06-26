@@ -2,29 +2,41 @@ import * as c from '../components'
 import * as n from '../nodes'
 
 export const ChildOverlayMovement = () => ({
-  nodes: [n.ChildOverlayMovement],
+  nodes: [n.ParentWithOverlay],
 
   update(node) {
     const { child, position } = node
     const childPosition = child.entity.get(c.Position)
 
-    childPosition.x = position.x
-    childPosition.y = position.y
+    childPosition.x = position.x - child.offset.x
+    childPosition.y = position.y - child.offset.x
   },
 })
 
 export const ChildPreviewMovement = ({ map }) => ({
-  nodes: [n.ChildPreviewMovement],
-
-  init() {
-    this.cellSize = map.config.cellWidth
-  },
+  nodes: [n.ParentWithPreview],
 
   update(node) {
     const { child, isoPosition } = node
     const childPosition = child.entity.get(c.Position)
 
-    childPosition.x = (isoPosition.col * this.cellSize) - child.offset.x
-    childPosition.y = (isoPosition.row * this.cellSize) - child.offset.y
+    childPosition.x = (isoPosition.col * map.config.cellWidth) - child.offset.x
+    childPosition.y = (isoPosition.row * map.config.cellWidth) - child.offset.y
+  },
+})
+
+export const ChildDebugMovement = () => ({
+  nodes: [n.ParentWithDebug, n.Camera],
+
+  update(nodes, cameraNode) {
+    const camera = cameraNode.head
+
+    nodes.each((node) => {
+      const { child, isoPosition } = node
+      const childPosition = child.entity.get(c.Position)
+
+      childPosition.x = isoPosition.x - camera.position.x - child.offset.x
+      childPosition.y = isoPosition.y - camera.position.y - child.offset.y
+    })
   },
 })

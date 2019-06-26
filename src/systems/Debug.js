@@ -1,19 +1,17 @@
+import { Point } from 'pixi.js'
 import * as c from '../components'
 import * as n from '../nodes'
 import * as e from '../entities'
 
-export const Debug = ({ entities }) => ({
-  nodes: [n.Pointer, n.Debug, n.InventoryItemSelected],
+export const Debug = () => ({
+  nodes: [n.Pointer, n.Debug, n.InventoryItemSelected, n.Camera],
 
-  init() {
-    entities.add(e.Debug)
-  },
-
-  update(pointerNode, debugNode, selectedNode) {
+  update(pointerNode, debugNode, selectedNode, cameraNode) {
     const pointer = pointerNode.head
     if (!pointer) {
       return
     }
+    const camera = cameraNode.head
     const { position, isoPosition, entity } = pointer
 
     let selectedInfo = 'none'
@@ -26,25 +24,68 @@ export const Debug = ({ entities }) => ({
     if (pointer.entity.has(c.Interact.Target)) {
       const target = pointer.entity.get(c.Interact.Target).entity
       const targetPos = target.get(c.Position)
+      const targetIsoPos = target.has(c.IsoPosition) ? target.get(c.IsoPosition) : Point.EMPTY
+
       targetInfo = `
         x: ${Math.floor(targetPos.x)}
         y: ${Math.floor(targetPos.y)}
+        isoX: ${Math.floor(targetIsoPos.x)}
+        isoY: ${Math.floor(targetIsoPos.y)}
         col: ${targetPos.col}
         row: ${targetPos.row}
         state: ${target.get(c.FSM).fsm.currentStateName}
       `
     }
 
-    debugNode.head.display.sprite.content = `
+    debugNode.head.display.sprite.text = `
       x: ${position.x}
       y: ${position.y}
       cartX: ${Math.floor(isoPosition.cartX)}
       cartY: ${Math.floor(isoPosition.cartY)}
+      camX: ${Math.floor(camera.position.x)}
+      camY: ${Math.floor(camera.position.y)}
       column: ${isoPosition.col}
       row: ${isoPosition.row}
       state: ${entity.get(c.FSM).fsm.currentStateName}
       selected: ${selectedInfo}
       target: ${targetInfo}
+    `
+  },
+})
+
+export const AddDebugToEntity = ({ entities }) => ({
+  nodes: [n.Building],
+
+  init(buildingNodes) {
+    const addDebug = (node) => {
+      const debug = entities.add(e.Debug)
+      node.entity.add(c.Child.Debug({
+        entity: debug,
+        offset: new Point(-110, 0),
+      }))
+    }
+
+    const subscribe = (nodes) => {
+      nodes.each(addDebug)
+      nodes.onAdded(addDebug)
+    }
+
+    subscribe(buildingNodes)
+  },
+})
+
+export const DebugBuilding = () => ({
+  nodes: [n.BuildingWithDebug],
+
+  update(node) {
+    const { child, position, isoPosition, fsm, identity } = node
+
+    child.entity.get(c.Display).sprite.text = `
+${identity.id}, ${identity.seed}
+fsm: ${fsm.fsm.currentStateName}
+pos: [${Math.floor(position.x)}, ${Math.floor(position.y)}]
+iso: [${Math.floor(isoPosition.x)}, ${Math.floor(isoPosition.y)}]
+map: [${position.col}, ${position.row}]
     `
   },
 })

@@ -1,5 +1,4 @@
-import { AnimatedSprite, Sprite, utils } from 'pixi.js'
-import { TextFactory } from './TextFactory'
+import { AnimatedSprite, Sprite, Text, TextStyle, utils } from 'pixi.js'
 import { ShapeFactory } from './ShapeFactory'
 import { MatrixHelper } from '../math'
 
@@ -64,13 +63,22 @@ export class DisplayFactory {
     return rect
   }
 
-  static text({ x, y, fontSize, fill, content }) {
-    return TextFactory.create({
-      x, y, fontSize, fill, content,
+  /**
+   * @param {PIXI.TextStyle} style
+   * @param x
+   * @param y
+   * @return {PIXI.Text}
+   */
+  static text(style, { x = 0, y = 0 } = {}) {
+    const texttStyle = new TextStyle({
+      fill: 'white',
+      fontSize: 12,
+      fontFamily: 'sans',
+      ...style,
     })
-  }
-
-  static textSprite({ fontSize, fill, content } = {}) {
-    return TextFactory.create({ fontSize, fill, content })
+    const text = new Text('', texttStyle)
+    text.x = x
+    text.y = y
+    return text
   }
 }

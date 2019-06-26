@@ -2,7 +2,7 @@ import { Container } from 'pixi.js'
 
 export class SpriteUtils {
   /**
-   * @param {string} name
+   * @param {string|null} name
    * @param {PIXI.Sprite[]} sprites
    * @return {PIXI.Container}
    */

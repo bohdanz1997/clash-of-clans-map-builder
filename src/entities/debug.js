@@ -7,8 +7,10 @@ export const Debug = ({
 }) => createEntity(
   c.Layer.Debug(),
   c.Position({ x, y }),
-  c.Display(DisplayFactory.text({
-    fontSize: 12,
-    fill: 'white',
-  }))
+  c.Display(
+    DisplayFactory.text({
+      dropShadow: true,
+      dropShadowDistance: 1,
+    })
+  )
 )

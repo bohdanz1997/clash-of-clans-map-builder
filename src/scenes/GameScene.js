@@ -6,7 +6,7 @@ import { priorities } from '../constants'
 
 import * as c from '../components'
 import * as s from '../systems'
-import * as entities from '../entities'
+import * as e from '../entities'
 
 export class GameScene extends Scene {
   constructor() {
@@ -30,7 +30,7 @@ export class GameScene extends Scene {
   create() {
     this.entities.postBuild = (entity, id) => entity.add(c.Identity(id))
     this.entities.setDefinitions(this.cache.get('defs'))
-    this.entities.setFactories(entities)
+    this.entities.setFactories(e)
     this.entities.setBuilder(new ContainerBuilder(this.container))
 
     const mapParser = new TileMapParser(this.entities.getAllDefinitions())
@@ -70,6 +70,7 @@ export class GameScene extends Scene {
       .add(s.IsometricMovement, priorities.MOVEMENT)
       .add(s.ChildOverlayMovement, priorities.MOVEMENT)
       .add(s.ChildPreviewMovement, priorities.MOVEMENT)
+      .add(s.ChildDebugMovement, priorities.MOVEMENT)
       .add(s.ManagePointers, priorities.MOVEMENT)
       .add(s.CameraControl, priorities.MOVEMENT)
       .add(s.CameraTouchControl, priorities.MOVEMENT)
@@ -102,7 +103,9 @@ export class GameScene extends Scene {
 
     if (this.config.debug) {
       this.systems
-        .add(s.Debug)
+        // .add(s.Debug)
+        .add(s.AddDebugToEntity)
+        .add(s.DebugBuilding)
       // .add(s.DebugMapLayers)
     }
 
