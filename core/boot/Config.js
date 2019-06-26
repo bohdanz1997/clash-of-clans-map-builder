@@ -5,6 +5,7 @@ export class Config {
     const get = prop(config)
 
     this.debug = get('debug', false)
+    this.logs = get('logs', false)
 
     this.width = get('width', 1024)
     this.height = get('height', 768)

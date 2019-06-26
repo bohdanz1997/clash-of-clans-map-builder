@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 
 export class Logger {
   constructor({ config }) {
-    this.handler = config.debug ? console.log : () => {}
+    this.handler = config.logs ? console.log : () => {}
   }
 
   write(...args) {
@@ -13,7 +13,7 @@ export class Logger {
 const now = () => dayjs().format('HH:mm:ss.ms')
 
 export const Log = ({ config }) => {
-  const handler = config.debug ? console.log : () => {}
+  const handler = config.logs ? console.log : () => {}
 
   return (...args) => {
     handler(`[${now()}]`, ...args)
