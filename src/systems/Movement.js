@@ -14,7 +14,7 @@ export const Movement = ({ map }) => ({
     position.x += motion.vel.x * delta
     position.y += motion.vel.y * delta
 
-    position.col = Math.floor(position.x / this.cellSize)
-    position.row = Math.floor(position.y / this.cellSize)
+    position.col = Math.round(position.x / this.cellSize)
+    position.row = Math.round(position.y / this.cellSize)
   },
 })
