@@ -1,19 +1,23 @@
-import { Rectangle } from 'pixi.js'
 import { createEntity } from 'core/scent'
+import { DisplayFactory } from 'core/display'
 import * as c from '../components'
 
-export const Inventory = ({ align, displayFactory }) => {
-  const bounds = new Rectangle(0, 0, 800, 80)
-  const pos = align.bottomLeft({ x: 0, y: bounds.height })
+/**
+ * @param {Align} align
+ */
+export const Inventory = ({ align }) => {
+  const height = 80
+  const pos = align.bottom(height)
 
   return createEntity(
     c.Layer.Hud(),
     c.Inventory(),
     c.Position(pos),
-    c.Display(displayFactory.rect({
-      width: bounds.width,
-      height: bounds.height,
+    c.Display(DisplayFactory.rect({
+      width: align.bounds.width,
+      height,
       color: 0xf44336,
+      alpha: 0.8,
     }))
   )
 }

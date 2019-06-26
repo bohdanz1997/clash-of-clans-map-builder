@@ -41,27 +41,27 @@ export class DisplayFactory {
   }
 
   /**
-   * @return {PIXI.Sprite}
+   * @return {PIXI.Graphics}
    */
-  rect({ width, height, color, filters }) {
+  static rect({ width, height, color, filters, alpha = 1 }) {
     const rect = ShapeFactory.rect({ width, height, color })
-    const texture = this.renderer.generateTexture(rect)
+    rect.filters = filters
+    rect.alpha = alpha
 
-    return createSprite(texture, filters)
+    return rect
   }
 
   /**
-   * @return {PIXI.Sprite}
+   * @return {PIXI.Graphics}
    */
-  isoRect({ width, height, color, filters }) {
+  static isoRect({ width, height, color, filters, alpha = 1 }) {
     const rect = ShapeFactory.rect({ width, height, color })
-    const texture = this.renderer.generateTexture(rect)
-    const sprite = createSprite(texture, filters)
+    rect.pivot.set(-(width / 2), height / 2)
+    rect.transform.setFromMatrix(MatrixHelper.isoMatrix)
+    rect.filters = filters
+    rect.alpha = alpha
 
-    sprite.pivot.set(-(width / 2), height / 2)
-    sprite.transform.setFromMatrix(MatrixHelper.isoMatrix)
-
-    return sprite
+    return rect
   }
 
   static text({ x, y, fontSize, fill, content }) {

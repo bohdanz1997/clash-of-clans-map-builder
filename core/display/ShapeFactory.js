@@ -8,5 +8,6 @@ export class ShapeFactory {
     return new Graphics()
       .beginFill(color)
       .drawRect(0, 0, width, height)
+      .endFill()
   }
 }

@@ -1,4 +1,3 @@
-import { Rectangle } from 'pixi.js'
 import { DisplayFactory } from 'core/display'
 import { createEntity } from 'core/scent'
 import * as c from '../components'
@@ -20,14 +19,9 @@ export const InventoryItem = ({
   align,
   entities,
 }) => {
-  const bounds = new Rectangle(0, 0, 80, 80)
   const margin = 20
-
-  const pos = align.bottomLeft({
-    x: index * bounds.width + margin,
-    y: bounds.height,
-  })
-
+  const size = 80
+  const pos = align.bottomLeft(index * size + margin, size)
   const couter = entities.create(Counter, pos)
 
   return createEntity(
@@ -38,10 +32,13 @@ export const InventoryItem = ({
     c.Interactive(),
     c.Selectable(),
     c.Position(pos),
-    c.Collision(bounds),
+    c.Collision({
+      width: size,
+      height: size,
+    }),
     c.Display(DisplayFactory.sprite(entityMeta.def, {
-      width: bounds.width,
-      height: bounds.height,
+      width: size,
+      height: size,
     })),
     ({ entity }) => c.FSM({ entity }),
   )

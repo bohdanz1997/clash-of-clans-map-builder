@@ -1,6 +1,6 @@
 import { Point, Rectangle } from 'pixi.js'
 
-export class Align {
+export class AlignPosition {
   constructor(x, y, width, height) {
     this.setBounds(x, y, width, height)
   }
