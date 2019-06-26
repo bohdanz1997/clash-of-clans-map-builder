@@ -18,15 +18,21 @@ export class SystemManager {
   }
 
   /**
-   * @param Factory
+   * @param {Function|Array} Factories
    * @param priority
    * @return {SystemManager}
    */
-  add(Factory, priority = this.defaultPriority) {
-    const system = this.build(Factory)
-    this.instances.push({
-      initializer: () => system,
-      priority,
+  add(Factories, priority = this.defaultPriority) {
+    if (!Array.isArray(Factories)) {
+      Factories = [Factories]
+    }
+
+    Factories.forEach((Factory) => {
+      const system = this.build(Factory)
+      this.instances.push({
+        initializer: () => system,
+        priority,
+      })
     })
 
     return this
