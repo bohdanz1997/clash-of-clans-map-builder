@@ -4,10 +4,8 @@ import * as c from '../components'
 import * as n from '../nodes'
 import * as e from '../entities'
 
-const DebugCommon = () => ({
-  nodes: [n.Pointer, n.Debug, n.InventoryItemSelected, n.Camera],
-
-  update(pointerNode, debugNode, selectedNode, cameraNode) {
+const DebugCommon = system(() => {
+  onUpdate((pointerNode, debugNode, selectedNode, cameraNode) => {
     const pointer = pointerNode.head
     if (!pointer) {
       return
@@ -51,36 +49,32 @@ const DebugCommon = () => ({
       selected: ${selectedInfo}
       target: ${targetInfo}
     `
-  },
-})
+  })
+}, [n.Pointer, n.Debug, n.InventoryItemSelected, n.Camera])
 
-const AddDebugToEntity = ({ entities }) => ({
-  nodes: [n.Building],
+const AddDebugToEntity = system(({ entities }) => {
+  const addDebug = params => (node) => {
+    const debug = entities.add(e.Debug, params.args)
+    node.entity.add(params.childType({
+      entity: debug,
+      offset: params.offset,
+    }))
+  }
 
-  init(buildings) {
-    const addDebug = params => (node) => {
-      const debug = entities.add(e.Debug)
-      node.entity.add(c.Child.Debug({
-        entity: debug,
-        offset: params.offset,
-      }))
-    }
+  onNodeAdded(addDebug({
+    offset: new Point(-110, 0),
+    childType: c.Child.Debug,
+  }), n.Building)
 
-    const subscribe = (nodes, params) => {
-      nodes.each(addDebug(params))
-      nodes.onAdded(addDebug(params))
-    }
+  onNodeAdded(addDebug({
+    args: { x: 20 },
+    childType: c.Child.Default,
+  }), n.Pointer)
 
-    subscribe(buildings, {
-      offset: new Point(-110, 0),
-    })
-  },
-})
+}, [n.Building, n.Pointer])
 
-const DebugBuilding = () => ({
-  nodes: [n.BuildingWithDebug],
-
-  update(node) {
+const DebugBuilding = system(() => {
+  onUpdate((node) => {
     const { child, position, isoPosition, fsm, identity } = node
 
     child.entity.get(c.Display).sprite.text = `
@@ -90,25 +84,25 @@ pos: [${Math.floor(position.x)}, ${Math.floor(position.y)}]
 iso: [${Math.floor(isoPosition.x)}, ${Math.floor(isoPosition.y)}]
 map: [${position.col}, ${position.row}]
     `
-  },
-})
-
-export const DebugPointer = system([n.PointerHovered, n.Camera], () => {
-  onNodeAdded((node) => {
-    console.log('pointer added')
-  }, n.PointerHovered)
-
-  onNodeRemoved((node) => {
-    console.log('pointer removed')
-  }, n.PointerHovered)
-
-  onNodeAdded((node) => {
-    console.log('camera added')
-  }, n.Camera)
-
-  onUpdate((pointers, cameras, time) => {
-
   })
-})
+}, [n.BuildingWithDebug])
 
-export const Debug = [DebugCommon, AddDebugToEntity, DebugBuilding]
+export const DebugPointer = system(() => {
+  onUpdate((node) => {
+    const { child, position, isoPosition, fsm } = node
+
+    child.entity.get(c.Display).sprite.text = `
+pos: [${Math.floor(position.x)}, ${Math.floor(position.y)}]
+cart: [${Math.floor(isoPosition.cartX)}, ${Math.floor(isoPosition.cartY)}]
+map: [${isoPosition.col}, ${isoPosition.row}]
+state: ${fsm.fsm.currentStateName}
+    `
+  })
+}, [n.PointerWithDebug])
+
+export const Debug = [
+  DebugCommon,
+  AddDebugToEntity,
+  DebugBuilding,
+  DebugPointer,
+]
