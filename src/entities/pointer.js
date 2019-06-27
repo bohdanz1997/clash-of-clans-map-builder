@@ -1,4 +1,4 @@
-import { createEntity } from 'core/scent'
+import { createEntity } from 'core/ecs'
 import * as c from '../components'
 
 export const Pointer = () => createEntity(

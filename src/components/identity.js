@@ -1,4 +1,4 @@
-import { component } from 'core/scent'
+import { component } from 'core/ecs'
 import { uuid } from 'core/util'
 
 export const Player = component('player')

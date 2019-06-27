@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { Game, Cache, Config } from 'core/boot'
-import { Engine, SystemManager, EntityManager } from 'core/scent'
+import { Engine, SystemManager, EntityManager } from 'core/ecs'
 import { AwilixContainer } from 'awilix'
 
 import { isString } from '../util'

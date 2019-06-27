@@ -1,7 +1,7 @@
 import { Keyboard, PointerManager } from 'core/input'
 import { createContainer, asValue, AwilixContainer, asClass } from 'awilix'
 import { Loader, Ticker, utils } from 'pixi.js'
-import { SystemManager, EntityManager, Engine } from 'core/scent'
+import { SystemManager, EntityManager, Engine } from 'core/ecs'
 import { View } from 'core/display'
 import { SceneManager, sceneCreator } from 'core/scenes'
 

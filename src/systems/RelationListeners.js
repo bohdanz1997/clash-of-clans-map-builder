@@ -1,4 +1,4 @@
-import { Symbols } from 'core/scent'
+import { Symbols } from 'core/ecs'
 import * as c from '../components'
 import * as n from '../nodes'
 

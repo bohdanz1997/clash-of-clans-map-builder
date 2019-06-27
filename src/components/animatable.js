@@ -1,3 +1,3 @@
-import { component } from 'core/scent'
+import { component } from 'core/ecs'
 
 export const Animatable = component('animatable')

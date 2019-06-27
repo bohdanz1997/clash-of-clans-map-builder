@@ -1,5 +1,5 @@
 import { expolorer } from 'assets/atlas/treasureHunter'
-import { createEntity } from 'core/scent'
+import { createEntity } from 'core/ecs'
 import { View } from 'core/display'
 
 import * as c from '../components'

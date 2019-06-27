@@ -1,4 +1,4 @@
-import { component } from 'core/scent'
+import { component } from 'core/ecs'
 
 export const Tween = component(
   'tween', 'tween',

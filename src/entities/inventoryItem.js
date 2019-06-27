@@ -1,5 +1,5 @@
 import { View } from 'core/display'
-import { createEntity } from 'core/scent'
+import { createEntity } from 'core/ecs'
 import * as c from '../components'
 
 const Counter = ({

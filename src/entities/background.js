@@ -1,5 +1,5 @@
 import { MatrixHelper } from 'core/math'
-import { createEntity } from 'core/scent'
+import { createEntity } from 'core/ecs'
 import { View } from 'core/display'
 import { Point, Container, Sprite } from 'pixi.js'
 import * as c from '../components'

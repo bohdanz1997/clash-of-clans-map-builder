@@ -1,4 +1,4 @@
-import { component } from 'core/scent'
+import { component } from 'core/ecs'
 import { EntityStateMachine } from 'core/fsm'
 
 class FSMRaw {

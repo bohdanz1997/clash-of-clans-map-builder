@@ -1,5 +1,5 @@
 import { createSmoothStep } from 'core/animation'
-import { createEntity } from 'core/scent'
+import { createEntity } from 'core/ecs'
 import { keys, Keyboard } from 'core/input'
 import { Config } from 'core/boot'
 import { TileMap } from 'core/tilemap'

@@ -1,4 +1,4 @@
-import { component } from 'core/scent'
+import { component } from 'core/ecs'
 
 class MotionControlData {
   constructor({ dx = 0, dy = 0, up, down, left, right }) {
