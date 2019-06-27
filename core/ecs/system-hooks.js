@@ -14,6 +14,9 @@ class InstanceProvider {
 
     /** @type {Hook[]} */
     this.onRemovedHooks = []
+
+    /** @type {Hook[]} */
+    this.nodeEachHooks = []
   }
 }
 
@@ -70,6 +73,15 @@ export const onNodeRemoved = (handler, node = null) => {
 
 /**
  * @param {Function} handler
+ * @param {*} node
+ */
+export const nodeEach = (handler, node = null) => {
+  required(handler, 'Missing "handler" param')
+  currentProvider.nodeEachHooks.push(createHook(handler, [node]))
+}
+
+/**
+ * @param {Function} handler
  */
 export const onUpdate = (handler) => {
   required(handler, 'Missing "handler" param')
@@ -117,6 +129,12 @@ export const initProvider = (engine, container, provider) => {
         nodeTypes[0].each(node => hook.handler(node, delta))
       })
     }
+  })
+
+  provider.nodeEachHooks.forEach((hook) => {
+    throwIfMoreOneNodeType('nodeEach', hook)
+    const nodeType = getNodeType(hook.nodes[0])
+    nodeType.each(hook.handler)
   })
 
   provider.onAddedHooks.forEach((hook) => {
