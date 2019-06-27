@@ -1,4 +1,4 @@
-import { Renderer } from 'pixi.js'
+import { Renderer, autoDetectRenderer } from 'pixi.js'
 import { Stage, Layer } from 'core/pixi'
 
 /**
@@ -14,7 +14,7 @@ export const createRenderer = (config) => {
     height,
   } = config
 
-  return new Renderer({
+  return autoDetectRenderer({
     width,
     height,
     antialias,
