@@ -1,4 +1,5 @@
 import { Point } from 'pixi.js'
+import { onNodeAdded, onNodeRemoved, onUpdate, system } from 'core/ecs'
 import * as c from '../components'
 import * as n from '../nodes'
 import * as e from '../entities'
@@ -90,6 +91,24 @@ iso: [${Math.floor(isoPosition.x)}, ${Math.floor(isoPosition.y)}]
 map: [${position.col}, ${position.row}]
     `
   },
+})
+
+export const DebugPointer = system([n.PointerHovered, n.Camera], () => {
+  onNodeAdded((node) => {
+    console.log('pointer added')
+  }, n.PointerHovered)
+
+  onNodeRemoved((node) => {
+    console.log('pointer removed')
+  }, n.PointerHovered)
+
+  onNodeAdded((node) => {
+    console.log('camera added')
+  }, n.Camera)
+
+  onUpdate((pointers, cameras, time) => {
+
+  })
 })
 
 export const Debug = [DebugCommon, AddDebugToEntity, DebugBuilding]

@@ -27,6 +27,7 @@ export const ParentWithPreview = [c.Child.Preview, c.IsoPosition]
 export const ParentWithDebug = [c.Child.Debug, c.IsoPosition]
 
 export const BuildingWithDebug = [c.Child.Debug, c.Building, c.Position, c.IsoPosition, c.FSM, c.Identity]
+export const PointerWithDebug = [c.Child.Debug, c.PointerContext, c.Position, c.IsoPosition, c.FSM]
 
 // inventory
 export const Inventory = [c.Inventory]

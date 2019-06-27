@@ -85,6 +85,7 @@ export class GameScene extends Scene {
       .add(s.InventoryItemCounter)
       .add(s.Render, priorities.RENDER)
       .add(s.IsometricRender, priorities.ISO_RENDER)
+      .hook(s.DebugPointer)
 
     if (this.config.debug) {
       this.systems.add(s.Debug)

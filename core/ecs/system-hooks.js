@@ -45,10 +45,10 @@ const required = (value, message) => {
 }
 
 /**
- * @param {Array} nodes
  * @param {Function} setup
+ * @param {Array} nodes
  */
-export const system = (nodes, setup) => new InstanceProvider(nodes, setup)
+export const system = (setup, nodes) => new InstanceProvider(nodes, setup)
 
 /**
  * @param {Function} handler
