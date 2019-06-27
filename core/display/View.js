@@ -77,6 +77,7 @@ export class View {
       ...style,
     })
     const text = new Text('', texttStyle)
+    text.roundPixels = true
     text.x = x
     text.y = y
     return text
