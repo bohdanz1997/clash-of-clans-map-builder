@@ -70,11 +70,10 @@ export const onNodeRemoved = (handler, node = null) => {
 
 /**
  * @param {Function} handler
- * @param {Array} nodes
  */
-export const onUpdate = (handler, nodes = []) => {
+export const onUpdate = (handler) => {
   required(handler, 'Missing "handler" param')
-  currentProvider.onUpdateHooks.push(createHook(handler, nodes))
+  currentProvider.onUpdateHooks.push(createHook(handler, []))
 }
 
 /**
@@ -102,17 +101,22 @@ export const initProvider = (engine, container, provider) => {
 
   const throwIfMoreOneNodeType = (hookName, hook) => {
     if (hook.nodes.length > 1) {
-      throw new Error('"onAdded" hook should accept only one nodeType')
+      throw new Error(`"${hookName}" hook should accept only one nodeType`)
     }
   }
 
   provider.onUpdateHooks.forEach((hook) => {
     const nodeTypes = getNodeTypes(hook.nodes)
-    engine.onUpdate((delta) => {
-      nodeTypes.forEach((nodeType) => {
-        nodeType.each(node => hook.handler(node, delta))
+
+    if (nodeTypes.length > 1) {
+      engine.onUpdate((delta) => {
+        hook.handler(...nodeTypes, delta)
       })
-    })
+    } else {
+      engine.onUpdate((delta) => {
+        nodeTypes[0].each(node => hook.handler(node, delta))
+      })
+    }
   })
 
   provider.onAddedHooks.forEach((hook) => {
