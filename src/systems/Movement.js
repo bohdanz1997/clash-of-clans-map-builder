@@ -1,20 +1,17 @@
+import { onUpdate, system } from 'core/ecs'
 import * as n from '../nodes'
 
 /**
  * @param {TileMap} map
  */
-export const Movement = ({ map }) => ({
-  nodes: [n.Movement],
+export const Movement = system(({ map }) => {
+  const cellSize = map.config.cellWidth
 
-  init() {
-    this.cellSize = map.config.cellWidth
-  },
-
-  update({ position, motion }, delta) {
+  onUpdate(({ position, motion }, delta) => {
     position.x += motion.vel.x * delta
     position.y += motion.vel.y * delta
 
-    position.col = Math.round(position.x / this.cellSize)
-    position.row = Math.round(position.y / this.cellSize)
-  },
-})
+    position.col = Math.round(position.x / cellSize)
+    position.row = Math.round(position.y / cellSize)
+  })
+}, [n.Movement])

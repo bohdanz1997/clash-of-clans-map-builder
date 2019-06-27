@@ -65,7 +65,7 @@ export class GameScene extends Scene {
     this.systems
       .add(s.UpdateDisplayGroup, priorities.PRE_INIT)
       .add(s.Input, priorities.PRE_UPDATE)
-      .add(s.Movement, priorities.MOVEMENT)
+      .hook(s.Movement, priorities.MOVEMENT)
       .add(s.IsometricMovement, priorities.MOVEMENT)
       .add(s.ChildMovement, priorities.MOVEMENT)
       .add(s.ManagePointers, priorities.MOVEMENT)
