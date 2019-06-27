@@ -59,7 +59,8 @@
     "require-yield": 0,
     "padded-blocks": 0,
     "no-return-assign": 0,
-    "lines-between-class-members": 0
+    "lines-between-class-members": 0,
+    "prefer-destructuring": 0
   },
   "settings": {}
 }

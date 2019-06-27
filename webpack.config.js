@@ -60,6 +60,7 @@ module.exports = {
   resolve: {
     alias: {
       core: withRootPath('core'),
+      '@core': withRootPath('core'),
       assets: withRootPath('assets'),
       app: withRootPath('src'),
     },
