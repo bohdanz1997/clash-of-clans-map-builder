@@ -1,6 +1,6 @@
 import { Game } from '../boot'
 import { createSystem } from './system'
-import { initProvider } from './system-hooks'
+import { initHookProvider } from './system-hooks'
 
 const wrapWithArray = (value) => {
   if (!Array.isArray(value)) {
@@ -52,7 +52,7 @@ export class SystemManager {
     Factories = wrapWithArray(Factories)
     Factories.forEach((Factory) => {
       this.instances.push({
-        initializer: () => initProvider(this.engine, this.container, Factory),
+        initializer: () => initHookProvider(this.engine, this.container, Factory),
         priority,
       })
     })

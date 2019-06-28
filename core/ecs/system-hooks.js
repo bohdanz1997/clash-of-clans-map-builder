@@ -1,4 +1,4 @@
-class InstanceProvider {
+class HookProvider {
   constructor(nodes, setup) {
     /** @type {Array} */
     this.nodes = nodes
@@ -30,7 +30,7 @@ class Hook {
   }
 }
 
-/** @type {InstanceProvider} */
+/** @type {HookProvider} */
 let currentProvider = null
 
 const createHook = (handler, nodes) => {
@@ -51,7 +51,7 @@ const required = (value, message) => {
  * @param {Function} setup
  * @param {Array} nodes
  */
-export const system = (setup, nodes) => new InstanceProvider(nodes, setup)
+export const system = (setup, nodes) => new HookProvider(nodes, setup)
 
 /**
  * @param {Function} handler
@@ -91,9 +91,9 @@ export const onUpdate = (handler) => {
 /**
  * @param {Engine} engine
  * @param {AwilixContainer} container
- * @param {InstanceProvider} provider
+ * @param {HookProvider} provider
  */
-export const initProvider = (engine, container, provider) => {
+export const initHookProvider = (engine, container, provider) => {
   const nodeTypesMap = new Map()
   provider.nodes.forEach((node) => {
     nodeTypesMap.set(node, engine.getNodeType(node))
