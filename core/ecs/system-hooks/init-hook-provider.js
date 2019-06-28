@@ -22,10 +22,12 @@ export const initHookProvider = (engine, container, setup) => {
   setCurrentProvider(provider)
   container.build(provider.setup)
 
-  if (!provider.useNodesHook) {
-    throwErrorForProvider('should call "useNodes" hook')
+  if (provider.hooksCount > 0) {
+    if (!provider.useNodesHook) {
+      throwErrorForProvider('should call "useNodes" hook, to use other hooks')
+    }
+    provider.useNodesHook.handler()
   }
-  provider.useNodesHook.handler()
 
   const nodeTypesMap = new Map()
   provider.nodes.forEach((node) => {
@@ -55,14 +57,14 @@ export const initHookProvider = (engine, container, setup) => {
   }, provider.nodeEachHooks)
 
   eachHooks((hook) => {
-    throwIfMoreOneNodeType('onAdded', hook)
+    throwIfMoreOneNodeType('onNodeAdded', hook)
     const nodeType = getNodeType(hook.nodes[0])
     nodeType.each(hook.handler)
     nodeType.onAdded(hook.handler)
   }, provider.onAddedHooks)
 
   eachHooks((hook) => {
-    throwIfMoreOneNodeType('onRemoved', hook)
+    throwIfMoreOneNodeType('onNodeRemoved', hook)
     const nodeType = getNodeType(hook.nodes[0])
     nodeType.onRemoved(hook.handler)
   }, provider.onRemovedHooks)

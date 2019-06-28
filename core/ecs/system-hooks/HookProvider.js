@@ -24,4 +24,11 @@ export class HookProvider {
     /** @type {Hook} */
     this.useNodesHook = null
   }
+
+  get hooksCount() {
+    return this.onUpdateHooks.length
+      + this.nodeEachHooks.length
+      + this.onAddedHooks.length
+      + this.onRemovedHooks.length
+  }
 }
