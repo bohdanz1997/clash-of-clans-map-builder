@@ -1,7 +1,7 @@
 {
-  "name": "game",
+  "name": "coc-builder",
   "version": "1.0.0",
-  "description": "Game built on scent",
+  "description": "COC Builder",
   "repository": "github.com/bohdanz1997/scent-game",
   "main": "index.js",
   "scripts": {

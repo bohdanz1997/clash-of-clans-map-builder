@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { ProvidePlugin } = require('webpack')
+const packageData = require('./package')
 
 const withRootPath = dir => path.resolve(__dirname, dir)
 
@@ -21,7 +22,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'ClashLand',
+      title: packageData.description,
+      favicon: 'assets/image/icon.jpeg',
     }),
     new CopyWebpackPlugin([{
       from: 'assets',
