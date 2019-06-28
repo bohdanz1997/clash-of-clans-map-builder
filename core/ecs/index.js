@@ -41,10 +41,5 @@ export { createEntity } from './entity'
 export { createSystem } from './system'
 export { component } from './component'
 export { nodeEachTwice } from './node'
-export {
-  initHookProvider,
-  useNodes,
-  onNodeAdded,
-  onNodeRemoved,
-  onUpdate,
-} from './system-hooks'
+
+export * from './system-hooks'
