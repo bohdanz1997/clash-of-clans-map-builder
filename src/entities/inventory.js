@@ -13,7 +13,7 @@ export const Inventory = ({ align }) => {
     c.Layer.Hud(),
     c.Inventory(),
     c.Interactive(),
-    ({ entity }) => c.FSM({ entity }),
+    ({ entity }) => c.FSM(entity),
     c.Position(pos),
     c.Collision({
       width: align.bounds.width,

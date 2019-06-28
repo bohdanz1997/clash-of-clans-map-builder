@@ -5,5 +5,5 @@ export const Pointer = () => createEntity(
   c.Position(),
   c.IsoPosition(),
   c.PointerContext(),
-  ({ entity }) => c.FSM({ entity }),
+  ({ entity }) => c.FSM(entity),
 )

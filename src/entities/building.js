@@ -24,6 +24,6 @@ export const Building = ({
       radius,
     }),
     c.Display(View.sprite(def)),
-    ({ entity }) => c.FSM({ entity }),
+    ({ entity }) => c.FSM(entity),
   )
 }

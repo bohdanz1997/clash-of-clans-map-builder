@@ -43,6 +43,6 @@ export const InventoryItem = ({
       width: size,
       height: size,
     })),
-    ({ entity }) => c.FSM({ entity }),
+    ({ entity }) => c.FSM(entity),
   )
 }
