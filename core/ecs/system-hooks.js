@@ -1,7 +1,17 @@
-class HookProvider {
-  constructor(nodes, setup) {
+class Hook {
+  constructor(handler, nodes) {
+    /** @type {Function} */
+    this.handler = handler
+
     /** @type {Array} */
     this.nodes = nodes
+  }
+}
+
+export class HookProvider {
+  constructor(setup) {
+    /** @type {Array} */
+    this.nodes = []
 
     /** @type {Function} */
     this.setup = setup
@@ -17,23 +27,16 @@ class HookProvider {
 
     /** @type {Hook[]} */
     this.nodeEachHooks = []
-  }
-}
 
-class Hook {
-  constructor(handler, nodes) {
-    /** @type {Function} */
-    this.handler = handler
-
-    /** @type {Array} */
-    this.nodes = nodes
+    /** @type {Hook} */
+    this.useNodesHook = null
   }
 }
 
 /** @type {HookProvider} */
 let currentProvider = null
 
-const createHook = (handler, nodes) => {
+const createWrappedHook = (handler, nodes) => () => {
   if (nodes.length === 0 || (nodes.length === 1 && nodes[0] === null)) {
     nodes = currentProvider.nodes
   }
@@ -41,25 +44,38 @@ const createHook = (handler, nodes) => {
   return new Hook(handler, nodes)
 }
 
-const required = (value, message) => {
-  if (value === null || value === undefined) {
-    throw new Error(message)
+const throwIfMoreOneNodeType = (name, hook) => {
+  if (hook.nodes.length > 1) {
+    throw new Error(`"${name}" hook should accept only one nodeType`)
   }
 }
 
 /**
- * @param {Function} setup
- * @param {Array} nodes
+ * @param {function(Hook)} cb
+ * @param {Hook[]} hooks
  */
-export const system = (setup, nodes) => new HookProvider(nodes, setup)
+const eachHooks = (cb, hooks) => {
+  hooks.forEach((hook) => {
+    // unwrap hook
+    if (typeof hook === 'function') {
+      hook = hook()
+    }
+    cb(hook)
+  })
+}
+
+export const useNodes = (nodes) => {
+  currentProvider.useNodesHook = new Hook(() => {
+    currentProvider.nodes = nodes
+  }, [])
+}
 
 /**
  * @param {Function} handler
  * @param {*} node
  */
 export const onNodeAdded = (handler, node = null) => {
-  required(handler, 'Missing "handler" param')
-  currentProvider.onAddedHooks.push(createHook(handler, [node]))
+  currentProvider.onAddedHooks.push(createWrappedHook(handler, [node]))
 }
 
 /**
@@ -67,8 +83,7 @@ export const onNodeAdded = (handler, node = null) => {
  * @param {*} node
  */
 export const onNodeRemoved = (handler, node = null) => {
-  required(handler, 'Missing "handler" param')
-  currentProvider.onRemovedHooks.push(createHook(handler, [node]))
+  currentProvider.onRemovedHooks.push(createWrappedHook(handler, [node]))
 }
 
 /**
@@ -76,32 +91,22 @@ export const onNodeRemoved = (handler, node = null) => {
  * @param {*} node
  */
 export const nodeEach = (handler, node = null) => {
-  required(handler, 'Missing "handler" param')
-  currentProvider.nodeEachHooks.push(createHook(handler, [node]))
+  currentProvider.nodeEachHooks.push(createWrappedHook(handler, [node]))
 }
 
 /**
  * @param {Function} handler
  */
 export const onUpdate = (handler) => {
-  required(handler, 'Missing "handler" param')
-  currentProvider.onUpdateHooks.push(createHook(handler, []))
+  currentProvider.onUpdateHooks.push(createWrappedHook(handler, []))
 }
 
 /**
  * @param {Engine} engine
  * @param {AwilixContainer} container
- * @param {HookProvider} provider
+ * @param {Function} setup
  */
-export const initHookProvider = (engine, container, provider) => {
-  const nodeTypesMap = new Map()
-  provider.nodes.forEach((node) => {
-    nodeTypesMap.set(node, engine.getNodeType(node))
-  })
-
-  currentProvider = provider
-  container.build(currentProvider.setup)
-
+export const initHookProvider = (engine, container, setup) => {
   const getNodeTypes = hookNodes => hookNodes.map(getNodeType)
 
   const getNodeType = (hookNode) => {
@@ -111,13 +116,21 @@ export const initHookProvider = (engine, container, provider) => {
     return nodeTypesMap.get(hookNode)
   }
 
-  const throwIfMoreOneNodeType = (hookName, hook) => {
-    if (hook.nodes.length > 1) {
-      throw new Error(`"${hookName}" hook should accept only one nodeType`)
-    }
-  }
+  const provider = new HookProvider(setup)
+  currentProvider = provider
+  container.build(currentProvider.setup)
 
-  provider.onUpdateHooks.forEach((hook) => {
+  if (!provider.useNodesHook) {
+    throw new Error('Should call "useNodes" hook')
+  }
+  provider.useNodesHook.handler()
+
+  const nodeTypesMap = new Map()
+  provider.nodes.forEach((node) => {
+    nodeTypesMap.set(node, engine.getNodeType(node))
+  })
+
+  eachHooks((hook) => {
     const nodeTypes = getNodeTypes(hook.nodes)
 
     if (nodeTypes.length > 1) {
@@ -126,27 +139,29 @@ export const initHookProvider = (engine, container, provider) => {
       })
     } else {
       engine.onUpdate((delta) => {
-        nodeTypes[0].each(node => hook.handler(node, delta))
+        nodeTypes[0].each((node) => {
+          hook.handler(node, delta)
+        })
       })
     }
-  })
+  }, provider.onUpdateHooks)
 
-  provider.nodeEachHooks.forEach((hook) => {
+  eachHooks((hook) => {
     throwIfMoreOneNodeType('nodeEach', hook)
     const nodeType = getNodeType(hook.nodes[0])
     nodeType.each(hook.handler)
-  })
+  }, provider.nodeEachHooks)
 
-  provider.onAddedHooks.forEach((hook) => {
+  eachHooks((hook) => {
     throwIfMoreOneNodeType('onAdded', hook)
     const nodeType = getNodeType(hook.nodes[0])
     nodeType.each(hook.handler)
     nodeType.onAdded(hook.handler)
-  })
+  }, provider.onAddedHooks)
 
-  provider.onRemovedHooks.forEach((hook) => {
+  eachHooks((hook) => {
     throwIfMoreOneNodeType('onRemoved', hook)
     const nodeType = getNodeType(hook.nodes[0])
     nodeType.onRemoved(hook.handler)
-  })
+  }, provider.onRemovedHooks)
 }
