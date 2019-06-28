@@ -87,7 +87,9 @@ export class GameScene extends Scene {
       .hook(s.IsometricRender, priorities.ISO_RENDER)
 
     if (this.config.debug) {
-      this.systems.hook(s.Debug)
+      this.systems
+        .hook(s.Debug)
+        .hook(s.FPSCounter)
     }
 
     this.systems.init()

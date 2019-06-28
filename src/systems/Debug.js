@@ -4,56 +4,6 @@ import * as c from '../components'
 import * as n from '../nodes'
 import * as e from '../entities'
 
-const DebugCommon = () => {
-  useNodes([n.Pointer, n.Debug, n.InventoryItemSelected, n.Camera])
-
-  onUpdate((pointerNode, debugNode, selectedNode, cameraNode) => {
-    const pointer = pointerNode.head
-    if (!pointer) {
-      return
-    }
-    const camera = cameraNode.head
-    const { position, isoPosition, entity } = pointer
-
-    let selectedInfo = 'none'
-    if (selectedNode.head) {
-      const { entityMeta } = selectedNode.head
-      selectedInfo = `${entityMeta.id} (${entityMeta.def})`
-    }
-
-    let targetInfo = 'none'
-    if (pointer.entity.has(c.Interact.Target)) {
-      const target = pointer.entity.get(c.Interact.Target).entity
-      const targetPos = target.get(c.Position)
-      const targetIsoPos = target.has(c.IsoPosition) ? target.get(c.IsoPosition) : Point.EMPTY
-
-      targetInfo = `
-        x: ${Math.floor(targetPos.x)}
-        y: ${Math.floor(targetPos.y)}
-        isoX: ${Math.floor(targetIsoPos.x)}
-        isoY: ${Math.floor(targetIsoPos.y)}
-        col: ${targetPos.col}
-        row: ${targetPos.row}
-        state: ${target.get(c.FSM).fsm.currentStateName}
-      `
-    }
-
-    debugNode.head.display.sprite.text = `
-      x: ${position.x}
-      y: ${position.y}
-      cartX: ${Math.floor(isoPosition.cartX)}
-      cartY: ${Math.floor(isoPosition.cartY)}
-      camX: ${Math.floor(camera.position.x)}
-      camY: ${Math.floor(camera.position.y)}
-      column: ${isoPosition.col}
-      row: ${isoPosition.row}
-      state: ${entity.get(c.FSM).fsm.currentStateName}
-      selected: ${selectedInfo}
-      target: ${targetInfo}
-    `
-  })
-}
-
 const AddDebugToEntity = ({ entities }) => {
   useNodes([n.Building, n.Pointer])
 
@@ -109,7 +59,6 @@ state: ${fsm.fsm.currentStateName}
 }
 
 export const Debug = [
-  DebugCommon,
   AddDebugToEntity,
   DebugBuilding,
   DebugPointer,

@@ -1,4 +1,4 @@
-import { Game, Stats } from 'core/boot'
+import { Game } from 'core/boot'
 import { asValue } from 'awilix'
 
 import { GameScene } from './scenes'
@@ -21,11 +21,6 @@ export const createGame = ({ layout }) => {
     },
   })
 
-  const stats = new Stats([
-    [0, 0, Stats.types.FPS],
-    [0, 48, Stats.types.MB],
-  ])
-
   const onBoot = () => {
     game.container.register({
       layout: asValue(layout),
@@ -33,8 +28,6 @@ export const createGame = ({ layout }) => {
   }
 
   game.events
-    .on('preUpdate', stats.begin)
-    .on('postUpdate', stats.end)
     .on('boot', onBoot)
 
   game.boot()
