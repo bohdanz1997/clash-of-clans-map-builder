@@ -1,11 +1,12 @@
 import { EasingFormulas, Tween } from 'core/tweens'
+import { useNodes, onUpdate } from 'core/ecs'
 import * as c from '../components'
 import * as n from '../nodes'
 
-export const ManageTweens = () => ({
-  nodes: [n.Tween],
+export const ManageTweens = () => {
+  useNodes([n.Tween])
 
-  update(node) {
+  onUpdate((node) => {
     /** @type {Tween} */
     const { tween } = node.tween
 
@@ -41,5 +42,5 @@ export const ManageTweens = () => ({
         node.entity.add(c.Tween(newTween))
       }
     }
-  },
-})
+  })
+}

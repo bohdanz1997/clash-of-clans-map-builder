@@ -1,18 +1,16 @@
+import { useNodes, onNodeAdded } from 'core/ecs'
 import * as n from '../nodes'
 
-export const UpdateDisplayGroup = () => ({
-  nodes: Object.values(n.Layers),
+const layerNodeTypes = Object.values(n.Layers)
 
-  init(...layerNodes) {
-    const setDisplayGroup = (node) => {
-      node.display.sprite.parentGroup = node.layer.group
-    }
+export const UpdateDisplayGroup = () => {
+  useNodes(layerNodeTypes)
 
-    const subscribe = (nodes) => {
-      nodes.each(setDisplayGroup)
-      nodes.onAdded(setDisplayGroup)
-    }
+  const setDisplayGroup = (node) => {
+    node.display.sprite.parentGroup = node.layer.group
+  }
 
-    layerNodes.forEach(subscribe)
-  },
-})
+  layerNodeTypes.forEach((nodeType) => {
+    onNodeAdded(setDisplayGroup, nodeType)
+  })
+}

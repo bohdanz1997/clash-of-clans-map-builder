@@ -1,33 +1,32 @@
+import { useNodes, onUpdate } from 'core/ecs'
 import { View } from 'core/display'
 import * as n from '../nodes'
 
-export const DebugMapLayers = ({ engine, config, stage, map }) => ({
-  nodes: [n.Debug],
+export const DebugMapLayers = ({ engine, config, stage, map }) => {
+  const buildingLayer = map.getLayer('building')
+  const dragLayer = map.getLayer('drag')
 
-  init() {
-    this.buildingLayer = map.getLayer('building')
-    this.dragLayer = map.getLayer('drag')
+  const buildingLayerText = View.text({
+    fontSize: '12px',
+    fontFamily: 'mono',
+    x: 1000,
+    y: 20,
+  })
 
-    this.buildingLayerText = View.text({
-      fontSize: '12px',
-      fontFamily: 'mono',
-      x: 1000,
-      y: 20,
-    })
+  const dragLayerText = View.text({
+    fontSize: '12px',
+    fontFamily: 'mono',
+    x: 1150,
+    y: 20,
+  })
 
-    this.dragLayerText = View.text({
-      fontSize: '12px',
-      fontFamily: 'mono',
-      x: 1150,
-      y: 20,
-    })
+  stage.addChild(buildingLayerText)
+  stage.addChild(dragLayerText)
 
-    stage.addChild(this.buildingLayerText)
-    stage.addChild(this.dragLayerText)
-  },
+  useNodes([n.Debug])
 
-  update() {
-    this.buildingLayerText.content = `building layer\n${this.buildingLayer.toString()}`
-    this.dragLayerText.content = `drag layer\n${this.dragLayer.toString()}`
-  },
-})
+  onUpdate(() => {
+    buildingLayerText.content = `building layer\n${buildingLayer.toString()}`
+    dragLayerText.content = `drag layer\n${dragLayer.toString()}`
+  })
+}

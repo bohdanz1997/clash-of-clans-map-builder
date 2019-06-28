@@ -1,13 +1,14 @@
+import { useNodes, onUpdate } from 'core/ecs'
 import { MatrixHelper } from 'core/math'
 import * as n from '../nodes'
 
-export const IsometricMovement = () => ({
-  nodes: [n.Isometric],
+export const IsometricMovement = () => {
+  useNodes([n.Isometric])
 
   /**
    * @param {Isometric} node
    */
-  update(node) {
+  onUpdate((node) => {
     const { position, isoPosition } = node
 
     // iso pos for entities
@@ -19,5 +20,5 @@ export const IsometricMovement = () => ({
     const isoPos = MatrixHelper.isoMatrix.apply(tempIsoPos)
     isoPosition.x = isoPos.x
     isoPosition.y = isoPos.y
-  },
-})
+  })
+}

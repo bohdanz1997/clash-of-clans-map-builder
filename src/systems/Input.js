@@ -1,14 +1,15 @@
+import { useNodes, onUpdate } from 'core/ecs'
 import * as n from '../nodes'
 
 /**
- * @param {Input} keyboard
+ * @param {Keyboard} keyboard
  * @param {PointerManager} pointers
  */
-export const Input = ({ keyboard, pointers }) => ({
-  nodes: [n.Input],
+export const Input = ({ keyboard, pointers }) => {
+  useNodes([n.Input])
 
-  update(node, delta) {
+  onUpdate((node, delta) => {
     keyboard.update(delta)
     pointers.update(delta)
-  },
-})
+  })
+}

@@ -1,18 +1,19 @@
+import { useNodes, onUpdate } from 'core/ecs'
 import { Point } from 'pixi.js'
 import * as n from '../nodes'
 
-export const CameraTouchControl = () => ({
-  nodes: [n.CameraControl, n.PointerIdle],
+export const CameraTouchControl = () => {
+  useNodes([n.CameraControl, n.PointerIdle])
 
-  limitScrollSpeed(point, maxValue) {
+  const limitScrollSpeed = (point, maxValue) => {
     const x = Math.min(point.x, maxValue)
     const y = Math.min(point.y, maxValue)
 
     point.x = Math.max(x, -maxValue)
     point.y = Math.max(y, -maxValue)
-  },
+  }
 
-  update(cameraNodes, pointerNodes) {
+  onUpdate((cameraNodes, pointerNodes) => {
     if (!cameraNodes.head) {
       return
     }
@@ -23,7 +24,7 @@ export const CameraTouchControl = () => ({
       if (context.isDown) {
         if (camera.origin) {
           const newVel = new Point(camera.origin.x - position.x, camera.origin.y - position.y)
-          this.limitScrollSpeed(newVel, motion.maxVel)
+          limitScrollSpeed(newVel, motion.maxVel)
 
           motion.vel.x = newVel.x
           motion.vel.y = newVel.y
@@ -33,5 +34,5 @@ export const CameraTouchControl = () => ({
         camera.origin = null
       }
     })
-  },
-})
+  })
+}

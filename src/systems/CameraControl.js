@@ -1,9 +1,10 @@
+import { useNodes, onUpdate } from 'core/ecs'
 import * as n from '../nodes'
 
-export const CameraControl = ({ world }) => ({
-  nodes: [n.CameraControl],
+export const CameraControl = ({ world }) => {
+  useNodes([n.CameraControl])
 
-  update({ camera, position, motion, motionControl, zoomControl }) {
+  onUpdate(({ camera, position, motion, motionControl, zoomControl }) => {
     const { smoothZoom } = zoomControl
 
     if (motionControl.up.isDown) {
@@ -32,5 +33,5 @@ export const CameraControl = ({ world }) => ({
 
     const scale = smoothZoom.applyForce(world.scale.x)
     world.scale.set(scale)
-  },
-})
+  })
+}

@@ -1,3 +1,4 @@
+import { useNodes, onUpdate } from 'core/ecs'
 import * as c from '../components'
 import * as n from '../nodes'
 import { Preview } from '../entities'
@@ -6,10 +7,10 @@ import { Preview } from '../entities'
  * @param {EntityManager} entities
  * @param {Helper} helper
  */
-export const SelectInventoryItem = ({ entities, helper }) => ({
-  nodes: [n.InventoryItemClicked, n.InventoryItemSelected, n.Pointer],
+export const SelectInventoryItem = ({ entities, helper }) => {
+  useNodes([n.InventoryItemClicked, n.InventoryItemSelected, n.Pointer])
 
-  update(clickedNodes, selectedNodes, pointerNodes) {
+  onUpdate((clickedNodes, selectedNodes, pointerNodes) => {
     const pointerNode = pointerNodes.head
 
     clickedNodes.each((clickedNode) => {
@@ -34,27 +35,17 @@ export const SelectInventoryItem = ({ entities, helper }) => ({
         offset,
       }))
     })
-  },
-})
+  })
+}
 
 /**
  * @param {EntityManager} entities
  * @param {Helper} helper
  */
-export const PutEntityToMap = ({ entities, helper }) => ({
-  nodes: [n.Pointer, n.InventoryItemSelected],
+export const PutEntityToMap = ({ entities, helper }) => {
+  useNodes([n.Pointer, n.InventoryItemSelected])
 
-  update(pointerNodes, itemNodes) {
-    pointerNodes.each((pointerNode) => {
-      if (pointerNode.context.justDown) {
-        itemNodes.each((itemNode) => {
-          this.createEntity(pointerNode.isoPosition, itemNode.entityMeta)
-        })
-      }
-    })
-  },
-
-  createEntity(isoPosition, entityMeta) {
+  const createEntity = (isoPosition, entityMeta) => {
     const startPos = helper.normToCenter(isoPosition.cartX, isoPosition.cartY)
 
     entities.add(entityMeta.id, {
@@ -64,35 +55,45 @@ export const PutEntityToMap = ({ entities, helper }) => ({
     })
 
     entityMeta.count -= 1
-  },
-})
+  }
 
-export const DisposeInventoryItemAndPreview = () => ({
-  nodes: [n.InventoryItem, n.Preview],
+  onUpdate((pointerNodes, itemNodes) => {
+    pointerNodes.each((pointerNode) => {
+      if (pointerNode.context.justDown) {
+        itemNodes.each((itemNode) => {
+          createEntity(pointerNode.isoPosition, itemNode.entityMeta)
+        })
+      }
+    })
+  })
+}
 
-  removePreviews(nodes) {
+export const DisposeInventoryItemAndPreview = () => {
+  useNodes([n.InventoryItem, n.Preview])
+
+  const removePreviews = (nodes) => {
     nodes.each((node) => {
       node.entity.dispose()
     })
-  },
+  }
 
-  update(itemNodes, previewNodes) {
+  onUpdate((itemNodes, previewNodes) => {
     itemNodes.each(({ entityMeta, entity }) => {
       if (entityMeta.count <= 0) {
         entity.dispose()
-        this.removePreviews(previewNodes)
+        removePreviews(previewNodes)
       }
     })
-  },
-})
+  })
+}
 
-export const InventoryItemCounter = () => ({
-  nodes: [n.InventoryItemCounter],
+export const InventoryItemCounter = () => {
+  useNodes([n.InventoryItemCounter])
 
-  update(node) {
+  onUpdate((node) => {
     const { parent, display } = node
     // because parent entity can be disposed
     const inventoryMeta = parent.entity.get(c.EntityMeta, true)
     display.sprite.text = inventoryMeta.count
-  },
-})
+  })
+}

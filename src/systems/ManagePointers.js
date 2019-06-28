@@ -1,4 +1,5 @@
 import { MatrixHelper } from 'core/math'
+import { useNodes, onUpdate, onNodeAdded, onNodeRemoved } from 'core/ecs'
 import { Point } from 'pixi.js'
 import * as n from '../nodes'
 
@@ -9,31 +10,28 @@ import * as n from '../nodes'
  * @param {Config} config
  * @param {PointerManager} pointers
  */
-export const ManagePointers = ({ engine, world, map, config, pointers }) => ({
-  nodes: [n.Pointer],
+export const ManagePointers = ({ engine, world, map, config, pointers }) => {
+  useNodes([n.Pointer])
 
-  init(nodes) {
-    const subscribeProcessor = (node) => {
-      node.context.processor = pointers.add(node)
-    }
+  const cursorOffset = new Point(map.config.hIsoTileWidth, 0)
+  const cellSize = map.config.cellWidth
 
-    const unsubscribeProcessor = (node) => {
-      pointers.remove(node.context.processor)
-    }
+  const subscribeProcessor = (node) => {
+    node.context.processor = pointers.add(node)
+  }
 
-    nodes.each(subscribeProcessor)
-    nodes.onAdded(subscribeProcessor)
-    nodes.onRemoved(unsubscribeProcessor)
+  const unsubscribeProcessor = (node) => {
+    pointers.remove(node.context.processor)
+  }
 
-    this.cursorOffset = new Point(map.config.hIsoTileWidth, 0)
-    this.cellSize = map.config.cellWidth
-  },
+  onNodeAdded(subscribeProcessor)
+  onNodeRemoved(unsubscribeProcessor)
 
-  update({ context, position, isoPosition }) {
+  onUpdate(({ context, position, isoPosition }) => {
     // update cartesian position
     const tempCartPos = new Point(
-      position.x - world.x - this.cursorOffset.x,
-      position.y - world.y - this.cursorOffset.y,
+      position.x - world.x - cursorOffset.x,
+      position.y - world.y - cursorOffset.y,
     )
 
     const cartPos = MatrixHelper.invertIsoMatrix.apply(tempCartPos)
@@ -41,20 +39,18 @@ export const ManagePointers = ({ engine, world, map, config, pointers }) => ({
     isoPosition.cartY = cartPos.y
 
     // update tilemap position
-    isoPosition.col = Math.floor(isoPosition.cartX / this.cellSize)
-    isoPosition.row = Math.floor(isoPosition.cartY / this.cellSize)
-  },
-})
+    isoPosition.col = Math.floor(isoPosition.cartX / cellSize)
+    isoPosition.row = Math.floor(isoPosition.cartY / cellSize)
+  })
+}
 
-export const UpdateCursorStyle = ({ pointers }) => ({
-  nodes: [n.PointerHovered],
+export const UpdateCursorStyle = ({ pointers }) => {
+  useNodes([n.PointerHovered])
 
-  init(nodes) {
-    nodes.onAdded(() => {
-      pointers.setCursorStyle('pointer')
-    })
-    nodes.onRemoved(() => {
-      pointers.setCursorStyle('auto')
-    })
-  },
-})
+  onNodeAdded(() => {
+    pointers.setCursorStyle('pointer')
+  })
+  onNodeRemoved(() => {
+    pointers.setCursorStyle('auto')
+  })
+}

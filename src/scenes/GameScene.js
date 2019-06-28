@@ -65,7 +65,7 @@ export class GameScene extends Scene {
     this.systems
       .add(s.UpdateDisplayGroup, priorities.PRE_INIT)
       .add(s.Input, priorities.PRE_UPDATE)
-      .hook(s.Movement, priorities.MOVEMENT)
+      .add(s.Movement, priorities.MOVEMENT)
       .add(s.IsometricMovement, priorities.MOVEMENT)
       .add(s.ChildMovement, priorities.MOVEMENT)
       .add(s.ManagePointers, priorities.MOVEMENT)
@@ -77,19 +77,19 @@ export class GameScene extends Scene {
       .add(s.PutEntityToMap)
       .add(s.SelectInventoryItem)
       .add(s.UpdateCursorStyle)
-      .hook(s.Interactive)
+      .add(s.Interactive)
       .add(s.DisposeInventoryItemAndPreview, priorities.DISPOSING)
-      .hook(s.ParentRelationListener, priorities.DISPOSING)
-      .hook(s.ChildRelationListener, priorities.DISPOSING)
+      .add(s.ParentRelationListener, priorities.DISPOSING)
+      .add(s.ChildRelationListener, priorities.DISPOSING)
       .add(s.XXXLayer)
       .add(s.InventoryItemCounter)
-      .hook(s.Render, priorities.RENDER)
-      .hook(s.IsometricRender, priorities.ISO_RENDER)
+      .add(s.Render, priorities.RENDER)
+      .add(s.IsometricRender, priorities.ISO_RENDER)
 
     if (this.config.debug) {
       this.systems
-        .hook(s.Debug)
-        .hook(s.FPSCounter)
+        .add(s.Debug)
+        .add(s.FPSCounter)
     }
 
     this.systems.init()

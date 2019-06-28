@@ -1,9 +1,10 @@
+import { useNodes, onUpdate } from 'core/ecs'
 import * as n from '../nodes'
 
-export const Animation = () => ({
-  nodes: [n.Animation],
+export const Animation = () => {
+  useNodes([n.Animation])
 
-  update(node, delta) {
+  onUpdate((node, delta) => {
     node.display.sprite.update(delta)
-  },
-})
+  })
+}
