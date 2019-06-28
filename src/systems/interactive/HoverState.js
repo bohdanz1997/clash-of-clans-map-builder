@@ -1,18 +1,17 @@
+import { useNodes, onNodeAdded, onUpdate } from 'core/ecs'
 import { detectHit } from '../../services'
 import * as c from '../../components'
 import * as n from '../../nodes'
 import { states } from '../../fsm'
 
-export const HoverState = ({ log }) => ({
-  nodes: [n.TargetHovered],
+export const HoverState = ({ log }) => {
+  useNodes([n.TargetHovered])
 
-  init(nodes) {
-    nodes.onAdded(() => {
-      log('hover')
-    })
-  },
+  onNodeAdded(() => {
+    log('hover')
+  })
 
-  update(node) {
+  onUpdate((node) => {
     const { initiator, fsm, entity } = node
 
     if (!detectHit(initiator.entity, entity)) {
@@ -25,5 +24,5 @@ export const HoverState = ({ log }) => ({
     if (pointerContext.justDown) {
       fsm.fsm.changeState(states.clicked)
     }
-  },
-})
+  })
+}

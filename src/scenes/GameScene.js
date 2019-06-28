@@ -77,7 +77,7 @@ export class GameScene extends Scene {
       .add(s.PutEntityToMap)
       .add(s.SelectInventoryItem)
       .add(s.UpdateCursorStyle)
-      .add(s.Interactive)
+      .hook(s.Interactive)
       .add(s.DisposeInventoryItemAndPreview, priorities.DISPOSING)
       .hook(s.ParentRelationListener, priorities.DISPOSING)
       .hook(s.ChildRelationListener, priorities.DISPOSING)

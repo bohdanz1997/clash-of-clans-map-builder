@@ -1,3 +1,4 @@
+import { useNodes, onNodeAdded, onUpdate } from 'core/ecs'
 import * as c from '../../components'
 import * as n from '../../nodes'
 import { states } from '../../fsm'
@@ -7,16 +8,14 @@ import { states } from '../../fsm'
  * @param {Helper} helper
  * @param log
  */
-export const ClickState = ({ map, helper, log }) => ({
-  nodes: [n.TargetClicked],
+export const ClickState = ({ map, helper, log }) => {
+  useNodes([n.TargetClicked])
 
-  init(nodes) {
-    nodes.onAdded(() => {
-      log('click')
-    })
-  },
+  onNodeAdded(() => {
+    log('click')
+  })
 
-  update(node) {
+  onUpdate((node) => {
     const { initiator, fsm, entity, position } = node
 
     if (entity.has(c.Draggable)) {
@@ -30,5 +29,5 @@ export const ClickState = ({ map, helper, log }) => ({
     } else {
       fsm.fsm.changeState(states.hovered)
     }
-  },
-})
+  })
+}

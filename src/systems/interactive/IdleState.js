@@ -1,18 +1,17 @@
+import { useNodes, onNodeAdded, onUpdate } from 'core/ecs'
 import { detectHit } from '../../services'
 import { states } from '../../fsm'
 import * as c from '../../components'
 import * as n from '../../nodes'
 
-export const IdleState = ({ log }) => ({
-  nodes: [n.InitiatorIdle, n.TargetIdle],
+export const IdleState = ({ log }) => {
+  useNodes([n.InitiatorIdle, n.TargetIdle])
 
-  init(initiators, targets) {
-    targets.onAdded(() => {
-      log('idle')
-    })
-  },
+  onNodeAdded(() => {
+    log('idle')
+  }, n.TargetIdle)
 
-  update(initiatorNode, targetNode) {
+  onUpdate((initiatorNode, targetNode) => {
     initiatorNode.each((nInitiator) => {
       targetNode.each((nTarget) => {
         const eInitiator = nInitiator.entity
@@ -24,5 +23,5 @@ export const IdleState = ({ log }) => ({
         }
       })
     })
-  },
-})
+  })
+}

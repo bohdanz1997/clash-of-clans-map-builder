@@ -1,3 +1,4 @@
+import { useNodes, onNodeAdded, onUpdate } from 'core/ecs'
 import * as c from '../../components'
 import * as n from '../../nodes'
 import { states } from '../../fsm'
@@ -8,41 +9,39 @@ import { states } from '../../fsm'
  * @param {Config} config
  * @param log
  */
-export const DragState = ({ engine, map, config, log }) => ({
-  nodes: [n.TargetDragging],
+export const DragState = ({ engine, map, config, log }) => {
+  const cellSize = map.config.cellWidth
 
-  init(nodes) {
-    nodes.onAdded((node) => {
-      const { entity } = node
-      log('drag')
+  useNodes([n.TargetDragging])
 
-      entity.remove(c.Layer.Building)
-      entity.add(c.Layer.Drag)
-    })
+  onNodeAdded((node) => {
+    const { entity } = node
+    log('drag')
 
-    this.cellSize = map.config.cellWidth
-  },
+    entity.remove(c.Layer.Building)
+    entity.add(c.Layer.Drag)
+  })
 
-  updateDrag(node) {
+  const updateDrag = (node) => {
     const { initiator, dragContext, position } = node
     const clientPosition = initiator.entity.get(c.IsoPosition)
     const sourcePosition = position
 
-    const clientX = clientPosition.col * this.cellSize
-    const clientY = clientPosition.row * this.cellSize
+    const clientX = clientPosition.col * cellSize
+    const clientY = clientPosition.row * cellSize
 
     sourcePosition.x = clientX - dragContext.offset.x
     sourcePosition.y = clientY - dragContext.offset.y
-  },
+  }
 
-  update(node) {
+  onUpdate((node) => {
     const { initiator, fsm } = node
     const pointerContext = initiator.entity.get(c.PointerContext)
 
-    this.updateDrag(node)
+    updateDrag(node)
 
     if (pointerContext.isUp) {
       fsm.fsm.changeState(states.dropped)
     }
-  },
-})
+  })
+}
