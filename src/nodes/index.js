@@ -33,6 +33,7 @@ export const ParentWithDebug = [c.Child.Debug, c.IsoPosition]
 
 export const BuildingWithDebug = [c.Child.Debug, c.Building, c.Position, c.IsoPosition, c.FSM, c.Identity]
 export const PointerWithDebug = [c.Child.Default, c.PointerContext, c.Position, c.IsoPosition, c.FSM]
+export const CameraWithDebug = [c.Child.Default, c.Camera, c.Position]
 
 // inventory
 export const Inventory = [c.Inventory]
