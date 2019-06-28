@@ -9,4 +9,5 @@ class MotionData {
   }
 }
 
+/** @type {MotionData} */
 export const Motion = component('motion', MotionData)

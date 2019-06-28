@@ -79,12 +79,12 @@ export class GameScene extends Scene {
       .add(s.UpdateCursorStyle)
       .add(s.Interactive)
       .add(s.DisposeInventoryItemAndPreview, priorities.DISPOSING)
-      .add(s.ParentRelationListener, priorities.DISPOSING)
-      .add(s.ChildRelationListener, priorities.DISPOSING)
+      .hook(s.ParentRelationListener, priorities.DISPOSING)
+      .hook(s.ChildRelationListener, priorities.DISPOSING)
       .add(s.XXXLayer)
       .add(s.InventoryItemCounter)
-      .add(s.Render, priorities.RENDER)
-      .add(s.IsometricRender, priorities.ISO_RENDER)
+      .hook(s.Render, priorities.RENDER)
+      .hook(s.IsometricRender, priorities.ISO_RENDER)
 
     if (this.config.debug) {
       this.systems.hook(s.Debug)

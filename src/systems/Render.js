@@ -1,49 +1,45 @@
+import { onNodeAdded, onNodeRemoved, onUpdate, useNodes } from 'core/ecs'
 import * as c from '../components'
 import * as n from '../nodes'
 
-export const Render = ({ world, hud }) => ({
-  nodes: [n.Render],
+export const Render = ({ world, hud }) => {
+  useNodes([n.Render])
 
-  init(nodes) {
-    const layersToContainers = [
-      [c.Layer.Ground, world],
-      [c.Layer.BackGround, world],
-      [c.Layer.Building, world],
-      [c.Layer.Drag, world],
-      [c.Layer.Hud, hud],
-      [c.Layer.Debug, hud],
-    ]
+  const layersToContainers = [
+    [c.Layer.Ground, world],
+    [c.Layer.BackGround, world],
+    [c.Layer.Building, world],
+    [c.Layer.Drag, world],
+    [c.Layer.Hud, hud],
+    [c.Layer.Debug, hud],
+  ]
 
-    const findContainerByLayerComponent = (node) => {
-      const res = layersToContainers.find(([ComponentLayer]) => (
-        node.entity.has(ComponentLayer, true)
-      ))
+  const findContainerByLayerComponent = (node) => {
+    const res = layersToContainers.find(([ComponentLayer]) => (
+      node.entity.has(ComponentLayer, true)
+    ))
 
-      if (!res) {
-        const identity = node.entity.get(c.Identity, true)
-        throw new Error(`Found entity (${identity.id}) without layer component`)
-      }
-
-      return res[1]
+    if (!res) {
+      const identity = node.entity.get(c.Identity, true)
+      throw new Error(`Found entity (${identity.id}) without layer component`)
     }
 
-    const addRenderChild = (node) => {
-      const container = findContainerByLayerComponent(node)
-      container.addChild(node.display.sprite)
-    }
+    return res[1]
+  }
 
-    const removeRenderChild = (node) => {
-      const container = findContainerByLayerComponent(node)
-      container.removeChild(node.display.sprite)
-    }
+  onNodeAdded((node) => {
+    const container = findContainerByLayerComponent(node)
+    container.addChild(node.display.sprite)
+  })
 
-    nodes.each(addRenderChild)
-    nodes.onAdded(addRenderChild)
-    nodes.onRemoved(removeRenderChild)
-  },
+  onNodeRemoved((node) => {
+    const container = findContainerByLayerComponent(node)
+    container.removeChild(node.display.sprite)
+  })
 
-  update({ position, display }) {
+  onUpdate((node) => {
+    const { position, display } = node
     display.sprite.x = position.x
     display.sprite.y = position.y
-  },
-})
+  })
+}

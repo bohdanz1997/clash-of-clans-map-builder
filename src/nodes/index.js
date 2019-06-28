@@ -1,9 +1,14 @@
 import * as c from '../components'
 
-/**
- @typedef {Object} Movement
- @property {PositionRaw} position
- */
+// For future
+// class NodeType {
+//   entity = new Entity()
+// }
+//
+// export class Movement extends NodeType {
+//   position = c.Position
+//   motion = c.Motion
+// }
 
 // movement
 export const Movement = [c.Position, c.Motion]

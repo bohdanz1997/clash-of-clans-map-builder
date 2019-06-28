@@ -1,45 +1,38 @@
-import { Symbols } from 'core/ecs'
+import { Symbols, useNodes, onNodeAdded, onNodeRemoved } from 'core/ecs'
 import * as c from '../components'
 import * as n from '../nodes'
 
-export const ParentRelationListener = ({ engine }) => ({
-  nodes: Object.values(n.ParentRelations),
+const ParentRelationsNodes = Object.values(n.ParentRelations)
 
-  init(...nodeGroups) {
-    const addToChild = (node) => {
-      const { child, entity } = node
+export const ParentRelationListener = ({ engine }) => {
+  useNodes(ParentRelationsNodes)
 
-      child.entity.add(c.Parent({
-        entity,
-        offset: child.offset,
-        childType: child[Symbols.bType],
-      }))
-      engine.addEntity(child.entity)
-    }
+  const addToChild = (node) => {
+    const { child, entity } = node
 
-    const removeFromChild = (node) => {
-      node.child.entity.dispose()
-    }
+    child.entity.add(c.Parent({
+      entity,
+      offset: child.offset,
+      childType: child[Symbols.bType],
+    }))
+    engine.addEntity(child.entity)
+  }
 
-    const subscribe = (nodes) => {
-      nodes.each(addToChild)
-      nodes.onAdded(addToChild)
-      nodes.onRemoved(removeFromChild)
-    }
+  const removeFromChild = (node) => {
+    node.child.entity.dispose()
+  }
 
-    nodeGroups.forEach(subscribe)
-  },
-})
+  ParentRelationsNodes.forEach((nodeType) => {
+    onNodeAdded(addToChild, nodeType)
+    onNodeRemoved(removeFromChild, nodeType)
+  })
+}
 
-export const ChildRelationListener = () => ({
-  nodes: [n.Child],
+export const ChildRelationListener = () => {
+  useNodes([n.Child])
 
-  init(nodes) {
-    const removeFromParent = (node) => {
-      const { parent } = node
-      parent.entity.remove(parent.childType)
-    }
-
-    nodes.onRemoved(removeFromParent)
-  },
-})
+  onNodeRemoved((node) => {
+    const { parent } = node
+    parent.entity.remove(parent.childType)
+  })
+}
