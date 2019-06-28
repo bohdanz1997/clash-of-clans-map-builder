@@ -1,10 +1,12 @@
 import { Point } from 'pixi.js'
-import { onNodeAdded, onNodeRemoved, onUpdate, system } from 'core/ecs'
+import { useNodes, onNodeAdded, onUpdate } from 'core/ecs'
 import * as c from '../components'
 import * as n from '../nodes'
 import * as e from '../entities'
 
-const DebugCommon = system(() => {
+const DebugCommon = () => {
+  useNodes([n.Pointer, n.Debug, n.InventoryItemSelected, n.Camera])
+
   onUpdate((pointerNode, debugNode, selectedNode, cameraNode) => {
     const pointer = pointerNode.head
     if (!pointer) {
@@ -50,9 +52,11 @@ const DebugCommon = system(() => {
       target: ${targetInfo}
     `
   })
-}, [n.Pointer, n.Debug, n.InventoryItemSelected, n.Camera])
+}
 
-const AddDebugToEntity = system(({ entities }) => {
+const AddDebugToEntity = ({ entities }) => {
+  useNodes([n.Building, n.Pointer])
+
   const addDebug = params => (node) => {
     const debug = entities.add(e.Debug, params.args)
     node.entity.add(params.childType({
@@ -71,9 +75,11 @@ const AddDebugToEntity = system(({ entities }) => {
     childType: c.Child.Default,
   }), n.Pointer)
 
-}, [n.Building, n.Pointer])
+}
 
-const DebugBuilding = system(() => {
+const DebugBuilding = () => {
+  useNodes([n.BuildingWithDebug])
+
   onUpdate((node) => {
     const { child, position, isoPosition, fsm, identity } = node
 
@@ -85,9 +91,11 @@ iso: [${Math.floor(isoPosition.x)}, ${Math.floor(isoPosition.y)}]
 map: [${position.col}, ${position.row}]
     `
   })
-}, [n.BuildingWithDebug])
+}
 
-export const DebugPointer = system(() => {
+export const DebugPointer = () => {
+  useNodes([n.PointerWithDebug])
+
   onUpdate((node) => {
     const { child, position, isoPosition, fsm } = node
 
@@ -98,7 +106,7 @@ map: [${isoPosition.col}, ${isoPosition.row}]
 state: ${fsm.fsm.currentStateName}
     `
   })
-}, [n.PointerWithDebug])
+}
 
 export const Debug = [
   DebugCommon,
