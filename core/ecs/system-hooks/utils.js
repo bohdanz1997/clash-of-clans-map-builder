@@ -15,6 +15,10 @@ export const throwIfMoreOneNodeType = (name, hook) => {
   }
 }
 
+export const throwErrorForProvider = (message) => {
+  throw new Error(`[${getCurrentProvider().name}] ${message}`)
+}
+
 /**
  * @param {function(Hook)} cb
  * @param {Hook[]} hooks

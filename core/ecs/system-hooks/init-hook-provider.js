@@ -1,6 +1,6 @@
 import { HookProvider } from './HookProvider'
 import { setCurrentProvider } from './current-provider'
-import { eachHooks, throwIfMoreOneNodeType } from './utils'
+import { eachHooks, throwIfMoreOneNodeType, throwErrorForProvider } from './utils'
 
 /**
  * @param {Engine} engine
@@ -8,21 +8,22 @@ import { eachHooks, throwIfMoreOneNodeType } from './utils'
  * @param {Function} setup
  */
 export const initHookProvider = (engine, container, setup) => {
+  const provider = new HookProvider(setup.name, setup)
+
   const getNodeTypes = hookNodes => hookNodes.map(getNodeType)
 
   const getNodeType = (hookNode) => {
     if (!nodeTypesMap.has(hookNode)) {
-      throw new Error(`Could not found nodeType for node: ${hookNode}`)
+      throwErrorForProvider(`could not found nodeType for node: ${hookNode}`)
     }
     return nodeTypesMap.get(hookNode)
   }
 
-  const provider = new HookProvider(setup)
   setCurrentProvider(provider)
   container.build(provider.setup)
 
   if (!provider.useNodesHook) {
-    throw new Error('Should call "useNodes" hook')
+    throwErrorForProvider('should call "useNodes" hook')
   }
   provider.useNodesHook.handler()
 

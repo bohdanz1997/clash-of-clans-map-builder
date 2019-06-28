@@ -1,5 +1,8 @@
 export class HookProvider {
-  constructor(setup) {
+  constructor(name, setup) {
+    /** @type {string} */
+    this.name = name
+
     /** @type {Array} */
     this.nodes = []
 
