@@ -38,7 +38,6 @@ export { Engine, Symbols } from 'scent2'
 export { EntityBuilder, EntityManager } from './EntityManager'
 export { SystemManager } from './SystemManager'
 export { createEntity } from './entity'
-export { createSystem } from './system'
 export { component } from './component'
 export { nodeEachTwice } from './node'
 
