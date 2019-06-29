@@ -13,10 +13,14 @@ const {
     /** @type {PIXI.display.Stage} */
     Stage,
   },
+  utils: {
+    string2hex,
+  },
 } = PIXI
 
 export {
   Group,
   Layer,
   Stage,
+  string2hex,
 }
