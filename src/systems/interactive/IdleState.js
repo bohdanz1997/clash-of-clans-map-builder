@@ -3,12 +3,13 @@ import { detectHit } from '../../services'
 import { states } from '../../fsm'
 import * as c from '../../components'
 import * as n from '../../nodes'
+import { levels } from '../../config'
 
 export const IdleState = ({ log }) => {
   useNodes([n.InitiatorIdle, n.TargetIdle])
 
   onNodeAdded(() => {
-    log('idle')
+    log(levels.interact, 'idle')
   }, n.TargetIdle)
 
   onUpdate((initiatorNode, targetNode) => {

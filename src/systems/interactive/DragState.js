@@ -2,6 +2,7 @@ import { useNodes, onNodeAdded, onUpdate } from 'core/ecs'
 import * as c from '../../components'
 import * as n from '../../nodes'
 import { states } from '../../fsm'
+import { levels } from '../../config'
 
 /**
  * @param {Engine} engine
@@ -16,7 +17,7 @@ export const DragState = ({ engine, map, config, log }) => {
 
   onNodeAdded((node) => {
     const { entity } = node
-    log('drag')
+    log(levels.interact, 'drag')
 
     entity.remove(c.Layer.Building)
     entity.add(c.Layer.Drag)

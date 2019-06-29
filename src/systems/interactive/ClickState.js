@@ -2,6 +2,7 @@ import { useNodes, onNodeAdded, onUpdate } from 'core/ecs'
 import * as c from '../../components'
 import * as n from '../../nodes'
 import { states } from '../../fsm'
+import { levels } from '../../config'
 
 /**
  * @param {TileMap} map
@@ -12,7 +13,7 @@ export const ClickState = ({ map, helper, log }) => {
   useNodes([n.TargetClicked])
 
   onNodeAdded(() => {
-    log('click')
+    log(levels.interact, 'click')
   })
 
   onUpdate((node) => {

@@ -3,12 +3,13 @@ import { detectHit } from '../../services'
 import * as c from '../../components'
 import * as n from '../../nodes'
 import { states } from '../../fsm'
+import { levels } from '../../config'
 
 export const HoverState = ({ log }) => {
   useNodes([n.TargetHovered])
 
   onNodeAdded(() => {
-    log('hover')
+    log(levels.interact, 'hover')
   })
 
   onUpdate((node) => {
