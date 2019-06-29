@@ -6,6 +6,7 @@ export class Keyboard {
   constructor(target) {
     this.target = target
     this.keys = {}
+    this.addedKeys = []
     this.queue = []
     this.time = null
     this.onKeyHandler = null
@@ -46,21 +47,35 @@ export class Keyboard {
     }
   }
 
+  /**
+   * @param keyCode
+   * @return {Key}
+   */
   addKey = (keyCode) => {
     if (!this.getKey(keyCode)) {
       this.keys[keyCode] = new Key(keyCode)
+      this.addedKeys.push(keyCode)
     }
     return this.getKey(keyCode)
   }
 
+  /**
+   * @param keyCodes
+   * @return {Key[]}
+   */
   addKeys(...keyCodes) {
     return keyCodes.map(this.addKey)
   }
 
   removeKey(keyCode) {
+    this.addedKeys = this.addedKeys.filter(code => code !== keyCode)
     delete this.keys[keyCode]
   }
 
+  /**
+   * @param keyCode
+   * @return {Key}
+   */
   getKey(keyCode) {
     return this.keys[keyCode]
   }
@@ -76,10 +91,19 @@ export class Keyboard {
   update(delta) {
     this.time = delta
 
+    this.updateKeys()
+
     if (this.queue.length > 0) {
       const internalQueue = [...this.queue]
       this.queue = []
       internalQueue.forEach(this.processQueueEvent)
+    }
+  }
+
+  updateKeys() {
+    for (let i = 0; i < this.addedKeys.length; i++) {
+      const code = this.addedKeys[i]
+      this.keys[code].update()
     }
   }
 

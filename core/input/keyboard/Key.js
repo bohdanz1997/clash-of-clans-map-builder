@@ -3,26 +3,39 @@ export class Key {
     this.code = keyCode
     this.isDown = false
     this.isUp = true
+    this.justDown = false
+    this.justUp = false
     this.enabled = true
   }
 
-  processKeyUp = (event) => {
+  processKeyUp = () => {
     if (!this.enabled) {
       return
+    }
+
+    if (!this.isUp) {
+      this.justUp = true
     }
 
     this.isDown = false
     this.isUp = true
   }
 
-  processKeyDown = (event) => {
+  processKeyDown = () => {
     if (!this.enabled) {
       return
     }
 
     if (!this.isDown) {
-      this.isDown = true
-      this.isUp = false
+      this.justDown = true
     }
+
+    this.isDown = true
+    this.isUp = false
+  }
+
+  update() {
+    this.justUp = false
+    this.justDown = false
   }
 }
