@@ -26,7 +26,7 @@ const AddDebugToEntity = ({ entities }) => {
   }), n.Pointer)
 
   onNodeAdded(addDebug({
-    args: { x: 10, y: 100 },
+    args: { x: 150, y: 10 },
     childType: c.Child.Default,
   }), n.Camera)
 }
@@ -47,16 +47,26 @@ map: [${position.col}, ${position.row}]
 }
 
 export const DebugPointer = () => {
-  useNodes([n.PointerWithDebug])
+  useNodes([n.PointerWithDebug, n.InventoryItemSelected, n.Preview])
 
-  onUpdate((node) => {
-    const { child, position, isoPosition, fsm } = node
+  onUpdate((pointerNodes, selectedItemNodes, previewNodes) => {
+    const { child, position, isoPosition, fsm } = pointerNodes.head
+
+    let selectedInfo = 'none'
+    if (selectedItemNodes.head) {
+      const { entityMeta } = selectedItemNodes.head
+      selectedInfo = `selected: ${entityMeta.id} (${entityMeta.def})`
+    }
+
+    const previewInfo = `previews: ${previewNodes.size}`
 
     child.entity.get(c.Display).sprite.text = `[pointer]
 pos: [${Math.floor(position.x)}, ${Math.floor(position.y)}]
 cart: [${Math.floor(isoPosition.cartX)}, ${Math.floor(isoPosition.cartY)}]
 map: [${isoPosition.col}, ${isoPosition.row}]
 state: ${fsm.fsm.currentStateName}
+${selectedInfo}
+${previewInfo}
     `
   })
 }

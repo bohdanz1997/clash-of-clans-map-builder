@@ -1,4 +1,4 @@
-import { useNodes, onUpdate } from 'core/ecs'
+import { useNodes, onUpdate, onNodeAdded, onNodeRemoved } from 'core/ecs'
 import * as c from '../components'
 import * as n from '../nodes'
 
@@ -9,8 +9,10 @@ const ChildOverlayMovement = () => {
     const { child, position } = node
     const childPosition = child.entity.get(c.Position)
 
-    childPosition.x = position.x - child.offset.x
-    childPosition.y = position.y - child.offset.x
+    if (childPosition) {
+      childPosition.x = position.x - child.offset.x
+      childPosition.y = position.y - child.offset.x
+    }
   })
 }
 
@@ -21,8 +23,10 @@ const ChildPreviewMovement = ({ map }) => {
     const { child, isoPosition } = node
     const childPosition = child.entity.get(c.Position)
 
-    childPosition.x = (isoPosition.col * map.config.cellWidth) - child.offset.x
-    childPosition.y = (isoPosition.row * map.config.cellWidth) - child.offset.y
+    if (childPosition) {
+      childPosition.x = (isoPosition.col * map.config.cellWidth) - child.offset.x
+      childPosition.y = (isoPosition.row * map.config.cellWidth) - child.offset.y
+    }
   })
 }
 
@@ -35,9 +39,11 @@ const ChildDebugMovement = () => {
     nodes.each((node) => {
       const { child, isoPosition } = node
       const childPosition = child.entity.get(c.Position)
-
-      childPosition.x = isoPosition.x - camera.position.x - child.offset.x
-      childPosition.y = isoPosition.y - camera.position.y - child.offset.y
+      // entity can be disposed
+      if (childPosition) {
+        childPosition.x = isoPosition.x - camera.position.x - child.offset.x
+        childPosition.y = isoPosition.y - camera.position.y - child.offset.y
+      }
     })
   })
 }

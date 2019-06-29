@@ -12,7 +12,6 @@ export const Inventory = ({ align }) => {
   return createEntity(
     c.Layer.Hud(),
     c.Inventory(),
-    c.Interactive(),
     ({ entity }) => c.FSM(entity),
     c.Position(pos),
     c.Collision({

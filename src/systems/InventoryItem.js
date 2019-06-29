@@ -8,33 +8,59 @@ import { Preview } from '../entities'
  * @param {Helper} helper
  */
 export const SelectInventoryItem = ({ entities, helper }) => {
-  useNodes([n.InventoryItemClicked, n.InventoryItemSelected, n.Pointer])
+  useNodes([n.Pointer, n.InventoryItemClicked, n.InventoryItemSelected])
 
-  onUpdate((clickedNodes, selectedNodes, pointerNodes) => {
-    const pointerNode = pointerNodes.head
+  const addPointerPreview = (clickedItemNode, pointerNode) => {
+    const { initiator, entityMeta } = clickedItemNode
+    const initiatorIsoPosition = initiator.entity.get(c.IsoPosition)
+    const { startPos, offset } = helper.prepareFollow(initiatorIsoPosition.cartX, initiatorIsoPosition.cartY)
 
-    clickedNodes.each((clickedNode) => {
-      selectedNodes.each((selectedNode) => {
-        selectedNode.entity.remove(c.Selected)
-      })
-
-      const { initiator, entityMeta, entity } = clickedNode
-      const initiatorIsoPosition = initiator.entity.get(c.IsoPosition)
-      const { startPos, offset } = helper.prepareFollow(initiatorIsoPosition.cartX, initiatorIsoPosition.cartY)
-
-      entity.add(c.Selected)
-
-      const ePreview = entities.add(Preview, {
-        def: entityMeta.def,
-        x: startPos.x,
-        y: startPos.y,
-      })
-
-      pointerNode.entity.add(c.Child.Preview({
-        entity: ePreview,
-        offset,
-      }))
+    const previewEntity = entities.add(Preview, {
+      def: entityMeta.def,
+      x: startPos.x,
+      y: startPos.y,
     })
+
+    previewEntity.add(c.Parent({
+      entity: pointerNode.entity,
+      offset,
+      childType: c.Child.Preview,
+    }))
+
+    removeOldPreview(pointerNode)
+    pointerNode.entity.add(c.Child.Preview({
+      entity: previewEntity,
+      offset,
+    }))
+  }
+
+  const removeOldPreview = (pointerNode) => {
+    const oldPreview = pointerNode.entity.get(c.Child.Preview)
+    if (oldPreview) {
+      pointerNode.entity.remove(c.Child.Preview)
+      oldPreview.entity.dispose()
+    }
+  }
+
+  onUpdate((pointerNodes, clickedNodes, selectedNodes) => {
+    if (!pointerNodes.size || !clickedNodes.size) {
+      return
+    }
+
+    const pointerNode = pointerNodes.head
+    const clickedItemNode = clickedNodes.head
+    const selectedItemNode = selectedNodes.head
+
+    if (selectedItemNode) {
+      if (selectedItemNode.entity === clickedItemNode.entity) {
+        return
+      }
+      selectedItemNode.entity.remove(c.Selected)
+    }
+
+    clickedItemNode.entity.add(c.Selected)
+
+    addPointerPreview(clickedItemNode, pointerNode)
   })
 }
 
@@ -43,7 +69,7 @@ export const SelectInventoryItem = ({ entities, helper }) => {
  * @param {Helper} helper
  */
 export const PutEntityToMap = ({ entities, helper }) => {
-  useNodes([n.Pointer, n.InventoryItemSelected])
+  useNodes([n.PointerIdle, n.InventoryItemSelected])
 
   const createEntity = (isoPosition, entityMeta) => {
     const startPos = helper.normToCenter(isoPosition.cartX, isoPosition.cartY)
@@ -57,11 +83,11 @@ export const PutEntityToMap = ({ entities, helper }) => {
     entityMeta.count -= 1
   }
 
-  onUpdate((pointerNodes, itemNodes) => {
+  onUpdate((pointerNodes, selectedNodes) => {
     pointerNodes.each((pointerNode) => {
       if (pointerNode.context.justDown) {
-        itemNodes.each((itemNode) => {
-          createEntity(pointerNode.isoPosition, itemNode.entityMeta)
+        selectedNodes.each((selectedItem) => {
+          createEntity(pointerNode.isoPosition, selectedItem.entityMeta)
         })
       }
     })

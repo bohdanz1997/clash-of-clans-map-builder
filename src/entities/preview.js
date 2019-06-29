@@ -17,7 +17,6 @@ export const Preview = ({
 
   return createEntity(
     c.Layer.Drag(),
-    c.Building(),
     c.Preview(),
     c.Child.Overlay(overlay),
     c.Position({ x, y, offsetX, offsetY }),
