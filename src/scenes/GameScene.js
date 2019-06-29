@@ -43,7 +43,6 @@ export class GameScene extends Scene {
       entityDataMapper: asClass(EntityDataMapper),
       world: asValue(this.stage.getChildByName('world')),
       hud: asValue(this.stage.getChildByName('hud')),
-      logger: asClass(Logger),
       log: asFunction(Log),
     })
 

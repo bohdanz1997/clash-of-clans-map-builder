@@ -20,3 +20,8 @@ export const display = {
     SpriteUtils.group('hud'),
   ],
 }
+
+export const levels = {
+  interact: 'interact',
+  relation: 'relation',
+}

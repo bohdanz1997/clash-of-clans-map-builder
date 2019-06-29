@@ -10,7 +10,14 @@ export const createGame = ({ layout }) => {
     width: 1100,
     height: 960,
     debug: true,
-    logs: false,
+    logger: {
+      enable: true,
+      timestamp: false,
+      levels: {
+        interact: false,
+        relation: true,
+      },
+    },
     scene: [GameScene],
     system: {
       defaultPriority: priorities.UPDATE,
