@@ -32,4 +32,11 @@ export class Helper {
   normCoord(val) {
     return Math.floor(val / this.cellSize) * this.cellSize
   }
+
+  toMapCoords(x, y) {
+    return new Point(
+      Math.round(x / this.cellSize),
+      Math.round(y / this.cellSize),
+    )
+  }
 }

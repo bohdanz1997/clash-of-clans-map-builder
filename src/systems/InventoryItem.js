@@ -67,13 +67,14 @@ export const SelectInventoryItem = ({ entities, helper }) => {
 /**
  * @param {EntityManager} entities
  * @param {Helper} helper
+ * @param {TileMap} map
  */
-export const PutEntityToMap = ({ entities, helper }) => {
+export const PutEntityToMap = ({ entities, helper, map }) => {
   useNodes([n.PointerIdle, n.InventoryItemSelected])
 
-  const createEntity = (isoPosition, entityMeta) => {
-    const startPos = helper.normToCenter(isoPosition.cartX, isoPosition.cartY)
+  const buildingLayer = map.getLayer('building')
 
+  const createEntity = (startPos, entityMeta) => {
     entities.add(entityMeta.id, {
       def: entityMeta.def,
       x: startPos.x,
@@ -83,11 +84,22 @@ export const PutEntityToMap = ({ entities, helper }) => {
     entityMeta.count -= 1
   }
 
+  const canAddEntityToMap = (pos, meta) => {
+    const mapPos = helper.toMapCoords(pos.x, pos.y)
+    const definition = entities.getDefinition(meta.def)
+    return buildingLayer.isEmptyInSize(mapPos.x, mapPos.y, definition.radius)
+  }
+
   onUpdate((pointerNodes, selectedNodes) => {
     pointerNodes.each((pointerNode) => {
       if (pointerNode.context.justDown) {
         selectedNodes.each((selectedItem) => {
-          createEntity(pointerNode.isoPosition, selectedItem.entityMeta)
+          const { isoPosition } = pointerNode
+          const startPos = helper.normToCenter(isoPosition.cartX, isoPosition.cartY)
+
+          if (canAddEntityToMap(startPos, selectedItem.entityMeta)) {
+            createEntity(startPos, selectedItem.entityMeta)
+          }
         })
       }
     })
