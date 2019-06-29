@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import { log } from './log-style'
 
 const now = () => dayjs().format('HH:mm:ss.ms')
 
@@ -9,12 +10,12 @@ export const Log = ({ config }) => {
     enable = false,
   } = config.logger
 
-  const handler = enable ? console.log : () => {}
+  const handler = enable ? log : () => {}
   const time = () => (timestamp ? `[${now()}]` : '')
 
   return (level, ...args) => {
     if (levels[level]) {
-      handler(time(), ...args)
+      handler(`${time()} ${args.join(' ')}`)
     }
   }
 }
