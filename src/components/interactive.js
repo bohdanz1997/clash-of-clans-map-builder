@@ -36,6 +36,7 @@ export const Child = {
   Overlay: childComponent(),
   Preview: childComponent(),
   Debug: childComponent(),
+  DebugUI: childComponent(),
 }
 
 // states

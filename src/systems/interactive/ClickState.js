@@ -32,3 +32,32 @@ export const ClickState = ({ map, helper, log }) => {
     }
   })
 }
+
+/**
+ * @param {TileMap} map
+ * @param {Helper} helper
+ * @param log
+ */
+export const UIClickState = ({ map, helper, log }) => {
+  useNodes([n.UITargetClicked])
+
+  onNodeAdded(() => {
+    log(levels.interact, 'ui click')
+  })
+
+  onUpdate((node) => {
+    const { initiator, fsm, entity, position } = node
+
+    if (entity.has(c.Draggable)) {
+      const clientPosition = initiator.entity.get(c.Position)
+      const { startPos, offset } = helper.prepareFollowUI(clientPosition, position)
+
+      fsm.fsm.changeState(states.dragging, {
+        startPos,
+        offset,
+      })
+    } else {
+      fsm.fsm.changeState(states.hovered)
+    }
+  })
+}

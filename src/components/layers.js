@@ -13,5 +13,7 @@ export const Layer = {
   Building: layerComponent('layer', groups.BUILDING),
   Hud: layerComponent('layer', groups.HUD),
   Drag: layerComponent('layer', groups.DRAG),
+  UI: layerComponent('layer', groups.UI),
+  UIDrag: layerComponent('layer', groups.UI_DRAG),
   Debug: layerComponent('layer', groups.DEBUG),
 }

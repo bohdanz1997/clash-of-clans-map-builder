@@ -1,7 +1,8 @@
 import { asClass, asFunction, asValue } from 'awilix'
 import { Scene } from 'core/scenes'
 import { TileMapParser } from 'core/tilemap'
-import { Align, ContainerBuilder, Helper, EntityDataMapper, Logger, Log } from '../services'
+import { string2hex } from 'core/pixi'
+import { Align, ContainerBuilder, Helper, EntityDataMapper, Log } from '../services'
 import { priorities } from '../constants'
 
 import * as c from '../components'
@@ -76,7 +77,9 @@ export class GameScene extends Scene {
       .add(s.PutEntityToMap)
       .add(s.SelectInventoryItem)
       .add(s.UpdateCursorStyle)
+      .add(s.InteractiveInitializer)
       .add(s.Interactive)
+      .add(s.InteractiveUI)
       .add(s.XXXLayer)
       .add(s.InventoryItemCounter)
       .add(s.UserInput)

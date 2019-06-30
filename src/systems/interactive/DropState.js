@@ -15,3 +15,16 @@ export const DropState = () => {
     entity.add(c.Layer.Building)
   })
 }
+
+export const UIDropState = () => {
+  useNodes([n.UITargetDropped])
+
+  onUpdate((node) => {
+    const { fsm, entity } = node
+
+    fsm.fsm.changeState(states.hovered)
+
+    entity.remove(c.Layer.UIDrag)
+    entity.add(c.Layer.UI)
+  })
+}

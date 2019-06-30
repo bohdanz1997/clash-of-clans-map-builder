@@ -11,6 +11,8 @@ export const Render = ({ world, hud }) => {
     [c.Layer.Building, world],
     [c.Layer.Drag, world],
     [c.Layer.Hud, hud],
+    [c.Layer.UI, hud],
+    [c.Layer.UIDrag, hud],
     [c.Layer.Debug, hud],
   ]
 

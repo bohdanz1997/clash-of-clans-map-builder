@@ -22,6 +22,16 @@ export class Helper {
     return { startPos, offset }
   }
 
+  prepareFollowUI(initiatorPos, targetPos) {
+    const startPos = new Point(initiatorPos.x, initiatorPos.y)
+    const offset = new Point(
+      initiatorPos.x - targetPos.x,
+      initiatorPos.y - targetPos.y,
+    )
+
+    return { startPos, offset }
+  }
+
   normToCenter(x, y) {
     return new Point(
       this.normCoord(x) - this.cellSize,

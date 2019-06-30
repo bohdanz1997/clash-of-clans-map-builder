@@ -33,7 +33,7 @@ export const createStage = (config) => {
   const stage = new Stage()
   const displayLayers = wrapWithLayers(Object.values(config.displayGroups))
 
-  stage.group.enableSort = true
+  stage.sortableChildren = true
   stage.addChild(...displayLayers)
   stage.addChild(...config.display.containers)
 

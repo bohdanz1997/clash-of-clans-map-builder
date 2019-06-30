@@ -1,4 +1,4 @@
-import { useNodes, onUpdate, onNodeAdded, onNodeRemoved } from 'core/ecs'
+import { useNodes, onUpdate } from 'core/ecs'
 import * as c from '../components'
 import * as n from '../nodes'
 
@@ -48,4 +48,23 @@ const ChildDebugMovement = () => {
   })
 }
 
-export const ChildMovement = [ChildOverlayMovement, ChildPreviewMovement, ChildDebugMovement]
+const ChildDebugUIMovement = () => {
+  useNodes([n.ParentWithDebugUI])
+
+  onUpdate((node) => {
+    const { child, position } = node
+    const childPosition = child.entity.get(c.Position)
+
+    if (childPosition) {
+      childPosition.x = position.x - child.offset.x
+      childPosition.y = position.y - child.offset.y
+    }
+  })
+}
+
+export const ChildMovement = [
+  ChildOverlayMovement,
+  ChildPreviewMovement,
+  ChildDebugMovement,
+  ChildDebugUIMovement,
+]

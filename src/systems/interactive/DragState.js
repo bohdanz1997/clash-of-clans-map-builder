@@ -1,4 +1,4 @@
-import { useNodes, onNodeAdded, onUpdate } from 'core/ecs'
+import { useNodes, onNodeAdded, onUpdate, onNodeRemoved } from 'core/ecs'
 import * as c from '../../components'
 import * as n from '../../nodes'
 import { states } from '../../fsm'
@@ -26,13 +26,55 @@ export const DragState = ({ engine, map, config, log }) => {
   const updateDrag = (node) => {
     const { initiator, dragContext, position } = node
     const clientPosition = initiator.entity.get(c.IsoPosition)
-    const sourcePosition = position
 
     const clientX = clientPosition.col * cellSize
     const clientY = clientPosition.row * cellSize
 
-    sourcePosition.x = clientX - dragContext.offset.x
-    sourcePosition.y = clientY - dragContext.offset.y
+    position.x = clientX - dragContext.offset.x
+    position.y = clientY - dragContext.offset.y
+  }
+
+  onUpdate((node) => {
+    const { initiator, fsm } = node
+    const pointerContext = initiator.entity.get(c.PointerContext)
+
+    updateDrag(node)
+
+    if (pointerContext.isUp) {
+      fsm.fsm.changeState(states.dropped)
+    }
+  })
+}
+
+/**
+ * @param {Engine} engine
+ * @param {TileMap} map
+ * @param {Config} config
+ * @param log
+ */
+export const UIDragState = ({ engine, map, config, log }) => {
+  useNodes([n.UITargetDragging])
+
+  onNodeAdded((node) => {
+    const { entity } = node
+    log(levels.interact, 'ui drag')
+
+    entity.remove(c.Layer.UI)
+    entity.add(c.Layer.UIDrag)
+
+    node.display.sprite.alpha = 0.5
+  })
+
+  onNodeRemoved((node) => {
+    node.display.sprite.alpha = 1
+  })
+
+  const updateDrag = (node) => {
+    const { initiator, dragContext, position } = node
+    const clientPosition = initiator.entity.get(c.Position)
+
+    position.x = clientPosition.x - dragContext.offset.x
+    position.y = clientPosition.y - dragContext.offset.y
   }
 
   onUpdate((node) => {

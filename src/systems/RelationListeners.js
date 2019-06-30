@@ -47,6 +47,9 @@ export const ParentRelationListener = ({ engine }) => {
   onNodeAdded(addToChild, n.ParentRelations.Debug)
   onNodeRemoved(removeFromChild, n.ParentRelations.Debug)
 
+  onNodeAdded(addToChild, n.ParentRelations.DebugUI)
+  onNodeRemoved(removeFromChild, n.ParentRelations.DebugUI)
+
   onNodeAdded(addToChild, n.ParentRelations.Default)
   onNodeRemoved(removeFromChild, n.ParentRelations.Default)
 

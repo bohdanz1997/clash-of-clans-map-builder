@@ -3,6 +3,7 @@ import { createEntity } from 'core/ecs'
 import { keys, Keyboard } from 'core/input'
 import { Config } from 'core/boot'
 import { TileMap } from 'core/tilemap'
+import * as e from '.'
 import * as c from '../components'
 
 /**
@@ -12,6 +13,7 @@ import * as c from '../components'
  * @param world
  * @param {Config} config
  * @param {TileMap} map
+ * @param {EntityManager} entities
  */
 export const Camera = ({
   data: { speed, damp },
@@ -19,6 +21,7 @@ export const Camera = ({
   world,
   config,
   map,
+  entities,
 }) => {
   const [plusZoom, minusZoom] = keyboard.addKeys(keys.ZERO, keys.NINE)
   return createEntity(
@@ -29,6 +32,7 @@ export const Camera = ({
       width: config.width,
       height: config.height,
     }),
+    c.Child.Default(entities.create(e.Debug, { x: 150, y: 10 })),
     c.Position({
       x: -config.hWidth + map.config.hIsoTileWidth,
       y: 0,

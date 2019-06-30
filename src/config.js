@@ -8,7 +8,9 @@ class DisplayGroups {
   SHADOW = new Group(3, false)
   BUILDING = new Group(5, sortingStrategy.backward)
   DRAG = new Group(10, false)
-  HUD = new Group(20, false)
+  HUD = new Group(11, false)
+  UI = new Group(15, sortingStrategy.backward)
+  UI_DRAG = new Group(20, false)
   DEBUG = new Group(25, false)
 }
 

@@ -1,17 +1,26 @@
 import { InteractiveInitializer } from './Initializer'
-import { IdleState } from './IdleState'
-import { HoverState } from './HoverState'
-import { ClickState } from './ClickState'
-import { DragState } from './DragState'
-import { DropState } from './DropState'
+import { IdleState, UIIdleState } from './IdleState'
+import { HoverState, UIHoverState } from './HoverState'
+import { ClickState, UIClickState } from './ClickState'
+import { DragState, UIDragState } from './DragState'
+import { DropState, UIDropState } from './DropState'
 import { DropStateListener } from './DropStateListener'
 
+export { InteractiveInitializer }
+
 export const Interactive = [
-  InteractiveInitializer,
   IdleState,
   HoverState,
   ClickState,
   DragState,
   DropState,
   DropStateListener,
+]
+
+export const InteractiveUI = [
+  UIIdleState,
+  UIHoverState,
+  UIClickState,
+  UIDragState,
+  UIDropState,
 ]

@@ -1,5 +1,5 @@
 export { Align } from './Align'
-export { detectHit } from './detectHit'
+export { detectHit, detectHitUI } from './detectHit'
 export { Helper } from './Helper'
 export { ContainerBuilder } from './ioc'
 export { EntityDataMapper } from './EntityDataMapper'
