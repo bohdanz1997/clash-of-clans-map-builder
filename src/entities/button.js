@@ -11,15 +11,16 @@ export const Button = ({
 }) => createEntity(
   c.Layer.UI(),
   c.UI(),
+  c.Button(),
   // c.Child.DebugUI({
   //   entity: entities.create(e.Debug),
   //   offset: new Point(-width - 10, 0),
   // }),
-  c.Draggable(),
+  // c.Draggable(),
   c.Position({ x, y }),
   c.Collision({ width, height }),
   ({ entity }) => c.FSM(entity),
-  c.Display(view.rect({
+  c.Display(View.button({
     width,
     height,
     color,

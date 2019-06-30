@@ -6,6 +6,7 @@ import { DragState, UIDragState } from './DragState'
 import { DropState, UIDropState } from './DropState'
 import { DropStateListener } from './DropStateListener'
 
+export { Clicks } from './Clicks'
 export { InteractiveInitializer }
 
 export const Interactive = [

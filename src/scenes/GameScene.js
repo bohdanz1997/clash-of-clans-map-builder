@@ -80,6 +80,7 @@ export class GameScene extends Scene {
       .add(s.InteractiveInitializer)
       .add(s.Interactive)
       .add(s.InteractiveUI)
+      .add(s.Clicks)
       .add(s.XXXLayer)
       .add(s.InventoryItemCounter)
       .add(s.UserInput)

@@ -15,4 +15,6 @@ export class Align {
   bottom = offsetY => new Point(0, this.bounds.bottom - offsetY)
   left = offsetX => new Point(0, offsetX)
   right = offsetX => new Point(0, this.bounds.right - offsetX)
+
+  bottomCenter = (offsetX, offsetY) => new Point(this.bounds.width / 2 - offsetX, this.bounds.bottom - offsetY)
 }

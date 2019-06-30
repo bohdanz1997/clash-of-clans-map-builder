@@ -13,6 +13,7 @@ fsm: ${fsm.fsm.currentStateName}
 pos: [${Math.floor(position.x)}, ${Math.floor(position.y)}]
 iso: [${Math.floor(isoPosition.x)}, ${Math.floor(isoPosition.y)}]
 map: [${position.col}, ${position.row}]
+selected: ${node.entity.has(c.Selected)}
     `
   })
 }

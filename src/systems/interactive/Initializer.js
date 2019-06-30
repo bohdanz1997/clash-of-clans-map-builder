@@ -32,11 +32,13 @@ export const InteractiveInitializer = () => {
   }
 
   const removeState = (node) => {
-    // node.fsm.changeState(states.initial)
+    const initiator = node.entity.get(c.Interact.Initiator, true)
+    if (initiator) {
+      initiator.entity.get(c.FSM).fsm.changeState(states.idle)
+    }
   }
 
   onNodeAdded(setupInitiator, n.Initiator)
-  onNodeRemoved(removeState, n.Initiator)
 
   onNodeAdded(setupTarget, n.Target)
   onNodeRemoved(removeState, n.Target)

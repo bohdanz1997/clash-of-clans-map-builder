@@ -73,6 +73,10 @@ export const UITargetClicked = [...UITarget, c.Clicked, c.Interact.Initiator, c.
 export const UITargetDragging = [...UITarget, c.Dragging, c.DragContext, c.Interact.Initiator, c.Position, c.Display]
 export const UITargetDropped = [...UITarget, c.Dropped, c.DragContext]
 
+export const ButtonClicked = [...UITarget, c.Button, c.Clicked]
+export const BuildingClicked = [...Target, c.Building, c.Clicked]
+export const BuildingSelected = [...Target, c.Building, c.Selected, c.Display, c.Child.Overlay]
+
 // interaction listeners
 export const TargetDroppedListener = [...Target, c.Dropped, c.DragContext, c.Position, c.Collision]
 
