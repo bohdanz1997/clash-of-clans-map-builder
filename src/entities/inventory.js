@@ -4,8 +4,9 @@ import * as c from '../components'
 
 /**
  * @param {Align} align
+ * @param {View} view
  */
-export const Inventory = ({ align }) => {
+export const Inventory = ({ align, view }) => {
   const height = 80
   const pos = align.bottom(height)
 
@@ -18,7 +19,7 @@ export const Inventory = ({ align }) => {
       width: align.bounds.width,
       height,
     }),
-    c.Display(View.rect({
+    c.Display(view.rect({
       width: align.bounds.width,
       height,
       color: 0xf44336,

@@ -10,6 +10,7 @@ const createSprite = (texture, filters = []) => {
 
 export class View {
   constructor({ renderer }) {
+    /** @type {PIXI.Renderer} */
     this.renderer = renderer
   }
 
@@ -42,12 +43,13 @@ export class View {
   /**
    * @return {PIXI.Graphics}
    */
-  static rect({ width, height, color, filters, alpha = 1 }) {
+  rect({ width, height, color, filters, alpha = 1 }) {
     const rect = ShapeFactory.rect({ width, height, color })
-    rect.filters = filters
-    rect.alpha = alpha
+    const sprite = new Sprite(this.renderer.generateTexture(rect))
+    sprite.filters = filters
+    sprite.alpha = alpha
 
-    return rect
+    return sprite
   }
 
   /**

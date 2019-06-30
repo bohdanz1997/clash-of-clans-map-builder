@@ -59,7 +59,7 @@ export class Game {
       keyboard: asValue(this.keyboard),
       entities: asValue(this.entities),
       pointers: asValue(this.pointers),
-      displayFactory: asClass(View),
+      view: asClass(View),
     })
 
     this.systems = new SystemManager(this)

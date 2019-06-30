@@ -5,7 +5,6 @@ import * as c from '../components'
 
 export const Overlay = ({
   data: { x, y, radius, alpha = 1 },
-  displayFactory,
   map,
 }) => {
   const size = radius * map.config.cellWidth
