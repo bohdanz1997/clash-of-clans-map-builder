@@ -16,6 +16,7 @@ export const createGame = ({ layout }) => {
       levels: {
         interact: false,
         relation: true,
+        layout: true,
       },
     },
     scene: [GameScene],

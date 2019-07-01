@@ -3,15 +3,23 @@ import { View } from 'core/display'
 import * as c from '../components'
 
 export const Wall = ({
-  data: { id, x, y, radius },
+  data: { id, x, y, radius, level },
   map,
 }) => createEntity(
   c.Layer.Building(),
   c.Building(),
   c.Interactive(),
   c.Draggable(),
+  c.Serializable(entity => ({
+    id,
+    level,
+    def: id,
+    cx: entity.get(c.Position).col,
+    cy: entity.get(c.Position).row,
+  })),
   c.Position({ x, y }),
   c.IsoPosition(),
+  c.Motion(), // to update col, row
   c.Collision({ width: map.config.cellWidth, height: map.config.cellHeight, radius }),
   c.Display(View.sprite(id))
 )

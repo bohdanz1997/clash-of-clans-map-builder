@@ -35,7 +35,7 @@ export const DebugPointer = () => {
   useNodes([n.PointerWithDebug, n.InventoryItemSelected, n.Preview])
 
   onUpdate((pointerNodes, selectedItemNodes, previewNodes) => {
-    const { child, position, isoPosition, fsm } = pointerNodes.head
+    const { child, position, isoPosition, fsm, context } = pointerNodes.head
 
     let selectedInfo = 'none'
     if (selectedItemNodes.head) {
@@ -50,6 +50,10 @@ pos: [${Math.floor(position.x)}, ${Math.floor(position.y)}]
 cart: [${Math.floor(isoPosition.cartX)}, ${Math.floor(isoPosition.cartY)}]
 map: [${isoPosition.col}, ${isoPosition.row}]
 state: ${fsm.fsm.currentStateName}
+isUp: ${context.isUp}
+isRightUp: ${context.isRightUp}
+isDown: ${context.isDown}
+isRightDown: ${context.isRightDown}
 ${selectedInfo}
 ${previewInfo}
     `

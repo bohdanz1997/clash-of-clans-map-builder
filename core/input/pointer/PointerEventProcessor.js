@@ -1,3 +1,8 @@
+const buttons = {
+  LEFT: 0,
+  RIGHT: 2,
+}
+
 export class PointerEventProcessor {
   constructor(node) {
     // link node components
@@ -26,8 +31,13 @@ export class PointerEventProcessor {
     e.preventDefault()
 
     // Set the down states
-    this.context.isDown = true
-    this.context.isUp = false
+    if (e.button === buttons.LEFT) {
+      this.context.isDown = true
+      this.context.isUp = false
+    } else if (e.button === buttons.RIGHT) {
+      this.context.isRightDown = true
+      this.context.isRightUp = false
+    }
     this.context.tapped = false
 
     // Capture the current time
@@ -42,8 +52,13 @@ export class PointerEventProcessor {
     this.position.y = e.targetTouches[0].pageY - e.target.offsetTop
 
     // Set the down states
-    this.context.isDown = true
-    this.context.isUp = false
+    if (e.button === buttons.LEFT) {
+      this.context.isDown = true
+      this.context.isUp = false
+    } else if (e.button === buttons.RIGHT) {
+      this.context.isRightDown = true
+      this.context.isRightUp = false
+    }
     this.context.tapped = false
 
     // Capture the current time
@@ -58,7 +73,7 @@ export class PointerEventProcessor {
     this.handleUp(e)
   }
 
-  handleUp = () => {
+  handleUp = (e) => {
     // `event.preventDefault()` needs to be disabled to prevent <input> range sliders
     // from getting trapped in Firefox (and possibly Safari)
     // event.preventDefault()
@@ -70,12 +85,20 @@ export class PointerEventProcessor {
     if (this.context.elapsedTime <= 200 && this.context.tapped === false) {
       this.context.tapped = true
     }
-    this.context.isUp = true
-    this.context.isDown = false
+    if (e.button === buttons.LEFT) {
+      this.context.isUp = true
+      this.context.isDown = false
+    } else if (e.button === buttons.RIGHT) {
+      this.context.isRightUp = true
+      this.context.isRightDown = false
+    }
   }
 
   update() {
     this.context.prevDown = this.context.isDown
     this.context.prevUp = this.context.isUp
+
+    this.context.prevRightDown = this.context.isRightDown
+    this.context.prevRightUp = this.context.isRightUp
   }
 }

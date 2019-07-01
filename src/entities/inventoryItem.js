@@ -18,7 +18,7 @@ const Counter = ({
 )
 
 export const InventoryItem = ({
-  data: { index, entityMeta },
+  data: { id, index, entityMeta },
   align,
   entities,
 }) => {
@@ -31,6 +31,11 @@ export const InventoryItem = ({
     c.InventoryItem(),
     c.EntityMeta(entityMeta),
     c.Layer.Hud(),
+    c.Serializable(() => ({
+      id,
+      index,
+      entityMeta,
+    })),
     c.Child.Default(couter),
     c.Interactive(),
     c.Selectable(),

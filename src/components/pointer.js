@@ -6,6 +6,10 @@ class PointerContextData {
   isUp = true
   prevDown = false
   prevUp = false
+  isRightUp = true
+  isRightDown = false
+  prevRightUp = true
+  prevRightDown = false
   tapped = false
   visible = true
   downTime = 0
@@ -23,6 +27,16 @@ Object.defineProperties(PointerContext.prototype, {
   justUp: {
     get() {
       return !this.prevUp && this.isUp
+    },
+  },
+  rightJustDown: {
+    get() {
+      return !this.prevRightDown && this.isRightDown
+    },
+  },
+  rightJustUp: {
+    get() {
+      return !this.prevRightUp && this.isRightUp
     },
   },
 })

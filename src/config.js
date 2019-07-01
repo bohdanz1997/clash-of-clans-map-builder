@@ -26,4 +26,5 @@ export const display = {
 export const levels = {
   interact: 'interact',
   relation: 'relation',
+  layout: 'layout',
 }

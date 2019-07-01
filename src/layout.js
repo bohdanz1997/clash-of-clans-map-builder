@@ -10,19 +10,29 @@ const createInventorySlots = (level) => {
   }))
 }
 
-export const testLayout = {
+export const layersDefaults = {
   width: 10,
   height: 10,
+  other: [
+    { id: 'input' },
+    { id: 'camera' },
+    { id: 'pointer' },
+    { id: 'inventory' },
+  ],
+  ground: [{
+    id: 'background',
+    def: 'tile',
+    asset: 'ground',
+  }],
+}
+
+export const testLayout = {
+  width: layersDefaults.width,
+  height: layersDefaults.height,
   layers: [
     {
       name: 'ground',
-      data: [
-        {
-          id: 'background',
-          def: 'tile',
-          asset: 'ground',
-        },
-      ],
+      data: layersDefaults.ground,
     },
     {
       name: 'building',
@@ -37,10 +47,7 @@ export const testLayout = {
     {
       name: 'other',
       data: [
-        { id: 'input' },
-        { id: 'camera' },
-        { id: 'pointer' },
-        { id: 'inventory' },
+        ...layersDefaults.other,
         ...createInventorySlots(9),
       ],
     },

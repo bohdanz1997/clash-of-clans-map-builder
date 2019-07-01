@@ -75,6 +75,7 @@ export const UITargetDropped = [...UITarget, c.Dropped, c.DragContext]
 
 export const ButtonClicked = [...UITarget, c.Button, c.Clicked]
 export const BuildingClicked = [...Target, c.Building, c.Clicked]
+export const BuildingHovered = [...Target, c.Building, c.Hovered, c.Identity]
 export const BuildingSelected = [...Target, c.Building, c.Selected, c.Display, c.Child.Overlay]
 
 // interaction listeners
@@ -99,6 +100,10 @@ export const MapLayers = {
 }
 
 export const Debug = [c.Layer.Debug, c.Display]
+
+export const SerializeBuilding = [c.Serializable, c.Building]
+export const SerializeInventoryItem = [c.Serializable, c.InventoryItem]
+export const Serializer = [c.Serializer]
 
 // other
 export const CameraControl = [c.Camera, c.Position, c.Motion, c.MotionControl, c.ZoomControl]

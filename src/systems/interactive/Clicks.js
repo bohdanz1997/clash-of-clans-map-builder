@@ -1,18 +1,37 @@
-import { useNodes, onUpdate, onNodeAdded, onNodeRemoved } from 'core/ecs'
-import { hex, string2hex } from 'core/pixi'
+import { useNodes, onUpdate } from 'core/ecs'
 import * as c from '../../components'
 import * as n from '../../nodes'
 import * as e from '../../entities'
 
-const RemoveSelectedBuilding = () => {
-  useNodes([n.ButtonClicked, n.BuildingSelected])
+/**
+ * @param {EntityManager} entities
+ */
+const RemoveHoveredBuilding = ({ entities }) => {
+  useNodes([n.Pointer, n.BuildingHovered, n.InventoryItem])
 
-  onUpdate((buttons, selectedList) => {
-    const clickedButton = buttons.head
-    const selectedBuilding = selectedList.head
+  const addInventoryItem = (iItems, id, def) => {
+    const foundIItem = iItems.find(item => item.entityMeta.def === def)
+    if (foundIItem) {
+      foundIItem.entityMeta.count += 1
+    } else {
+      entities.add(e.InventoryItem, {
+        index: iItems.size,
+        entityMeta: {
+          id,
+          def,
+          count: 1,
+        },
+      })
+    }
+  }
 
-    if (selectedBuilding && clickedButton) {
-      selectedBuilding.entity.dispose()
+  onUpdate((pointers, buildings, iItems) => {
+    const pointer = pointers.head
+    const building = buildings.head
+
+    if (building && pointer.context.rightJustDown) {
+      addInventoryItem(iItems, building.identity.id, building.building.def)
+      building.entity.dispose()
     }
   })
 }
@@ -37,36 +56,7 @@ const SelectBuilding = () => {
   })
 }
 
-/**
- * @param {EntityManager} entities
- * @param {Align} align
- */
-const OnBuildingSelected = ({ entities, align }) => {
-  useNodes([n.BuildingSelected])
-
-  let removeButton = null
-
-  onNodeAdded((node) => {
-    node.child.entity.get(c.Display).sprite.tint = hex`#8bc34a`
-
-    const pos = align.bottomCenter(50, 200)
-    removeButton = entities.add(e.Button, {
-      x: pos.x,
-      y: pos.y,
-      width: 100,
-      height: 80,
-      color: string2hex('#00cc76'),
-    })
-  })
-
-  onNodeRemoved((node) => {
-    node.child.entity.get(c.Display).sprite.tint = hex`#ffffff`
-    removeButton.dispose()
-  })
-}
-
 export const Clicks = [
   SelectBuilding,
-  RemoveSelectedBuilding,
-  OnBuildingSelected,
+  RemoveHoveredBuilding,
 ]

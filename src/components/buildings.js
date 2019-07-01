@@ -1,6 +1,12 @@
 import { component } from 'core/ecs'
 
-export const Building = component('building')
+class BuildingData {
+  constructor(def) {
+    this.def = def
+  }
+}
+export const Building = component('building', BuildingData)
+
 export const DefenceBuilding = component('defenceBuilding')
 export const ServiceBuilding = component('serviceBuilding')
 export const ResourceBuilding = component('resourceBuilding')

@@ -27,6 +27,9 @@ export class PointerManager {
     this.target.addEventListener('mousemove', this.addToQueue, false)
     this.target.addEventListener('mousedown', this.addToQueue, false)
 
+    // disable context menu on target
+    this.target.oncontextmenu = () => false
+
     // Add the `mouseup` event to the `window` to
     // catch a mouse button release outside of the canvas area
     window.addEventListener('mouseup', this.addToQueue, false)
