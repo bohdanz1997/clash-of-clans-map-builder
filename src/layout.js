@@ -37,7 +37,7 @@ export const testLayout = {
     {
       name: 'building',
       data: [
-        { id: 'building', def: 'clanCastle', cx: 5, cy: 5, level: 9 },
+        { id: 'building', def: 'clanCastle', col: 5, row: 5, level: 9 },
       ],
     },
     {

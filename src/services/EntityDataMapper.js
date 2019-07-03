@@ -7,13 +7,13 @@ export class EntityDataMapper {
   mapCellCoords(data) {
     return {
       ...data,
-      x: data.cx * this.mapConfig.cellWidth,
-      y: data.cy * this.mapConfig.cellHeight,
+      x: data.col * this.mapConfig.cellWidth,
+      y: data.row * this.mapConfig.cellHeight,
     }
   }
 
   map = (data) => {
-    const hasCellCoords = 'cx' in data && 'cy' in data
+    const hasCellCoords = 'col' in data && 'row' in data
 
     if (hasCellCoords) {
       data = this.mapCellCoords(data)

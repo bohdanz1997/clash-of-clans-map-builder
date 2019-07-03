@@ -17,8 +17,8 @@ export const Building = ({
     id,
     def,
     level,
-    cx: entity.get(c.Position).col,
-    cy: entity.get(c.Position).row,
+    col: entity.get(c.Position).col,
+    row: entity.get(c.Position).row,
   })),
   c.Child.Overlay(entities.create(e.Overlay, { x, y, radius })),
   c.Child.Debug({

@@ -55,8 +55,8 @@ export default class TileMap {
 
       entitiesData[i] = {
         id,
-        cx,
-        cy,
+        col: cx,
+        row: cy,
         ...entityMeta,
       }
     }
