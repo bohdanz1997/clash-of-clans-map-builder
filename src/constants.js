@@ -22,6 +22,7 @@ export const levelRestrictions = [
       {
         id: 'wall',
         def: 'wall',
+        level: 9,
         count: 250,
       },
       // TODO: townhall 4x4 bug with display
@@ -33,16 +34,19 @@ export const levelRestrictions = [
       {
         id: 'building',
         def: 'clanCastle',
+        level: 9,
         count: 1,
       },
       {
         id: 'building',
         def: 'goldStorage',
+        level: 9,
         count: 4,
       },
       {
         id: 'building',
         def: 'elixirCollector',
+        level: 9,
         count: 4,
       },
     ],

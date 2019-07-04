@@ -77,6 +77,7 @@ export const PutEntityToMap = ({ entities, helper, map }) => {
   const createEntity = (startPos, entityMeta) => {
     entities.add(entityMeta.id, {
       def: entityMeta.def,
+      level: entityMeta.level,
       x: startPos.x,
       y: startPos.y,
     })
