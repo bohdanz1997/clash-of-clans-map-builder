@@ -1,4 +1,5 @@
 import { filters } from 'pixi.js'
+import { hex } from 'core/pixi'
 import { createEntity } from 'core/ecs'
 import { View } from 'core/display'
 import * as c from '../components'
@@ -15,7 +16,7 @@ export const Overlay = ({
     c.Display(View.isoRect({
       width: sizePx,
       height: sizePx,
-      color: 0x8bc34a,
+      color: hex`#8bc34a`,
       filters: [new filters.AlphaFilter(alpha)],
     })),
   )
