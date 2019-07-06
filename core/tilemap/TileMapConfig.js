@@ -20,6 +20,9 @@ export default class TileMapConfig {
     // height in tiles
     this.height = get('height', 10)
 
+    // tile width/height in pixels
+    this.tileSize = get('tileSize', 66.5)
+
     // tile width in pixels
     this.tileWidth = get('tileWidth', 66.5)
 
@@ -44,6 +47,10 @@ export default class TileMapConfig {
   // half iso tile height in pixels
   get hIsoTileHeight() {
     return this.isoTileHeight / 2
+  }
+
+  get cellSize() {
+    return this.tileSize / this.cellsInTile
   }
 
   get cellWidth() {
