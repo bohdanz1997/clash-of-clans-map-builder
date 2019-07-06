@@ -1,6 +1,5 @@
-import { AnimatedSprite, Sprite, Text, TextStyle, Graphics, Rectangle, utils } from 'pixi.js'
+import { AnimatedSprite, Sprite, Text, TextStyle, Graphics, Point, utils } from 'pixi.js'
 import { BlurFilter, hex } from 'core/pixi'
-import { ShapeFactory } from './ShapeFactory'
 import { MatrixHelper } from '../math'
 
 const createSprite = (texture, filters = []) => {
@@ -45,7 +44,11 @@ export class View {
    * @return {PIXI.Graphics}
    */
   rect({ width, height, color, filters, alpha = 1 }) {
-    const rect = ShapeFactory.rect({ width, height, color })
+    const rect = new Graphics()
+      .beginFill(color)
+      .drawRect(0, 0, width, height)
+      .endFill()
+
     const sprite = new Sprite(this.renderer.generateTexture(rect))
     sprite.filters = filters
     sprite.alpha = alpha
@@ -98,13 +101,49 @@ export class View {
    * @return {PIXI.Graphics}
    */
   static isoRect({ width, height, color, filters, alpha = 1 }) {
-    const rect = ShapeFactory.rect({ width, height, color })
-    rect.pivot.set(-(width / 2), height / 2)
+    const rect = new Graphics()
+      .beginFill(color)
+      .drawRect(0, 0, width, height) // 3
+      // .drawRect(width / 2 - 10, -height / 2 + 10, width, height) // 4
+
+    rect.pivot.set(-(66.5 / 2), 66.5 / 2)
     rect.transform.setFromMatrix(MatrixHelper.isoMatrix)
     rect.filters = filters
     rect.alpha = alpha
 
     return rect
+  }
+
+  /**
+   * @param radius
+   * @param parentSize
+   * @param cellSize
+   * @return {PIXI.Graphics}
+   */
+  static isoCircle({ radius, parentSize, cellSize }) {
+    const size = cellSize * parentSize
+    const hSize = size / 2
+    const fullRadius = radius * cellSize + hSize
+
+    const circle = new Graphics()
+      .lineStyle(2, hex`#ffffff`, 0.5)
+      .drawCircle(0, 0, fullRadius)
+
+    // uncomment to add rectange in center
+    // const rect = new Graphics()
+    //   .lineStyle(2)
+    //   .drawRect(-hSize, -hSize, size, size)
+    // circle.addChild(rect)
+
+    if (parentSize === 3) {
+      circle.pivot.set(-66.5, 0)
+    } else if (parentSize === 4) {
+      circle.pivot.set(-78, -10)
+    }
+
+    circle.transform.setFromMatrix(MatrixHelper.isoMatrix)
+
+    return circle
   }
 
   /**
