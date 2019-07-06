@@ -5,12 +5,12 @@ import * as c from '../components'
 import { Overlay } from './overlay'
 
 export const Preview = ({
-  data: { id, def, x, y, offsetX, offsetY, radius },
+  data: { id, def, x, y, offsetX, offsetY, size },
   map,
   entities,
 }) => {
   const alpha = 0.5
-  const overlay = entities.create(Overlay, { x, y, radius, alpha })
+  const overlay = entities.create(Overlay, { x, y, size, alpha })
   const sprite = View.sprite(def, {
     filters: [new filters.AlphaFilter(alpha)],
   })
@@ -24,7 +24,7 @@ export const Preview = ({
     c.Collision({
       width: map.config.tileWidth,
       height: map.config.tileHeight,
-      radius,
+      size,
     }),
     c.Display(sprite),
   )

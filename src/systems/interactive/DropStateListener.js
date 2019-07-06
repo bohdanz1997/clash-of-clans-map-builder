@@ -12,7 +12,7 @@ export const DropStateListener = ({ map }) => {
   onNodeAdded((node) => {
     const { dragContext, position, collision } = node
 
-    if (!layer.isEmptyInSize(position.col, position.row, collision.radius)) {
+    if (!layer.isEmptyInSize(position.col, position.row, collision.size)) {
       position.x = dragContext.startPos.x
       position.y = dragContext.startPos.y
     }

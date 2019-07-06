@@ -3,7 +3,7 @@ import { View } from 'core/display'
 import * as c from '../components'
 
 export const Wall = ({
-  data: { id, x, y, radius, level },
+  data: { id, x, y, size, level },
   map,
 }) => createEntity(
   c.Layer.Building(),
@@ -20,6 +20,6 @@ export const Wall = ({
   c.Position({ x, y }),
   c.IsoPosition(),
   c.Motion(), // to update col, row
-  c.Collision({ width: map.config.cellWidth, height: map.config.cellHeight, radius }),
+  c.Collision({ width: map.config.cellWidth, height: map.config.cellHeight, size }),
   c.Display(View.sprite(id))
 )

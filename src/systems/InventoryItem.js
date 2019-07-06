@@ -88,7 +88,7 @@ export const PutEntityToMap = ({ entities, helper, map }) => {
   const canAddEntityToMap = (pos, meta) => {
     const mapPos = helper.toMapCoords(pos.x, pos.y)
     const definition = entities.getDefinition(meta.def)
-    return buildingLayer.isEmptyInSize(mapPos.x, mapPos.y, definition.radius)
+    return buildingLayer.isEmptyInSize(mapPos.x, mapPos.y, definition.size)
   }
 
   onUpdate((pointerNodes, selectedNodes) => {

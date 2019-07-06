@@ -4,17 +4,17 @@ import { View } from 'core/display'
 import * as c from '../components'
 
 export const Overlay = ({
-  data: { x, y, radius, alpha = 1 },
+  data: { x, y, size, alpha = 1 },
   map,
 }) => {
-  const size = radius * map.config.cellWidth
+  const sizePx = size * map.config.cellWidth
   return createEntity(
     c.Layer.BackGround(),
     c.Position({ x, y }),
     c.IsoPosition(),
     c.Display(View.isoRect({
-      width: size,
-      height: size,
+      width: sizePx,
+      height: sizePx,
       color: 0x8bc34a,
       filters: [new filters.AlphaFilter(alpha)],
     })),

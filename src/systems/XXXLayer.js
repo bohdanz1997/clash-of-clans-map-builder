@@ -10,8 +10,8 @@ export const XXXLayer = ({ map }) => {
   const updateNodeForLayer = layer => (node) => {
     const { position, identity, collision } = node
 
-    if (layer.isEmptyInSize(position.col, position.row, collision.radius)) {
-      layer.setInSize(position.col, position.row, identity.seed, collision.radius)
+    if (layer.isEmptyInSize(position.col, position.row, collision.size)) {
+      layer.setInSize(position.col, position.row, identity.seed, collision.size)
     }
   }
 
