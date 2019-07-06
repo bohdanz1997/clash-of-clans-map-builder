@@ -4,7 +4,9 @@ import { isFunction } from 'core/util'
 export const createEntity = (...componentTypes) => {
   const entity = new Entity()
   componentTypes.forEach((type) => {
-    if (isFunction(type)) {
+    if (type instanceof Branch) {
+      type.exec(entity)
+    } else if (isFunction(type)) {
       entity.add(type({ entity }))
     } else {
       entity.add(type)
@@ -12,3 +14,20 @@ export const createEntity = (...componentTypes) => {
   })
   return entity
 }
+
+class Branch {
+  constructor(condition, left, right) {
+    this.condition = condition
+    this.left = left
+    this.right = right
+  }
+
+  exec(entity) {
+    const component = this.condition ? this.left : this.right
+    if (component) {
+      entity.add(component)
+    }
+  }
+}
+
+export const branch = (condition, left, right) => new Branch(condition, left, right)
