@@ -103,8 +103,7 @@ export class View {
   static isoRect({ width, height, color, filters, alpha = 1 }) {
     const rect = new Graphics()
       .beginFill(color)
-      .drawRect(0, 0, width, height) // 3
-      // .drawRect(width / 2 - 10, -height / 2 + 10, width, height) // 4
+      .drawRect(0, 0, width, height)
 
     rect.pivot.set(-(66.5 / 2), 66.5 / 2)
     rect.transform.setFromMatrix(MatrixHelper.isoMatrix)
