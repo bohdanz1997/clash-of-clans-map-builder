@@ -11,8 +11,8 @@ const createInventorySlots = (level) => {
 }
 
 export const layersDefaults = {
-  width: 10,
-  height: 10,
+  width: 15,
+  height: 15,
   other: [
     { id: 'input' },
     { id: 'camera' },
@@ -37,7 +37,7 @@ export const testLayout = {
     {
       name: 'building',
       data: [
-        { id: 'building', def: 'clanCastle', col: 5, row: 5, level: 9 },
+        { id: 'building', def: 'clanCastle', col: 10, row: 10, level: 9 },
       ],
     },
     {

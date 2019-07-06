@@ -16,6 +16,20 @@ const ChildOverlayMovement = () => {
   })
 }
 
+const ChildRangeMovement = () => {
+  useNodes([n.ParentWithRange])
+
+  onUpdate((node) => {
+    const { child, position } = node
+    const childPosition = child.entity.get(c.Position)
+
+    if (childPosition) {
+      childPosition.x = position.x - child.offset.x
+      childPosition.y = position.y - child.offset.x
+    }
+  })
+}
+
 const ChildPreviewMovement = ({ map }) => {
   useNodes([n.ParentWithPreview])
 
@@ -67,4 +81,5 @@ export const ChildMovement = [
   ChildPreviewMovement,
   ChildDebugMovement,
   ChildDebugUIMovement,
+  ChildRangeMovement,
 ]

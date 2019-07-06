@@ -25,12 +25,11 @@ export const levelRestrictions = [
         level: 9,
         count: 250,
       },
-      // TODO: townhall 4x4 bug with display
-      // {
-      //   id: 'building',
-      //   def: 'townhall',
-      //   count: 1,
-      // },
+      {
+        id: 'building',
+        def: 'townhall',
+        count: 1,
+      },
       {
         id: 'building',
         def: 'clanCastle',

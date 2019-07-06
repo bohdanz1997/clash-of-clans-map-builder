@@ -9,11 +9,36 @@ import * as n from '../nodes'
  * @param {EntityManager} entities
  */
 export const UserInput = ({ keyboard, entities }) => {
-  useNodes([n.Pointer, n.InventoryItemSelected, n.Preview])
+  useNodes([n.Pointer, n.InventoryItemSelected, n.Preview, n.Range])
 
   const [ESC, CTRL, ENTER] = keyboard.addKeys(keys.ESC, keys.CTRL, keys.ENTER)
+  const [W, S, A, D] = keyboard.addKeys(keys.UP, keys.DOWN, keys.LEFT, keys.RIGHT)
 
-  onUpdate((pointers, selectedItems, previews) => {
+  const enableRangesMovement = (ranges) => {
+    const speed = 1
+    if (W.isDown) {
+      ranges.each((range) => {
+        range.display.sprite.pivot.y += speed
+      })
+    }
+    if (S.isDown) {
+      ranges.each((range) => {
+        range.display.sprite.pivot.y -= speed
+      })
+    }
+    if (A.isDown) {
+      ranges.each((range) => {
+        range.display.sprite.pivot.x += speed
+      })
+    }
+    if (D.isDown) {
+      ranges.each((range) => {
+        range.display.sprite.pivot.x -= speed
+      })
+    }
+  }
+
+  onUpdate((pointers, selectedItems, previews, ranges) => {
     const selectedItem = selectedItems.head
     const pointer = pointers.head
     const preview = previews.head
@@ -27,5 +52,7 @@ export const UserInput = ({ keyboard, entities }) => {
     if (CTRL.isDown && ENTER.justDown) {
       entities.add(e.Serializer)
     }
+
+    // enableRangesMovement(ranges)
   })
 }

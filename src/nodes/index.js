@@ -23,12 +23,14 @@ export const Child = [c.Parent]
 export const ParentRelations = {
   Default: [c.Child.Default],
   Overlay: [c.Child.Overlay],
+  Range: [c.Child.Range],
   Preview: [c.Child.Preview],
   Debug: [c.Child.Debug],
   DebugUI: [c.Child.DebugUI],
 }
 
 export const ParentWithOverlay = [c.Child.Overlay, c.Position]
+export const ParentWithRange = [c.Child.Range, c.Position]
 export const ParentWithPreview = [c.Child.Preview, c.IsoPosition]
 export const ParentWithDebug = [c.Child.Debug, c.IsoPosition]
 export const ParentWithDebugUI = [c.Child.DebugUI, c.Position]
@@ -117,3 +119,4 @@ export const Input = [c.Input]
 export const Animation = [c.Animatable, c.Display]
 export const Tween = [c.Tween]
 export const Preview = [c.Preview]
+export const Range = [c.Range, c.Display]

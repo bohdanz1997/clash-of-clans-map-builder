@@ -34,6 +34,7 @@ export const Parent = component('parent', ParentData)
 export const Child = {
   Default: childComponent(),
   Overlay: childComponent(),
+  Range: childComponent(),
   Preview: childComponent(),
   Debug: childComponent(),
   DebugUI: childComponent(),
