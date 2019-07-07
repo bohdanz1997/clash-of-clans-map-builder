@@ -3,7 +3,7 @@
     "module": "system",
     "moduleResolution": "node",
     "target": "es2015",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
       "app": ["./src"],
       "core": ["./core"],

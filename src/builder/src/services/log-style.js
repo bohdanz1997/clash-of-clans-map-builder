@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 let ffSupport;
 let formats;
 let getOrderedMatches;
