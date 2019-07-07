@@ -1,13 +1,34 @@
-import { createGame } from './game'
-import { testLayout } from './layout'
-import { LayoutManager } from './services'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createGlobalStyle } from 'styled-components'
 
-const savedLayout = LayoutManager.load('layout')
+import { App } from './App'
+import { configureStore } from './store'
+import './create-builder'
 
-if (savedLayout) {
-  console.log('Load layout', savedLayout)
+const GlobalStyles = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+  }
+`
+
+const root = document.getElementById('root')
+const store = configureStore()
+
+const render = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <GlobalStyles />
+      <App />
+    </Provider>,
+    root,
+  )
 }
 
-createGame({
-  layout: savedLayout || testLayout,
-})
+if (module.hot) {
+  module.hot.accept('./App', render)
+}
+
+render()
