@@ -112,11 +112,19 @@ export class Game {
   }
 
   destroy() {
+    this.isRunning = false
+
+    this.ticker.destroy()
+    this.ticker = null
+
     this.stage.destroy()
     this.stage = null
 
+    this.config.parent.removeChild(this.renderer.view)
     this.renderer.destroy()
     this.renderer = null
+
+    this.cache.clear()
 
     this.scenes.destroy()
 

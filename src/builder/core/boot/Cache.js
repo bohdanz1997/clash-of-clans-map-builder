@@ -1,3 +1,5 @@
+import { utils } from 'pixi.js'
+
 export class Cache {
   constructor(loader) {
     /** @type {PIXI.Loader} */
@@ -16,5 +18,14 @@ export class Cache {
     }
 
     return resource
+  }
+
+  clear() {
+    for (const textureUrl in utils.BaseTextureCache) {
+      delete utils.BaseTextureCache[textureUrl];
+    }
+    for (const textureUrl in utils.TextureCache) {
+      delete utils.TextureCache[textureUrl];
+    }
   }
 }

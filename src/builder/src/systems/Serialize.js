@@ -26,8 +26,10 @@ const SerializeLayout = ({ map, log }) => {
   onUpdate((serializers, buildings, inventoryItems) => {
     const serializer = serializers.head
     if (serializer) {
-
       const serializedData = {
+        id: map.config.id,
+        name: map.config.name,
+        level: map.config.level,
         width: map.config.width,
         height: map.config.height,
         layers: [

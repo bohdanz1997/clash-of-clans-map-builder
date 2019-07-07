@@ -3,6 +3,9 @@ import { prop } from '../util'
 export default class TileMapConfig {
   /**
    * @param {Object} config
+   * @param {number} [config.id]
+   * @param {number} [config.name]
+   * @param {number} [config.level]
    * @param {number} [config.width=10]
    * @param {number} [config.height=10]
    * @param {number} [config.tileWidth=66.5]
@@ -13,6 +16,12 @@ export default class TileMapConfig {
    */
   constructor(config) {
     const get = prop(config)
+
+    this.id = get('id')
+
+    this.name = get('name')
+
+    this.level = get('level')
 
     // width in tiles
     this.width = get('width', 10)

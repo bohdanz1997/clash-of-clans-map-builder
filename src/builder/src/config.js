@@ -17,10 +17,12 @@ class DisplayGroups {
 export const display = {
   groups: new DisplayGroups(),
 
-  containers: [
-    SpriteUtils.group('world'),
-    SpriteUtils.group('hud'),
-  ],
+  createContainers() {
+    return [
+      SpriteUtils.group('world'),
+      SpriteUtils.group('hud'),
+    ]
+  }
 }
 
 export const levels = {

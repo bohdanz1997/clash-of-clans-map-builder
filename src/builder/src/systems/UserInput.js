@@ -7,8 +7,9 @@ import * as n from '../nodes'
 /**
  * @param {Keyboard} keyboard
  * @param {EntityManager} entities
+ * @param {PIXI.utils.EventEmitter} events
  */
-export const UserInput = ({ keyboard, entities }) => {
+export const UserInput = ({ keyboard, entities, events }) => {
   useNodes([n.Pointer, n.InventoryItemSelected, n.Preview, n.Range])
 
   const [ESC, CTRL, ENTER] = keyboard.addKeys(keys.ESC, keys.CTRL, keys.ENTER)
@@ -37,6 +38,10 @@ export const UserInput = ({ keyboard, entities }) => {
       })
     }
   }
+
+  events.on('save-layout', () => {
+    entities.add(e.Serializer)
+  })
 
   onUpdate((pointers, selectedItems, previews, ranges) => {
     const selectedItem = selectedItems.head

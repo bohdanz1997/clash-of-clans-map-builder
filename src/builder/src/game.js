@@ -6,10 +6,11 @@ import { display } from './config'
 import { priorities } from './constants'
 
 export const createGame = ({ layout }) => {
+  const parentEl = document.getElementById('pixi')
   const game = new Game({
     width: 1100,
-    height: window.innerHeight - 4,
-    debug: true,
+    height: window.innerHeight - 100,
+    debug: false,
     logger: {
       enable: true,
       timestamp: false,
@@ -19,13 +20,14 @@ export const createGame = ({ layout }) => {
         layout: true,
       },
     },
+    parent: parentEl,
     scene: [GameScene],
     system: {
       defaultPriority: priorities.UPDATE,
     },
     display: {
       groups: display.groups,
-      containers: display.containers,
+      containers: display.createContainers(),
     },
   })
 
@@ -39,4 +41,6 @@ export const createGame = ({ layout }) => {
     .on('boot', onBoot)
 
   game.boot()
+
+  return game
 }

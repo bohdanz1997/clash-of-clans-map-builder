@@ -1,3 +1,4 @@
+import { uuid } from 'core/util'
 import { levelRestrictions } from './constants'
 
 const createInventorySlots = (level) => {
@@ -27,6 +28,9 @@ export const layersDefaults = {
 }
 
 export const testLayout = {
+  id: uuid(),
+  name: 'Test',
+  level: 9,
   width: layersDefaults.width,
   height: layersDefaults.height,
   layers: [

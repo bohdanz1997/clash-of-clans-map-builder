@@ -11,12 +11,18 @@ export default class Parser {
    */
   fromJSON(data) {
     const {
+      id,
+      name,
+      level,
       width,
       height,
       layers,
     } = data
 
     const map = new TileMap({
+      id,
+      name,
+      level,
       width,
       height,
     })

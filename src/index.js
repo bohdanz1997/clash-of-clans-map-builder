@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createGlobalStyle } from 'styled-components'
+import 'antd/dist/antd.css'
 
 import { App } from './App'
 import { configureStore } from './store'
-import './create-builder'
 
 const GlobalStyles = createGlobalStyle`
   * {

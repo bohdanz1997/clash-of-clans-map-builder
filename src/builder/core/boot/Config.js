@@ -13,6 +13,8 @@ export class Config {
     this.hHeight = this.height / 2
 
     this.zoom = get('zoom', 1)
+
+    /** @type {HTMLElement} */
     this.parent = get('parent', document.body)
 
     this.antialias = get('antialias', true)
@@ -22,7 +24,7 @@ export class Config {
     this.gameTitle = get('title', '')
     this.gameVersion = get('version', '')
 
-    this.baseAssetsUrl = get('baseAssetsUrl', 'assets')
+    this.baseAssetsUrl = get('baseAssetsUrl', '/assets')
 
     /** @type {HTMLBaseElement} */
     this.inputKeyboardEventTarget = get('input.keyboard.target', window)
@@ -31,7 +33,7 @@ export class Config {
     this.inputMouseEventTarget = get('input.mouse.target', null) // canvas
 
     /** @type {HTMLBaseElement} */
-    this.inputTouchEventTarget = get('input.touch.target', document.body) // canvas
+    this.inputTouchEventTarget = get('input.touch.target', this.parent) // canvas
 
     this.preBoot = get('callbacks.preBoot', noop)
     this.postBoot = get('callbacks.postBoot', noop)

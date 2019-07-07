@@ -1,6 +1,6 @@
 export class LayoutManager {
   static save(layoutData) {
-    localStorage.setItem('layout', JSON.stringify(layoutData))
+    localStorage.setItem(`layout-${layoutData.id}`, JSON.stringify(layoutData))
   }
 
   static load(key) {
