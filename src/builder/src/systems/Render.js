@@ -1,14 +1,18 @@
+import { Rectangle } from 'pixi.js'
 import { onNodeAdded, onNodeRemoved, onUpdate, useNodes } from 'core/ecs'
+import { CollisionChecker } from 'core/collision'
 import * as c from '../components'
 import * as n from '../nodes'
 
 /**
  * @param {PIXI.Container} world
  * @param {PIXI.Container} hud
+ * @param {PIXI.Renderer} renderer
  */
-export const Render = ({ world, hud }) => {
+export const Render = ({ world, hud, renderer }) => {
   useNodes([n.Render])
 
+  const screenBounds = renderer.screen
   const layersToContainers = [
     [c.Layer.Ground, world],
     [c.Layer.BackGround, world],
@@ -44,8 +48,12 @@ export const Render = ({ world, hud }) => {
   })
 
   onUpdate((node) => {
-    const { position, display } = node
-    display.sprite.x = position.x
-    display.sprite.y = position.y
+    const { position, display: { sprite } } = node
+    sprite.x = position.x
+    sprite.y = position.y
+
+    // disable rendering when sprite is outside screen
+    const spriteBounds = new Rectangle(sprite.x, sprite.y, sprite.width, sprite.height)
+    sprite.visible = !CollisionChecker.rectToRect(screenBounds, spriteBounds);
   })
 }
