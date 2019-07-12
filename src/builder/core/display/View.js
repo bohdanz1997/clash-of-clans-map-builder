@@ -9,11 +9,6 @@ const createSprite = (texture, filters = []) => {
 }
 
 export class View {
-  constructor({ renderer }) {
-    /** @type {PIXI.Renderer} */
-    this.renderer = renderer
-  }
-
   /**
    * @return {PIXI.AnimatedSprite}
    */
@@ -43,13 +38,14 @@ export class View {
   /**
    * @return {PIXI.Graphics}
    */
-  rect({ width, height, color, filters, alpha = 1 }) {
+  static rect({ width, height, color, filters, alpha = 1 }) {
     const rect = new Graphics()
       .beginFill(color)
       .drawRect(0, 0, width, height)
       .endFill()
 
-    const sprite = new Sprite(this.renderer.generateTexture(rect))
+    const sprite = new Sprite()
+    sprite.addChild(rect)
     sprite.filters = filters
     sprite.alpha = alpha
 
