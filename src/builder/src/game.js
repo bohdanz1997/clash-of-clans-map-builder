@@ -10,7 +10,7 @@ export const createGame = ({ layout }) => {
   const game = new Game({
     width: 1100,
     height: window.innerHeight - 100,
-    debug: false,
+    debug: true,
     logger: {
       enable: true,
       timestamp: false,
