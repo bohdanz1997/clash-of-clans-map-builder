@@ -10,7 +10,34 @@ export class Keyboard {
     this.queue = []
     this.time = null
     this.onKeyHandler = null
+    this.modificators = {}
+
+    this.initModificators()
   }
+
+  initModificators() {
+    const [CTRL, SHIFT, ALT] = this.addKeys(keys.CTRL, keys.SHIFT, keys.ALT)
+    this.modificators = {
+      CTRL,
+      SHIFT,
+      ALT,
+    }
+  }
+
+  /**
+   * @param {Key} key
+   */
+  ctrlWith = (key) => this.modificators.CTRL.isDown && key.justDown
+
+  /**
+   * @param {Key} key
+   */
+  shiftWith = (key) => this.modificators.SHIFT.isDown && key.justDown
+
+  /**
+   * @param {Key} key
+   */
+  altWith = (key) => this.modificators.ALT.isDown && key.justDown
 
   createEventHandler = (event) => {
     this.queue.push(event)

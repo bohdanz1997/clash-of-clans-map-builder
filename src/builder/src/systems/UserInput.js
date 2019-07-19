@@ -54,7 +54,7 @@ export const UserInput = ({ keyboard, entities, events }) => {
       preview.entity.dispose()
     }
 
-    if (CTRL.isDown && ENTER.justDown) {
+    if (keyboard.ctrlWith(ENTER)) {
       entities.add(e.Serializer)
     }
 
