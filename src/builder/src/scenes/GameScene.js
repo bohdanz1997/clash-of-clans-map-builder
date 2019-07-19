@@ -84,6 +84,7 @@ export class GameScene extends Scene {
       .add(s.InventoryItemCounter)
       .add(s.UserInput)
       .add(s.Serialize)
+      .add(s.CullObjects)
       .add(s.DisposeInventoryItemAndPreview, priorities.DISPOSING)
       .add(s.ParentRelationListener, priorities.DISPOSING)
       .add(s.ChildRelationListener, priorities.DISPOSING)

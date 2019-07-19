@@ -7,12 +7,10 @@ import * as n from '../nodes'
 /**
  * @param {PIXI.Container} world
  * @param {PIXI.Container} hud
- * @param {PIXI.Renderer} renderer
  */
-export const Render = ({ world, hud, renderer }) => {
+export const Render = ({ world, hud }) => {
   useNodes([n.Render])
 
-  const screenBounds = renderer.screen
   const layersToContainers = [
     [c.Layer.Ground, world],
     [c.Layer.BackGround, world],
@@ -51,9 +49,22 @@ export const Render = ({ world, hud, renderer }) => {
     const { position, display: { sprite } } = node
     sprite.x = position.x
     sprite.y = position.y
+  })
+}
+
+/**
+ * @param {PIXI.Renderer} renderer
+ */
+export const CullObjects = ({ renderer }) => {
+  useNodes([n.Cullable])
+
+  const screenBounds = renderer.screen
+
+  onUpdate((node) => {
+    const { position, collision, display: { sprite } } = node
 
     // disable rendering when sprite is outside screen
-    const spriteBounds = new Rectangle(sprite.x, sprite.y, sprite.width, sprite.height)
-    sprite.visible = !CollisionChecker.rectToRect(screenBounds, spriteBounds);
+    const spriteBounds = new Rectangle(position.x, position.y, collision.width, collision.height)
+    sprite.visible = CollisionChecker.rectToRect(screenBounds, spriteBounds);
   })
 }

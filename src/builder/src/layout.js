@@ -21,11 +21,11 @@ export const layersDefaults = {
     { id: 'inventory' },
   ],
   ground: [
-    // {
-    //   id: 'background',
-    //   def: 'tile',
-    //   asset: 'ground',
-    // }
+    {
+      id: 'background',
+      def: 'tile',
+      asset: 'ground',
+    }
   ],
 }
 
@@ -36,14 +36,14 @@ export const testLayout = {
   width: layersDefaults.width,
   height: layersDefaults.height,
   layers: [
-    // {
-    //   name: 'ground',
-    //   data: layersDefaults.ground,
-    // },
+    {
+      name: 'ground',
+      data: layersDefaults.ground,
+    },
     {
       name: 'building',
       data: [
-        { id: 'box', x: -200, y: 400, width: 100, height: 100 },
+        { id: 'box', x: 200, y: 400, width: 100, height: 100 },
       ],
     },
     {
@@ -54,7 +54,7 @@ export const testLayout = {
       name: 'other',
       data: [
         ...layersDefaults.other,
-        // ...createInventorySlots(9),
+        ...createInventorySlots(9),
       ],
     },
   ],
